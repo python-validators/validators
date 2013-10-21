@@ -13,6 +13,8 @@ def ipv4(value):
 
 
     Examples::
+
+
         >>> import validators
 
         >>> validators.ipv4('123.0.0.7')
@@ -43,6 +45,8 @@ def ipv6(value):
 
 
     Examples::
+
+
         >>> import validators
 
         >>> validators.ipv6('abcd:ef::42:1')

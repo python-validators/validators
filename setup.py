@@ -36,7 +36,7 @@ extras_require = {
 
 setup(
     name='validators',
-    version='0.1.0',
+    version='0.2.0',
     url='https://github.com/kvesteri/validators',
     license='BSD',
     author='Konsta Vesterinen',
@@ -47,7 +47,10 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
-    install_requires=['six>=1.4.0'],
+    install_requires=[
+        'six>=1.4.0',
+        'decorator>=3.4.0'
+    ],
     extras_require=extras_require,
     cmdclass={'test': PyTest},
     classifiers=[

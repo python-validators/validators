@@ -2,10 +2,10 @@ try:
     from collections import OrderedDict
 except ImportError:
     from ordereddict import OrderedDict
+from decorator import decorator
 import inspect
 import itertools
 import six
-from functools import wraps
 
 
 class FailedValidation(object):
@@ -35,13 +35,11 @@ def func_args_as_dict(func, args, kwargs):
     )
 
 
-def validator(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        value = func(*args, **kwargs)
-        if not value:
-            return FailedValidation(
-                func, func_args_as_dict(func, args, kwargs)
-            )
-        return value
-    return wrapper
+@decorator
+def validator(func, *args, **kwargs):
+    value = func(*args, **kwargs)
+    if not value:
+        return FailedValidation(
+            func, func_args_as_dict(func, args, kwargs)
+        )
+    return value

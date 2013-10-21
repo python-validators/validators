@@ -14,6 +14,9 @@ pattern_without_tld = re.compile(regex.format(tld=''))
 @validator
 def url(value, require_tld=True):
     """
+    url
+    ---
+
     Returns whether or not given value is a valid URL. If the value is
     valid URL this function returns True, otherwise `FailedValidation`.
 
