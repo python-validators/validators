@@ -20,6 +20,8 @@ def ipv4(value):
         >>> validators.ipv4('900.80.70.11')
         False
 
+    .. versionadded:: 0.2
+
     :param value: IP address string to validate
     """
     parts = value.split('.')

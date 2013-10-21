@@ -18,6 +18,8 @@ class Min(object):
         True
         >>> validators.Min < ''
         True
+
+    .. versionadded:: 0.2
     """
     def __lt__(self, other):
         if other is Min:
@@ -46,6 +48,7 @@ class Max(object):
         >>> validators.Max > 99999999999999999
         True
 
+    .. versionadded:: 0.2
     """
     def __gt__(self, other):
         if other is Max:

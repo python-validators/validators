@@ -32,6 +32,8 @@ def is_email(email, whitelist=None):
     .. _Django's email validator:
        https://github.com/django/django/blob/master/django/core/validators.py
 
+    .. versionadded:: 0.1
+
     :copyright: (c) Django Software Foundation and individual contributors.
     :license: BSD
     """
