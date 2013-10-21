@@ -29,6 +29,9 @@ Installation
     pip install validators
 
 
+Currently validators supports python versions 2.7 and 3.3.
+
+
 
 .. toctree::
    :maxdepth: 2
