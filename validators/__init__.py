@@ -1,13 +1,19 @@
 from .email import is_email
 from .extremes import Min, Max
 from .ip_address import ipv4, ipv6
+from .mac_address import mac_address
 from .utils import FailedValidation, validator
+from .url import url
+from .uuid import uuid
 
 
 __all__ = (
     ipv4,
     ipv6,
     is_email,
+    mac_address,
+    url,
+    uuid,
     validator,
     FailedValidation,
     Min,

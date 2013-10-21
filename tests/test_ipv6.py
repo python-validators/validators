@@ -18,5 +18,5 @@ def test_returns_true_on_valid_ipv4_address(address):
     ('1:2:3:4:5:6:7:8:9',),
     ('abcd::1ffff',),
 ])
-def test_returns_failed_validation_on_invalid_email(address):
+def test_returns_failed_validation_on_invalid_ipv6_address(address):
     assert isinstance(ipv6(address), FailedValidation)
