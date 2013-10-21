@@ -1,4 +1,4 @@
-from .email import is_email
+from .email import email
 from .extremes import Min, Max
 from .ip_address import ipv4, ipv6
 from .mac_address import mac_address
@@ -10,7 +10,7 @@ from .uuid import uuid
 __all__ = (
     ipv4,
     ipv6,
-    is_email,
+    email,
     mac_address,
     url,
     uuid,

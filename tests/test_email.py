@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import pytest
-from validators import is_email, FailedValidation
+from validators import email, ValidationFailure
 
 
-@pytest.mark.parametrize(('email', 'whitelist'), [
+@pytest.mark.parametrize(('value', 'whitelist'), [
     ('email@here.com', None),
     ('weirder-email@here.and.there.com', None),
     ('email@[127.0.0.1]', None),
@@ -15,11 +15,11 @@ from validators import is_email, FailedValidation
     ('"test@test"@example.com', None),
     ('"\\\011"@here.com', None),
 ])
-def test_returns_true_on_valid_email(email, whitelist):
-    assert is_email(email, whitelist=whitelist)
+def test_returns_true_on_valid_email(value, whitelist):
+    assert email(value, whitelist=whitelist)
 
 
-@pytest.mark.parametrize(('email',), [
+@pytest.mark.parametrize(('value',), [
     (None,),
     ('',),
     ('abc',),
@@ -36,5 +36,5 @@ def test_returns_true_on_valid_email(email, whitelist):
     # Quoted-string format (CR not allowed)
     ('"\\\012"@here.com',),
 ])
-def test_returns_failed_validation_on_invalid_email(email):
-    assert isinstance(is_email(email), FailedValidation)
+def test_returns_failed_validation_on_invalid_email(value):
+    assert isinstance(email(value), ValidationFailure)

@@ -29,4 +29,4 @@ def test_raises_assertion_error_for_invalid_args(value, min, max):
 ])
 def test_returns_failed_validation_on_invalid_range(value, min, max):
     result = validators.number_range(value, min=min, max=max)
-    assert isinstance(result, validators.FailedValidation)
+    assert isinstance(result, validators.ValidationFailure)

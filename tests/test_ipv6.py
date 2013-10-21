@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from validators import ipv6, FailedValidation
+from validators import ipv6, ValidationFailure
 
 
 @pytest.mark.parametrize(('address',), [
@@ -19,4 +19,4 @@ def test_returns_true_on_valid_ipv4_address(address):
     ('abcd::1ffff',),
 ])
 def test_returns_failed_validation_on_invalid_ipv6_address(address):
-    assert isinstance(ipv6(address), FailedValidation)
+    assert isinstance(ipv6(address), ValidationFailure)

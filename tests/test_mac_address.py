@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from validators import mac_address, FailedValidation
+from validators import mac_address, ValidationFailure
 
 
 @pytest.mark.parametrize(('address',), [
@@ -17,4 +17,4 @@ def test_returns_true_on_valid_mac_address(address):
     ('123:23:45:67:89:00',),
 ])
 def test_returns_failed_validation_on_invalid_mac_address(address):
-    assert isinstance(mac_address(address), FailedValidation)
+    assert isinstance(mac_address(address), ValidationFailure)

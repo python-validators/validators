@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from validators import ipv4, FailedValidation
+from validators import ipv4, ValidationFailure
 
 
 @pytest.mark.parametrize(('address',), [
@@ -19,4 +19,4 @@ def test_returns_true_on_valid_ipv4_address(address):
     ('900.200.100.75',),
 ])
 def test_returns_failed_validation_on_invalid_ipv4_address(address):
-    assert isinstance(ipv4(address), FailedValidation)
+    assert isinstance(ipv4(address), ValidationFailure)

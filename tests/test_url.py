@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
-from validators import url, FailedValidation
+from validators import url, ValidationFailure
 
 
 @pytest.mark.parametrize(('address', 'require_tld'), [
@@ -25,4 +25,4 @@ def test_returns_true_on_valid_url(address, require_tld):
     ('http://localhost:abc/a',),
 ])
 def test_returns_failed_validation_on_invalid_url(address):
-    assert isinstance(url(address), FailedValidation)
+    assert isinstance(url(address), ValidationFailure)

@@ -23,7 +23,7 @@ domain_whitelist = ['localhost']
 
 
 @validator
-def is_email(email, whitelist=None):
+def email(value, whitelist=None):
     """
     Validates an email address. This validator is based on `Django's
     email validator`_. Returns True on success and `:class:FailedValidation`
@@ -41,10 +41,10 @@ def is_email(email, whitelist=None):
     if whitelist is None:
         whitelist = domain_whitelist
 
-    if not email or '@' not in email:
+    if not value or '@' not in value:
         return False
 
-    user_part, domain_part = email.rsplit('@', 1)
+    user_part, domain_part = value.rsplit('@', 1)
 
     if not user_regex.match(user_part):
         return False

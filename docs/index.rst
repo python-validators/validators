@@ -35,7 +35,7 @@ API
 
 Each validator in `validators` is a simple function that takes the value to validate and possibly some additional key-value arguments. Each function returns `True` when validation succeeds and ValidationFailure object when validation fails.
 
-ValidationFailure class implements __bool__ method so you can easily check if validation failed with:
+ValidationFailure class implements __bool__ method so you can easily check if validation failed:
 
 ::
 
@@ -65,7 +65,7 @@ ValidationFailure object also holds all the arguments passed to original functio
 email
 -----
 
-.. autofunction:: is_email
+.. autofunction:: email
 
 ipv4
 ----
