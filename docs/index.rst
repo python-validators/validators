@@ -2,6 +2,17 @@ validators
 ==========
 
 
+Installation
+------------
+
+
+::
+
+
+    pip install validators
+
+
+
 .. toctree::
    :maxdepth: 2
 
