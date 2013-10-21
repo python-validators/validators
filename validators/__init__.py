@@ -70,7 +70,7 @@ def number_range(value, min=None, max=None):
 
 
 @validator
-def length(value, min=-1, max=-1):
+def length(value, min=None, max=None):
     """
     Returns whether or not the length of given string is within a specified
     range.
@@ -96,8 +96,8 @@ def length(value, min=-1, max=-1):
 
     .. versionadded: 0.2
     """
-    if min < 0 and max < 0:
+    if (min is not None and min < 0) or (max is not None and max < 0):
         raise AssertionError(
-            'One of `min` and `max` need to be greater than zero.'
+            '`min` and `max` need to be greater than zero.'
         )
     return number_range(len(value), min=min, max=max)

@@ -15,7 +15,7 @@ def test_returns_true_on_valid_length(value, min, max):
 
 @pytest.mark.parametrize(('value', 'min', 'max'), [
     ('something', 13, 12),
-    ('something', None, None),
+    ('something', -1, None),
     ('something', -1, None),
     ('something', -3, -2)
 ])
