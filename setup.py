@@ -47,7 +47,7 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
-    install_requires=[],
+    install_requires=['six>=1.4.0'],
     extras_require=extras_require,
     cmdclass={'test': PyTest},
     classifiers=[

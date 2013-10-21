@@ -4,6 +4,7 @@ except ImportError:
     from ordereddict import OrderedDict
 import inspect
 import itertools
+import six
 from functools import wraps
 
 
@@ -29,7 +30,7 @@ def func_args_as_dict(func, args, kwargs):
         )
     )
     return OrderedDict(
-        list(itertools.izip(arg_names, args)) +
+        list(six.zip(arg_names, args)) +
         list(kwargs.iteritems())
     )
 
