@@ -31,7 +31,7 @@ def func_args_as_dict(func, args, kwargs):
     )
     return OrderedDict(
         list(six.moves.zip(arg_names, args)) +
-        list(kwargs.iteritems())
+        list(kwargs.items())
     )
 
 
