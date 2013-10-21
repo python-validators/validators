@@ -4,11 +4,9 @@ validators
 Why?
 ====
 
-Python has all kinds of validation tools, but every one of them requires defining a schema. I wanted to create a simple validation library that eases the validation of scalar values.
+Python has all kinds of validation tools, but every one of them requires defining a schema. I wanted to create a simple validation library where validating a simple value does not require defining a form or a schema. Often I've had a case where I just wanted for example to check if given string is an email.
 
-Often I've had a case where I just wanted to check for example if given string is an email. For this use case it feels awkward to define a Form / Schema class to simply validate a scalar value.
-
-With `validators` validating scalars is as easy as:
+With `validators` this use case becomes as easy as:
 
 ::
 
@@ -32,12 +30,20 @@ Installation
 Currently validators supports python versions 2.7 and 3.3.
 
 
-
-.. toctree::
-   :maxdepth: 2
-
 API
 ===
+
+Each validator in `validators` is a simple function that takes the value to validate and possibly some additional key-value arguments. Each function returns `True` when validation succeeds and ValidationFailure object when validation fails.
+
+ValidationFailure class implements __bool__ method so you can easily check if validation failed with:
+
+::
+
+
+    if not email('some_bogus_email@@@'):
+        # Do something here
+        pass
+
 
 .. module:: validators
 
