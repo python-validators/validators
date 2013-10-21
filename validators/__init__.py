@@ -1,54 +1,70 @@
-import re
+from .email import is_email
+from .extremes import Min, Max
+from .utils import FailedValidation, validator
 
 
-user_regex = re.compile(
-    # dot-atom
-    r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+"
-    r"(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
-    # quoted-string
-    r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|'
-    r'\\[\001-\011\013\014\016-\177])*"$)',
-    re.IGNORECASE
+__all__ = (
+    is_email,
+    validator,
+    FailedValidation,
+    Min,
+    Max,
 )
-domain_regex = re.compile(
-    # domain
-    r'(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+'
-    r'(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?$)'
-    # literal form, ipv4 address (SMTP 4.1.3)
-    r'|^\[(25[0-5]|2[0-4]\d|[0-1]?\d?\d)'
-    r'(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$',
-    re.IGNORECASE)
-domain_whitelist = ['localhost']
 
 
-def is_email(email, whitelist=None):
-    """
-    Validates an email address. This validator is based on `Django's
-    email validator`_.
+@validator
+def range(value, min=None, max=None):
+    if min is None and max is None:
+        raise AssertionError(
+            'At least one of `min` or `max` must be specified.'
+        )
+    if min is None:
+        min = Min
+    if max is None:
+        max = Max
+    if min > max:
+        raise AssertionError('`min` cannot be more than `max`.')
 
-    .. _Django's email validator:
-       https://github.com/django/django/blob/master/django/core/validators.py
+    return min <= value <= max
 
-    :copyright: (c) Django Software Foundation and individual contributors.
-    :license: BSD
-    """
 
-    if whitelist is None:
-        whitelist = domain_whitelist
+@validator
+def length(value, min=None, max=None):
+    if min < 0 and max < 0:
+        raise AssertionError('`min` and `max` need to be greater than zero.')
+    return range(len(value), min=min, max=max)
 
-    if not email or '@' not in email:
+
+@validator
+def ipv4(value):
+    parts = value.split('.')
+    if len(parts) == 4 and all(x.isdigit() for x in parts):
+        numbers = list(int(x) for x in parts)
+        return all(num >= 0 and num < 256 for num in numbers)
+    return False
+
+
+@validator
+def ipv6(self, value):
+    parts = value.split(':')
+    if len(parts) > 8:
         return False
 
-    user_part, domain_part = email.rsplit('@', 1)
+    num_blank = 0
+    for part in parts:
+        if not part:
+            num_blank += 1
+        else:
+            try:
+                value = int(part, 16)
+            except ValueError:
+                return False
+            else:
+                if value < 0 or value >= 65536:
+                    return False
 
-    if not user_regex.match(user_part):
-        return False
-
-    if not domain_part in whitelist and not domain_regex.match(domain_part):
-        # Try for possible IDN domain-part
-        try:
-            domain_part = domain_part.encode('idna').decode('ascii')
-            return domain_regex.match(domain_part)
-        except UnicodeError:
-            return False
-    return True
+    if num_blank < 2:
+        return True
+    elif num_blank == 2 and not parts[0] and not parts[1]:
+        return True
+    return False
