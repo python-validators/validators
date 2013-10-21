@@ -29,12 +29,12 @@ def url(value, require_tld=True):
 
         >>> import validators
 
-        >>> validators.url('http://foobar.dk')
-        True
-        >>> validators.url('http://localhost/foobar', require_tld=False)
-        True
-        >>> validators.url('http://foobar.d')
-        False
+        >>> assert validators.url('http://foobar.dk')
+
+        >>> assert validators.url('http://localhost/foobar', require_tld=False)
+
+        >>> assert not validators.url('http://foobar.d')
+
 
     .. versionadded:: 0.2
 

@@ -39,12 +39,12 @@ def number_range(value, min=None, max=None):
     Examples::
 
 
-        >>> number_range(5, min=2)
-        True
-        >>> number_range(13.2, min=13, max=14)
-        True
-        >>> number_range(500, max=400)
-        False
+        >>> assert number_range(5, min=2)
+
+        >>> assert number_range(13.2, min=13, max=14)
+
+        >>> assert not number_range(500, max=400)
+
 
     :param min:
         The minimum required value of the number. If not provided, minimum
@@ -78,12 +78,12 @@ def length(value, min=None, max=None):
     Examples::
 
 
-        >>> length('something', min=2)
-        True
-        >>> length('something', min=9, max=9)
-        True
-        >>> length('something', max=5)
-        False
+        >>> assert length('something', min=2)
+
+        >>> assert length('something', min=9, max=9)
+
+        >>> assert not length('something', max=5)
+
 
     :param value:
         The string to validate.

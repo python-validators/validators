@@ -47,12 +47,10 @@ def ipv6(value):
     Examples::
 
 
-        >>> import validators
+        >>> assert validators.ipv6('abcd:ef::42:1')
 
-        >>> validators.ipv6('abcd:ef::42:1')
-        True
-        >>> validators.ipv6('abc.0.0.1')
-        False
+        >>> assert not validators.ipv6('abc.0.0.1')
+
 
     .. versionadded:: 0.2
 

@@ -29,6 +29,15 @@ def email(value, whitelist=None):
     email validator`_. Returns True on success and `:class:FailedValidation`
     when validation fails.
 
+
+    Examples::
+
+
+        >>> assert validators.email('someone@example.com')
+
+        >>> assert not validators.email('bogus@@')
+
+
     .. _Django's email validator:
        https://github.com/django/django/blob/master/django/core/validators.py
 

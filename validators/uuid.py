@@ -20,10 +20,10 @@ def uuid(value):
 
         >>> import validators
 
-        >>> validators.uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
-        True
-        >>> validators.uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
-        False
+        >>> assert validators.uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
+
+        >>> assert not validators.uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
+
 
     .. versionadded:: 0.2
 

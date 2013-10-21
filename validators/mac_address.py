@@ -18,12 +18,9 @@ def mac_address(value):
 
     Examples::
 
-        >>> import validators
+        >>> assert validators.mac_address('01:23:45:67:ab:CD')
 
-        >>> validators.mac_address('01:23:45:67:ab:CD')
-        True
-        >>> validators.mac_address('00:00:00:00:00')
-        False
+        >>> assert not validators.mac_address('00:00:00:00:00')
 
     .. versionadded:: 0.2
 
