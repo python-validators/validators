@@ -21,6 +21,9 @@ __all__ = (
 )
 
 
+__version__ = '0.2'
+
+
 @validator
 def number_range(value, min=None, max=None):
     """
