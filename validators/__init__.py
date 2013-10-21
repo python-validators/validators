@@ -37,6 +37,21 @@ def length(value, min=None, max=None):
 
 @validator
 def ipv4(value):
+    """
+    Returns whether or not given value is a valid IP version 4 address.
+
+    Examples::
+
+    Examples::
+        >>> import validators
+
+        >>> validators.ipv4('123.0.0.7')
+        True
+        >>> validators.ipv4('900.80.70.11')
+        False
+
+    :param value: IP address string to validate
+    """
     parts = value.split('.')
     if len(parts) == 4 and all(x.isdigit() for x in parts):
         numbers = list(int(x) for x in parts)
@@ -45,7 +60,7 @@ def ipv4(value):
 
 
 @validator
-def ipv6(self, value):
+def ipv6(value):
     parts = value.split(':')
     if len(parts) > 8:
         return False
