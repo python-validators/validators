@@ -13,6 +13,31 @@ pattern_without_tld = re.compile(regex.format(tld=''))
 
 @validator
 def url(value, require_tld=True):
+    """
+    Returns whether or not given value is a valid URL. If the value is
+    valid URL this function returns True, otherwise `FailedValidation`.
+
+    This validator is based on `WTForms URL validator`_.
+
+    .. _WTForms URL validator:
+       https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
+
+    Examples::
+
+        >>> import validators
+
+        >>> validators.url('http://foobar.dk')
+        True
+        >>> validators.url('http://localhost/foobar', require_tld=False)
+        True
+        >>> validators.url('http://foobar.d')
+        False
+
+    .. versionadded:: 0.2
+
+    :param value: URL address string to validate
+    """
+
     if require_tld:
         return pattern_with_tld.match(value)
     return pattern_without_tld.match(value)
