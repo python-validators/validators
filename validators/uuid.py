@@ -11,6 +11,11 @@ def uuid(value):
     Returns whether or not given value is a valid uuid. If the value is valid
     uuid this function returns True, otherwise `FailedValidation`.
 
+    This validator is based on `WTForms UUID validator`_.
+
+    .. _WTForms UUID validator:
+       https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
+
     Examples::
 
         >>> import validators

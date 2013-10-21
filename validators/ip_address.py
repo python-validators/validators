@@ -34,7 +34,7 @@ def ipv6(value):
     """
     Returns whether or not given value is a valid IP version 6 address.
 
-    This validator is based on `WTForms IPAddress validator`_
+    This validator is based on `WTForms IPAddress validator`_.
 
     .. _WTForms IPAddress validator:
        https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
@@ -47,6 +47,8 @@ def ipv6(value):
         True
         >>> validators.ipv6('abc.0.0.1')
         False
+
+    .. versionadded:: 0.2
 
     :param value: IP address string to validate
     """
