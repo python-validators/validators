@@ -98,6 +98,11 @@ number_range
 .. autofunction:: number_range
 
 
+truthy
+------
+
+.. autofunction:: truthy
+
 url
 ---
 .. autofunction:: url
