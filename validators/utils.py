@@ -22,8 +22,10 @@ class FailedValidation(object):
 def func_args_as_dict(func, args, kwargs):
     arg_names = list(
         OrderedDict.fromkeys(
-            inspect.getargspec(func)[0] +
-            kwargs.keys()
+            itertools.chain(
+                inspect.getargspec(func)[0],
+                kwargs.keys()
+            )
         )
     )
     return OrderedDict(
