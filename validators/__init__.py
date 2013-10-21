@@ -50,7 +50,7 @@ def truthy(value):
 
         >>> assert not truthy(None)
 
-    .. versionadded: 0.2
+    .. versionadded:: 0.2
     """
     return (
         not value or
@@ -87,7 +87,7 @@ def number_range(value, min=None, max=None):
         The maximum value of the number. If not provided, maximum value
         will not be checked.
 
-    .. versionadded: 0.2
+    .. versionadded:: 0.2
     """
     if min is None and max is None:
         raise AssertionError(
@@ -128,7 +128,7 @@ def length(value, min=None, max=None):
         The maximum length of the string. If not provided, maximum length
         will not be checked.
 
-    .. versionadded: 0.2
+    .. versionadded:: 0.2
     """
     if (min is not None and min < 0) or (max is not None and max < 0):
         raise AssertionError(
