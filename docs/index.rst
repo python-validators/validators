@@ -2,7 +2,7 @@ validators
 ==========
 
 Why?
-----
+====
 
 Python has all kinds of validation tools, but every one of them requires defining a schema. I wanted to create a simple validation library that eases the validation of scalar values.
 
@@ -20,7 +20,7 @@ With `validators` validating scalars is as easy as:
 
 
 Installation
-------------
+============
 
 
 ::
@@ -33,7 +33,8 @@ Installation
 .. toctree::
    :maxdepth: 2
 
-
+API
+===
 
 .. module:: validators
 
