@@ -45,6 +45,21 @@ ValidationFailure class implements __bool__ method so you can easily check if va
         pass
 
 
+ValidationFailure object also holds all the arguments passed to original function:
+
+::
+
+
+    result = number_range(3, min=5)
+    if not result:
+        result.value
+        # 3
+
+        result.min
+        # 5
+
+
+
 .. module:: validators
 
 email
