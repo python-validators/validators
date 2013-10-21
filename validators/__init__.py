@@ -70,7 +70,7 @@ def number_range(value, min=None, max=None):
 
 
 @validator
-def length(value, min=None, max=None):
+def length(value, min=-1, max=-1):
     """
     Returns whether or not the length of given string is within a specified
     range.
