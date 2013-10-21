@@ -1,7 +1,7 @@
 validators
 ==========
 
-Python data validation for Humans.
+Python Data Validation for Humans™.
 
 
 Why?
