@@ -49,11 +49,12 @@ def func_args_as_dict(func, args, kwargs):
     )
 
 
-@decorator
 def validator(func, *args, **kwargs):
-    value = func(*args, **kwargs)
-    if not value:
-        return ValidationFailure(
-            func, func_args_as_dict(func, args, kwargs)
-        )
-    return value
+    def wrapper(func, *args, **kwargs):
+        value = func(*args, **kwargs)
+        if not value:
+            return ValidationFailure(
+                func, func_args_as_dict(func, args, kwargs)
+            )
+        return value
+    return decorator(wrapper, func)
