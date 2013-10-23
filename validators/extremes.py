@@ -1,4 +1,8 @@
-from functools import total_ordering
+try:
+    from functools import total_ordering
+except ImportError:
+    # Use Python 2.6 port
+    from total_ordering import total_ordering
 
 
 @total_ordering

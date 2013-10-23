@@ -1,4 +1,5 @@
 import validators
+import six
 
 
 obj_repr = (
@@ -19,10 +20,7 @@ class TestValidationFailure(object):
         assert repr(self.obj) == obj_repr
 
     def test_unicode(self):
-        assert unicode(self.obj) == obj_repr
-
-    def test_str(self):
-        assert str(self.obj) == obj_repr
+        assert six.text_type(self.obj) == obj_repr
 
     def test_arguments_as_properties(self):
         assert self.obj.value == 3
