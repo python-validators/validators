@@ -59,6 +59,26 @@ def validator(func, *args, **kwargs):
     function is called and returns False value this decorator returns
     ValidationFailure object.
 
+    Example:
+
+    ::
+
+
+        >>> from validators import validator
+
+
+        >>> @validator
+        >>> def even(value):
+        ...     return not (value % 2)
+
+
+        >>> even(4)
+        True
+
+        >>> even(5)
+        ValidationFailure(func=even, args={'value': 5})
+
+
     :param func: function to decorate
     :param *args: positional function arguments
     :param **kwargs: key value function arguments
