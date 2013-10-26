@@ -75,12 +75,14 @@ email
 ipv4
 ----
 
-.. module:: validators
+.. module:: validators.ipv4
 
 .. autofunction:: ipv4
 
 ipv6
 ----
+
+.. module:: validators.ipv6
 
 .. autofunction:: ipv6
 
@@ -88,16 +90,22 @@ ipv6
 length
 ------
 
+.. module:: validators.length
+
 .. autofunction:: length
 
 
 mac_address
 -----------
 
+.. module:: validators.mac_address
+
 .. autofunction:: mac_address
 
 range
 -----
+
+.. module:: validators.range
 
 .. autofunction:: range
 
@@ -105,14 +113,22 @@ range
 truthy
 ------
 
+.. module:: validators.truthy
+
 .. autofunction:: truthy
 
 url
 ---
+
+.. module:: validators.url
+
 .. autofunction:: url
 
 uuid
 ----
+
+.. module:: validators.uuid
+
 .. autofunction:: uuid
 
 
