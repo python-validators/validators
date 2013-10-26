@@ -75,14 +75,12 @@ email
 ipv4
 ----
 
-.. module:: validators.ipv4
+.. module:: validators.ip_address
 
 .. autofunction:: ipv4
 
 ipv6
 ----
-
-.. module:: validators.ipv6
 
 .. autofunction:: ipv6
 
@@ -138,5 +136,7 @@ Internals
 
 validator
 ---------
+
+.. module:: validators.utils
 
 .. autofunction:: validator
