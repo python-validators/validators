@@ -63,15 +63,19 @@ ValidationFailure object also holds all the arguments passed to original functio
 
 
 
-.. module:: validators
+
 
 email
 -----
+
+.. module:: validators.email
 
 .. autofunction:: email
 
 ipv4
 ----
+
+.. module:: validators
 
 .. autofunction:: ipv4
 
