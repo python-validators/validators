@@ -35,6 +35,10 @@ class ValidationFailure(object):
 
 
 def func_args_as_dict(func, args, kwargs):
+    """
+    Returns given function positional and key value arguments as an ordered
+    dictionary.
+    """
     arg_names = list(
         OrderedDict.fromkeys(
             itertools.chain(
@@ -50,6 +54,15 @@ def func_args_as_dict(func, args, kwargs):
 
 
 def validator(func, *args, **kwargs):
+    """
+    A decorator that makes given function validator. Whenever the given
+    function is called and returns False value this decorator returns
+    ValidationFailure object.
+
+    :param func: function to decorate
+    :param *args: positional function arguments
+    :param **kwargs: key value function arguments
+    """
     def wrapper(func, *args, **kwargs):
         value = func(*args, **kwargs)
         if not value:

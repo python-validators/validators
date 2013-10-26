@@ -111,3 +111,12 @@ uuid
 ----
 .. autofunction:: uuid
 
+
+
+Internals
+=========
+
+validator
+---------
+
+.. autofunction:: validator
