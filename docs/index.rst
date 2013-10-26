@@ -92,10 +92,10 @@ mac_address
 
 .. autofunction:: mac_address
 
-number_range
-------------
+range
+-----
 
-.. autofunction:: number_range
+.. autofunction:: range
 
 
 truthy

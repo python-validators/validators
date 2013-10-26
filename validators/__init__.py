@@ -59,11 +59,11 @@ def truthy(value):
 
 
 @validator
-def number_range(value, min=None, max=None):
+def range(value, min=None, max=None):
     """
     Validates that a number is of a minimum and/or maximum value, inclusive.
-    This will work with any comparable number type, such as floats and
-    decimals, not just integers.
+    This will work with any comparable type, such as floats, decimals and dates
+    not just integers.
 
     This validator is based on `WTForms NumberRange validator`_.
 
@@ -72,12 +72,13 @@ def number_range(value, min=None, max=None):
 
     Examples::
 
+        >>> import validators
 
-        >>> assert number_range(5, min=2)
+        >>> assert validators.range(5, min=2)
 
-        >>> assert number_range(13.2, min=13, max=14)
+        >>> assert validators.range(13.2, min=13, max=14)
 
-        >>> assert not number_range(500, max=400)
+        >>> assert not validators.range(500, max=400)
 
 
     :param min:
@@ -134,4 +135,4 @@ def length(value, min=None, max=None):
         raise AssertionError(
             '`min` and `max` need to be greater than zero.'
         )
-    return number_range(len(value), min=min, max=max)
+    return range(len(value), min=min, max=max)
