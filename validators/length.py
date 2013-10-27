@@ -1,4 +1,4 @@
-from .range import range
+from .between import between
 from .utils import validator
 
 
@@ -33,4 +33,4 @@ def length(value, min=None, max=None):
         raise AssertionError(
             '`min` and `max` need to be greater than zero.'
         )
-    return range(len(value), min=min, max=max)
+    return between(len(value), min=min, max=max)
