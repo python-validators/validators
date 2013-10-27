@@ -3,13 +3,13 @@ import six
 
 
 obj_repr = (
-    "ValidationFailure(func=range"
+    "ValidationFailure(func=between"
 )
 
 
 class TestValidationFailure(object):
     def setup_method(self, method):
-        self.obj = validators.range(3, min=4, max=5)
+        self.obj = validators.between(3, min=4, max=5)
 
     def test_boolean_coerce(self):
         assert not bool(self.obj)

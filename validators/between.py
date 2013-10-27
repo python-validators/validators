@@ -3,13 +3,13 @@ from .utils import validator
 
 
 @validator
-def range(value, min=None, max=None):
+def between(value, min=None, max=None):
     """
-    Validates that a number is of a minimum and/or maximum value, inclusive.
+    Validates that a number is between minimum and/or maximum value.
     This will work with any comparable type, such as floats, decimals and dates
     not just integers.
 
-    This validator is based on `WTForms NumberRange validator`_.
+    This validator is originally based on `WTForms NumberRange validator`_.
 
     .. _WTForms NumberRange validator:
        https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
@@ -18,15 +18,15 @@ def range(value, min=None, max=None):
 
         >>> import validators
 
-        >>> assert validators.range(5, min=2)
+        >>> assert validators.between(5, min=2)
 
-        >>> assert validators.range(13.2, min=13, max=14)
+        >>> assert validators.between(13.2, min=13, max=14)
 
-        >>> assert not validators.range(500, max=400)
+        >>> assert not validators.between(500, max=400)
 
         >>> from datetime import datetime
 
-        >>> assert validator.range(
+        >>> assert validator.between(
         ...     datetime(2000, 11, 11),
         ...     min=datetime(1999, 11, 11)
         ... )

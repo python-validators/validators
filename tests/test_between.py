@@ -10,7 +10,7 @@ import validators
     (12, 12, 12)
 ])
 def test_returns_true_on_valid_range(value, min, max):
-    assert validators.range(value, min=min, max=max)
+    assert validators.between(value, min=min, max=max)
 
 
 @pytest.mark.parametrize(('value', 'min', 'max'), [
@@ -19,7 +19,7 @@ def test_returns_true_on_valid_range(value, min, max):
 ])
 def test_raises_assertion_error_for_invalid_args(value, min, max):
     with pytest.raises(AssertionError):
-        assert validators.range(value, min=min, max=max)
+        assert validators.between(value, min=min, max=max)
 
 
 @pytest.mark.parametrize(('value', 'min', 'max'), [
@@ -28,5 +28,5 @@ def test_raises_assertion_error_for_invalid_args(value, min, max):
     (12, 13, None)
 ])
 def test_returns_failed_validation_on_invalid_range(value, min, max):
-    result = validators.range(value, min=min, max=max)
+    result = validators.between(value, min=min, max=max)
     assert isinstance(result, validators.ValidationFailure)

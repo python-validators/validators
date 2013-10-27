@@ -63,6 +63,12 @@ ValidationFailure object also holds all the arguments passed to original functio
 
 
 
+between
+-------
+
+.. module:: validators.between
+
+.. autofunction:: between
 
 
 email
@@ -99,13 +105,6 @@ mac_address
 .. module:: validators.mac_address
 
 .. autofunction:: mac_address
-
-range
------
-
-.. module:: validators.range
-
-.. autofunction:: range
 
 
 truthy
