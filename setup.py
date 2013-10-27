@@ -36,7 +36,7 @@ extras_require = {
 
 setup(
     name='validators',
-    version='0.2.0',
+    version='0.3.0',
     url='https://github.com/kvesteri/validators',
     license='BSD',
     author='Konsta Vesterinen',
