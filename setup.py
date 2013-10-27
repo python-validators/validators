@@ -2,7 +2,7 @@
 validators
 ----------
 
-Validate scalars like a bauws.
+Python Data Validation for Humans™.
 """
 
 from setuptools import setup, Command
@@ -41,7 +41,7 @@ setup(
     license='BSD',
     author='Konsta Vesterinen',
     author_email='konsta@fastmonkeys.com',
-    description='Validate scalars like a bauws.',
+    description='Python Data Validation for Humans™.',
     long_description=__doc__,
     packages=['validators'],
     zip_safe=False,
