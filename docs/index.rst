@@ -78,6 +78,15 @@ email
 
 .. autofunction:: email
 
+
+finnish_business_id
+-------------------
+
+.. module:: validators.finnish_business_id
+
+.. autofunction:: finnish_business_id
+
+
 ipv4
 ----
 
