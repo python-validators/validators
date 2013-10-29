@@ -43,6 +43,9 @@ def email(value, whitelist=None):
 
     .. versionadded:: 0.1
 
+    :param value: value to validate
+    :param whitelist: domain names to whitelist
+
     :copyright: (c) Django Software Foundation and individual contributors.
     :license: BSD
     """
