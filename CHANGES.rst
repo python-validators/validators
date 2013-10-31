@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+0.5.0 (2013-10-31)
+^^^^^^^^^^^^^^^^^^
+
+- Renamed finnish_business_id to fi_business_id
+- Added new validator: fi_ssn
+
+
 0.4.0 (2013-10-29)
 ^^^^^^^^^^^^^^^^^^
 
