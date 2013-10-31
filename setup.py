@@ -6,7 +6,7 @@ validators
 Python Data Validation for Humans™.
 """
 
-from setuptools import setup, Command
+from setuptools import setup, Command, find_packages
 import subprocess
 import sys
 
@@ -44,7 +44,7 @@ setup(
     author_email='konsta@fastmonkeys.com',
     description='Python Data Validation for Humans™.',
     long_description=__doc__,
-    packages=['validators'],
+    packages=find_packages('.'),
     zip_safe=False,
     include_package_data=True,
     platforms='any',
