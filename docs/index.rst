@@ -30,7 +30,7 @@ Installation
     pip install validators
 
 
-Currently validators supports python versions 2.7 and 3.3.
+Currently validators supports python versions 2.6, 2.7 and 3.3.
 
 
 Basic validators
