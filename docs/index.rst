@@ -79,14 +79,6 @@ email
 .. autofunction:: email
 
 
-finnish_business_id
--------------------
-
-.. module:: validators.finnish_business_id
-
-.. autofunction:: finnish_business_id
-
-
 ipv4
 ----
 
@@ -137,6 +129,24 @@ uuid
 
 .. autofunction:: uuid
 
+
+i18n validators
+===============
+
+Finnish
+-------
+
+.. module:: validators.i18n.fi
+
+fi_business_id
+^^^^^^^^^^^^^^
+
+.. autofunction:: fi_business_id
+
+fi_ssn
+^^^^^^
+
+.. autofunction:: fi_ssn
 
 
 Internals
