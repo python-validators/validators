@@ -1,7 +1,7 @@
-from .fi import finnish_ssn, finnish_business_id
+from .fi import fi_ssn, fi_business_id
 
 
 __all__ = (
-    finnish_ssn,
-    finnish_business_id,
+    fi_ssn,
+    fi_business_id,
 )

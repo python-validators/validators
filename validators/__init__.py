@@ -8,14 +8,14 @@ from .truthy import truthy
 from .url import url
 from .utils import ValidationFailure, validator
 from .uuid import uuid
-from .i18n import finnish_business_id, finnish_ssn
+from .i18n import fi_business_id, fi_ssn
 
 
 __all__ = (
     between,
     email,
-    finnish_business_id,
-    finnish_ssn,
+    fi_business_id,
+    fi_ssn,
     ipv4,
     ipv6,
     length,
@@ -30,4 +30,4 @@ __all__ = (
 )
 
 
-__version__ = '0.4'
+__version__ = '0.5'

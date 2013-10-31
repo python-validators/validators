@@ -17,7 +17,7 @@ ssn_pattern = re.compile(
 
 
 @validator
-def finnish_business_id(business_id):
+def fi_business_id(business_id):
     """
     Validates a Finnish Business ID. Each company in Finland has a distinct
     business id. For more information see `Finnish Trade Register`_
@@ -46,7 +46,7 @@ def finnish_business_id(business_id):
 
 
 @validator
-def finnish_ssn(ssn):
+def fi_ssn(ssn):
     """
     Validates a Finnish Social Security Number. This validator is based on
     `django-localflavor-fi`_.
