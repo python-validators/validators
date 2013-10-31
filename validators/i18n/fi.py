@@ -27,11 +27,13 @@ def fi_business_id(business_id):
 
     ::
 
-        >>> assert finnish_business_id('0112038-9')  # Fast Monkeys Ltd
+        >>> assert fi_business_id('0112038-9')  # Fast Monkeys Ltd
 
-        >>> assert not finnish_business_id('1234567-8')  # Bogus ID
+        >>> assert not fi_business_id('1234567-8')  # Bogus ID
 
     .. versionadded:: 0.4
+    .. versionchanged:: 0.5
+        Method renamed from finnish_business_id to fi_business_id
 
     :param business_id: business_id to validate
     """
@@ -53,6 +55,13 @@ def fi_ssn(ssn):
 
     .. _django-localflavor-fi:
         https://github.com/django/django-localflavor-fi/
+
+    ::
+
+        >>> assert fi_ssn('010101-0101')
+
+        >>> assert not fi_ssn('101010-0102')
+
 
     .. versionadded:: 0.5
 

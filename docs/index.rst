@@ -33,8 +33,8 @@ Installation
 Currently validators supports python versions 2.7 and 3.3.
 
 
-API
-===
+Basic validators
+================
 
 Each validator in `validators` is a simple function that takes the value to validate and possibly some additional key-value arguments. Each function returns `True` when validation succeeds and ValidationFailure object when validation fails.
 
