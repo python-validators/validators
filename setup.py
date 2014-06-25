@@ -22,14 +22,14 @@ extras_require = {
 
 setup(
     name='validators',
-    version='0.5.0',
+    version='0.6.0',
     url='https://github.com/kvesteri/validators',
     license='BSD',
     author='Konsta Vesterinen',
     author_email='konsta@fastmonkeys.com',
     description='Python Data Validation for Humans™.',
     long_description=__doc__,
-    packages=find_packages('.'),
+    packages=find_packages('.', exclude=['tests', 'tests.*']),
     zip_safe=False,
     include_package_data=True,
     platforms='any',

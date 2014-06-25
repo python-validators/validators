@@ -108,6 +108,14 @@ mac_address
 .. autofunction:: mac_address
 
 
+slug
+----
+
+.. module:: validators.slug
+
+.. autofunction:: slug
+
+
 truthy
 ------
 
