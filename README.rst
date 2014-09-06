@@ -4,8 +4,9 @@ validators
 Python data validation for Humans.
 
 Python has all kinds of data validation tools, but every one of them seems to
-require defining a schema / form. I wanted to create a simple validation library
-where validating a simple value does not require defining a form or a schema.
+require defining a schema or form. I wanted to create a simple validation
+library where validating a simple value does not require defining a form or a
+schema.
 
 
 ::
