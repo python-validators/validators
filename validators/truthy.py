@@ -14,21 +14,27 @@ def truthy(value):
 
     Examples::
 
-        >>> assert truthy(1)
+        >>> truthy(1)
+        True
 
-        >>> assert truthy('someone')
+        >>> truthy('someone')
+        True
 
-        >>> assert not truthy(0)
+        >>> truthy(0)
+        ValidationFailure(func=truthy, args={'value': 0})
 
-        >>> assert not truthy('    ')
+        >>> truthy('    ')
+        ValidationFailure(func=truthy, args={'value': '    '})
 
-        >>> assert not truthy(False)
+        >>> truthy(False)
+        ValidationFailure(func=truthy, args={'value': False})
 
-        >>> assert not truthy(None)
+        >>> truthy(None)
+        ValidationFailure(func=truthy, args={'value': None})
 
     .. versionadded:: 0.2
     """
     return (
-        not value or
-        isinstance(value, six.string_types) and not value.strip()
+        value and
+        (not isinstance(value, six.string_types) or value.strip())
     )

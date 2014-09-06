@@ -13,12 +13,11 @@ def ipv4(value):
 
     Examples::
 
-        >>> import validators
-
-        >>> validators.ipv4('123.0.0.7')
+        >>> ipv4('123.0.0.7')
         True
-        >>> validators.ipv4('900.80.70.11')
-        False
+
+        >>> ipv4('900.80.70.11')
+        ValidationFailure(func=ipv4, args={'value': '900.80.70.11'})
 
     .. versionadded:: 0.2
 
@@ -43,9 +42,11 @@ def ipv6(value):
 
     Examples::
 
-        >>> assert validators.ipv6('abcd:ef::42:1')
+        >>> ipv6('abcd:ef::42:1')
+        True
 
-        >>> assert not validators.ipv6('abc.0.0.1')
+        >>> ipv6('abc.0.0.1')
+        ValidationFailure(func=ipv6, args={'value': 'abc.0.0.1'})
 
     .. versionadded:: 0.2
 

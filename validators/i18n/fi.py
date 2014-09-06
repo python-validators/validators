@@ -29,9 +29,11 @@ def fi_business_id(business_id):
 
     Examples::
 
-        >>> assert fi_business_id('0112038-9')  # Fast Monkeys Ltd
+        >>> fi_business_id('0112038-9')  # Fast Monkeys Ltd
+        True
 
-        >>> assert not fi_business_id('1234567-8')  # Bogus ID
+        >>> fi_business_id('1234567-8')  # Bogus ID
+        ValidationFailure(func=fi_business_id, ...)
 
     .. versionadded:: 0.4
     .. versionchanged:: 0.5
@@ -61,9 +63,11 @@ def fi_ssn(ssn):
 
     Examples::
 
-        >>> assert fi_ssn('010101-0101')
+        >>> fi_ssn('010101-0101')
+        True
 
-        >>> assert not fi_ssn('101010-0102')
+        >>> fi_ssn('101010-0102')
+        ValidationFailure(func=fi_ssn, args={'ssn': '101010-0102'})
 
     .. versionadded:: 0.5
 

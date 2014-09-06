@@ -20,11 +20,11 @@ def uuid(value):
 
     Examples::
 
-        >>> import validators
+        >>> uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
+        True
 
-        >>> assert validators.uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
-
-        >>> assert not validators.uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
+        >>> uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
+        ValidationFailure(func=uuid, ...)
 
     .. versionadded:: 0.2
 

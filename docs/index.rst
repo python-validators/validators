@@ -20,7 +20,6 @@ is an email. With ``validators`` this use case becomes as easy as::
 
     >>> import validators
 
-
     >>> validators.email('someone@example.com')
     True
 
@@ -46,20 +45,18 @@ validate and possibly some additional key-value arguments. Each function returns
 :class:`~validators.utils.ValidationFailure` class implements ``__bool__``
 method so you can easily check if validation failed::
 
-    if not email('some_bogus_email@@@'):
-        # Do something here
-        pass
+    >>> if not validators.email('some_bogus_email@@@'):
+    ...     # Do something here
+    ...     pass
 
 :class:`~validators.utils.ValidationFailure` object also holds all the arguments
 passed to original function::
 
-    result = number_range(3, min=5)
-    if not result:
-        result.value
-        # 3
-
-        result.min
-        # 5
+    >>> result = validators.between(3, min=5)
+    >>> result.value
+    3
+    >>> result.min
+    5
 
 
 between

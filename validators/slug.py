@@ -15,9 +15,11 @@ def slug(value):
 
     Examples::
 
-        >>> assert not slug('my.slug')
+        >>> slug('my.slug')
+        ValidationFailure(func=slug, args={'value': 'my.slug'})
 
-        >>> assert slug('my-slug-2134')
+        >>> slug('my-slug-2134')
+        True
 
     .. versionadded:: 0.6
 

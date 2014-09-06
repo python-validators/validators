@@ -10,7 +10,7 @@ schema.
 
 .. code-block:: python
 
-    import validators
+    >>> import validators
 
     >>> validators.email('someone@example.com')
     True

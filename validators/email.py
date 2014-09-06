@@ -33,10 +33,11 @@ def email(value, whitelist=None):
 
     Examples::
 
-        >>> assert validators.email('someone@example.com')
+        >>> email('someone@example.com')
+        True
 
-        >>> assert not validators.email('bogus@@')
-
+        >>> email('bogus@@')
+        ValidationFailure(func=email, ...)
 
     .. _Django's email validator:
        https://github.com/django/django/blob/master/django/core/validators.py

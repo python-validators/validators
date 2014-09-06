@@ -26,13 +26,14 @@ def url(value, require_tld=True):
 
     Examples::
 
-        >>> import validators
+        >>> url('http://foobar.dk')
+        True
 
-        >>> assert validators.url('http://foobar.dk')
+        >>> url('http://localhost/foobar', require_tld=False)
+        True
 
-        >>> assert validators.url('http://localhost/foobar', require_tld=False)
-
-        >>> assert not validators.url('http://foobar.d')
+        >>> url('http://foobar.d')
+        ValidationFailure(func=url, ...)
 
     .. versionadded:: 0.2
 

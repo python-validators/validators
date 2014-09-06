@@ -10,11 +10,14 @@ def length(value, min=None, max=None):
 
     Examples::
 
-        >>> assert length('something', min=2)
+        >>> length('something', min=2)
+        True
 
-        >>> assert length('something', min=9, max=9)
+        >>> length('something', min=9, max=9)
+        True
 
-        >>> assert not length('something', max=5)
+        >>> length('something', max=5)
+        ValidationFailure(func=length, ...)
 
     :param value:
         The string to validate.

@@ -62,13 +62,9 @@ def validator(func, *args, **kwargs):
 
     Example::
 
-        >>> from validators import validator
-
-
         >>> @validator
-        >>> def even(value):
+        ... def even(value):
         ...     return not (value % 2)
-
 
         >>> even(4)
         True
@@ -86,5 +82,5 @@ def validator(func, *args, **kwargs):
             return ValidationFailure(
                 func, func_args_as_dict(func, args, kwargs)
             )
-        return value
+        return True
     return decorator(wrapper, func)
