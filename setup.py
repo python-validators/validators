@@ -7,10 +7,21 @@ Python Data Validation for Humans™.
 """
 
 from setuptools import setup, find_packages
+import os
+import re
 import sys
 
 
 PY3 = sys.version_info[0] == 3
+HERE = os.path.dirname(os.path.abspath(__file__))
+
+
+def get_version():
+    filename = os.path.join(HERE, 'validators', '__init__.py')
+    with open(filename) as f:
+        contents = f.read()
+    pattern = r"^__version__ = '(.*?)'$"
+    return re.search(pattern, contents, re.MULTILINE).group(1)
 
 
 extras_require = {
@@ -22,7 +33,7 @@ extras_require = {
 
 setup(
     name='validators',
-    version='0.6.0',
+    version=get_version(),
     url='https://github.com/kvesteri/validators',
     license='BSD',
     author='Konsta Vesterinen',
