@@ -26,8 +26,8 @@ domain_whitelist = ['localhost']
 def email(value, whitelist=None):
     """
     Validates an email address. This validator is based on `Django's
-    email validator`_. Returns True on success and `:class:FailedValidation`
-    when validation fails.
+    email validator`_. Returns ``True`` on success and
+    :class:`~validators.utils.ValidationFailure` when validation fails.
 
     Examples::
 

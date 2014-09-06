@@ -56,8 +56,8 @@ def func_args_as_dict(func, args, kwargs):
 def validator(func, *args, **kwargs):
     """
     A decorator that makes given function validator. Whenever the given
-    function is called and returns False value this decorator returns
-    ValidationFailure object.
+    function is called and returns ``False`` value this decorator returns
+    :class:`ValidationFailure` object.
 
     Example::
 

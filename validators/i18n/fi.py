@@ -33,7 +33,7 @@ def fi_business_id(business_id):
 
     .. versionadded:: 0.4
     .. versionchanged:: 0.5
-        Method renamed from finnish_business_id to fi_business_id
+        Method renamed from ``finnish_business_id`` to ``fi_business_id``
 
     :param business_id: business_id to validate
     """
