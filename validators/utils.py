@@ -76,8 +76,8 @@ def validator(func, *args, **kwargs):
         ValidationFailure(func=even, args={'value': 5})
 
     :param func: function to decorate
-    :param *args: positional function arguments
-    :param **kwargs: key value function arguments
+    :param args: positional function arguments
+    :param kwargs: key value function arguments
     """
     def wrapper(func, *args, **kwargs):
         value = func(*args, **kwargs)
