@@ -24,7 +24,6 @@ def uuid(value):
 
         >>> assert not validators.uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
 
-
     .. versionadded:: 0.2
 
     :param value: UUID string to validate

@@ -35,7 +35,6 @@ def url(value, require_tld=True):
 
         >>> assert not validators.url('http://foobar.d')
 
-
     .. versionadded:: 0.2
 
     :param value: URL address string to validate

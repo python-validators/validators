@@ -11,9 +11,11 @@ def slug(value):
     Validates whether or not given value is valid slug (contains only
     alphanumeric characters, hyphens or underscores).
 
-    >>> assert not slug('my.slug')
+    Examples::
 
-    >>> assert slug('my-slug-2134')
+        >>> assert not slug('my.slug')
+
+        >>> assert slug('my-slug-2134')
 
     .. versionadded:: 0.6
 

@@ -25,7 +25,7 @@ def fi_business_id(business_id):
     .. _Finnish Trade Register:
         http://en.wikipedia.org/wiki/Finnish_Trade_Register
 
-    ::
+    Examples::
 
         >>> assert fi_business_id('0112038-9')  # Fast Monkeys Ltd
 
@@ -56,12 +56,11 @@ def fi_ssn(ssn):
     .. _django-localflavor-fi:
         https://github.com/django/django-localflavor-fi/
 
-    ::
+    Examples::
 
         >>> assert fi_ssn('010101-0101')
 
         >>> assert not fi_ssn('101010-0102')
-
 
     .. versionadded:: 0.5
 

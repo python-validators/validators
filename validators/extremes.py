@@ -13,6 +13,7 @@ class Min(object):
     Inspired by https://pypi.python.org/pypi/Extremes
 
     Examples::
+
         >>> import validators
         >>> import sys
 
@@ -38,9 +39,7 @@ class Max(object):
 
     Inspired by https://pypi.python.org/pypi/Extremes
 
-
     Examples::
-
 
         >>> import validators
         >>> import sys

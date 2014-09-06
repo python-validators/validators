@@ -11,9 +11,7 @@ def ipv4(value):
     .. _WTForms IPAddress validator:
        https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
 
-
     Examples::
-
 
         >>> import validators
 
@@ -43,14 +41,11 @@ def ipv6(value):
     .. _WTForms IPAddress validator:
        https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
 
-
     Examples::
-
 
         >>> assert validators.ipv6('abcd:ef::42:1')
 
         >>> assert not validators.ipv6('abc.0.0.1')
-
 
     .. versionadded:: 0.2
 

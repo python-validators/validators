@@ -14,7 +14,6 @@ def truthy(value):
 
     Examples::
 
-
         >>> assert truthy(1)
 
         >>> assert truthy('someone')
