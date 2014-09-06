@@ -4,7 +4,7 @@ from .utils import validator
 @validator
 def ipv4(value):
     """
-    Returns whether or not given value is a valid IP version 4 address.
+    Return whether or not given value is a valid IP version 4 address.
 
     This validator is based on `WTForms IPAddress validator`_
 
@@ -34,7 +34,7 @@ def ipv4(value):
 @validator
 def ipv6(value):
     """
-    Returns whether or not given value is a valid IP version 6 address.
+    Return whether or not given value is a valid IP version 6 address.
 
     This validator is based on `WTForms IPAddress validator`_.
 

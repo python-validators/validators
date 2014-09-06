@@ -14,8 +14,9 @@ pattern_without_tld = re.compile(regex.format(tld=''))
 @validator
 def url(value, require_tld=True):
     """
-    Returns whether or not given value is a valid URL. If the value is
-    valid URL this function returns ``True``, otherwise
+    Return whether or not given value is a valid URL.
+
+    If the value is valid URL this function returns ``True``, otherwise
     :class:`~validators.utils.ValidationFailure`.
 
     This validator is based on `WTForms URL validator`_.

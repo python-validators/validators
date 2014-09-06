@@ -5,7 +5,7 @@ from .utils import validator
 @validator
 def length(value, min=None, max=None):
     """
-    Returns whether or not the length of given string is within a specified
+    Return whether or not the length of given string is within a specified
     range.
 
     Examples::

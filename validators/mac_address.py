@@ -8,9 +8,10 @@ pattern = re.compile(r'^(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$')
 @validator
 def mac_address(value):
     """
-    Returns whether or not given value is a valid mac address. If the value is
-    valid mac address this function returns ``True``, otherwise
-    :class:`~validators.utils.ValidationFailure`.
+    Return whether or not given value is a valid mac address.
+
+    If the value is valid mac address this function returns ``True``,
+    otherwise :class:`~validators.utils.ValidationFailure`.
 
     This validator is based on `WTForms MacAddress validator`_.
 

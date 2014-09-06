@@ -5,7 +5,8 @@ from .utils import validator
 @validator
 def between(value, min=None, max=None):
     """
-    Validates that a number is between minimum and/or maximum value.
+    Validate that a number is between minimum and/or maximum value.
+
     This will work with any comparable type, such as floats, decimals and dates
     not just integers.
 

@@ -36,7 +36,7 @@ class ValidationFailure(object):
 
 def func_args_as_dict(func, args, kwargs):
     """
-    Returns given function positional and key value arguments as an ordered
+    Return given function's positional and key value arguments as an ordered
     dictionary.
     """
     arg_names = list(
@@ -55,9 +55,10 @@ def func_args_as_dict(func, args, kwargs):
 
 def validator(func, *args, **kwargs):
     """
-    A decorator that makes given function validator. Whenever the given
-    function is called and returns ``False`` value this decorator returns
-    :class:`ValidationFailure` object.
+    A decorator that makes given function validator.
+
+    Whenever the given function is called and returns ``False`` value
+    this decorator returns :class:`ValidationFailure` object.
 
     Example::
 

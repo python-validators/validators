@@ -8,8 +8,9 @@ pattern = re.compile(r'^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$')
 @validator
 def uuid(value):
     """
-    Returns whether or not given value is a valid uuid. If the value is valid
-    uuid this function returns ``True``, otherwise
+    Return whether or not given value is a valid uuid.
+
+    If the value is valid uuid this function returns ``True``, otherwise
     :class:`~validators.utils.ValidationFailure`.
 
     This validator is based on `WTForms UUID validator`_.

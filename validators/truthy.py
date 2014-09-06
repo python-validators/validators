@@ -5,7 +5,7 @@ from .utils import validator
 @validator
 def truthy(value):
     """
-    Validates that given value is not a falsey value.
+    Validate that given value is not a falsey value.
 
     This validator is based on `WTForms DataRequired validator`_.
 
