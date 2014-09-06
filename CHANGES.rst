@@ -1,6 +1,16 @@
 Changelog
 ---------
 
+0.7.0 (not yet released)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+- Fixed errors in code examples.
+- Fixed ``TypeError`` when using ``between`` validator with ``datetime`` objects
+  like in the code example.
+- Changed validators to always return ``True`` instead of a truthy object when
+  the validation succeeds.
+- Fixed ``truthy`` validator to work like it's name suggests. Previously it
+  worked like ``falsy``.
 
 0.6.0 (2014-06-25)
 ^^^^^^^^^^^^^^^^^^
