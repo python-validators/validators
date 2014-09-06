@@ -10,8 +10,10 @@ Why?
 Python has all kinds of validation tools, but every one of them requires
 defining a schema. I wanted to create a simple validation library where
 validating a simple value does not require defining a form or a schema.
-Apparently some other guys have felt the same way:
-http://opensourcehacker.com/2011/07/07/generic-python-validation-frameworks/
+Apparently `some other guys have felt the same way`_.
+
+.. _some other guys have felt the same way:
+   http://opensourcehacker.com/2011/07/07/generic-python-validation-frameworks/
 
 Often I've had for example a case where I just wanted to check if given string
 is an email. With `validators` this use case becomes as easy as:
