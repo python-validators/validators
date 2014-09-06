@@ -8,16 +8,13 @@ require defining a schema or form. I wanted to create a simple validation
 library where validating a simple value does not require defining a form or a
 schema.
 
-
-::
-
+.. code-block:: python
 
     import validators
 
 
     validators.email('someone@example.com')
     # True
-
 
 
 Resources
