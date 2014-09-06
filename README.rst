@@ -12,9 +12,8 @@ schema.
 
     import validators
 
-
-    validators.email('someone@example.com')
-    # True
+    >>> validators.email('someone@example.com')
+    True
 
 
 Resources
