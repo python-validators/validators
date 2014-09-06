@@ -7,4 +7,4 @@ python:
 install:
   - pip install -e ".[test]"
 script:
-  - py.test
+  - py.test --doctest-glob="*.rst" --doctest-modules --ignore=setup.py
