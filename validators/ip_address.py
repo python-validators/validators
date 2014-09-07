@@ -4,23 +4,20 @@ from .utils import validator
 @validator
 def ipv4(value):
     """
-    Returns whether or not given value is a valid IP version 4 address.
+    Return whether or not given value is a valid IP version 4 address.
 
     This validator is based on `WTForms IPAddress validator`_
 
     .. _WTForms IPAddress validator:
        https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
 
-
     Examples::
 
-
-        >>> import validators
-
-        >>> validators.ipv4('123.0.0.7')
+        >>> ipv4('123.0.0.7')
         True
-        >>> validators.ipv4('900.80.70.11')
-        False
+
+        >>> ipv4('900.80.70.11')
+        ValidationFailure(func=ipv4, args={'value': '900.80.70.11'})
 
     .. versionadded:: 0.2
 
@@ -36,21 +33,20 @@ def ipv4(value):
 @validator
 def ipv6(value):
     """
-    Returns whether or not given value is a valid IP version 6 address.
+    Return whether or not given value is a valid IP version 6 address.
 
     This validator is based on `WTForms IPAddress validator`_.
 
     .. _WTForms IPAddress validator:
        https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
 
-
     Examples::
 
+        >>> ipv6('abcd:ef::42:1')
+        True
 
-        >>> assert validators.ipv6('abcd:ef::42:1')
-
-        >>> assert not validators.ipv6('abc.0.0.1')
-
+        >>> ipv6('abc.0.0.1')
+        ValidationFailure(func=ipv6, args={'value': 'abc.0.0.1'})
 
     .. versionadded:: 0.2
 

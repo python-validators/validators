@@ -19,21 +19,25 @@ ssn_pattern = re.compile(
 @validator
 def fi_business_id(business_id):
     """
-    Validates a Finnish Business ID. Each company in Finland has a distinct
-    business id. For more information see `Finnish Trade Register`_
+    Validate a Finnish Business ID.
+
+    Each company in Finland has a distinct business id. For more
+    information see `Finnish Trade Register`_
 
     .. _Finnish Trade Register:
         http://en.wikipedia.org/wiki/Finnish_Trade_Register
 
-    ::
+    Examples::
 
-        >>> assert fi_business_id('0112038-9')  # Fast Monkeys Ltd
+        >>> fi_business_id('0112038-9')  # Fast Monkeys Ltd
+        True
 
-        >>> assert not fi_business_id('1234567-8')  # Bogus ID
+        >>> fi_business_id('1234567-8')  # Bogus ID
+        ValidationFailure(func=fi_business_id, ...)
 
     .. versionadded:: 0.4
     .. versionchanged:: 0.5
-        Method renamed from finnish_business_id to fi_business_id
+        Method renamed from ``finnish_business_id`` to ``fi_business_id``
 
     :param business_id: business_id to validate
     """
@@ -50,18 +54,20 @@ def fi_business_id(business_id):
 @validator
 def fi_ssn(ssn):
     """
-    Validates a Finnish Social Security Number. This validator is based on
-    `django-localflavor-fi`_.
+    Validate a Finnish Social Security Number.
+
+    This validator is based on `django-localflavor-fi`_.
 
     .. _django-localflavor-fi:
         https://github.com/django/django-localflavor-fi/
 
-    ::
+    Examples::
 
-        >>> assert fi_ssn('010101-0101')
+        >>> fi_ssn('010101-0101')
+        True
 
-        >>> assert not fi_ssn('101010-0102')
-
+        >>> fi_ssn('101010-0102')
+        ValidationFailure(func=fi_ssn, args={'ssn': '101010-0102'})
 
     .. versionadded:: 0.5
 

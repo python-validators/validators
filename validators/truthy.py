@@ -5,7 +5,7 @@ from .utils import validator
 @validator
 def truthy(value):
     """
-    Validates that given value is not a falsey value.
+    Validate that given value is not a falsey value.
 
     This validator is based on `WTForms DataRequired validator`_.
 
@@ -14,22 +14,27 @@ def truthy(value):
 
     Examples::
 
+        >>> truthy(1)
+        True
 
-        >>> assert truthy(1)
+        >>> truthy('someone')
+        True
 
-        >>> assert truthy('someone')
+        >>> truthy(0)
+        ValidationFailure(func=truthy, args={'value': 0})
 
-        >>> assert not truthy(0)
+        >>> truthy('    ')
+        ValidationFailure(func=truthy, args={'value': '    '})
 
-        >>> assert not truthy('    ')
+        >>> truthy(False)
+        ValidationFailure(func=truthy, args={'value': False})
 
-        >>> assert not truthy(False)
-
-        >>> assert not truthy(None)
+        >>> truthy(None)
+        ValidationFailure(func=truthy, args={'value': None})
 
     .. versionadded:: 0.2
     """
     return (
-        not value or
-        isinstance(value, six.string_types) and not value.strip()
+        value and
+        (not isinstance(value, six.string_types) or value.strip())
     )

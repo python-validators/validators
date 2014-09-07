@@ -14,11 +14,10 @@ pattern_without_tld = re.compile(regex.format(tld=''))
 @validator
 def url(value, require_tld=True):
     """
-    url
-    ---
+    Return whether or not given value is a valid URL.
 
-    Returns whether or not given value is a valid URL. If the value is
-    valid URL this function returns True, otherwise `FailedValidation`.
+    If the value is valid URL this function returns ``True``, otherwise
+    :class:`~validators.utils.ValidationFailure`.
 
     This validator is based on `WTForms URL validator`_.
 
@@ -27,14 +26,14 @@ def url(value, require_tld=True):
 
     Examples::
 
-        >>> import validators
+        >>> url('http://foobar.dk')
+        True
 
-        >>> assert validators.url('http://foobar.dk')
+        >>> url('http://localhost/foobar', require_tld=False)
+        True
 
-        >>> assert validators.url('http://localhost/foobar', require_tld=False)
-
-        >>> assert not validators.url('http://foobar.d')
-
+        >>> url('http://foobar.d')
+        ValidationFailure(func=url, ...)
 
     .. versionadded:: 0.2
 

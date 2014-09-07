@@ -8,12 +8,18 @@ slug_regex = re.compile(r'^[-a-zA-Z0-9_]+$')
 @validator
 def slug(value):
     """
-    Validates whether or not given value is valid slug (contains only
-    alphanumeric characters, hyphens or underscores).
+    Validate whether or not given value is valid slug.
 
-    >>> assert not slug('my.slug')
+    Valid slug can contain only alphanumeric characters, hyphens and
+    underscores.
 
-    >>> assert slug('my-slug-2134')
+    Examples::
+
+        >>> slug('my.slug')
+        ValidationFailure(func=slug, args={'value': 'my.slug'})
+
+        >>> slug('my-slug-2134')
+        True
 
     .. versionadded:: 0.6
 

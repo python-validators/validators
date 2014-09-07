@@ -5,18 +5,19 @@ from .utils import validator
 @validator
 def length(value, min=None, max=None):
     """
-    Returns whether or not the length of given string is within a specified
+    Return whether or not the length of given string is within a specified
     range.
 
     Examples::
 
+        >>> length('something', min=2)
+        True
 
-        >>> assert length('something', min=2)
+        >>> length('something', min=9, max=9)
+        True
 
-        >>> assert length('something', min=9, max=9)
-
-        >>> assert not length('something', max=5)
-
+        >>> length('something', max=5)
+        ValidationFailure(func=length, ...)
 
     :param value:
         The string to validate.

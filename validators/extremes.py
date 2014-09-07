@@ -13,14 +13,16 @@ class Min(object):
     Inspired by https://pypi.python.org/pypi/Extremes
 
     Examples::
-        >>> import validators
+
         >>> import sys
 
-        >>> validators.Min < -sys.maxint
+        >>> Min < -sys.maxint
         True
-        >>> validators.Min < None
+
+        >>> Min < None
         True
-        >>> validators.Min < ''
+
+        >>> Min < ''
         True
 
     .. versionadded:: 0.2
@@ -38,18 +40,17 @@ class Max(object):
 
     Inspired by https://pypi.python.org/pypi/Extremes
 
-
     Examples::
 
-
-        >>> import validators
         >>> import sys
 
-        >>> validators.Max > validators.Min
+        >>> Max > Min
         True
-        >>> validators.Max > sys.maxint
+
+        >>> Max > sys.maxint
         True
-        >>> validators.Max > 99999999999999999
+
+        >>> Max > 99999999999999999
         True
 
     .. versionadded:: 0.2

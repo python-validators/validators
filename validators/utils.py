@@ -36,7 +36,7 @@ class ValidationFailure(object):
 
 def func_args_as_dict(func, args, kwargs):
     """
-    Returns given function positional and key value arguments as an ordered
+    Return given function's positional and key value arguments as an ordered
     dictionary.
     """
     arg_names = list(
@@ -55,22 +55,16 @@ def func_args_as_dict(func, args, kwargs):
 
 def validator(func, *args, **kwargs):
     """
-    A decorator that makes given function validator. Whenever the given
-    function is called and returns False value this decorator returns
-    ValidationFailure object.
+    A decorator that makes given function validator.
 
-    Example:
+    Whenever the given function is called and returns ``False`` value
+    this decorator returns :class:`ValidationFailure` object.
 
-    ::
-
-
-        >>> from validators import validator
-
+    Example::
 
         >>> @validator
-        >>> def even(value):
+        ... def even(value):
         ...     return not (value % 2)
-
 
         >>> even(4)
         True
@@ -78,10 +72,9 @@ def validator(func, *args, **kwargs):
         >>> even(5)
         ValidationFailure(func=even, args={'value': 5})
 
-
     :param func: function to decorate
-    :param *args: positional function arguments
-    :param **kwargs: key value function arguments
+    :param args: positional function arguments
+    :param kwargs: key value function arguments
     """
     def wrapper(func, *args, **kwargs):
         value = func(*args, **kwargs)
@@ -89,5 +82,5 @@ def validator(func, *args, **kwargs):
             return ValidationFailure(
                 func, func_args_as_dict(func, args, kwargs)
             )
-        return value
+        return True
     return decorator(wrapper, func)
