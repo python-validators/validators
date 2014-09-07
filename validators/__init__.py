@@ -11,4 +11,4 @@ from .url import url
 from .utils import ValidationFailure, validator
 from .uuid import uuid
 
-__version__ = '0.6'
+__version__ = '0.7'

@@ -1,8 +1,8 @@
 Changelog
 ---------
 
-0.7.0 (not yet released)
-^^^^^^^^^^^^^^^^^^^^^^^^
+0.7.0 (2014-09-07)
+^^^^^^^^^^^^^^^^^^
 
 - Fixed errors in code examples.
 - Fixed ``TypeError`` when using ``between`` validator with ``datetime`` objects
