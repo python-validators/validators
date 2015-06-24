@@ -1,6 +1,7 @@
 from .between import between
 from .email import email
 from .extremes import Min, Max
+from .iban import iban
 from .ip_address import ipv4, ipv6
 from .i18n import fi_business_id, fi_ssn
 from .length import length
