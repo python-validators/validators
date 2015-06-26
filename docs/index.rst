@@ -76,6 +76,13 @@ email
 .. autofunction:: email
 
 
+iban
+----
+
+.. module:: validators.iban
+
+.. autofunction:: iban
+
 ipv4
 ----
 
