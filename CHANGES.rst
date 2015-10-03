@@ -1,7 +1,14 @@
 Changelog
 ---------
 
-0.8.0 (unreleased)
+
+0.9.0 (2015-10-10)
+^^^^^^^^^^^^^^^^^^
+
+- Added new validator: ``domain``
+
+
+0.8.0 (2015-06-24)
 ^^^^^^^^^^^^^^^^^^
 
 - Added new validator: ``iban``

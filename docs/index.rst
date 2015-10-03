@@ -68,6 +68,14 @@ between
 .. autofunction:: between
 
 
+domain
+------
+
+.. module:: validators.domain
+
+.. autofunction:: domain
+
+
 email
 -----
 
