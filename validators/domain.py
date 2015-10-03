@@ -17,7 +17,7 @@ def domain(value):
         >>> domain('example.com')
         True
 
-        >>> uuid('example.com/')
+        >>> domain('example.com/')
         ValidationFailure(func=domain, ...)
 
     :param value: domain string to validate
