@@ -11,5 +11,6 @@ from .truthy import truthy
 from .url import url
 from .utils import ValidationFailure, validator
 from .uuid import uuid
+from .domain import domain
 
 __version__ = '0.8'
