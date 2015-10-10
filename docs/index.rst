@@ -68,6 +68,14 @@ between
 .. autofunction:: between
 
 
+domain
+------
+
+.. module:: validators.domain
+
+.. autofunction:: domain
+
+
 email
 -----
 
@@ -75,6 +83,13 @@ email
 
 .. autofunction:: email
 
+
+iban
+----
+
+.. module:: validators.iban
+
+.. autofunction:: iban
 
 ipv4
 ----
