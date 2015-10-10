@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
+
 from validators import fi_business_id, fi_ssn, ValidationFailure
 
 

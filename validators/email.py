@@ -1,6 +1,6 @@
 import re
-from .utils import validator
 
+from .utils import validator
 
 user_regex = re.compile(
     # dot-atom

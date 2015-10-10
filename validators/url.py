@@ -1,6 +1,6 @@
 import re
-from .utils import validator
 
+from .utils import validator
 
 regex = (
     r'^[a-z]+://([^/:]+{tld}|([0-9]{{1,3}}\.)'

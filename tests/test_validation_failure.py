@@ -1,6 +1,6 @@
-import validators
 import six
 
+import validators
 
 obj_repr = (
     "ValidationFailure(func=between"

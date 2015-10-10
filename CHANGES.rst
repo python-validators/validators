@@ -6,6 +6,7 @@ Changelog
 ^^^^^^^^^^^^^^^^^^
 
 - Added new validator: ``domain``
+- Added flake8 and isort checks in travis config
 
 
 0.8.0 (2015-06-24)

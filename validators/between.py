@@ -1,4 +1,4 @@
-from .extremes import Min, Max
+from .extremes import Max, Min
 from .utils import validator
 
 
