@@ -28,8 +28,7 @@ extras_require = {
     'test': [
         'pytest>=2.2.3',
         'flake8>=2.4.0',
-        'isort==3.9.6',
-        'natsort==3.5.6',
+        'isort>=4.2.2'
     ],
 }
 
