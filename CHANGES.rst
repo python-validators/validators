@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.10.0 (2016-01-09)
+^^^^^^^^^^^^^^^^^^^
+
+- Added support for internationalized domain names in ``domain`` validator
+
+
 0.9.0 (2015-10-10)
 ^^^^^^^^^^^^^^^^^^
 
