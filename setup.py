@@ -47,6 +47,7 @@ setup(
     include_package_data=True,
     platforms='any',
     install_requires=[
+        'setuptools>=19.2',
         'six>=1.4.0',
         'decorator>=3.4.0',
         'ordereddict>=1.1'
