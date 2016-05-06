@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.10.1 (2016-04-09)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed domain name validation for numeric domain names (#21, pull request courtesy shaunpud)
+
+
 0.10.0 (2016-01-09)
 ^^^^^^^^^^^^^^^^^^^
 
