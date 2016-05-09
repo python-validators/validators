@@ -6,6 +6,7 @@ Changelog
 ^^^^^^^^^^^^^^^^^^^
 
 - Fixed domain name validation for numeric domain names (#21, pull request courtesy shaunpud)
+- Fixed IBAN validation for Norwegian and Belgian IBANs (#17, pull request courtesy mboelens91)
 
 
 0.10.0 (2016-01-09)
