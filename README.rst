@@ -21,7 +21,7 @@ schema.
 Resources
 ---------
 
-- `Documentation <http://validators.readthedocs.org/>`_
+- `Documentation <https://validators.readthedocs.io/>`_
 - `Issue Tracker <http://github.com/kvesteri/validators/issues>`_
 - `Code <http://github.com/kvesteri/validators/>`_
 
