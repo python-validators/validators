@@ -2,17 +2,13 @@ import re
 
 from .utils import validator
 
-regex = (
-    r'^[a-z]+://([^/:]+{tld}|([0-9]{{1,3}}\.)'
-    r'{{3}}[0-9]{{1,3}})(:[0-9]+)?(\/.*)?$'
-)
+regex = (r'^(http(s)?://)?(www\.)?((\w|-)+)(\.(\w|-)+)+(:\d*)?(/(\w|-|\&|\=|\#)*)*')
 
-pattern_with_tld = re.compile(regex.format(tld=r'\.[a-z]{2,10}'))
-pattern_without_tld = re.compile(regex.format(tld=''))
+pattern = re.compile(regex)
 
 
 @validator
-def url(value, require_tld=True):
+def url(value):
     """
     Return whether or not given value is a valid URL.
 
@@ -29,9 +25,6 @@ def url(value, require_tld=True):
         >>> url('http://foobar.dk')
         True
 
-        >>> url('http://localhost/foobar', require_tld=False)
-        True
-
         >>> url('http://foobar.d')
         ValidationFailure(func=url, ...)
 
@@ -40,6 +33,4 @@ def url(value, require_tld=True):
     :param value: URL address string to validate
     """
 
-    if require_tld:
-        return pattern_with_tld.match(value)
-    return pattern_without_tld.match(value)
+    return pattern.match(value)
