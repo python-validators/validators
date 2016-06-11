@@ -2,8 +2,39 @@ import re
 
 from .utils import validator
 
-regex = (
-    r'^(http(s)?://)?(www\.)?((\w|-)+)(\.(\w|-)+)+(:\d*)?(/(\w|-|\&|\=|\#)*)*'
+regex = re.compile(
+    u"^"
+    # protocol identifier
+    u"(?:(?:https?|ftp)://)"
+    # user:pass authentication
+    u"(?:\S+(?::\S*)?@)?"
+    u"(?:"
+    # IP address exclusion
+    # private & local networks
+    u"(?!(?:10|127)(?:\.\d{1,3}){3})"
+    u"(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})"
+    u"(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})"
+    # IP address dotted notation octets
+    # excludes loopback network 0.0.0.0
+    # excludes reserved space >= 224.0.0.0
+    # excludes network & broadcast addresses
+    # (first & last IP address of each class)
+    u"(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])"
+    u"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}"
+    u"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
+    u"|"
+    # host name
+    u"(?:(?:[a-z\u00a1-\uffff0-9]-?)*[a-z\u00a1-\uffff0-9]+)"
+    # domain name
+    u"(?:\.(?:[a-z\u00a1-\uffff0-9]-?)*[a-z\u00a1-\uffff0-9]+)*"
+    # TLD identifier
+    u"(?:\.(?:[a-z\u00a1-\uffff]{2,}))"
+    u")"
+    # port number
+    u"(?::\d{2,5})?"
+    # resource path
+    u"(?:/\S*)?"
+    u"$", re.UNICODE
 )
 
 pattern = re.compile(regex)
@@ -17,10 +48,10 @@ def url(value):
     If the value is valid URL this function returns ``True``, otherwise
     :class:`~validators.utils.ValidationFailure`.
 
-    This validator is based on `WTForms URL validator`_.
+    This validator is based on the wonderful `URL validator of dperini`_.
 
-    .. _WTForms URL validator:
-       https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
+    .. _URL validator of dperini:
+        https://gist.github.com/dperini/729294
 
     Examples::
 
@@ -32,7 +63,11 @@ def url(value):
 
     .. versionadded:: 0.2
 
+    .. versionchanged:: 0.10.2
+
+        Added support for various exotic URLs and fixed various false
+        positives.
+
     :param value: URL address string to validate
     """
-
     return pattern.match(value)

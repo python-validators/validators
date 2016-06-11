@@ -5,7 +5,7 @@ Changelog
 0.10.2 (2016-06-11)
 ^^^^^^^^^^^^^^^^^^^
 
-- Fixed various URL validation issues (#24, pull request courtesy gokhanm)
+- Fixed various URL validation issues
 
 
 0.10.1 (2016-04-09)
