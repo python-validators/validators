@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.10.3 (2016-06-13)
+^^^^^^^^^^^^^^^^^^^
+
+- Added ``public`` parameter to url validator (#26, pull request courtesy Iconceicao)
+
+
 0.10.2 (2016-06-11)
 ^^^^^^^^^^^^^^^^^^^
 

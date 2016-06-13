@@ -80,6 +80,10 @@ def url(value, public=False):
         Added support for various exotic URLs and fixed various false
         positives.
 
+    .. versionchanged:: 0.10.3
+
+        Added ``public`` parameter.
+
     :param value: URL address string to validate
     :param public: (default=False) Set True to only allow a public IP address
     """
