@@ -44,9 +44,25 @@ from validators import url, ValidationFailure
     u'http://1337.net',
     u'http://a.b-c.de',
     u'http://223.255.255.254',
+    u'http://10.1.1.1',
+    u'http://10.1.1.254',
+    u'http://127.0.0.1:8080',
+    u'http://127.0.10.150',
 ])
 def test_returns_true_on_valid_url(address):
     assert url(address)
+
+
+@pytest.mark.parametrize('address, public', [
+    (u'http://foo.bar', True),
+    (u'http://username:password@example.com:4010/', False),
+    (u'http://username:password@112.168.10.10:4010/', True),
+    (u'http://username:password@192.168.10.10:4010/', False),
+    (u'http://10.0.10.1', False),
+    (u'http://127.0.0.1', False),
+])
+def test_returns_true_on_valid_public_url(address, public):
+    assert url(address, public=public)
 
 
 @pytest.mark.parametrize('address', [
@@ -96,8 +112,18 @@ def test_returns_true_on_valid_url(address):
     'http://.www.foo.bar/',
     'http://www.foo.bar./',
     'http://.www.foo.bar./',
-    'http://10.1.1.1',
-    'http://10.1.1.254',
+    'http://127.12.0.260'
 ])
 def test_returns_failed_validation_on_invalid_url(address):
     assert isinstance(url(address), ValidationFailure)
+
+
+@pytest.mark.parametrize('address, public', [
+    (u'http://username:password@192.168.10.10:4010/', True),
+    (u'http://10.0.10.1', True),
+    (u'http://127.0.0.1', True),
+    (u'http://username:password@127.0.0.1:8080', True),
+
+])
+def test_returns_failed_validation_on_invalid_public_url(address, public):
+    assert isinstance(url(address, public=public), ValidationFailure)

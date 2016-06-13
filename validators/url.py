@@ -2,6 +2,9 @@ import re
 
 from .utils import validator
 
+ip_middle_octet = u"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
+ip_last_octet = u"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
+
 regex = re.compile(
     u"^"
     # protocol identifier
@@ -9,19 +12,22 @@ regex = re.compile(
     # user:pass authentication
     u"(?:\S+(?::\S*)?@)?"
     u"(?:"
+    u"(?P<private_ip>"
     # IP address exclusion
     # private & local networks
-    u"(?!(?:10|127)(?:\.\d{1,3}){3})"
-    u"(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})"
-    u"(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})"
+    u"(?:(?:10|127)" + ip_middle_octet + u"{2}" + ip_last_octet + u")|"
+    u"(?:(?:169\.254|192\.168)" + ip_middle_octet + ip_last_octet + u")|"
+    u"(?:172\.(?:1[6-9]|2\d|3[0-1])" + ip_middle_octet + ip_last_octet + u"))"
+    u"|"
     # IP address dotted notation octets
     # excludes loopback network 0.0.0.0
     # excludes reserved space >= 224.0.0.0
     # excludes network & broadcast addresses
     # (first & last IP address of each class)
+    u"(?P<public_ip>"
     u"(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])"
-    u"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}"
-    u"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
+    u"" + ip_middle_octet + u"{2}"
+    u"" + ip_last_octet + u")"
     u"|"
     # host name
     u"(?:(?:[a-z\u00a1-\uffff0-9]-?)*[a-z\u00a1-\uffff0-9]+)"
@@ -41,7 +47,7 @@ pattern = re.compile(regex)
 
 
 @validator
-def url(value):
+def url(value, public=False):
     """
     Return whether or not given value is a valid URL.
 
@@ -56,9 +62,11 @@ def url(value):
     Examples::
 
         >>> url('http://foobar.dk')
+        >>> url('http://10.0.0.1')
         True
 
         >>> url('http://foobar.d')
+        >>> url('http://10.0.0.1', public=True)
         ValidationFailure(func=url, ...)
 
     .. versionadded:: 0.2
@@ -69,5 +77,12 @@ def url(value):
         positives.
 
     :param value: URL address string to validate
+    :param public: (default=False) Set True to only allow a public IP address
     """
-    return pattern.match(value)
+    if not public:
+        return pattern.match(value)
+
+    if pattern.match(value).groupdict()['private_ip']:
+        return False
+
+    return True
