@@ -62,10 +62,14 @@ def url(value, public=False):
     Examples::
 
         >>> url('http://foobar.dk')
+        True
+
         >>> url('http://10.0.0.1')
         True
 
         >>> url('http://foobar.d')
+        ValidationFailure(func=url, ...)
+
         >>> url('http://10.0.0.1', public=True)
         ValidationFailure(func=url, ...)
 
