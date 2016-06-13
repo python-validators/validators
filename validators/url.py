@@ -82,7 +82,9 @@ def url(value, public=False):
     if not public:
         return pattern.match(value)
 
-    if pattern.match(value).groupdict()['private_ip']:
+    match_result = pattern.match(value)
+
+    if match_result.groupdict()['private_ip']:
         return False
 
-    return True
+    return match_result
