@@ -87,12 +87,8 @@ def url(value, public=False):
     :param value: URL address string to validate
     :param public: (default=False) Set True to only allow a public IP address
     """
+    result = pattern.match(value)
     if not public:
-        return pattern.match(value)
+        return result
 
-    match_result = pattern.match(value)
-
-    if match_result.groupdict()['private_ip']:
-        return False
-
-    return match_result
+    return result and not result.groupdict()['private_ip']

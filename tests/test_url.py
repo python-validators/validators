@@ -122,6 +122,7 @@ def test_returns_failed_validation_on_invalid_url(address):
     (u'http://username:password@192.168.10.10:4010/', True),
     (u'http://10.0.10.1', True),
     (u'http://127.0.0.1', True),
+    (u'foo://127.0.0.1', True),
     (u'http://username:password@127.0.0.1:8080', True),
 
 ])
