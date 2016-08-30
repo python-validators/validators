@@ -8,6 +8,7 @@ from validators import url, ValidationFailure
     u'http://foobar.dk',
     u'http://foobar.museum/foobar',
     u'http://fo.com',
+    u'http://FOO.com',
     u'http://foo.com/blah_blah',
     u'http://foo.com/blah_blah/',
     u'http://foo.com/blah_blah_(wikipedia)',

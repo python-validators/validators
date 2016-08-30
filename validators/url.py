@@ -40,7 +40,8 @@ regex = re.compile(
     u"(?::\d{2,5})?"
     # resource path
     u"(?:/\S*)?"
-    u"$", re.UNICODE
+    u"$",
+    re.UNICODE | re.IGNORECASE
 )
 
 pattern = re.compile(regex)
@@ -83,6 +84,10 @@ def url(value, public=False):
     .. versionchanged:: 0.10.3
 
         Added ``public`` parameter.
+
+    .. versionchanged:: 0.10.4
+
+        Made the regular expression this function uses case insensitive.
 
     :param value: URL address string to validate
     :param public: (default=False) Set True to only allow a public IP address

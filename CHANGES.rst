@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+0.10.4 (2016-08-30)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed public url validation (#29)
+- Made URL validator case insensitive (#27)
+
+
 0.10.3 (2016-06-13)
 ^^^^^^^^^^^^^^^^^^^
 
