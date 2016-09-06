@@ -1,6 +1,6 @@
 from .between import between  # noqa
-from .domain import domain  # noqa
 from .dns import label
+from .domain import domain  # noqa
 from .email import email  # noqa
 from .extremes import Max, Min  # noqa
 from .i18n import fi_business_id, fi_ssn  # noqa
