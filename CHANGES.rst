@@ -2,10 +2,44 @@ Changelog
 ---------
 
 
+0.11.0 (2016-08-30)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed public url validation (#29)
+- Made URL validator case insensitive (#27)
+- Drop Python 2.6 support
+
+
+0.10.3 (2016-06-13)
+^^^^^^^^^^^^^^^^^^^
+
+- Added ``public`` parameter to url validator (#26, pull request courtesy Iconceicao)
+
+
+0.10.2 (2016-06-11)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed various URL validation issues
+
+
+0.10.1 (2016-04-09)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed domain name validation for numeric domain names (#21, pull request courtesy shaunpud)
+- Fixed IBAN validation for Norwegian and Belgian IBANs (#17, pull request courtesy mboelens91)
+
+
+0.10.0 (2016-01-09)
+^^^^^^^^^^^^^^^^^^^
+
+- Added support for internationalized domain names in ``domain`` validator
+
+
 0.9.0 (2015-10-10)
 ^^^^^^^^^^^^^^^^^^
 
 - Added new validator: ``domain``
+- Added flake8 and isort checks in travis config
 
 
 0.8.0 (2015-06-24)

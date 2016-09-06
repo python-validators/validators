@@ -1,11 +1,9 @@
-try:
-    from collections import OrderedDict
-except ImportError:
-    from ordereddict import OrderedDict
-from decorator import decorator
 import inspect
 import itertools
+from collections import OrderedDict
+
 import six
+from decorator import decorator
 
 
 class ValidationFailure(object):

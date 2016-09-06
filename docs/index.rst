@@ -32,7 +32,7 @@ You can install ``validators`` using pip::
     pip install validators
 
 
-Currently ``validators`` supports python versions 2.6, 2.7, 3.3 and 3.4.
+Currently ``validators`` supports python versions 2.7, 3.3, 3.4, 3.5 and PyPy.
 
 
 Basic validators

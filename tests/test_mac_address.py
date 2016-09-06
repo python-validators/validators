@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import pytest
+
 from validators import mac_address, ValidationFailure
 
 
