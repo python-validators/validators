@@ -8,7 +8,8 @@ from validators import domain, ValidationFailure
     'example.com',
     'xn----gtbspbbmkef.xn--p1ai',
     'underscore_subdomain.example.com',
-    'something.versicherung'
+    'something.versicherung',
+    '11.com'
 ])
 def test_returns_true_on_valid_domain(value):
     assert domain(value)
