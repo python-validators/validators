@@ -1,6 +1,6 @@
 import re
-from .utils import validator
 
+from .utils import validator
 
 slug_regex = re.compile(r'^[-a-zA-Z0-9_]+$')
 

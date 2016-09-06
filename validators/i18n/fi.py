@@ -1,6 +1,6 @@
 import re
-from validators.utils import validator
 
+from validators.utils import validator
 
 business_id_pattern = re.compile(r'^[0-9]{7}-[0-9]$')
 ssn_checkmarks = '0123456789ABCDEFHJKLMNPRSTUVWXY'
