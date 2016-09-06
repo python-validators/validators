@@ -4,12 +4,22 @@ import pytest
 from validators import label, ValidationFailure
 
 
-@pytest.mark.parametrize('value', ['01010', 'A0c-', '-A0c', 'o123456701234567012345670123456701234567012345670123456701234567'])
+@pytest.mark.parametrize('value', [
+    '01010',
+    'A0c-',
+    '-A0c',
+    'o123456701234567012345670123456701234567012345670123456701234567'])
 def test_returns_false_on_invalid_label(value):
     assert isinstance(label(value), ValidationFailure)
 
 
-@pytest.mark.parametrize('value', ['abc', 'A0c', 'A-0c' 'o12345670123456701234567012345670123456701234567012345670123456', 'a', '0--0'])
+@pytest.mark.parametrize('value', [
+    'abc',
+    'A0c',
+    'A-0c',
+    'o12345670123456701234567012345670123456701234567012345670123456',
+    'a',
+    '0--0'])
 def test_returns_true_on_valid_label(value):
     assert label(value)
 

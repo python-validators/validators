@@ -3,7 +3,10 @@ import re
 from .utils import validator
 
 
-pattern = re.compile(r'^((?![0-9]{1,63}[.])(?![0-9]+$)(?!-)([a-zA-Z0-9-_]{0,63}(?<!-)([.])?)){1,32}$')
+pattern = re.compile(
+    r'^((?![0-9]{1,63}[.])(?![0-9]+$)'
+    r'(?!-)([a-zA-Z0-9-_]{0,63}(?<!-)([.])?)){1,32}$'
+)
 
 
 @validator
