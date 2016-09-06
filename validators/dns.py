@@ -12,7 +12,8 @@ pattern = re.compile(
 @validator
 def label(value):
     """
-    Return whether or not given value is a valid hostname (label) for DNS records.
+    Return whether or not given value is a valid hostname (label)
+    for DNS records.
     For more details https://www.ietf.org/rfc/rfc1912.txt
 
     If the value is valid label this function returns ``True``, otherwise
