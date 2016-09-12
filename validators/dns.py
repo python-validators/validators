@@ -28,7 +28,7 @@ def hostname(value):
         True
 
         >>> hostname('-host')
-        ValidationFailure(func=label, ...)
+        ValidationFailure(func=hostname, ...)
 
 
     Supports IDN labels as well::
@@ -36,6 +36,6 @@ def hostname(value):
         >>> hostname('xn----gtbspbbmkef')
         True
 
-    :param value: label string to validate
+    :param value: hostname string to validate
     """
     return pattern.match(value)
