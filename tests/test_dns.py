@@ -8,8 +8,14 @@ from validators import hostname, ValidationFailure
     '01010',
     'A0c-',
     '-A0c',
-    'o123456701234567012345670123456701234567012345670123456701234567'])
-def test_returns_false_on_invalid_label(value):
+    'o123456701234567012345670123456701234567012345670123456701234567',
+    'example.com/',
+    'example.com:4444',
+    'example.-com',
+    '-example.com',
+    '!example.com',
+    '123123123.example.com'])
+def test_returns_false_on_invalid_hostname(value):
     assert isinstance(hostname(value), ValidationFailure)
 
 
@@ -20,7 +26,7 @@ def test_returns_false_on_invalid_label(value):
     'o12345670123456701234567012345670123456701234567012345670123456',
     'a',
     '0--0'])
-def test_returns_true_on_valid_label(value):
+def test_returns_true_on_valid_hostname(value):
     assert hostname(value)
 
 
@@ -37,15 +43,3 @@ def test_returns_true_on_valid_label(value):
 ])
 def test_returns_true_on_valid_domain(value):
     assert hostname(value)
-
-
-@pytest.mark.parametrize('value', [
-    'example.com/',
-    'example.com:4444',
-    'example.-com',
-    '-example.com',
-    '!example.com',
-    '123123123.example.com',
-])
-def test_returns_failed_validation_on_invalid_bind_hostnames(value):
-    assert isinstance(hostname(value), ValidationFailure)
