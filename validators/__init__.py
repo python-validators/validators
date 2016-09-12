@@ -1,4 +1,5 @@
 from .between import between  # noqa
+from .dns import hostname # noqa
 from .domain import domain  # noqa
 from .email import email  # noqa
 from .extremes import Max, Min  # noqa
@@ -13,4 +14,4 @@ from .url import url  # noqa
 from .utils import ValidationFailure, validator  # noqa
 from .uuid import uuid  # noqa
 
-__version__ = '0.11.0'
+__version__ = '0.12.0'
