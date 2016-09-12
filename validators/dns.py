@@ -10,7 +10,7 @@ pattern = re.compile(
 
 
 @validator
-def label(value):
+def hostname(value):
     """
     Return whether or not given value is a valid hostname (label)
     for DNS records.
@@ -21,19 +21,19 @@ def label(value):
 
     Examples::
 
-        >>> label('example')
+        >>> hostname('example')
         True
 
-        >>> label('example-label')
+        >>> hostname('example-label')
         True
 
-        >>> label('-host')
+        >>> hostname('-host')
         ValidationFailure(func=label, ...)
 
 
     Supports IDN labels as well::
 
-        >>> label('xn----gtbspbbmkef')
+        >>> hostname('xn----gtbspbbmkef')
         True
 
     :param value: label string to validate

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import label, ValidationFailure
+from validators import hostname, ValidationFailure
 
 
 @pytest.mark.parametrize('value', [
@@ -10,7 +10,7 @@ from validators import label, ValidationFailure
     '-A0c',
     'o123456701234567012345670123456701234567012345670123456701234567'])
 def test_returns_false_on_invalid_label(value):
-    assert isinstance(label(value), ValidationFailure)
+    assert isinstance(hostname(value), ValidationFailure)
 
 
 @pytest.mark.parametrize('value', [
@@ -21,7 +21,7 @@ def test_returns_false_on_invalid_label(value):
     'a',
     '0--0'])
 def test_returns_true_on_valid_label(value):
-    assert label(value)
+    assert hostname(value)
 
 
 @pytest.mark.parametrize('value', [
@@ -36,7 +36,7 @@ def test_returns_true_on_valid_label(value):
 
 ])
 def test_returns_true_on_valid_domain(value):
-    assert label(value)
+    assert hostname(value)
 
 
 @pytest.mark.parametrize('value', [
@@ -48,4 +48,4 @@ def test_returns_true_on_valid_domain(value):
     '123123123.example.com',
 ])
 def test_returns_failed_validation_on_invalid_bind_hostnames(value):
-    assert isinstance(label(value), ValidationFailure)
+    assert isinstance(hostname(value), ValidationFailure)

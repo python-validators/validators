@@ -1,5 +1,5 @@
 from .between import between  # noqa
-from .dns import label # noqa
+from .dns import hostname # noqa
 from .domain import domain  # noqa
 from .email import email  # noqa
 from .extremes import Max, Min  # noqa
