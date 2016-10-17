@@ -50,6 +50,7 @@ setup(
         'six>=1.4.0',
         'decorator>=3.4.0',
     ],
+    build_requires=install_requires,
     extras_require=extras_require,
     classifiers=[
         'Environment :: Web Environment',
