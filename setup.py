@@ -32,6 +32,10 @@ extras_require = {
     ],
 }
 
+install_requires=[
+     'six>=1.4.0',
+     'decorator>=3.4.0',
+    ]
 
 setup(
     name='validators',
@@ -46,10 +50,8 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
-    install_requires=[
-        'six>=1.4.0',
-        'decorator>=3.4.0',
-    ],
+    install_requires=install_requires,
+    build_requires=install_requires,
     extras_require=extras_require,
     classifiers=[
         'Environment :: Web Environment',
