@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.11.1 (2016-11-19)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed pyp2rpm build problem (#37, pull request courtesy BOPOHA)
+
+
 0.11.0 (2016-08-30)
 ^^^^^^^^^^^^^^^^^^^
 
