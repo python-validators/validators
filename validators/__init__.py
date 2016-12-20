@@ -12,5 +12,6 @@ from .truthy import truthy  # noqa
 from .url import url  # noqa
 from .utils import ValidationFailure, validator  # noqa
 from .uuid import uuid  # noqa
+from .image import image
 
 __version__ = '0.11.1'
