@@ -11,7 +11,7 @@ from validators import image, ValidationFailure
     u'https://i.imgur.com/DKUR9Tk.png?fb'
 ])
 def test_returns_true_on_valid_image_url(address):
-    assert image(path)
+    assert image(address)
 
 
 @pytest.mark.parametrize('address', [
