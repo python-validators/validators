@@ -5,8 +5,8 @@ from validators import image, ValidationFailure
 
 
 @pytest.fixture()
-def image_file(tmpdir_factory):
-    temp_path = tmpdir_factory.mktemp('pics').join('test.png')
+def image_file(tmpdir):
+    temp_path = tmpdir.join('test.png')
     new_image = Image.new('RGBA', (10, 10))
     new_image.save(str(temp_path))
     return temp_path
