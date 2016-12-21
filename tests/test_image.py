@@ -5,11 +5,11 @@ from validators import image, ValidationFailure
 
 
 @pytest.fixture()
-def image_file(tmpdir):
-    temp_path = tmpdir.join('test.png')
-    new_image = Image.new('RGBA', (10, 10))
-    new_image.save(str(temp_path))
-    return temp_path
+def image_file(tmpdir_factory):
+    img = Image.new('RGBA', (10, 10))
+    fn = tmpdir_factory.mktemp('pic').join('test.png')
+    img.save(str(fn))
+    return fn
 
 
 @pytest.mark.parametrize('address', [
