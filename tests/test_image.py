@@ -11,7 +11,7 @@ def image_file(tmpdir):
     path = os.path.join([tmp, 'test.png'])
     img = Image.new('RGBA', (10, 10))
     img.save(str(path), format='PNG')
-    return path
+    return tmp
 
 
 @pytest.mark.parametrize('address', [
@@ -30,4 +30,4 @@ def test_returns_false_on_invalid_image_url(address):
 
 
 def test_returns_true_on_valid_image_file(image_file):
-    assert image(str(image_file))
+    assert image(os.path.join([image_file, 'test.png']))
