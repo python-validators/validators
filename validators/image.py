@@ -49,13 +49,6 @@ def image(path):
     If the file is a valid image type this function returns ``True``, otherwise
     :class:`~validators.utils.ValidationFailure`.
 
-    Examples::
-        >>> image('test.png')
-        True
-
-        >>> image('https://i.imgur.com/DKUR9Tk.png')
-        True
-
     :param path: The path to the file to evaluate.
     """
 

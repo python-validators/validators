@@ -7,11 +7,18 @@ from validators import image, ValidationFailure
 
 @pytest.fixture()
 def image_file(tmpdir):
-    tmp = str(tmpdir)
-    path = os.path.join(tmp, 'test.png')
+    path = os.path.join(str(tmpdir), 'test.png')
     img = Image.new('RGBA', (10, 10))
     img.save(str(path), format='PNG')
-    return tmp
+    return str(path)
+
+
+@pytest.fixture()
+def text_file(tmpdir):
+    path = os.path.join(str(tmpdir), 'test.txt')
+    f = open(path, 'w')
+    f.close()
+    return str(path)
 
 
 @pytest.mark.parametrize('address', [
@@ -30,4 +37,8 @@ def test_returns_false_on_invalid_image_url(address):
 
 
 def test_returns_true_on_valid_image_file(image_file):
-    assert image(os.path.join(image_file, 'test.png'))
+    assert image(image_file)
+
+
+def test_returns_false_on_invalid_image_file(text_file):
+    assert isinstance(image(text_file), ValidationFailure)
