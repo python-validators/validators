@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 from PIL import Image
-
 from validators import image, ValidationFailure
-
-#https://i.imgur.com/DKUR9Tk.png is Grumpy Cat
 
 
 @pytest.fixture()

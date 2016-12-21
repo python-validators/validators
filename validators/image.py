@@ -50,7 +50,7 @@ def image(path):
     :class:`~validators.utils.ValidationFailure`.
 
     Examples::
-        >>> image('pic.jpg')
+        >>> image('test.png')
         True
 
         >>> image('https://i.imgur.com/DKUR9Tk.png')
