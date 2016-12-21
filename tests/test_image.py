@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+import os
 import pytest
 from PIL import Image
 from validators import image, ValidationFailure
 
 
 @pytest.fixture()
-def image_file(tmpdir_factory):
+def image_file(tmpdir):
+    tmp = str(tmpdir)
+    path = os.path.join([tmp, 'test.png'])
     img = Image.new('RGBA', (10, 10))
-    fn = tmpdir_factory.mktemp('pic').join('test.png')
-    img.save(str(fn))
-    return fn
+    img.save(str(path), format='PNG')
+    return path
 
 
 @pytest.mark.parametrize('address', [
