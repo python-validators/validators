@@ -2,13 +2,13 @@ import imghdr
 import os
 from io import BytesIO
 
+from .url import url
+from .utils import ValidationFailure, validator
+
 try:
     from urllib2 import urlopen
 except ImportError:
     from urllib.request import urlopen
-
-from .url import url
-from .utils import validator, ValidationFailure
 
 
 def _image_url(path):
