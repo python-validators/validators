@@ -8,7 +8,7 @@ from validators import image, ValidationFailure
 @pytest.fixture()
 def image_file(tmpdir):
     tmp = str(tmpdir)
-    path = os.path.join([tmp, 'test.png'])
+    path = os.path.join(tmp, 'test.png')
     img = Image.new('RGBA', (10, 10))
     img.save(str(path), format='PNG')
     return tmp
@@ -30,4 +30,4 @@ def test_returns_false_on_invalid_image_url(address):
 
 
 def test_returns_true_on_valid_image_file(image_file):
-    assert image(os.path.join([image_file, 'test.png']))
+    assert image(os.path.join(image_file, 'test.png'))
