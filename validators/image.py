@@ -1,4 +1,4 @@
-import imghdr
+import imghdr  # isort:skip
 import os
 from io import BytesIO
 

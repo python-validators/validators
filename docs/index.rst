@@ -91,6 +91,13 @@ iban
 
 .. autofunction:: iban
 
+image
+-----
+
+.. module:: validators.image
+
+.. autofunction:: image
+
 ipv4
 ----
 
