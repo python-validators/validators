@@ -1,7 +1,7 @@
-import os
 import imghdr
-
+import os
 from io import BytesIO
+
 from .url import url
 
 try:

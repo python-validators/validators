@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
+
 import pytest
 from PIL import Image
+
 from validators import image, ValidationFailure
 
 
