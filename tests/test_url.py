@@ -15,6 +15,7 @@ from validators import url, ValidationFailure
     u'http://foo.com/blah_blah_(wikipedia)_(again)',
     u'http://www.example.com/wpstyle/?p=364',
     u'https://www.example.com/foo/?bar=baz&inga=42&quux',
+    u'https://www.example.com?bar=baz',
     u'http://✪df.ws/123',
     u'http://userid:password@example.com:8080',
     u'http://userid:password@example.com:8080/',
