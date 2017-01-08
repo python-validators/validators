@@ -40,6 +40,8 @@ regex = re.compile(
     u"(?::\d{2,5})?"
     # resource path
     u"(?:/\S*)?"
+    # query string
+    u"(?:\?\S*)?"
     u"$",
     re.UNICODE | re.IGNORECASE
 )
