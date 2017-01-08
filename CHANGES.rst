@@ -1,6 +1,11 @@
 Changelog
 ---------
 
+0.11.2 (2017-01-08)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed URL validator for urls with query parameters but without path (#44, pull request courtesy zjjw)
+
 
 0.11.1 (2016-11-19)
 ^^^^^^^^^^^^^^^^^^^
