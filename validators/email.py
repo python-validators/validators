@@ -51,9 +51,6 @@ def email(value, whitelist=None):
     :license: BSD
     """
 
-    if whitelist is None:
-        whitelist = domain_whitelist
-
     if not value or '@' not in value:
         return False
 
@@ -62,11 +59,15 @@ def email(value, whitelist=None):
     if not user_regex.match(user_part):
         return False
 
-    if domain_part not in whitelist and not domain_regex.match(domain_part):
+    if whitelist is not None and domain_part not in whitelist:
         # Try for possible IDN domain-part
-        try:
-            domain_part = domain_part.encode('idna').decode('ascii')
-            return domain_regex.match(domain_part)
-        except UnicodeError:
+        if not domain_regex.match(domain_part):
+            try:
+                domain_part = domain_part.encode('idna').decode('ascii')
+                return domain_regex.match(domain_part)
+            except UnicodeError:
+                return False
+        # Domain is fine but not in whitelist so it's a fail
+        else:
             return False
     return True
