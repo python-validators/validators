@@ -46,6 +46,7 @@ def email(value, whitelist=None, only_whitelist=False):
 
     :param value: value to validate
     :param whitelist: domain names to whitelist
+    :param only_whitelist: specify whether to fail non whitelisted domains
 
     :copyright: (c) Django Software Foundation and individual contributors.
     :license: BSD
