@@ -23,7 +23,7 @@ domain_whitelist = ['localhost']
 
 
 @validator
-def email(value, whitelist=None):
+def email(value, whitelist=None, only_whitelist=False):
     """
     Validate an email address.
 
@@ -50,24 +50,29 @@ def email(value, whitelist=None):
     :copyright: (c) Django Software Foundation and individual contributors.
     :license: BSD
     """
-
     if not value or '@' not in value:
         return False
+
+    if whitelist is None:
+        whitelist = domain_whitelist
 
     user_part, domain_part = value.rsplit('@', 1)
 
     if not user_regex.match(user_part):
         return False
 
-    if whitelist is not None and domain_part not in whitelist:
+    # skip domain regex check if user specified it explicitly in whitelist
+    if only_whitelist:
+        return domain_part in whitelist
+
+    # check if domain is good
+    if not (domain_regex.match(domain_part) or domain_part in whitelist):
         # Try for possible IDN domain-part
-        if not domain_regex.match(domain_part):
-            try:
-                domain_part = domain_part.encode('idna').decode('ascii')
-                return domain_regex.match(domain_part)
-            except UnicodeError:
-                return False
-        # Domain is fine but not in whitelist so it's a fail
-        else:
+        try:
+            domain_part = domain_part.encode('idna').decode('ascii')
+            return domain_regex.match(domain_part)
+        except UnicodeError:
             return False
+
+    # No whitelist and email passes user_regex and domain passes domain_regex.
     return True
