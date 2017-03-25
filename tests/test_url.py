@@ -50,6 +50,8 @@ from validators import url, ValidationFailure
     u'http://10.1.1.254',
     u'http://127.0.0.1:8080',
     u'http://127.0.10.150',
+    u'http://localhost',
+    u'http://localhost:8000',
 ])
 def test_returns_true_on_valid_url(address):
     assert url(address)
@@ -126,6 +128,8 @@ def test_returns_failed_validation_on_invalid_url(address):
     (u'http://127.0.0.1', True),
     (u'foo://127.0.0.1', True),
     (u'http://username:password@127.0.0.1:8080', True),
+    (u'http://localhost', True),
+    (u'http://localhost:8000', True),
 
 ])
 def test_returns_failed_validation_on_invalid_public_url(address, public):
