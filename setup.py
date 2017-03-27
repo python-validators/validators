@@ -32,10 +32,10 @@ extras_require = {
     ],
 }
 
-install_requires=[
-     'six>=1.4.0',
-     'decorator>=3.4.0',
-    ]
+install_requires = [
+    'six>=1.4.0',
+    'decorator>=3.4.0',
+]
 
 setup(
     name='validators',
@@ -65,6 +65,7 @@ setup(
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
