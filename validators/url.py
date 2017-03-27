@@ -91,9 +91,13 @@ def url(value, public=False):
 
         Added ``public`` parameter.
 
-    .. versionchanged:: 0.10.4
+    .. versionchanged:: 0.11.0
 
         Made the regular expression this function uses case insensitive.
+
+    .. versionchanged:: 0.11.3
+
+        Added support for URLs containing localhost
 
     :param value: URL address string to validate
     :param public: (default=False) Set True to only allow a public IP address

@@ -13,4 +13,4 @@ from .url import url  # noqa
 from .utils import ValidationFailure, validator  # noqa
 from .uuid import uuid  # noqa
 
-__version__ = '0.11.2'
+__version__ = '0.11.3'

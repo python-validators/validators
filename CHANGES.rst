@@ -1,6 +1,13 @@
 Changelog
 ---------
 
+
+0.11.3 (2017-03-27)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed URL validator for URLs containing localhost (#51, pull request courtesy vladimirdotk)
+
+
 0.11.2 (2017-01-08)
 ^^^^^^^^^^^^^^^^^^^
 
