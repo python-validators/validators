@@ -19,6 +19,10 @@ regex = re.compile(
     u"(?:(?:169\.254|192\.168)" + ip_middle_octet + ip_last_octet + u")|"
     u"(?:172\.(?:1[6-9]|2\d|3[0-1])" + ip_middle_octet + ip_last_octet + u"))"
     u"|"
+    # private & local hosts
+    u"(?P<private_host>"
+    u"(?:localhost))"
+    u"|"
     # IP address dotted notation octets
     # excludes loopback network 0.0.0.0
     # excludes reserved space >= 224.0.0.0
@@ -98,4 +102,6 @@ def url(value, public=False):
     if not public:
         return result
 
-    return result and not result.groupdict()['private_ip']
+    return result and not any(
+        (result.groupdict().get(key) for key in ('private_ip', 'private_host'))
+    )
