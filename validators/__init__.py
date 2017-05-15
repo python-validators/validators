@@ -12,5 +12,6 @@ from .truthy import truthy  # noqa
 from .url import url  # noqa
 from .utils import ValidationFailure, validator  # noqa
 from .uuid import uuid  # noqa
+from .hashs import md5, sha1, sha224, sha256, sha512  # noqa
 
 __version__ = '0.11.3'
