@@ -30,7 +30,7 @@ def md5(value):
 
     Exemples::
 
-        >>> md5('da39a3ee5e6b4b0d3255bfef95601890afd80709')
+        >>> md5('d41d8cd98f00b204e9800998ecf8427e')
         True
 
         >>> md5('900zz11')
@@ -47,7 +47,7 @@ def sha1(value):
 
     Exemples::
 
-        >>> sha1('d41d8cd98f00b204e9800998ecf8427e')
+        >>> sha1('da39a3ee5e6b4b0d3255bfef95601890afd80709')
         True
 
         >>> sha1('900zz11')
@@ -81,7 +81,7 @@ def sha256(value):
 
     Exemples::
 
-        >>> sha256('d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f')
+        >>> sha256('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
         True
 
         >>> sha256('900zz11')
