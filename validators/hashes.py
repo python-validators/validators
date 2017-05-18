@@ -3,24 +3,24 @@ import re
 from .utils import validator
 
 md5_regex = re.compile(
-        r"^[0-9a-f]{32}$",
-        re.IGNORECASE
+    r"^[0-9a-f]{32}$",
+    re.IGNORECASE
 )
 sha1_regex = re.compile(
-        r"^[0-9a-f]{40}$",
-        re.IGNORECASE
+    r"^[0-9a-f]{40}$",
+    re.IGNORECASE
 )
 sha224_regex = re.compile(
-        r"^[0-9a-f]{56}$",
-        re.IGNORECASE
+    r"^[0-9a-f]{56}$",
+    re.IGNORECASE
 )
 sha256_regex = re.compile(
-        r"^[0-9a-f]{64}$",
-        re.IGNORECASE
+    r"^[0-9a-f]{64}$",
+    re.IGNORECASE
 )
 sha512_regex = re.compile(
-        r"^[0-9a-f]{128}$",
-        re.IGNORECASE
+    r"^[0-9a-f]{128}$",
+    re.IGNORECASE
 )
 
 @validator
@@ -30,7 +30,7 @@ def md5(value):
 
     Exemples::
 
-        >>> md5('d41d8cd98f00b204e9800998ecf8427e')
+        >>> md5('da39a3ee5e6b4b0d3255bfef95601890afd80709')
         True
 
         >>> md5('900zz11')
@@ -47,7 +47,7 @@ def sha1(value):
 
     Exemples::
 
-        >>> sha1('da39a3ee5e6b4b0d3255bfef95601890afd80709')
+        >>> sha1('d41d8cd98f00b204e9800998ecf8427e')
         True
 
         >>> sha1('900zz11')
@@ -81,7 +81,7 @@ def sha256(value):
 
     Exemples::
 
-        >>> sha256('e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855')
+        >>> sha256('d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f')
         True
 
         >>> sha256('900zz11')

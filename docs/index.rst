@@ -123,7 +123,7 @@ mac_address
 md5
 -----------
 
-.. module:: validators.md5
+.. module:: validators.hashes
 
 .. autofunction:: md5
 
@@ -131,7 +131,7 @@ md5
 sha1
 -----------
 
-.. module:: validators.sha1
+.. module:: validators.hashes
 
 .. autofunction:: sha1
 
@@ -139,7 +139,7 @@ sha1
 sha224
 -----------
 
-.. module:: validators.sha224
+.. module:: validators.hashes
 
 .. autofunction:: sha224
 
@@ -147,7 +147,7 @@ sha224
 sha256
 -----------
 
-.. module:: validators.sha256
+.. module:: validators.hashes
 
 .. autofunction:: sha256
 
@@ -155,7 +155,7 @@ sha256
 sha512
 -----------
 
-.. module:: validators.sha512
+.. module:: validators.hashes
 
 .. autofunction:: sha512
 
