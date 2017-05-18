@@ -71,6 +71,9 @@ def url(value, public=False):
         >>> url('http://foobar.dk')
         True
 
+        >>> url('ftp://foobar.dk')
+        True
+
         >>> url('http://10.0.0.1')
         True
 
