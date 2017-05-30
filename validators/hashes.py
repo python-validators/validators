@@ -23,6 +23,7 @@ sha512_regex = re.compile(
     re.IGNORECASE
 )
 
+
 @validator
 def md5(value):
     """
@@ -39,6 +40,7 @@ def md5(value):
     :param value: MD5 string to validate
     """
     return md5_regex.match(value)
+
 
 @validator
 def sha1(value):
@@ -57,6 +59,7 @@ def sha1(value):
     """
     return sha1_regex.match(value)
 
+
 @validator
 def sha224(value):
     """
@@ -74,6 +77,7 @@ def sha224(value):
     """
     return sha224_regex.match(value)
 
+
 @validator
 def sha256(value):
     """
@@ -90,6 +94,7 @@ def sha256(value):
     :param value: SHA256 string to validate
     """
     return sha256_regex.match(value)
+
 
 @validator
 def sha512(value):
