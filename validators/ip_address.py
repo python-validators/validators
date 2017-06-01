@@ -32,7 +32,8 @@ def ipv4(value):
 @validator
 def ipv6(value):
     """
-    Return whether or not given value is a valid IP version 6 address (including IPv4-mapped IPv6 addresses).
+    Return whether or not given value is a valid IP version 6 address
+    (including IPv4-mapped IPv6 addresses).
 
     This validator is based on `WTForms IPAddress validator`_.
 
@@ -43,10 +44,10 @@ def ipv6(value):
 
         >>> ipv6('abcd:ef::42:1')
         True
-        
+
         >>> ipv6('::ffff:192.0.2.128')
         True
-        
+
         >>> ipv6('::192.0.2.128')
         True
 
