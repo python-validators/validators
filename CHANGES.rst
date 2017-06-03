@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+0.12.0 (2017-06-03)
+^^^^^^^^^^^^^^^^^^^
+
+- Added hash validators for md5, sha1, sha224, sha256 and sha512
+- Made ipv6 validator support IPv4-mapped IPv6 addresses
+
+
 0.11.3 (2017-03-27)
 ^^^^^^^^^^^^^^^^^^^
 
