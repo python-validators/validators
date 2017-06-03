@@ -8,8 +8,10 @@ from validators import ipv6, ValidationFailure
     ('::1',),
     ('dead:beef:0:0:0:0:42:1',),
     ('abcd:ef::42:1',),
+    ('0:0:0:0:0:ffff:1.2.3.4',),
+    ('::192.168.30.2',),
 ])
-def test_returns_true_on_valid_ipv4_address(address):
+def test_returns_true_on_valid_ipv6_address(address):
     assert ipv6(address)
 
 
