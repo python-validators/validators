@@ -120,6 +120,46 @@ mac_address
 .. autofunction:: mac_address
 
 
+md5
+-----------
+
+.. module:: validators.hashes
+
+.. autofunction:: md5
+
+
+sha1
+-----------
+
+.. module:: validators.hashes
+
+.. autofunction:: sha1
+
+
+sha224
+-----------
+
+.. module:: validators.hashes
+
+.. autofunction:: sha224
+
+
+sha256
+-----------
+
+.. module:: validators.hashes
+
+.. autofunction:: sha256
+
+
+sha512
+-----------
+
+.. module:: validators.hashes
+
+.. autofunction:: sha512
+
+
 slug
 ----
 
