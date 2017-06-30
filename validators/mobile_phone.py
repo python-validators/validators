@@ -1,3 +1,4 @@
+"""Validate mobile_phone."""
 from .utils import validator
 import re
 
@@ -72,7 +73,6 @@ def mobile_phone(value, locale=None):
     """
     # remove dashes, brackets and spaces
     value = re.sub('[^0-9+]+', '', value)
-    print value
     if locale:
         if locale in locales.keys():
             pattern = locales.get(locale)
