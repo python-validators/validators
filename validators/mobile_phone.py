@@ -1,6 +1,6 @@
 """Validate mobile_phone."""
-from .utils import validator
 import re
+from .utils import validator
 
 locales = {
   'ar-DZ': '^(\+?213|0)(5|6|7)\d{8}$',
@@ -92,7 +92,7 @@ def mobile_phone(value, locale=None):
     else:
         # locale wasn't provided
         matched = False
-        for _, pattern in locales.iteritems():
+        for _, pattern in locales.items():
             match = re.match(pattern, value)
             if match:
                 matched = True
