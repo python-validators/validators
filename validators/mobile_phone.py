@@ -74,7 +74,8 @@ def mobile_phone(value, locale=None):
         True
 
         >>> mobile_phone('+1(202)-555-017')
-        ValidationFailure(func=mobile_phone, args={'locale': None, ...})
+        ValidationFailure(func=mobile_phone, args={
+            'value': '+1(202)-555-017', 'locale': None})
 
         >>> mobile_phone('0705887887', 'en-KE')
         True
