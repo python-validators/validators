@@ -189,6 +189,13 @@ uuid
 
 .. autofunction:: uuid
 
+mobile phone
+----
+
+.. module:: validators.mobile_phone
+
+.. autofunction:: mobile_phone
+
 
 i18n validators
 ===============
