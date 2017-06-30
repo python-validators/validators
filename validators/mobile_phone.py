@@ -1,5 +1,6 @@
 """Validate mobile_phone."""
 import re
+
 from .utils import validator
 
 locales = {
