@@ -10,7 +10,8 @@ regex = re.compile(
     # protocol identifier
     u"(?:(?:https?|ftp)://)"
     # user:pass authentication
-    u"(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?"
+    u"(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+"
+    u"(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?"
     u"(?:"
     u"(?P<private_ip>"
     # IP address exclusion
