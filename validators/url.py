@@ -10,7 +10,7 @@ regex = re.compile(
     # protocol identifier
     u"(?:(?:https?|ftp)://)"
     # user:pass authentication
-    u"(?:\S+(?::\S*)?@)?"
+    u"(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?"
     u"(?:"
     u"(?P<private_ip>"
     # IP address exclusion
@@ -43,9 +43,11 @@ regex = re.compile(
     # port number
     u"(?::\d{2,5})?"
     # resource path
-    u"(?:/\S*)?"
+    u"(?:/[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:@/]*)?"
     # query string
     u"(?:\?\S*)?"
+    # fragment
+    u"(?:#\S*)?"
     u"$",
     re.UNICODE | re.IGNORECASE
 )
