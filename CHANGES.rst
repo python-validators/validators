@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.12.1 (2018-01-30)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed IDNA encoded TLDs in domain validator (#75, pull request courtesy piewpiew)
+
+
 0.12.0 (2017-06-03)
 ^^^^^^^^^^^^^^^^^^^
 
