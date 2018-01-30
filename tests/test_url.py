@@ -116,7 +116,8 @@ def test_returns_true_on_valid_public_url(address, public):
     'http://.www.foo.bar/',
     'http://www.foo.bar./',
     'http://.www.foo.bar./',
-    'http://127.12.0.260'
+    'http://127.12.0.260',
+    'http://example.com/">user@example.com',
 ])
 def test_returns_failed_validation_on_invalid_url(address):
     assert isinstance(url(address), ValidationFailure)
