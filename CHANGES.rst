@@ -6,6 +6,7 @@ Changelog
 ^^^^^^^^^^^^^^^^^^^
 
 - Fixed IDNA encoded TLDs in domain validator (#75, pull request courtesy piewpiew)
+- Fixed URL validator for URLs with invalid characters in userinfo part (#69, pull request courtesy timb07)
 
 
 0.12.0 (2017-06-03)
