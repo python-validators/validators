@@ -12,6 +12,8 @@ from validators import domain, ValidationFailure
     '11.com',
     'somerandomexample.xn--fiqs8s'
 ])
+
+
 def test_returns_true_on_valid_domain(value):
     assert domain(value)
 
@@ -23,6 +25,8 @@ def test_returns_true_on_valid_domain(value):
     'example.',
     '-example.com',
     'example',
+    'a......b.com'
+,
 ])
 def test_returns_failed_validation_on_invalid_domain(value):
     assert isinstance(domain(value), ValidationFailure)
