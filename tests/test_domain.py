@@ -11,7 +11,8 @@ from validators import domain, ValidationFailure
     'something.versicherung',
     '11.com',
     'somerandomexample.xn--fiqs8s',
-    'xxxxxxxxxxxx.xxxxxxxxxxxx.xxxxxxxxxxxx.xxxxxxxxxxxx.xxxxxxxxxxxx.com'
+    'xxxxxxxxxxxx.xxxxxxxxxxxx.xxxxxxxxxxxx.xxxxxxxxxxxx.xxxxxxxxxxxx.com',
+    'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx.abcd.com',
 ])
 def test_returns_true_on_valid_domain(value):
     assert domain(value)
