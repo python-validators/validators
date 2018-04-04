@@ -4,11 +4,10 @@ from .utils import validator
 
 ip_middle_octet = u"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
 ip_last_octet = u"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
+protocol_identifier = u"(?:(?:https?|ftp)://)"
 
 regex = re.compile(
-    u"^"
-    # protocol identifier
-    u"(?:(?:https?|ftp)://)"
+    u"^" + protocol_identifier + u""
     # user:pass authentication
     u"(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+"
     u"(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?"
@@ -53,8 +52,23 @@ regex = re.compile(
     re.UNICODE | re.IGNORECASE
 )
 
-pattern = re.compile(regex)
+regex_idna_converter = re.compile(
+    u"^"
+    # protocol group
+    u"(?P<protocol>" + protocol_identifier + u")"
+    # fqdn group: intentionally loose, only meant to isolate any
+    # potential fqdn so that idna decoding can be attempted. 
+    u"(?P<fqdn>[^/:]+)"
+    # port number group
+    u"(?P<port>:\d{2,5})?"
+    # resource/query/fragment group
+    u"(?P<resource>/.*)?"
+    u"$",
+    re.UNICODE | re.IGNORECASE
+)
 
+pattern = re.compile(regex)
+pattern_idna_converter = re.compile(regex_idna_converter)
 
 @validator
 def url(value, public=False):
@@ -109,6 +123,25 @@ def url(value, public=False):
     :param public: (default=False) Set True to only allow a public IP address
     """
     result = pattern.match(value)
+
+    #if initial match failed, attempt an idna conversion
+    if not result:
+        try:
+            #use regex to separate the potential idna fqdn
+            idna_result = pattern_idna_converter.match(value)
+            idna_dict = idna_result.groupdict()
+            #reassemble the URL after decoding the fqdn as idna
+            idna_value = u"{protocol}{fqdn}{port}{resource}".format(
+                protocol=idna_dict['protocol'],
+                fqdn=idna_dict['fqdn'].decode('idna'),
+                port=idna_dict['port'] or "",
+                resource=idna_dict['resource'] or ""
+            )
+            result = pattern.match(idna_value)
+        #if pattern doesn't match or host can't decode as idna then pass
+        except (AttributeError,UnicodeError):
+            pass
+
     if not public:
         return result
 
