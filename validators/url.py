@@ -56,6 +56,9 @@ regex_idna_converter = re.compile(
     u"^"
     # protocol group
     u"(?P<protocol>" + protocol_identifier + u")"
+    # user:pass group
+    u"(?P<userpass>(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+"
+    u"(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?)"
     # fqdn group: intentionally loose, only meant to isolate any
     # potential fqdn so that idna decoding can be attempted. 
     u"(?P<fqdn>[^/:]+)"
@@ -133,6 +136,7 @@ def url(value, public=False):
             #reassemble the URL after decoding the fqdn as idna
             idna_value = u"{protocol}{fqdn}{port}{resource}".format(
                 protocol=idna_dict['protocol'],
+                userpass = idna_dict['userpass'] or "",
                 fqdn=idna_dict['fqdn'].decode('idna'),
                 port=idna_dict['port'] or "",
                 resource=idna_dict['resource'] or ""
