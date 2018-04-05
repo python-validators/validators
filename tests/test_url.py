@@ -52,6 +52,30 @@ from validators import url, ValidationFailure
     u'http://127.0.10.150',
     u'http://localhost',
     u'http://localhost:8000',
+    u'http://xn--mgbh0fb.xn--kgbechtv',
+    u'http://xn--mgbh0fb.xn--kgbechtv/',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/',
+    u'http://xn--mgbh0fb.xn--kgbechtv/foobar',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/foobar',
+    u'http://xn--mgbh0fb.xn--kgbechtv/foo/?bar=baz&inga=42&quux',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/foo/?bar=baz&inga=42&quux',
+    u'http://xn--mgbh0fb.xn--kgbechtv/foo_bar',
+    u'http://xn--mgbh0fb.xn--kgbechtv/123',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/123',
+    u'http://xn--mgbh0fb.xn--kgbechtv/?foo=bar%20has-url-encoded%20stuff',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/?foo=bar%20has-url-encoded%20stuff',
+    u'http://xn--mgbh0fb.xn--kgbechtv/foobar_(wikipedia)#cite-1',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/foobar_(wikipedia)#cite-1',
+    u'http://xn--mgbh0fb.xn--kgbechtv/unicode_(✪)_in_parens',
+    u'http://xn--mgbh0fb.xn--kgbechtv:8080/unicode_(✪)_in_parens',
+    u'http://xn--mgbh0fb.xn--kgbechtv/(something)?after=parens',
+    u'ftp://xn--p1b6ci4b4b3a.xn--11b5bs3a9aj6g/foo',
+    u'https://userid:password@xn--fsqu00a.xn--0zwm56d',
+    u'https://userid:password@xn--fsqu00a.xn--0zwm56d:8080',
+    u'https://userid:password@xn--fsqu00a.xn--0zwm56d:8080/foobar'
+    u'https://用户名密码:密码@xn--fsqu00a.xn--0zwm56d'
+    u'https://%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81:%E5%AF%86%E7%A0%81@xn--fsqu00a.xn--0zwm56d'
 ])
 def test_returns_true_on_valid_url(address):
     assert url(address)
@@ -118,6 +142,27 @@ def test_returns_true_on_valid_public_url(address, public):
     'http://.www.foo.bar./',
     'http://127.12.0.260',
     'http://example.com/">user@example.com',
+    'xn--mgbh0fb.xn--kgbechtv',
+    'http://xn--mgbh0fb',
+    'http://xn--mgbh0fb.xn---kgbechtv',
+    'http://xn---mgbh0fb.xn--kgbechtv',
+    'http://xn--mgbh0fb.xnk--gbechtv',
+    'http://xnm--gbh0fb.xn--kgbechtv',
+    'http:// xn--mgbh0fb.xn--kgbechtv',
+    ':// xn--mgbh0fb.xn--kgbechtv',
+    'http://-xn--mgbh0fb.xn--kgbechtv',
+    'http://xn--mgbh0fb-.xn--kgbechtv',
+    'http://xn--mgbh0fb.-xn--kgbechtv',
+    'http://xn--mgbh0fb.xn--kgbechtv-',
+    'http://x-n--mgbh0fb.xn--kgbechtv',
+    'http://xn--mgbh0fb.x-n--kgbechtv',
+    'http://xn--mgbh0fb.xn--kgbechtv./',
+    'http://xn--mgbh0fb..xn--kgbechtv',
+    'http:///xn--mgbh0fb.xn--kgbechtv',
+    'ttp://xn--mgbh0fb.xn--kgbechtv',
+    'http://xn--mgbh0fb.xn--kgbechtv/">user@example.com',
+    u'http://xn--mgbh0fb.إختبار',
+    u'http://مثال.xn--kgbechtv',
 ])
 def test_returns_failed_validation_on_invalid_url(address):
     assert isinstance(url(address), ValidationFailure)
