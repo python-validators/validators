@@ -75,7 +75,7 @@ from validators import url, ValidationFailure
     u'https://userid:password@xn--fsqu00a.xn--0zwm56d:8080',
     u'https://userid:password@xn--fsqu00a.xn--0zwm56d:8080/foobar'
     u'https://用户名密码:密码@xn--fsqu00a.xn--0zwm56d'
-    u'https://%E7%94%A8%E6%88%B7%E5%90%8D%E5%AF%86%E7%A0%81:%E5%AF%86%E7%A0%81@xn--fsqu00a.xn--0zwm56d'
+    u'https://%E7%94%A8:%E5%AF%86@xn--fsqu00a.xn--0zwm56d'
 ])
 def test_returns_true_on_valid_url(address):
     assert url(address)
