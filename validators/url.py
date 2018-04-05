@@ -60,7 +60,7 @@ regex_idna_converter = re.compile(
     u"(?P<userpass>(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+"
     u"(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?)"
     # fqdn group: intentionally loose, only meant to isolate any
-    # potential fqdn so that idna decoding can be attempted. 
+    # potential fqdn so that idna decoding can be attempted.
     u"(?P<fqdn>[^/:]+)"
     # port number group
     u"(?P<port>:\d{2,5})?"
@@ -72,6 +72,7 @@ regex_idna_converter = re.compile(
 
 pattern = re.compile(regex)
 pattern_idna_converter = re.compile(regex_idna_converter)
+
 
 @validator
 def url(value, public=False):
@@ -127,23 +128,23 @@ def url(value, public=False):
     """
     result = pattern.match(value)
 
-    #if initial match failed, attempt an idna conversion
+    # if initial match failed, attempt an idna conversion
     if not result:
         try:
-            #use regex to separate the potential idna fqdn
+            # use regex to separate the potential idna fqdn
             idna_result = pattern_idna_converter.match(value)
             idna_dict = idna_result.groupdict()
-            #reassemble the URL after decoding the fqdn as idna
+            # reassemble the URL after decoding the fqdn as idna
             idna_value = u"{protocol}{fqdn}{port}{resource}".format(
                 protocol=idna_dict['protocol'],
-                userpass = idna_dict['userpass'] or "",
+                userpass=idna_dict['userpass'] or "",
                 fqdn=idna_dict['fqdn'].decode('idna'),
                 port=idna_dict['port'] or "",
                 resource=idna_dict['resource'] or ""
             )
             result = pattern.match(idna_value)
-        #if pattern doesn't match or host can't decode as idna then pass
-        except (AttributeError,UnicodeError):
+        # if pattern doesn't match or host can't decode as idna then pass
+        except (AttributeError, UnicodeError):
             pass
 
     if not public:
