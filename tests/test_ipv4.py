@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import ipv4, ValidationFailure
+from validators import ipv4, ipv6, ValidationFailure
 
 
 @pytest.mark.parametrize(('address',), [
@@ -11,6 +11,7 @@ from validators import ipv4, ValidationFailure
 ])
 def test_returns_true_on_valid_ipv4_address(address):
     assert ipv4(address)
+    assert not ipv6(address)
 
 
 @pytest.mark.parametrize(('address',), [
