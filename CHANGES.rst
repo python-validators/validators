@@ -6,6 +6,7 @@ Changelog
 ^^^^^^^^^^^^^^^^^^^
 
 - Fixed IPv4 formatted IP address returning True on ipv6 (#85, pull request courtesy johndlong)
+- Fixed IPv6 address parsing (#83, pull request courtesy JulianKahnert)
 
 
 0.12.1 (2018-01-30)
