@@ -52,6 +52,13 @@ from validators import url, ValidationFailure
     u'http://127.0.10.150',
     u'http://localhost',
     u'http://localhost:8000',
+    u'http://[FEDC:BA98:7654:3210:FEDC:BA98:7654:3210]:80/index.html',
+    u'http://[1080:0:0:0:8:800:200C:417A]/index.html',
+    u'http://[3ffe:2a00:100:7031::1]',
+    u'http://[1080::8:800:200C:417A]/foo',
+    u'http://[::192.9.5.5]/ipng',
+    u'http://[::FFFF:129.144.52.38]:80/index.html',
+    u'http://[2010:836B:4179::836B:4179]',
 ])
 def test_returns_true_on_valid_url(address):
     assert url(address)
@@ -118,6 +125,9 @@ def test_returns_true_on_valid_public_url(address, public):
     'http://.www.foo.bar./',
     'http://127.12.0.260',
     'http://example.com/">user@example.com',
+    'http://[2010:836B:4179::836B:4179',
+    'http://2010:836B:4179::836B:4179',
+    'http://2010:836B:4179::836B:4179:80/index.html',
 ])
 def test_returns_failed_validation_on_invalid_url(address):
     assert isinstance(url(address), ValidationFailure)
