@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.12.2 (2018-06-03)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed IPv4 formatted IP address returning True on ipv6 (#85, pull request courtesy johndlong)
+
+
 0.12.1 (2018-01-30)
 ^^^^^^^^^^^^^^^^^^^
 
