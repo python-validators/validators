@@ -3,7 +3,7 @@ from .utils import validator
 
 
 @validator
-def length(value, min=None, max=None):
+def length(value, min=None, max=None, eq=None):
     """
     Return whether or not the length of given string is within a specified
     range.
@@ -19,6 +19,9 @@ def length(value, min=None, max=None):
         >>> length('something', max=5)
         ValidationFailure(func=length, ...)
 
+        >>> length('something', eq=5)
+        False
+
     :param value:
         The string to validate.
     :param min:
@@ -27,6 +30,9 @@ def length(value, min=None, max=None):
     :param max:
         The maximum length of the string. If not provided, maximum length
         will not be checked.
+    :param eq:
+        The length of the string. If provided, maximum and minimum length
+        will not be checked.
 
     .. versionadded:: 0.2
     """
@@ -34,4 +40,7 @@ def length(value, min=None, max=None):
         raise AssertionError(
             '`min` and `max` need to be greater than zero.'
         )
-    return between(len(value), min=min, max=max)
+    if eq:
+        return len(value) == eq
+    else:
+        return between(len(value), min=min, max=max)
