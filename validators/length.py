@@ -19,8 +19,8 @@ def length(value, min=None, max=None, eq=None):
         >>> length('something', max=5)
         ValidationFailure(func=length, ...)
 
-        >>> length('something', eq=5)
-        False
+        >>> length('something', eq=9)
+        True
 
     :param value:
         The string to validate.
