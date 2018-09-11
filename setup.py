@@ -47,6 +47,7 @@ setup(
     description='Python Data Validation for Humans™.',
     long_description=__doc__,
     packages=find_packages('.', exclude=['tests', 'tests.*']),
+    use_2to3=True,
     zip_safe=False,
     include_package_data=True,
     platforms='any',
