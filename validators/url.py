@@ -2,8 +2,8 @@ import re
 
 from .utils import validator
 
-ip_middle_octet = u"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
-ip_last_octet = u"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
+ip_middle_octet = ur"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
+ip_last_octet = ur"(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))"
 
 regex = re.compile(
     u"^"
@@ -17,8 +17,8 @@ regex = re.compile(
     # IP address exclusion
     # private & local networks
     u"(?:(?:10|127)" + ip_middle_octet + u"{2}" + ip_last_octet + u")|"
-    u"(?:(?:169\.254|192\.168)" + ip_middle_octet + ip_last_octet + u")|"
-    u"(?:172\.(?:1[6-9]|2\d|3[0-1])" + ip_middle_octet + ip_last_octet + u"))"
+    ur"(?:(?:169\.254|192\.168)" + ip_middle_octet + ip_last_octet + u")|"
+    ur"(?:172\.(?:1[6-9]|2\d|3[0-1])" + ip_middle_octet + ip_last_octet + u"))"
     u"|"
     # private & local hosts
     u"(?P<private_host>"
@@ -30,12 +30,12 @@ regex = re.compile(
     # excludes network & broadcast addresses
     # (first & last IP address of each class)
     u"(?P<public_ip>"
-    u"(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])"
+    ur"(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])"
     u"" + ip_middle_octet + u"{2}"
     u"" + ip_last_octet + u")"
     u"|"
     # IPv6 RegEx from https://stackoverflow.com/a/17871737
-    u"\[("
+    ur"\[("
     # 1:2:3:4:5:6:7:8
     u"([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|"
     # 1::                              1:2:3:4:5:6:7::
@@ -58,31 +58,31 @@ regex = re.compile(
     # (link-local IPv6 addresses with zone index)
     u"fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|"
     u"::(ffff(:0{1,4}){0,1}:){0,1}"
-    u"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
+    ur"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
     # ::255.255.255.255   ::ffff:255.255.255.255  ::ffff:0:255.255.255.255
     # (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
     u"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|"
     u"([0-9a-fA-F]{1,4}:){1,4}:"
-    u"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
+    ur"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
     # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33
     # (IPv4-Embedded IPv6 Address)
     u"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"
-    u")\]|"
+    ur")\]|"
     # host name
     u"(?:(?:[a-z\u00a1-\uffff0-9]-?)*[a-z\u00a1-\uffff0-9]+)"
     # domain name
-    u"(?:\.(?:[a-z\u00a1-\uffff0-9]-?)*[a-z\u00a1-\uffff0-9]+)*"
+    u"(?:\\.(?:[a-z\u00a1-\uffff0-9]-?)*[a-z\u00a1-\uffff0-9]+)*"
     # TLD identifier
-    u"(?:\.(?:[a-z\u00a1-\uffff]{2,}))"
+    u"(?:\\.(?:[a-z\u00a1-\uffff]{2,}))"
     u")"
     # port number
-    u"(?::\d{2,5})?"
+    ur"(?::\d{2,5})?"
     # resource path
     u"(?:/[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:@/]*)?"
     # query string
-    u"(?:\?\S*)?"
+    ur"(?:\?\S*)?"
     # fragment
-    u"(?:#\S*)?"
+    ur"(?:#\S*)?"
     u"$",
     re.UNICODE | re.IGNORECASE
 )
