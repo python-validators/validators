@@ -6,8 +6,8 @@ business_id_pattern = re.compile(r'^[0-9]{7}-[0-9]$')
 ssn_checkmarks = '0123456789ABCDEFHJKLMNPRSTUVWXY'
 ssn_pattern = re.compile(
     r"""^
-    (?P<date>([0-2]\d|3[01])
-    (0\d|1[012])
+    (?P<date>(0[1-9]|[1-2]\d|3[01])
+    (0[1-9]|1[012])
     (\d{{2}}))
     [A+-]
     (?P<serial>(\d{{3}}))

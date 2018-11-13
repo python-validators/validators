@@ -37,6 +37,8 @@ def test_returns_true_on_valid_ssn(value):
 @pytest.mark.parametrize(('value',), [
     (None,),
     ('',),
+    ('000190-0023',),  # Invalid day
+    ('010090-002X',),  # Invalid month
     ('010190-002r',),  # Invalid checksum
     ('101010-0102',),
     ('10a010-0101',),
