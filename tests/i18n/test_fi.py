@@ -25,6 +25,7 @@ def test_returns_failed_validation_on_invalid_email(value):
 
 
 @pytest.mark.parametrize(('value',), [
+    ('010190-002R',),
     ('010101-0101',),
     ('010101+0101',),
     ('010101A0101',),
@@ -36,6 +37,7 @@ def test_returns_true_on_valid_ssn(value):
 @pytest.mark.parametrize(('value',), [
     (None,),
     ('',),
+    ('010190-002r',),  # Invalid checksum
     ('101010-0102',),
     ('10a010-0101',),
     ('101010-0\xe401',),

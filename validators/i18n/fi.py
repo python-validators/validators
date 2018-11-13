@@ -12,7 +12,7 @@ ssn_pattern = re.compile(
     [A+-]
     (?P<serial>(\d{{3}}))
     (?P<checksum>[{checkmarks}])$""".format(checkmarks=ssn_checkmarks),
-    re.VERBOSE | re.IGNORECASE
+    re.VERBOSE
 )
 
 
@@ -83,5 +83,5 @@ def fi_ssn(ssn):
     checksum = int(gd['date'] + gd['serial'])
     return (
         ssn_checkmarks[checksum % len(ssn_checkmarks)] ==
-        gd['checksum'].upper()
+        gd['checksum']
     )
