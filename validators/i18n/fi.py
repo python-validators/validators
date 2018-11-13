@@ -52,7 +52,7 @@ def fi_business_id(business_id):
 
 
 @validator
-def fi_ssn(ssn):
+def fi_ssn(ssn, allow_temporal_ssn=True):
     """
     Validate a Finnish Social Security Number.
 
@@ -67,11 +67,16 @@ def fi_ssn(ssn):
         True
 
         >>> fi_ssn('101010-0102')
-        ValidationFailure(func=fi_ssn, args={'ssn': '101010-0102'})
+        ValidationFailure(func=fi_ssn, args=...)
 
     .. versionadded:: 0.5
 
     :param ssn: Social Security Number to validate
+    :param allow_temporal_ssn:
+        Whether to accept temporal SSN numbers. Temporal SSN numbers are the
+        ones where the serial is in the range [900-999]. By default temporal
+        SSN numbers are valid.
+
     """
     if not ssn:
         return False
@@ -82,6 +87,8 @@ def fi_ssn(ssn):
     gd = result.groupdict()
     checksum = int(gd['date'] + gd['serial'])
     return (
+        int(gd['serial']) >= 2 and
+        (allow_temporal_ssn or int(gd['serial']) <= 899) and
         ssn_checkmarks[checksum % len(ssn_checkmarks)] ==
         gd['checksum']
     )

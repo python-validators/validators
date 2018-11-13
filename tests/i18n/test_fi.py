@@ -29,6 +29,7 @@ def test_returns_failed_validation_on_invalid_email(value):
     ('010101-0101',),
     ('010101+0101',),
     ('010101A0101',),
+    ('010190-900P',),
 ])
 def test_returns_true_on_valid_ssn(value):
     assert fi_ssn(value)
@@ -37,6 +38,8 @@ def test_returns_true_on_valid_ssn(value):
 @pytest.mark.parametrize(('value',), [
     (None,),
     ('',),
+    ('010190-001P',),  # Too low serial
+    ('010190-000N',),  # Too low serial
     ('000190-0023',),  # Invalid day
     ('010090-002X',),  # Invalid month
     ('010190-002r',),  # Invalid checksum
@@ -47,3 +50,10 @@ def test_returns_true_on_valid_ssn(value):
 ])
 def test_returns_failed_validation_on_invalid_ssn(value):
     assert isinstance(fi_ssn(value), ValidationFailure)
+
+
+def test_returns_failed_validation_on_temporal_ssn_when_not_allowed():
+    assert isinstance(
+        fi_ssn('010190-900P', allow_temporal_ssn=False),
+        ValidationFailure
+    )
