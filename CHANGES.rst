@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+0.12.3 (2018-11-13)
+^^^^^^^^^^^^^^^^^^^
+
+- Added `allow_temporal_ssn` parameter to fi_ssn validator (#97, pull request courtesy quantus)
+- Remove py33 support
+
+
 0.12.2 (2018-06-03)
 ^^^^^^^^^^^^^^^^^^^
 
