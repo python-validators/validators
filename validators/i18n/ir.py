@@ -19,7 +19,7 @@ def ir_national_code(input): # forked from : https://gist.github.com/ebraminio/5
         True
 
         >>> ir_national_code('4608968872') 
-        False
+        ValidationFailure(func=ir_national_code, args={'input': '4608968872'})
 
 
     :param national_code: national_code to validate
