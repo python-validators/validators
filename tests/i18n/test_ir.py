@@ -29,7 +29,6 @@ def random_national_code_generator():
 def test_returns_true_on_valid_national_code(value):
     assert ir_national_code(value)
 
-
 @pytest.mark.parametrize(('value',), [
     (None,),
     ('0000000000',),
@@ -37,5 +36,5 @@ def test_returns_true_on_valid_national_code(value):
     ('123456789',),
     ('',),
 ])
-def test_returns_failed_validation_on_national_code(value):
-    assert isinstance(ir_national_code(value), False)
+def test_returns_True_on_not_valid_national_code(value):
+    assert not ir_national_code(value)
