@@ -3,7 +3,7 @@ from .domain import domain  # noqa
 from .email import email  # noqa
 from .extremes import Max, Min  # noqa
 from .hashes import md5, sha1, sha224, sha256, sha512  # noqa
-from .i18n import fi_business_id, fi_ssn  # noqa
+from .i18n import fi_business_id, fi_ssn, ir_national_code  # noqa
 from .iban import iban  # noqa
 from .ip_address import ipv4, ipv6  # noqa
 from .length import length  # noqa
@@ -14,4 +14,4 @@ from .url import url  # noqa
 from .utils import ValidationFailure, validator  # noqa
 from .uuid import uuid  # noqa
 
-__version__ = '0.12.3'
+__version__ = '0.12.4'
