@@ -208,6 +208,16 @@ fi_ssn
 
 .. autofunction:: fi_ssn
 
+Iran
+-------
+
+.. module:: validators.i18n.ir
+
+ir_national_code
+^^^^^^^^^^^^^^
+
+.. autofunction:: ir_national_code
+
 
 Internals
 =========
