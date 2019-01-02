@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.12.4 (2019-01-02)
+^^^^^^^^^^^^^^^^^^^
+
+- Use inspect.getfullargspec() in py3 (#110, pull request courtesy riconnon)
+
+
 0.12.3 (2018-11-13)
 ^^^^^^^^^^^^^^^^^^^
 
