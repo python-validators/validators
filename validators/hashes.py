@@ -3,24 +3,19 @@ import re
 from .utils import validator
 
 md5_regex = re.compile(
-    r"^[0-9a-f]{32}$",
-    re.IGNORECASE
+    r"^[a-fA-F0-9]{32}(:.+)?$"
 )
 sha1_regex = re.compile(
-    r"^[0-9a-f]{40}$",
-    re.IGNORECASE
+    r"^[a-fA-F0-9]{40}(:.+)?$"
 )
 sha224_regex = re.compile(
-    r"^[0-9a-f]{56}$",
-    re.IGNORECASE
+    r"^[a-fA-F0-9]{56}(:.+)?$"
 )
 sha256_regex = re.compile(
-    r"^[0-9a-f]{64}$",
-    re.IGNORECASE
+   r"^[a-fA-F0-9]{64}(:.+)?$"
 )
 sha512_regex = re.compile(
-    r"^[0-9a-f]{128}$",
-    re.IGNORECASE
+   r"^[a-fA-F0-9]{128}(:.+)?$"
 )
 
 
