@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.12.5 (2019-04-15)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed py37 support (#113, pull request courtesy agiletechnologist)
+
+
 0.12.4 (2019-01-02)
 ^^^^^^^^^^^^^^^^^^^
 
