@@ -32,7 +32,8 @@ You can install ``validators`` using pip::
     pip install validators
 
 
-Currently ``validators`` supports python versions 2.7, 3.3, 3.4, 3.5 and PyPy.
+Currently ``validators`` supports python versions 2.7, 3.3, 3.4, 3.5, 3.6, 3.7
+and PyPy.
 
 
 Basic validators
@@ -192,6 +193,32 @@ uuid
 
 i18n validators
 ===============
+
+Spanish
+-------
+
+.. module:: validators.i18n.es
+
+es_doi
+^^^^^^
+
+.. autofunction:: es_doi
+
+es_nif
+^^^^^^
+
+.. autofunction:: es_nif
+
+es_nie
+^^^^^^
+
+.. autofunction:: es_nie
+
+es_cif
+^^^^^^
+
+.. autofunction:: es_cif
+
 
 Finnish
 -------

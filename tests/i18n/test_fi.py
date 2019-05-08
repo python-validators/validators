@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import fi_business_id, fi_ssn, ValidationFailure
+from validators import ValidationFailure
+from validators.i18n.fi import fi_business_id, fi_ssn
 
 
 @pytest.mark.parametrize(('value',), [
