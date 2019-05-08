@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.12.6 (2019-05-08)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed domain validator for single character domains (#118, pull request courtesy kingbuzzman)
+
+
 0.12.5 (2019-04-15)
 ^^^^^^^^^^^^^^^^^^^
 
