@@ -10,6 +10,9 @@ from validators import domain, ValidationFailure
     'underscore_subdomain.example.com',
     'something.versicherung',
     '11.com',
+    '3.cn',
+    'a.cn',
+    'sub1.sub2.sample.co.uk',
     'somerandomexample.xn--fiqs8s'
 ])
 def test_returns_true_on_valid_domain(value):
@@ -22,6 +25,9 @@ def test_returns_true_on_valid_domain(value):
     'example.-com',
     'example.',
     '-example.com',
+    'example-.com',
+    '_example.com',
+    'example_.com',
     'example',
     'a......b.com'
 ])
