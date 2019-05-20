@@ -2,10 +2,10 @@ Changelog
 ---------
 
 
-0.13.0 (2019-??-??)
-^^^^^^^^^^^^^^^^^^
+0.13.0 (2019-05-20)
+^^^^^^^^^^^^^^^^^^^
 
-- Added new validator: ``es_doi``, ``es_nif``, ``es_cif``, ``es_nie``
+- Added new validator: ``es_doi``, ``es_nif``, ``es_cif``, ``es_nie`` (#121, pull request courtesy kingbuzzman)
 
 
 0.12.6 (2019-05-08)
