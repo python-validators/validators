@@ -30,6 +30,28 @@ def ipv4(value):
 
 
 @validator
+def ipv4_cidr(value):
+    """
+    Return whether or not given value is a valid CIDR-notated IP version 4
+    address range.
+
+    This validator is based on RFC4632 3.1.
+
+    Examples::
+
+        >>> ipv4_cidr("1.1.1.1/8")
+        True
+
+        >>> ipv4_cidr("1.1.1.1")
+        ValidationFailure(func=ipv4_cidr, args={'value': '1.1.1.1'})
+    """
+    prefix, suffix = value.split("/", 2)
+    if not ipv4(prefix):
+        return False
+    return 0 <= int(suffix) <= 32
+
+
+@validator
 def ipv6(value):
     """
     Return whether or not given value is a valid IP version 6 address
@@ -92,3 +114,25 @@ def ipv6(value):
     elif count_blank == 2 and not ipv6_groups[0] and not ipv6_groups[1]:
         return True
     return False
+
+
+@validator
+def ipv6_cidr(value):
+    """
+    Returns whether or not given value is a valid CIDR-notated IP version 6
+    address range.
+
+    This validator is based on RFC4632 3.1.
+
+    Examples::
+
+        >>> ipv6_cidr("::1/128")
+        True
+
+        >>> ipv6_cidr("::1")
+        ValidationFailure(func=ipv6_cidr, args={'value': '::1'})
+    """
+    prefix, suffix = value.split("/", 2)
+    if not ipv6(prefix):
+        return False
+    return 0 <= int(suffix) <= 128
