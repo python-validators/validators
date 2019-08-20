@@ -45,8 +45,11 @@ def ipv4_cidr(value):
         >>> ipv4_cidr("1.1.1.1")
         ValidationFailure(func=ipv4_cidr, args={'value': '1.1.1.1'})
     """
-    prefix, suffix = value.split("/", 2)
-    if not ipv4(prefix):
+    try:
+        prefix, suffix = value.split("/", 2)
+    except ValueError:
+        return False
+    if not ipv4(prefix) or not suffix.isdigit():
         return False
     return 0 <= int(suffix) <= 32
 
@@ -132,7 +135,10 @@ def ipv6_cidr(value):
         >>> ipv6_cidr("::1")
         ValidationFailure(func=ipv6_cidr, args={'value': '::1'})
     """
-    prefix, suffix = value.split("/", 2)
-    if not ipv6(prefix):
+    try:
+        prefix, suffix = value.split("/", 2)
+    except ValueError:
+        return False
+    if not ipv6(prefix) or not suffix.isdigit():
         return False
     return 0 <= int(suffix) <= 128
