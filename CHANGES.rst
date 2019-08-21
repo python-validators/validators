@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.14.0 (2019-08-21)
+^^^^^^^^^^^^^^^^^^^
+
+- Added new validators ``ipv4_cidr``, ``ipv6_cidr`` (#117, pull request courtesy woodruffw)
+
+
 0.13.0 (2019-05-20)
 ^^^^^^^^^^^^^^^^^^^
 
