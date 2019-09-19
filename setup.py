@@ -41,7 +41,7 @@ setup(
     name='validators',
     version=get_version(),
     url='https://github.com/kvesteri/validators',
-    license='BSD',
+    license='MIT',
     author='Konsta Vesterinen',
     author_email='konsta@fastmonkeys.com',
     description='Python Data Validation for Humans™.',
@@ -56,7 +56,7 @@ setup(
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2',
