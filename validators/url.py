@@ -76,7 +76,9 @@ regex = re.compile(  # noqa: W605
     u"(?:\.(?:[a-z\u00a1-\uffff]{2,}))"
     r")"
     # port number
-    r"(?::\d{2,5})?"
+    # added support for port values 1-8 and excluding
+    # zero port number due to limitation
+    r"(?::0?([1-9]{1,5}))"
     # resource path
     u"(?:/[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:@/]*)?"
     # query string
