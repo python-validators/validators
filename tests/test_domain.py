@@ -13,7 +13,9 @@ from validators import domain, ValidationFailure
     '3.cn',
     'a.cn',
     'sub1.sub2.sample.co.uk',
-    'somerandomexample.xn--fiqs8s'
+    'somerandomexample.xn--fiqs8s',
+    'kräuter.com',
+    'über.com'
 ])
 def test_returns_true_on_valid_domain(value):
     assert domain(value)
@@ -29,7 +31,11 @@ def test_returns_true_on_valid_domain(value):
     '_example.com',
     'example_.com',
     'example',
-    'a......b.com'
+    'a......b.com',
+    'a.123',
+    '123.123',
+    '123.123.123',
+    '123.123.123.123'
 ])
 def test_returns_failed_validation_on_invalid_domain(value):
     assert isinstance(domain(value), ValidationFailure)
