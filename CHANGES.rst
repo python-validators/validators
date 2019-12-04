@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+0.14.1 (2019-12-04)
+^^^^^^^^^^^^^^^^^^^
+
+- Updated domain validator regex to not allow numeric only TLDs (#133, pull request courtesy jmeridth)
+- Allow for idna encoded domains (#133, pull request courtesy jmeridth)
+
+
 0.14.0 (2019-08-21)
 ^^^^^^^^^^^^^^^^^^^
 
