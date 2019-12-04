@@ -6,7 +6,7 @@ pattern = re.compile(
     r'^(?:[a-z0-9]'  # First character of the domain
     r'(?:[a-z0-9-_]{0,61}[a-z0-9])?\.)'  # Sub domain + hostname
     r'+[a-z0-9][a-z0-9-_]{0,61}'  # First 61 characters of the gTLD
-    r'[a-z0-9]$'  # Last character of the gTLD
+    r'[a-z]$'  # Last character of the gTLD
 )
 
 
