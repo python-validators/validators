@@ -59,6 +59,10 @@ from validators import url, ValidationFailure
     u'http://[::192.9.5.5]/ipng',
     u'http://[::FFFF:129.144.52.38]:80/index.html',
     u'http://[2010:836B:4179::836B:4179]',
+    u'http://127.0.10.150:0',
+    u'http://127.0.10.150:08',
+    u'http://127.0.10.150:0000',
+    u'http://127.0.10.150:9',    
 ])
 def test_returns_true_on_valid_url(address):
     assert url(address)
