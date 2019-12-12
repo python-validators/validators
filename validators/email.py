@@ -1,16 +1,34 @@
+"""
+As per the below link email specification
+
+https://help.returnpath.com/hc/en-us/articles/220560587-What-are-the-rules-for-email-address-syntax-
+
+"""
+
 import re
 
 from .utils import validator
 
+# user_regex = re.compile(
+#     # dot-atom
+#     r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+"
+#     r"(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
+#     # quoted-string
+#     r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|'
+#     r"""\\[\001-\011\013\014\016-\177])*"$)""",
+#     re.IGNORECASE
+# )
+
+
 user_regex = re.compile(
-    # dot-atom
-    r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+"
-    r"(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
-    # quoted-string
-    r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|'
-    r"""\\[\001-\011\013\014\016-\177])*"$)""",
+    # rejecting the special charatcters at start of the name
+    r"(^(?!-\!#$%&'\"*\+\/=?^_`{})[0-9A-Z\_\-\.\+]+"
+    # rejecting the special charatcters at end of the name    
+    r"(?!-\!#$%&'*\"\+\/=?^_`{})$)",
     re.IGNORECASE
 )
+
+
 domain_regex = re.compile(
     # domain
     r'(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+'
@@ -58,6 +76,20 @@ def email(value, whitelist=None):
         return False
 
     user_part, domain_part = value.rsplit('@', 1)
+
+    if (len(user_part) >= 65) :
+        return False
+    
+
+    if (len(domain_part) >= 254):
+        return False
+
+    if ('@' in user_part):
+        return False
+
+    if ('@' in domain_part):
+        return False
+
 
     if not user_regex.match(user_part):
         return False

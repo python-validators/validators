@@ -13,8 +13,9 @@ from validators import email, ValidationFailure
     ('test@domain.with.idn.tld.उदाहरण.परीक्षा', None),
     ('email@localhost', None),
     ('email@localdomain', ['localdomain']),
-    ('"test@test"@example.com', None),
-    ('"\\\011"@here.com', None),
+    # how this will come under valid email
+    # ('"test@test"@example.com', None),
+    # ('"\\\011"@here.com', None),
 ])
 def test_returns_true_on_valid_email(value, whitelist):
     assert email(value, whitelist=whitelist)
@@ -33,7 +34,13 @@ def test_returns_true_on_valid_email(value, whitelist):
     ('example@invalid-.com',),
     ('example@-invalid.com',),
     ('example@inv-.alid-.com',),
-    ('example@inv-.-alid.com',),
+    ('example@inv-.alid-.com',),
+    ('-example@inv-.alid-.com',),
+    ('abc@hello@.com',),
+    ('john56789.john56789.john56789.john56789.john56789.john56789.john5@example.com',),
+    ('.example@inv-.alid-.com',),
+    ('"test@test"@example.com',),
+    ('&example@inv-.-alid.com',),
     # Quoted-string format (CR not allowed)
     ('"\\\012"@here.com',),
 ])
