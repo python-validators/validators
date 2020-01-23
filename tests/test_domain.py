@@ -9,6 +9,7 @@ from validators import domain, ValidationFailure
     'xn----gtbspbbmkef.xn--p1ai',
     'underscore_subdomain.example.com',
     'something.versicherung',
+    'someThing.versicherung',
     '11.com',
     '3.cn',
     'a.cn',

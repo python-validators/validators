@@ -11,10 +11,10 @@ else:
     text_type = unicode
 
 pattern = re.compile(
-    r'^(?:[a-z0-9]'  # First character of the domain
-    r'(?:[a-z0-9-_]{0,61}[a-z0-9])?\.)'  # Sub domain + hostname
-    r'+[a-z0-9][a-z0-9-_]{0,61}'  # First 61 characters of the gTLD
-    r'[a-z]$'  # Last character of the gTLD
+    r'^(?:[a-zA-Z0-9]'  # First character of the domain
+    r'(?:[a-zA-Z0-9-_]{0,61}[A-Za-z0-9])?\.)'  # Sub domain + hostname
+    r'+[A-Za-z0-9][A-Za-z0-9-_]{0,61}'  # First 61 characters of the gTLD
+    r'[A-Za-z]$'  # Last character of the gTLD
 )
 
 
