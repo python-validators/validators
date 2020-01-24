@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.14.2 (2020-01-24)
+^^^^^^^^^^^^^^^^^^^
+
+- Made domain validation case-insensitive (#136, pull request courtesy ehmkah)
+
+
 0.14.1 (2019-12-04)
 ^^^^^^^^^^^^^^^^^^^
 
