@@ -10,7 +10,7 @@ from validators import email, ValidationFailure
     ('email@[127.0.0.1]', None),
     ('example@valid-----hyphens.com', None),
     ('example@valid-with-hyphens.com', None),
-    ('test@domain.with.idn.tld.उदाहरण.परीक्षा', None),
+    ('test@with.idn.tld.उदाहरण.परीक्षा', None),
     ('email@localhost', None),
     ('email@localdomain', ['localdomain']),
     ('"test@test"@example.com', None),
@@ -36,6 +36,7 @@ def test_returns_true_on_valid_email(value, whitelist):
     ('example@inv-.-alid.com',),
     # Quoted-string format (CR not allowed)
     ('"\\\012"@here.com',),
+    ('john56789.john56789.john56789.john56789.john56789.john56789.john5@example.com',),
 ])
 def test_returns_failed_validation_on_invalid_email(value):
     assert isinstance(email(value), ValidationFailure)
