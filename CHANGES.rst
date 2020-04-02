@@ -6,6 +6,8 @@ Changelog
 
 - Handle None values gracefully in domain validator (#144, pull request courtesy reahaas)
 - Local part of the email address should be less or equal than 64 bytes (#147, pull request courtesy mondeja)
+- Removed py27 support
+- Removed pypy2 support
 
 
 0.14.2 (2020-01-24)
