@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.14.3 (2020-02-04)
+^^^^^^^^^^^^^^^^^^^
+
+- Handle None values gracefully in domain validator (#144, pull request courtesy reahaas)
+- Local part of the email address should be less or equal than 64 bytes (#147, pull request courtesy mondeja)
+
 
 0.14.2 (2020-01-24)
 ^^^^^^^^^^^^^^^^^^^

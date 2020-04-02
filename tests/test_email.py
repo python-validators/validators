@@ -34,7 +34,10 @@ def test_returns_true_on_valid_email(value, whitelist):
     ('example@-invalid.com',),
     ('example@inv-.alid-.com',),
     ('example@inv-.-alid.com',),
-    ('john56789.john56789.john56789.john56789.john56789.john56789.john5@example.com',),
+    (
+        'john56789.john56789.john56789.john56789.john56789.john56789.john5'
+        '@example.com',
+    ),
     # Quoted-string format (CR not allowed)
     ('"\\\012"@here.com',),
 ])
