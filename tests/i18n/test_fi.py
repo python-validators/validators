@@ -21,7 +21,7 @@ def test_returns_true_on_valid_business_id(value):
     ('1333333-8',),
     ('1231233-9',),
 ])
-def test_returns_failed_validation_on_invalid_email(value):
+def test_returns_failed_validation_on_invalid_business_id(value):
     assert isinstance(fi_business_id(value), ValidationFailure)
 
 
