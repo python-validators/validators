@@ -2,17 +2,16 @@
 import pytest
 
 from validators import (
-    card_number,
-    visa,
-    mastercard,
     amex,
-    unionpay,
+    card_number,
     diners,
-    jcb,
     discover,
+    jcb,
+    mastercard,
+    unionpay,
     ValidationFailure,
+    visa
 )
-
 
 visa_cards = [
     '4242424242424242',
