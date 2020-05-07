@@ -21,7 +21,7 @@ def card_number(value):
         >>> card_number('4242424242424241')
         ValidationFailure(func=card_number, args={'value': '4242424242424241'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: card number string to validate
     """
@@ -47,7 +47,7 @@ def visa(value):
         >>> visa('2223003122003222')
         ValidationFailure(func=visa, args={'value': '2223003122003222'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: Visa card number string to validate
     """
@@ -68,7 +68,7 @@ def mastercard(value):
         >>> mastercard('4242424242424242')
         ValidationFailure(func=mastercard, args={'value': '4242424242424242'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: Mastercard card number string to validate
     """
@@ -89,7 +89,7 @@ def amex(value):
         >>> amex('4242424242424242')
         ValidationFailure(func=amex, args={'value': '4242424242424242'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: American Express card number string to validate
     """
@@ -110,7 +110,7 @@ def unionpay(value):
         >>> unionpay('4242424242424242')
         ValidationFailure(func=unionpay, args={'value': '4242424242424242'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: UnionPay card number string to validate
     """
@@ -131,7 +131,7 @@ def diners(value):
         >>> diners('4242424242424242')
         ValidationFailure(func=diners, args={'value': '4242424242424242'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: Diners Club card number string to validate
     """
@@ -154,7 +154,7 @@ def jcb(value):
         >>> jcb('4242424242424242')
         ValidationFailure(func=jcb, args={'value': '4242424242424242'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: JCB card number string to validate
     """
@@ -175,7 +175,7 @@ def discover(value):
         >>> discover('4242424242424242')
         ValidationFailure(func=discover, args={'value': '4242424242424242'})
 
-    .. versionadded:: 0.2
+    .. versionadded:: 0.15.0
 
     :param value: Discover card number string to validate
     """
