@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.15.0 (2020-05-07)
+^^^^^^^^^^^^^^^^^^
+
+- Added bank card validators (#157, pull request courtesy of TimonPeng)
+
+
 0.14.3 (2020-02-04)
 ^^^^^^^^^^^^^^^^^^^
 
