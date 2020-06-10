@@ -28,6 +28,29 @@ def ipv4(value):
         return False
     return all(0 <= int(part) < 256 for part in groups)
 
+@validator
+def ipv4_strict(value):
+    """Essentulaally the same as ipv4 
+    Returns whether or not given value is valid IP version 4 addresses
+    but doesn't all leading zero's in octets
+    
+    Examples:
+    
+       >>> ipv4_strict('100.100.33.33')
+       True
+     
+       >> ipv4_strict('100.100.0.33.0.33')
+       ValidationFailure(func=ibv4_strict, args={''value':'100.100.033.0.33'})
+
+    ..versionadded::0.1
+    
+    :param value: IP address string to validate
+    """
+    octects = value.split('.')
+    for octect in octects:
+        if '0' == octect[0] and len(octect) > 1:
+            return False
+    return ipv4(value)
 
 @validator
 def ipv4_cidr(value):
