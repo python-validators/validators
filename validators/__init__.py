@@ -9,6 +9,7 @@ from .card import (
     unionpay,
     visa
 )
+from .currency import iso_4217
 from .domain import domain
 from .email import email
 from .extremes import Max, Min
@@ -29,6 +30,6 @@ __all__ = ('between', 'domain', 'email', 'Max', 'Min', 'md5', 'sha1', 'sha224',
            'ipv4_cidr', 'ipv6', 'ipv6_cidr', 'length', 'mac_address', 'slug',
            'truthy', 'url', 'ValidationFailure', 'validator', 'uuid',
            'card_number', 'visa', 'mastercard', 'amex', 'unionpay', 'diners',
-           'jcb', 'discover')
+           'jcb', 'discover', 'iso_4217')
 
 __version__ = '0.15.0'
