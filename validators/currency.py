@@ -2,7 +2,7 @@ from .utils import validator
 
 
 @validator
-def iso_4217(value):
+def iso_4217(value, case_sensitive=True):
     """
     Return whether or not given value is a valid ISO 4217 currency code.
 
@@ -13,13 +13,22 @@ def iso_4217(value):
         >>> iso_4217('USD')
         True
 
+        >>> iso_4217('usd')
+        ValidationFailure(func=iso_4217, args={'value': 'usd', 'case_sensitive': True})
+
+        >>> iso_4217('usd', case_sensitive=False)
+        True
+
         >>> iso_4217('XBT')
-        ValidationFailure(func=iso_4217, args={'value': 'XBT'})
+        ValidationFailure(func=iso_4217, args={'value': 'XBT', 'case_sensitive': True})
 
     .. versionadded:: 0.16.0
 
     :param value: ISO 4217 currency code string to validate
     """
+
+    if not case_sensitive:
+        value = value.upper()
 
     return value in [
         'AED',
