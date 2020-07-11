@@ -53,6 +53,7 @@ setup(
     install_requires=install_requires,
     build_requires=install_requires,
     extras_require=extras_require,
+    setup_requires=['wheel'],
     classifiers=[
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
