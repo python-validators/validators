@@ -1,8 +1,14 @@
 Changelog
 ---------
 
+0.16.0 (2020-07-16)
+^^^^^^^^^^^^^^^^^^^
+
+- Added support for emojis and more IDNA URLs (#161, pull request courtesy of automationator)
+
+
 0.15.0 (2020-05-07)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 - Added bank card validators (#157, pull request courtesy of TimonPeng)
 
