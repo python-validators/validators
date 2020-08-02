@@ -1,6 +1,14 @@
 Changelog
 ---------
 
+
+0.17.0 (2020-08-02)
+^^^^^^^^^^^^^^^^^^^
+
+- Added python_requires='>=3.4' to setup.py (#163, pull request courtesy of vphilippon)
+- Fixed URL validator ip_last_octet regex (#145, pull request courtesy of ghost)
+
+
 0.16.0 (2020-07-16)
 ^^^^^^^^^^^^^^^^^^^
 
