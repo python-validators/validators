@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import ipv4_cidr, ipv6_cidr, ValidationFailure
+from validators import ValidationFailure, ipv4_cidr, ipv6_cidr
 
 
 @pytest.mark.parametrize(

@@ -10,7 +10,7 @@ clean:
 .PHONY: install
 ## Install this repo in develop mode
 install:
-	pip install -r requirements/ci.txt -r requirements/docs.txt
+	pip install -r requirements/ci.txt
 	pip install -e .
 	pre-commit install
 

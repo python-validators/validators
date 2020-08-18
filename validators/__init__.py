@@ -59,5 +59,3 @@ __all__ = (
     "jcb",
     "discover",
 )
-
-__version__ = "0.17.1"

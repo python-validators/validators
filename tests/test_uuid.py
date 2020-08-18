@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import uuid, ValidationFailure
+from validators import ValidationFailure, uuid
 
 
 @pytest.mark.parametrize(("value",), [("2bc1c94f-0deb-43e9-92a1-4775189ec9f8",),])

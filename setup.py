@@ -9,6 +9,7 @@ Python Data Validation for Humans™.
 import os
 import re
 import sys
+from pathlib import Path
 
 from setuptools import find_packages, setup
 
@@ -23,20 +24,11 @@ def read_requirements(path):
 
 PY3 = sys.version_info[0] == 3
 HERE = os.path.dirname(os.path.abspath(__file__))
-requirements_path = HERE / "requirements" / "prod.txt"
-
-
-def get_version():
-    filename = os.path.join(HERE, "validators", "__init__.py")
-    with open(filename) as f:
-        contents = f.read()
-    pattern = r"^__version__ = '(.*?)'$"
-    return re.search(pattern, contents, re.MULTILINE).group(1)
-
+requirements_path = Path(__file__).parent / "requirements" / "prod.txt"
 
 setup(
     name="validators",
-    version=get_version(),
+    version="0.17.1",
     url="https://github.com/kvesteri/validators",
     license="MIT",
     author="Konsta Vesterinen",

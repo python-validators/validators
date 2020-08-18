@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import mac_address, ValidationFailure
+from validators import ValidationFailure, mac_address
 
 
 @pytest.mark.parametrize(("address",), [("01:23:45:67:ab:CD",),])

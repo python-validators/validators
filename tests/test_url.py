@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import url, ValidationFailure
+from validators import ValidationFailure, url
 
 
 @pytest.mark.parametrize(

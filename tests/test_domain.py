@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import domain, ValidationFailure
+from validators import ValidationFailure, domain
 
 
 @pytest.mark.parametrize(

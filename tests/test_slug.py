@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
-from validators import slug, ValidationFailure
+from validators import ValidationFailure, slug
 
 
 @pytest.mark.parametrize(

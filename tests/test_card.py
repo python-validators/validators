@@ -1,6 +1,7 @@
 import pytest
 
 from validators import (
+    ValidationFailure,
     amex,
     card_number,
     diners,
@@ -8,7 +9,6 @@ from validators import (
     jcb,
     mastercard,
     unionpay,
-    ValidationFailure,
     visa,
 )
 

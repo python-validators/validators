@@ -32,3 +32,19 @@ Resources
    :target: https://pypi.python.org/pypi/validators/
 .. |Downloads| image:: https://img.shields.io/pypi/dm/validators.svg
    :target: https://pypi.python.org/pypi/validators/
+
+
+Development
+-----------
+
+Create a virtual environment and then install the package by
+
+.. code-block:: bash
+
+    make install
+
+Pre-commit will run before the commit. You can run pre-commit by running the command
+
+.. code-block:: bash
+
+   pre-commit run --all-files
