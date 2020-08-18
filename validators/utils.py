@@ -12,11 +12,9 @@ class ValidationFailure(Exception):
         self.__dict__.update(args)
 
     def __repr__(self):
-        return u'ValidationFailure(func={func}, args={args})'.format(
+        return u"ValidationFailure(func={func}, args={args})".format(
             func=self.func.__name__,
-            args=dict(
-                [(k, v) for (k, v) in self.__dict__.items() if k != 'func']
-            )
+            args=dict([(k, v) for (k, v) in self.__dict__.items() if k != "func"]),
         )
 
     def __str__(self):
@@ -43,17 +41,9 @@ def func_args_as_dict(func, args, kwargs):
         _getargspec = inspect.getfullargspec
 
     arg_names = list(
-        OrderedDict.fromkeys(
-            itertools.chain(
-                _getargspec(func)[0],
-                kwargs.keys()
-            )
-        )
+        OrderedDict.fromkeys(itertools.chain(_getargspec(func)[0], kwargs.keys()))
     )
-    return OrderedDict(
-        list(six.moves.zip(arg_names, args)) +
-        list(kwargs.items())
-    )
+    return OrderedDict(list(six.moves.zip(arg_names, args)) + list(kwargs.items()))
 
 
 def validator(func, *args, **kwargs):
@@ -79,11 +69,11 @@ def validator(func, *args, **kwargs):
     :param args: positional function arguments
     :param kwargs: key value function arguments
     """
+
     def wrapper(func, *args, **kwargs):
         value = func(*args, **kwargs)
         if not value:
-            return ValidationFailure(
-                func, func_args_as_dict(func, args, kwargs)
-            )
+            return ValidationFailure(func, func_args_as_dict(func, args, kwargs))
         return True
+
     return decorator(wrapper, func)

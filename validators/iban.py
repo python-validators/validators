@@ -1,10 +1,8 @@
 import re
 
-from .utils import validator
+from validators.utils import validator
 
-regex = (
-    r'^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$'
-)
+regex = r"^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$"
 pattern = re.compile(regex)
 
 
@@ -14,7 +12,7 @@ def char_value(char):
     if char.isdigit():
         return int(char)
     else:
-        return 10 + ord(char) - ord('A')
+        return 10 + ord(char) - ord("A")
 
 
 def modcheck(value):
@@ -25,8 +23,8 @@ def modcheck(value):
     # convert letters to numbers
     converted = [char_value(char) for char in rearranged]
     # interpret as integer
-    integerized = int(''.join([str(i) for i in converted]))
-    return (integerized % 97 == 1)
+    integerized = int("".join([str(i) for i in converted]))
+    return integerized % 97 == 1
 
 
 @validator

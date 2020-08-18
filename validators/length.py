@@ -1,5 +1,5 @@
-from .between import between
-from .utils import validator
+from validators.between import between
+from validators.utils import validator
 
 
 @validator
@@ -31,7 +31,5 @@ def length(value, min=None, max=None):
     .. versionadded:: 0.2
     """
     if (min is not None and min < 0) or (max is not None and max < 0):
-        raise AssertionError(
-            '`min` and `max` need to be greater than zero.'
-        )
+        raise AssertionError("`min` and `max` need to be greater than zero.")
     return between(len(value), min=min, max=max)

@@ -1,8 +1,8 @@
 import re
 
-from .utils import validator
+from validators.utils import validator
 
-slug_regex = re.compile(r'^[-a-zA-Z0-9_]+$')
+slug_regex = re.compile(r"^[-a-zA-Z0-9_]+$")
 
 
 @validator

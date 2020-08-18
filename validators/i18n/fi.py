@@ -2,8 +2,8 @@ import re
 
 from validators.utils import validator
 
-business_id_pattern = re.compile(r'^[0-9]{7}-[0-9]$')
-ssn_checkmarks = '0123456789ABCDEFHJKLMNPRSTUVWXY'
+business_id_pattern = re.compile(r"^[0-9]{7}-[0-9]$")
+ssn_checkmarks = "0123456789ABCDEFHJKLMNPRSTUVWXY"
 ssn_pattern = re.compile(
     r"""^
     (?P<date>(0[1-9]|[1-2]\d|3[01])
@@ -11,8 +11,10 @@ ssn_pattern = re.compile(
     (\d{{2}}))
     [A+-]
     (?P<serial>(\d{{3}}))
-    (?P<checksum>[{checkmarks}])$""".format(checkmarks=ssn_checkmarks),
-    re.VERBOSE
+    (?P<checksum>[{checkmarks}])$""".format(
+        checkmarks=ssn_checkmarks
+    ),
+    re.VERBOSE,
 )
 
 
@@ -85,10 +87,9 @@ def fi_ssn(ssn, allow_temporal_ssn=True):
     if not result:
         return False
     gd = result.groupdict()
-    checksum = int(gd['date'] + gd['serial'])
+    checksum = int(gd["date"] + gd["serial"])
     return (
-        int(gd['serial']) >= 2 and
-        (allow_temporal_ssn or int(gd['serial']) <= 899) and
-        ssn_checkmarks[checksum % len(ssn_checkmarks)] ==
-        gd['checksum']
+        int(gd["serial"]) >= 2
+        and (allow_temporal_ssn or int(gd["serial"]) <= 899)
+        and ssn_checkmarks[checksum % len(ssn_checkmarks)] == gd["checksum"]
     )

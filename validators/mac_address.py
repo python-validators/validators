@@ -1,8 +1,8 @@
 import re
 
-from .utils import validator
+from validators.utils import validator
 
-pattern = re.compile(r'^(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$')
+pattern = re.compile(r"^(?:[0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}$")
 
 
 @validator

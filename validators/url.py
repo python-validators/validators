@@ -1,6 +1,6 @@
 import re
 
-from .utils import validator
+from validators.utils import validator
 
 ip_middle_octet = r"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
 ip_last_octet = r"(?:\.(?:0|[1-9]\d?|1\d\d|2[0-4]\d|25[0-5]))"
@@ -21,9 +21,7 @@ regex = re.compile(  # noqa: W605
     r"(?:172\.(?:1[6-9]|2\d|3[0-1])" + ip_middle_octet + ip_last_octet + r"))"
     r"|"
     # private & local hosts
-    r"(?P<private_host>"
-    r"(?:localhost))"
-    r"|"
+    r"(?P<private_host>" r"(?:localhost))" r"|"
     # IP address dotted notation octets
     # excludes loopback network 0.0.0.0
     # excludes reserved space >= 224.0.0.0
@@ -66,8 +64,7 @@ regex = re.compile(  # noqa: W605
     r"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
     # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33
     # (IPv4-Embedded IPv6 Address)
-    r"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"
-    r")\]|"
+    r"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])" r")\]|"
     # host name
     r"(?:(?:(?:xn--)|[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]-?)*"
     r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]+)"
@@ -85,9 +82,8 @@ regex = re.compile(  # noqa: W605
     # query string
     r"(?:\?\S*)?"
     # fragment
-    r"(?:#\S*)?"
-    r"$",
-    re.UNICODE | re.IGNORECASE
+    r"(?:#\S*)?" r"$",
+    re.UNICODE | re.IGNORECASE,
 )
 
 pattern = re.compile(regex)
@@ -150,5 +146,5 @@ def url(value, public=False):
         return result
 
     return result and not any(
-        (result.groupdict().get(key) for key in ('private_ip', 'private_host'))
+        (result.groupdict().get(key) for key in ("private_ip", "private_host"))
     )

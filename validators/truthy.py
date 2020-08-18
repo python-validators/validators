@@ -1,6 +1,6 @@
 import six
 
-from .utils import validator
+from validators.utils import validator
 
 
 @validator
@@ -35,7 +35,4 @@ def truthy(value):
 
     .. versionadded:: 0.2
     """
-    return (
-        value and
-        (not isinstance(value, six.string_types) or value.strip())
-    )
+    return value and (not isinstance(value, six.string_types) or value.strip())

@@ -23,6 +23,7 @@ class Min(object):
 
     .. versionadded:: 0.2
     """
+
     def __lt__(self, other):
         if other is Min:
             return False
@@ -51,6 +52,7 @@ class Max(object):
 
     .. versionadded:: 0.2
     """
+
     def __gt__(self, other):
         if other is Max:
             return False
