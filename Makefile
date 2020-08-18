@@ -18,3 +18,8 @@ install:
 ## Run pytest
 test:
 	python -m pytest tests/
+
+.PHONY: lint
+## Run linting
+lint:
+	pre-commit run --all-files
