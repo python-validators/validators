@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.18.0 (2020-08-19)
+^^^^^^^^^^^^^^^^^^^
+
+- Added bitcoin address validator (#166, pull request courtesy of daveusa31)
+
+
 0.17.1 (2020-08-03)
 ^^^^^^^^^^^^^^^^^^^
 
