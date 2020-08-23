@@ -18,6 +18,15 @@ schema.
     True
 
 
+Development
+-----------
+
+To install the package for development use :bash:`make install`, to run tests use :bash:`make test` and finally to run check linting run :bash:`make lint`.
+
+Pre-commit hooks are run as soon as you commit something.
+
+To run pre-commit hooks manually :bash:`pre-commit run --all-files`.
+
 Resources
 ---------
 
