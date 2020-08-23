@@ -1,4 +1,5 @@
 from .between import between
+from .btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
@@ -49,6 +50,7 @@ __all__ = (
     "diners",
     "jcb",
     "discover",
+    "btc_address",
 )
 
 __version__ = "0.18.0"

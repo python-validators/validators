@@ -6,3 +6,6 @@ lint:
 
 install:
 	pip install -e ".[test]"
+
+test:
+	py.test --doctest-glob="*.rst" --doctest-modules --ignore=setup.py

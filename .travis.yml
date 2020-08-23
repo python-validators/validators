@@ -8,8 +8,7 @@ matrix:
       sudo: true
     - python: pypy3
 install:
-  - pip install -e ".[test]"
+  - make install
 script:
-  - isort --recursive --diff validators tests && isort --recursive --check-only validators tests
-  - flake8 validators tests
-  - py.test --doctest-glob="*.rst" --doctest-modules --ignore=setup.py
+  - make lint
+  - make test
