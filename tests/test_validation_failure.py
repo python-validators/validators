@@ -2,9 +2,7 @@ import six
 
 import validators
 
-obj_repr = (
-    "ValidationFailure(func=between"
-)
+obj_repr = "ValidationFailure(func=between"
 
 
 class TestValidationFailure(object):

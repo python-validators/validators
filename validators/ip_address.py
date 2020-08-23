@@ -23,7 +23,7 @@ def ipv4(value):
 
     :param value: IP address string to validate
     """
-    groups = value.split('.')
+    groups = value.split(".")
     if len(groups) != 4 or any(not x.isdigit() for x in groups):
         return False
     return all(0 <= int(part) < 256 for part in groups)
@@ -46,7 +46,7 @@ def ipv4_cidr(value):
         ValidationFailure(func=ipv4_cidr, args={'value': '1.1.1.1'})
     """
     try:
-        prefix, suffix = value.split('/', 2)
+        prefix, suffix = value.split("/", 2)
     except ValueError:
         return False
     if not ipv4(prefix) or not suffix.isdigit():
@@ -83,10 +83,10 @@ def ipv6(value):
 
     :param value: IP address string to validate
     """
-    ipv6_groups = value.split(':')
+    ipv6_groups = value.split(":")
     if len(ipv6_groups) == 1:
         return False
-    ipv4_groups = ipv6_groups[-1].split('.')
+    ipv4_groups = ipv6_groups[-1].split(".")
 
     if len(ipv4_groups) > 1:
         if not ipv4(ipv6_groups[-1]):
@@ -136,7 +136,7 @@ def ipv6_cidr(value):
         ValidationFailure(func=ipv6_cidr, args={'value': '::1'})
     """
     try:
-        prefix, suffix = value.split('/', 2)
+        prefix, suffix = value.split("/", 2)
     except ValueError:
         return False
     if not ipv6(prefix) or not suffix.isdigit():
