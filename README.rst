@@ -21,7 +21,7 @@ schema.
 Development
 -----------
 
-To install the package for development use `make install`, to run tests use :bash:`make test` and finally to run check linting run :bash:`make lint`.
+To install the package for development use the following commands,
 
 .. code-block:: bash
 
