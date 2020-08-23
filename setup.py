@@ -7,22 +7,12 @@ Python Data Validation for Humans™.
 """
 
 import os
-import re
 import sys
 
 from setuptools import find_packages, setup
 
 PY3 = sys.version_info[0] == 3
 HERE = os.path.dirname(os.path.abspath(__file__))
-
-
-def get_version():
-    filename = os.path.join(HERE, "validators", "__init__.py")
-    print(filename)
-    with open(filename) as f:
-        contents = f.read()
-    pattern = r"^__version__ = '(.*?)'$"
-    return re.search(pattern, contents, re.MULTILINE).group(1)
 
 
 extras_require = {
@@ -36,7 +26,7 @@ install_requires = [
 
 setup(
     name="validators",
-    version=get_version(),
+    version="0.18.0",
     url="https://github.com/kvesteri/validators",
     license="MIT",
     author="Konsta Vesterinen",
