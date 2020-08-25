@@ -51,7 +51,7 @@ def visa(value):
 
     :param value: Visa card number string to validate
     """
-    pattern = re.compile(r"^4")
+    pattern = re.compile(r'^4')
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
@@ -72,7 +72,7 @@ def mastercard(value):
 
     :param value: Mastercard card number string to validate
     """
-    pattern = re.compile(r"^(51|52|53|54|55|22|23|24|25|26|27)")
+    pattern = re.compile(r'^(51|52|53|54|55|22|23|24|25|26|27)')
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
@@ -93,7 +93,7 @@ def amex(value):
 
     :param value: American Express card number string to validate
     """
-    pattern = re.compile(r"^(34|37)")
+    pattern = re.compile(r'^(34|37)')
     return card_number(value) and len(value) == 15 and pattern.match(value)
 
 
@@ -114,7 +114,7 @@ def unionpay(value):
 
     :param value: UnionPay card number string to validate
     """
-    pattern = re.compile(r"^62")
+    pattern = re.compile(r'^62')
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
@@ -135,7 +135,7 @@ def diners(value):
 
     :param value: Diners Club card number string to validate
     """
-    pattern = re.compile(r"^(30|36|38|39)")
+    pattern = re.compile(r'^(30|36|38|39)')
     return card_number(value) and len(value) in [14, 16] and pattern.match(value)
 
 
@@ -156,7 +156,7 @@ def jcb(value):
 
     :param value: JCB card number string to validate
     """
-    pattern = re.compile(r"^35")
+    pattern = re.compile(r'^35')
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
@@ -177,5 +177,5 @@ def discover(value):
 
     :param value: Discover card number string to validate
     """
-    pattern = re.compile(r"^(60|64|65)")
+    pattern = re.compile(r'^(60|64|65)')
     return card_number(value) and len(value) == 16 and pattern.match(value)

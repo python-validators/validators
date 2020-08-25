@@ -5,16 +5,16 @@ from validators import email, ValidationFailure
 
 
 @pytest.mark.parametrize(
-    ("value", "whitelist"),
+    ('value', 'whitelist'),
     [
-        ("email@here.com", None),
-        ("weirder-email@here.and.there.com", None),
-        ("email@[127.0.0.1]", None),
-        ("example@valid-----hyphens.com", None),
-        ("example@valid-with-hyphens.com", None),
-        ("test@domain.with.idn.tld.उदाहरण.परीक्षा", None),
-        ("email@localhost", None),
-        ("email@localdomain", ["localdomain"]),
+        ('email@here.com', None),
+        ('weirder-email@here.and.there.com', None),
+        ('email@[127.0.0.1]', None),
+        ('example@valid-----hyphens.com', None),
+        ('example@valid-with-hyphens.com', None),
+        ('test@domain.with.idn.tld.उदाहरण.परीक्षा', None),
+        ('email@localhost', None),
+        ('email@localdomain', ['localdomain']),
         ('"test@test"@example.com', None),
         ('"\\\011"@here.com', None),
     ],
@@ -24,24 +24,24 @@ def test_returns_true_on_valid_email(value, whitelist):
 
 
 @pytest.mark.parametrize(
-    ("value",),
+    ('value',),
     [
         (None,),
-        ("",),
-        ("abc",),
-        ("abc@",),
-        ("abc@bar",),
-        ("a @x.cz",),
-        ("abc@.com",),
-        ("something@@somewhere.com",),
-        ("email@127.0.0.1",),
-        ("example@invalid-.com",),
-        ("example@-invalid.com",),
-        ("example@inv-.alid-.com",),
-        ("example@inv-.-alid.com",),
+        ('',),
+        ('abc',),
+        ('abc@',),
+        ('abc@bar',),
+        ('a @x.cz',),
+        ('abc@.com',),
+        ('something@@somewhere.com',),
+        ('email@127.0.0.1',),
+        ('example@invalid-.com',),
+        ('example@-invalid.com',),
+        ('example@inv-.alid-.com',),
+        ('example@inv-.-alid.com',),
         (
-            "john56789.john56789.john56789.john56789.john56789.john56789.john5"
-            "@example.com",
+            'john56789.john56789.john56789.john56789.john56789.john56789.john5'
+            '@example.com',
         ),
         # Quoted-string format (CR not allowed)
         ('"\\\012"@here.com',),

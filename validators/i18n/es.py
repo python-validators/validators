@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
 from validators.utils import validator
 
-__all__ = (
-    "es_cif",
-    "es_nif",
-    "es_nie",
-    "es_doi",
-)
+__all__ = ('es_cif', 'es_nif', 'es_nie', 'es_doi',)
 
 
 def nif_nie_validation(doi, number_by_letter, special_cases):
@@ -19,7 +14,7 @@ def nif_nie_validation(doi, number_by_letter, special_cases):
     if doi in special_cases:
         return False
 
-    table = "TRWAGMYFPDXBNJZSQVHLCKE"
+    table = 'TRWAGMYFPDXBNJZSQVHLCKE'
 
     if len(doi) != 9:
         return False
@@ -71,7 +66,7 @@ def es_cif(doi):
     if len(doi) != 9:
         return False
 
-    table = "JABCDEFGHI"
+    table = 'JABCDEFGHI'
     first_chr = doi[0]
     doi_body = doi[1:8]
     control = doi[8]
@@ -91,11 +86,11 @@ def es_cif(doi):
 
     res = (10 - (even_result + odd_result) % 10) % 10
 
-    if first_chr in "ABEH":  # Number type
+    if first_chr in 'ABEH':  # Number type
         return str(res) == control
-    elif first_chr in "PSQW":  # Letter type
+    elif first_chr in 'PSQW':  # Letter type
         return table[res] == control
-    elif first_chr not in "CDFGJNRUV":
+    elif first_chr not in 'CDFGJNRUV':
         return False
 
     return control == str(res) or control == table[res]
@@ -130,8 +125,8 @@ def es_nif(doi):
 
     :param doi: DOI to validate
     """
-    number_by_letter = {"L": "0", "M": "0", "K": "0"}
-    special_cases = ["X0000000T", "00000000T", "00000001R"]
+    number_by_letter = {'L': '0', 'M': '0', 'K': '0'}
+    special_cases = ['X0000000T', '00000000T', '00000001R']
     return nif_nie_validation(doi, number_by_letter, special_cases)
 
 
@@ -164,8 +159,8 @@ def es_nie(doi):
 
     :param doi: DOI to validate
     """
-    number_by_letter = {"X": "0", "Y": "1", "Z": "2"}
-    special_cases = ["X0000000T"]
+    number_by_letter = {'X': '0', 'Y': '1', 'Z': '2'}
+    special_cases = ['X0000000T']
 
     # NIE must must start with X Y or Z
     if not doi or doi[0] not in number_by_letter.keys():
