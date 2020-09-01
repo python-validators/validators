@@ -30,4 +30,7 @@ def uuid(value):
 
     :param value: UUID string to validate
     """
-    return pattern.match(value)
+    try:
+        return pattern.match(value)
+    except TypeError:
+        return False

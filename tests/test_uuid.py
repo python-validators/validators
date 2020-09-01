@@ -19,3 +19,13 @@ def test_returns_true_on_valid_mac_address(value):
 ])
 def test_returns_failed_validation_on_invalid_mac_address(value):
     assert isinstance(uuid(value), ValidationFailure)
+
+
+@pytest.mark.parametrize(('value',), [
+    (1,),
+    (1.0,),
+    (True,),
+    (None,),
+])
+def test_returns_failed_validation_on_invalid_types(value):
+    assert isinstance(uuid(value), ValidationFailure)
