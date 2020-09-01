@@ -1,4 +1,6 @@
+from __future__ import absolute_import
 import re
+from uuid import UUID
 
 from .utils import validator
 
@@ -28,8 +30,10 @@ def uuid(value):
 
     .. versionadded:: 0.2
 
-    :param value: UUID string to validate
+    :param value: UUID value to validate
     """
+    if isinstance(value, UUID):
+        return True
     try:
         return pattern.match(value)
     except TypeError:

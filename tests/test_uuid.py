@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from uuid import UUID
 import pytest
 
 from validators import uuid, ValidationFailure
@@ -8,6 +9,13 @@ from validators import uuid, ValidationFailure
     ('2bc1c94f-0deb-43e9-92a1-4775189ec9f8',),
 ])
 def test_returns_true_on_valid_mac_address(value):
+    assert uuid(value)
+
+
+@pytest.mark.parametrize(('value',), [
+    (UUID('2bc1c94f-0deb-43e9-92a1-4775189ec9f8'),),
+])
+def test_returns_true_on_valid_uuid_object(value):
     assert uuid(value)
 
 
