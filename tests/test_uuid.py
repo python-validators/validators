@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from uuid import UUID
+
 import pytest
 
 from validators import uuid, ValidationFailure
