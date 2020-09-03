@@ -2,6 +2,12 @@ Changelog
 ---------
 
 
+0.18.1 (2020-09-03)
+^^^^^^^^^^^^^^^^^^^
+
+- Made uuid validator accept UUID objects (#174, pull request courtesy of Letsch22)
+
+
 0.18.0 (2020-08-19)
 ^^^^^^^^^^^^^^^^^^^
 
