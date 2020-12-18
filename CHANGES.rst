@@ -2,6 +2,13 @@ Changelog
 ---------
 
 
+0.18.2 (2020-12-18)
+^^^^^^^^^^^^^^^^^^^
+
+- Implement actual validation for old style BTC addresses including checksumming (#182, pull request courtesy of tpatja)
+- Use a regex to guesstimate validity of new segwit BTC addresses (#182, pull request courtesy of tpatja)
+
+
 0.18.1 (2020-09-03)
 ^^^^^^^^^^^^^^^^^^^
 
