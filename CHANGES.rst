@@ -1,8 +1,47 @@
 Changelog
 ---------
 
+
+0.18.2 (2020-12-18)
+^^^^^^^^^^^^^^^^^^^
+
+- Implement actual validation for old style BTC addresses including checksumming (#182, pull request courtesy of tpatja)
+- Use a regex to guesstimate validity of new segwit BTC addresses (#182, pull request courtesy of tpatja)
+
+
+0.18.1 (2020-09-03)
+^^^^^^^^^^^^^^^^^^^
+
+- Made uuid validator accept UUID objects (#174, pull request courtesy of Letsch22)
+
+
+0.18.0 (2020-08-19)
+^^^^^^^^^^^^^^^^^^^
+
+- Added bitcoin address validator (#166, pull request courtesy of daveusa31)
+
+
+0.17.1 (2020-08-03)
+^^^^^^^^^^^^^^^^^^^
+
+- Fixed python_requires using twine
+
+
+0.17.0 (2020-08-02)
+^^^^^^^^^^^^^^^^^^^
+
+- Added python_requires='>=3.4' to setup.py (#163, pull request courtesy of vphilippon)
+- Fixed URL validator ip_last_octet regex (#145, pull request courtesy of ghost)
+
+
+0.16.0 (2020-07-16)
+^^^^^^^^^^^^^^^^^^^
+
+- Added support for emojis and more IDNA URLs (#161, pull request courtesy of automationator)
+
+
 0.15.0 (2020-05-07)
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 - Added bank card validators (#157, pull request courtesy of TimonPeng)
 
