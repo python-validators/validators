@@ -33,7 +33,6 @@ extras_require = {
 }
 
 install_requires = [
-    'six>=1.4.0',
     'decorator>=3.4.0',
 ]
 
