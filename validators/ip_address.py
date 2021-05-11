@@ -23,8 +23,12 @@ def ipv4(value):
 
     :param value: IP address string to validate
     """
-    groups = value.split('.')
-    if len(groups) != 4 or any(not x.isdigit() for x in groups):
+    groups = value.split(".")
+    if (
+        len(groups) != 4
+        or any(not x.isdigit() for x in groups)
+        or any(len(x) > 3 for x in groups)
+    ):
         return False
     return all(0 <= int(part) < 256 for part in groups)
 
