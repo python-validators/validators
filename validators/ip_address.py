@@ -113,12 +113,16 @@ def ipv6(value):
                 return False
 
     if count_blank == 0 and len(ipv6_groups) == max_groups:
+        # no :: -> must have size of max_groups
         return True
     elif count_blank == 1 and ipv6_groups[-1] and ipv6_groups[0]:
+        # one :: inside the address or prefix or suffix : -> filter least two cases
         return True
     elif count_blank == 2 and ((ipv6_groups[0] and not ipv6_groups[-1]) or (not ipv6_groups[0] and ipv6_groups[-1])):
+        # leading or trailing :: or : at end and begin -> filter last case
         return True
     elif count_blank == 3 and len(ipv6_groups) == 3:
+        # :: is the address -> filter everything else
         return True
     return False
 
