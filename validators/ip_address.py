@@ -4,7 +4,7 @@ from .utils import validator
 @validator
 def ipv4(value):
     """
-    Return whether or not given value is a valid IP version 4 address.
+    Return whether a given value is a valid IP version 4 address.
 
     This validator is based on `WTForms IPAddress validator`_
 
@@ -32,7 +32,7 @@ def ipv4(value):
 @validator
 def ipv4_cidr(value):
     """
-    Return whether or not given value is a valid CIDR-notated IP version 4
+    Return whether a given value is a valid CIDR-notated IP version 4
     address range.
 
     This validator is based on RFC4632 3.1.
@@ -57,7 +57,7 @@ def ipv4_cidr(value):
 @validator
 def ipv6(value):
     """
-    Return whether or not given value is a valid IP version 6 address
+    Return whether a given value is a valid IP version 6 address
     (including IPv4-mapped IPv6 addresses).
 
     This validator is based on `WTForms IPAddress validator`_.
@@ -112,9 +112,13 @@ def ipv6(value):
             if not 0 <= num <= 65536:
                 return False
 
-    if count_blank < 2:
+    if count_blank == 0 and len(ipv6_groups) == max_groups:
         return True
-    elif count_blank == 2 and not ipv6_groups[0] and not ipv6_groups[1]:
+    elif count_blank == 1 and ipv6_groups[-1] and ipv6_groups[0]:
+        return True
+    elif count_blank == 2 and ((ipv6_groups[0] and not ipv6_groups[-1]) or (not ipv6_groups[0] and ipv6_groups[-1])):
+        return True
+    elif count_blank == 3 and len(ipv6_groups) == 3:
         return True
     return False
 
@@ -122,7 +126,7 @@ def ipv6(value):
 @validator
 def ipv6_cidr(value):
     """
-    Returns whether or not given value is a valid CIDR-notated IP version 6
+    Returns whether a given value is a valid CIDR-notated IP version 6
     address range.
 
     This validator is based on RFC4632 3.1.
