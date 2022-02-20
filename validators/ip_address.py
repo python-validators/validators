@@ -95,10 +95,6 @@ def ipv6(value):
     else:
         ipv4_groups = []
 
-    max_groups = 6 if ipv4_groups else 8
-    if len(ipv6_groups) > max_groups:
-        return False
-
     count_blank = 0
     for part in ipv6_groups:
         if not part:
@@ -109,9 +105,10 @@ def ipv6(value):
         except ValueError:
             return False
         else:
-            if not 0 <= num <= 65536:
+            if not 0 <= num <= 65536 or len(part) > 4:
                 return False
 
+    max_groups = 6 if ipv4_groups else 8
     if count_blank == 0 and len(ipv6_groups) == max_groups:
         # no :: -> must have size of max_groups
         return True

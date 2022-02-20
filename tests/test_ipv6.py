@@ -13,6 +13,7 @@ from validators import ipv4, ipv6, ValidationFailure
     ('0:0:0:0:0:ffff:1.2.3.4',),
     ('::192.168.30.2',),
     ('0000:0000:0000:0000:0000::',),
+    ('0:a:b:c:d:e:f::',),
 ])
 def test_returns_true_on_valid_ipv6_address(address):
     assert ipv6(address)
@@ -33,6 +34,7 @@ def test_returns_true_on_valid_ipv6_address(address):
     (':1:2::',),
     ('::1:2::',),
     ('8::1:2::9',),
+    ('02001:0000:1234:0000:0000:C1C0:ABCD:0876',),
 ])
 def test_returns_failed_validation_on_invalid_ipv6_address(address):
     assert isinstance(ipv6(address), ValidationFailure)
