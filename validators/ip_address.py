@@ -118,8 +118,10 @@ def ipv6(value):
     elif count_blank == 1 and ipv6_groups[-1] and ipv6_groups[0]:
         # one :: inside the address or prefix or suffix : -> filter least two cases
         return True
-    elif count_blank == 2 and ((ipv6_groups[0] and not ipv6_groups[-1]) or (not ipv6_groups[0] and ipv6_groups[-1])):
+    elif count_blank == 2 and (
+            ((ipv6_groups[0] and not ipv6_groups[-1]) or (not ipv6_groups[0] and ipv6_groups[-1])) or ipv4_groups):
         # leading or trailing :: or : at end and begin -> filter last case
+        # Check if it has ipv4 groups because they get removed from the ipv6_groups
         return True
     elif count_blank == 3 and len(ipv6_groups) == 3:
         # :: is the address -> filter everything else
