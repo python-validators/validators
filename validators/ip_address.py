@@ -110,7 +110,7 @@ def ipv6(value):
 
     max_groups = 6 if ipv4_groups else 8
     part_count = len(ipv6_groups) - count_blank
-    if count_blank == 0 and len(ipv6_groups) == max_groups:
+    if count_blank == 0 and part_count == max_groups:
         # no :: -> must have size of max_groups
         return True
     elif count_blank == 1 and ipv6_groups[-1] and ipv6_groups[0] and part_count < max_groups:
@@ -121,7 +121,7 @@ def ipv6(value):
         # leading or trailing :: or : at end and begin -> filter last case
         # Check if it has ipv4 groups because they get removed from the ipv6_groups
         return True
-    elif count_blank == 3 and len(ipv6_groups) == 3:
+    elif count_blank == 3 and part_count == 0:
         # :: is the address -> filter everything else
         return True
     return False
