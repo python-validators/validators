@@ -2,10 +2,11 @@ Changelog
 ---------
 
 
-0.19.0 (xxxx-xx-xx)
+0.19.0 (2022-05-04)
 ^^^^^^^^^^^^^^^^^^^
 
 - Dropped py34 support
+- Improve IPv6 validation (#201, pull request courtesy of SimonIT)
 
 
 0.18.2 (2020-12-18)
