@@ -46,6 +46,8 @@ from validators import url, ValidationFailure
     u'http://😉.com/😁',
     u'http://উদাহরণ.বাংলা',
     u'http://xn--d5b6ci4b4b3a.xn--54b7fta0cc',
+    u'http://дом-м.рф/1/asdf',
+    u'http://xn----gtbybh.xn--p1ai/1/asdf',
     u'http://-.~_!$&\'()*+,;=:%40:80%2f::::::@example.com',
     u'http://1337.net',
     u'http://a.b-c.de',
