@@ -19,6 +19,7 @@ def test_returns_true_on_valid_ipv4_address(address):
     ('1278.0.0.1',),
     ('127.0.0.abc',),
     ('900.200.100.75',),
+    ('0127.0.0.1',),
 ])
 def test_returns_failed_validation_on_invalid_ipv4_address(address):
     assert isinstance(ipv4(address), ValidationFailure)
