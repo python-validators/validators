@@ -1,6 +1,12 @@
 Changelog
 ---------
 
+0.20.0 (2022-06-05)
+^^^^^^^^^^^^^^^^^^^
+
+- Added ipv4 digit lenghts validation (#191, pull request courtesy of Norbiox)
+- Fixes error with international URLs that have more than 2 hyphens (#184, pull request courtesy of automationator)
+
 
 0.19.0 (2022-05-04)
 ^^^^^^^^^^^^^^^^^^^
