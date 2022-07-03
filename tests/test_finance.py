@@ -68,3 +68,4 @@ def test_returns_true_on_valid_isin(value):
 def test_returns_failed_validation_on_invalid_isin(value):
     result = validators.isin(value)
     assert isinstance(result, validators.ValidationFailure)
+ 

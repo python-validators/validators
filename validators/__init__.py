@@ -34,3 +34,4 @@ __all__ = ('between', 'domain', 'email', 'Max', 'Min', 'md5', 'sha1', 'sha224',
            'jcb', 'discover', 'btc_address', 'cusip', 'sedol', 'isin')
 
 __version__ = '0.20.0'
+ 

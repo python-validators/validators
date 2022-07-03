@@ -29,8 +29,6 @@ def cusipChecksum( cusip ) :
 
         check = check + (val // 10) + (val % 10)
 
-    # check = ( 10 - ( check % 10 ) ) % 10
-    # return  chr( ord('0') + check ) == cusip[8]
     return (check % 10) == 0
 
 
