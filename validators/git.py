@@ -65,6 +65,6 @@ def git(value: str, strict: bool = False):
         return result
     else: # not strict and failed to match
         # try adding ".git" at end of value and retry
-        value = value[:-1] if value.endswith('/') else value + ".git"
-        result = url_regex.match(value)
+        value = value[:-1] if value.endswith('/') else value
+        result = url_regex.match(value + ".git")
         return result
