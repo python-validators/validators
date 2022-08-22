@@ -24,12 +24,13 @@ from .truthy import truthy
 from .url import url
 from .utils import ValidationFailure, validator
 from .uuid import uuid
+from indian_cards import aadhar_card, pan_card
 
 __all__ = ('between', 'domain', 'email', 'Max', 'Min', 'md5', 'sha1', 'sha224',
            'sha256', 'sha512', 'fi_business_id', 'fi_ssn', 'iban', 'ipv4',
            'ipv4_cidr', 'ipv6', 'ipv6_cidr', 'length', 'mac_address', 'slug',
            'truthy', 'url', 'ValidationFailure', 'validator', 'uuid',
            'card_number', 'visa', 'mastercard', 'amex', 'unionpay', 'diners',
-           'jcb', 'discover', 'btc_address')
+           'jcb', 'discover', 'btc_address','aadhar_card','pan_card')
 
 __version__ = '0.20.0'
