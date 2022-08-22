@@ -115,6 +115,13 @@ ipv6
 
 .. autofunction:: ipv6
 
+indian_cards
+----
+
+.. module:: validators.indian_cards
+
+.. autofunction:: aadhar_card, pan_card
+
 
 length
 ------
