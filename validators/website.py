@@ -94,7 +94,7 @@ pattern = re.compile(regex)
 
 
 @validator
-def url(value, public=False):
+def website(value, public=False):
     """
     Return whether or not given value is a valid URL.
 

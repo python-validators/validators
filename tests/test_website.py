@@ -69,8 +69,8 @@ from validators import website, ValidationFailure
     u'http://[::FFFF:129.144.52.38]:80/index.html',
     u'http://[2010:836B:4179::836B:4179]',
 ])
-def test_returns_true_on_valid_url(address):
-    assert url(address)
+def test_returns_true_on_valid_website(address):
+    assert website(address)
 
 
 @pytest.mark.parametrize('address, public', [
@@ -81,8 +81,8 @@ def test_returns_true_on_valid_url(address):
     (u'http://10.0.10.1', False),
     (u'http://127.0.0.1', False),
 ])
-def test_returns_true_on_valid_public_url(address, public):
-    assert url(address, public=public)
+def test_returns_true_on_valid_public_website(address, public):
+    assert website(address, public=public)
 
 
 @pytest.mark.parametrize('address', [
@@ -135,8 +135,8 @@ def test_returns_true_on_valid_public_url(address, public):
     'http://2010:836B:4179::836B:4179',
     'http://2010:836B:4179::836B:4179:80/index.html',
 ])
-def test_returns_failed_validation_on_invalid_url(address):
-    assert isinstance(url(address), ValidationFailure)
+def test_returns_failed_validation_on_invalid_website(address):
+    assert isinstance(website(address), ValidationFailure)
 
 
 @pytest.mark.parametrize('address, public', [
@@ -149,5 +149,5 @@ def test_returns_failed_validation_on_invalid_url(address):
     (u'http://localhost:8000', True),
 
 ])
-def test_returns_failed_validation_on_invalid_public_url(address, public):
-    assert isinstance(url(address, public=public), ValidationFailure)
+def test_returns_failed_validation_on_invalid_public_website(address, public):
+    assert isinstance(website(address, public=public), ValidationFailure)
