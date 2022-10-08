@@ -31,6 +31,8 @@ def test_returns_failed_validation_on_invalid_business_id(value):
     ('010101+0101',),
     ('010101A0101',),
     ('010190-900P',),
+    ('020516C903K',),
+    ('010594Y9032',),
 ])
 def test_returns_true_on_valid_ssn(value):
     assert fi_ssn(value)

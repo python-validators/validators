@@ -9,7 +9,7 @@ ssn_pattern = re.compile(
     (?P<date>(0[1-9]|[1-2]\d|3[01])
     (0[1-9]|1[012])
     (\d{{2}}))
-    [A+-]
+    [ABCDEFYXWVU+-]
     (?P<serial>(\d{{3}}))
     (?P<checksum>[{checkmarks}])$""".format(checkmarks=ssn_checkmarks),
     re.VERBOSE
