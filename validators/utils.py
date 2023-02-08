@@ -1,58 +1,55 @@
-import inspect
-import itertools
-from collections import OrderedDict
+"""
+Utils.py
+--------
+"""
+# -*- coding: utf-8 -*-
 
-from decorator import decorator
+# standard
+from typing import Any, Callable, Dict, Literal, Union
+from inspect import getfullargspec
+from itertools import chain
 
 
 class ValidationFailure(Exception):
-    def __init__(self, func, args):
-        self.func = func
-        self.__dict__.update(args)
+    """
+    Exception class when validation failure occurs
+    """
 
-    def __repr__(self):
-        return u'ValidationFailure(func={func}, args={args})'.format(
-            func=self.func.__name__,
-            args=dict(
-                [(k, v) for (k, v) in self.__dict__.items() if k != 'func']
-            )
+    def __init__(self, function: Callable[..., Any], arg_dict: Dict[str, Any]):
+        self.func = function
+        self.__dict__.update(arg_dict)
+
+    def __repr__(self) -> str:
+        return (
+            f"ValidationFailure(func={self.func.__name__}, "
+            + f"args={({k: v for (k, v) in self.__dict__.items() if k != 'func'})})"
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return repr(self)
 
-    def __unicode__(self):
-        return repr(self)
-
-    def __bool__(self):
-        return False
-
-    def __nonzero__(self):
+    def __bool__(self) -> Literal[False]:
         return False
 
 
-def func_args_as_dict(func, args, kwargs):
+def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any) -> Dict[str, Any]:
     """
     Return given function's positional and key value arguments as an ordered
     dictionary.
+
+    :param func: function to decorate
+    :param args: positional function arguments
+    :param kwargs: key value function arguments
     """
-    _getargspec = inspect.getfullargspec
 
-    arg_names = list(
-        OrderedDict.fromkeys(
-            itertools.chain(
-                _getargspec(func)[0],
-                kwargs.keys()
-            )
-        )
-    )
-    return OrderedDict(
-        list(zip(arg_names, args)) +
-        list(kwargs.items())
+    # TODO: find more efficient way to do it
+    return dict(
+        list(zip(dict.fromkeys(chain(getfullargspec(func)[0], kwargs.keys())), args))
+        + list(kwargs.items())
     )
 
 
-def validator(func, *args, **kwargs):
+def validator(func: Callable[..., Any]) -> Callable[..., Union[Literal[True], ValidationFailure]]:
     """
     A decorator that makes given function validator.
 
@@ -75,11 +72,12 @@ def validator(func, *args, **kwargs):
     :param args: positional function arguments
     :param kwargs: key value function arguments
     """
-    def wrapper(func, *args, **kwargs):
-        value = func(*args, **kwargs)
-        if not value:
-            return ValidationFailure(
-                func, func_args_as_dict(func, args, kwargs)
-            )
-        return True
-    return decorator(wrapper, func)
+
+    def wrapper(*args: Any, **kwargs: Any) -> Union[Literal[True], ValidationFailure]:
+        return (
+            True
+            if func(*args, **kwargs)
+            else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
+        )
+
+    return wrapper

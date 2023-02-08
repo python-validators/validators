@@ -26,14 +26,14 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.9"
-decorator = "^5.1.1"
 
 [tool.poetry.group.dev.dependencies]
+bandit = "^1.7.4"
 black = "^23.1.0"
 flake8 = "^6.0.0"
+pyright = "^1.1.293"
 pytest = "^7.2.1"
-setuptools = "^67.1.0"
-pyright = "^1.1.292"
+setuptools = "^67.2.0"
 
 [build-system]
 requires = ["poetry-core"]
