@@ -1,7 +1,4 @@
-"""
-Utils.py
---------
-"""
+"""Utils."""
 # -*- coding: utf-8 -*-
 
 # standard
@@ -11,37 +8,31 @@ from itertools import chain
 
 
 class ValidationFailure(Exception):
-    """
-    Exception class when validation failure occurs
-    """
+    """Exception class when validation failure occurs."""
 
     def __init__(self, function: Callable[..., Any], arg_dict: Dict[str, Any]):
+        """Initialize Validation Failure."""
         self.func = function
         self.__dict__.update(arg_dict)
 
     def __repr__(self) -> str:
+        """Repr Validation Failure."""
         return (
             f"ValidationFailure(func={self.func.__name__}, "
             + f"args={({k: v for (k, v) in self.__dict__.items() if k != 'func'})})"
         )
 
     def __str__(self) -> str:
+        """Str Validation Failure."""
         return repr(self)
 
     def __bool__(self) -> Literal[False]:
+        """Bool Validation Failure."""
         return False
 
 
 def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any) -> Dict[str, Any]:
-    """
-    Return given function's positional and key value arguments as an ordered
-    dictionary.
-
-    :param func: function to decorate
-    :param args: positional function arguments
-    :param kwargs: key value function arguments
-    """
-
+    """Return function's positional and key value arguments as an ordered dictionary."""
     # TODO: find more efficient way to do it
     return dict(
         list(zip(dict.fromkeys(chain(getfullargspec(func)[0], kwargs.keys())), args))
@@ -50,8 +41,7 @@ def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any) -> D
 
 
 def validator(func: Callable[..., Any]) -> Callable[..., Union[Literal[True], ValidationFailure]]:
-    """
-    A decorator that makes given function validator.
+    """A decorator that makes given function validator.
 
     Whenever the given function is called and returns ``False`` value
     this decorator returns :class:`ValidationFailure` object.
@@ -63,14 +53,16 @@ def validator(func: Callable[..., Any]) -> Callable[..., Union[Literal[True], Va
         ...     return not (value % 2)
 
         >>> even(4)
-        True
+        # Output: True
 
         >>> even(5)
-        ValidationFailure(func=even, args={'value': 5})
+        # Output: ValidationFailure(func=even, args={'value': 5})
 
-    :param func: function to decorate
-    :param args: positional function arguments
-    :param kwargs: key value function arguments
+    Args:
+        `func`: function which is to be decorated.
+
+    Returns:
+        Wrapper function as a decorator.
     """
 
     def wrapper(*args: Any, **kwargs: Any) -> Union[Literal[True], ValidationFailure]:
@@ -79,5 +71,15 @@ def validator(func: Callable[..., Any]) -> Callable[..., Union[Literal[True], Va
             if func(*args, **kwargs)
             else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
         )
+        # try:
+        #     return (
+        #         True
+        #         if func(*args, **kwargs)
+        #         else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
+        #     )
+        # except (AssertionError, TypeError) as err:
+        #     print(err)
+        # finally:
+        #     return ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
 
     return wrapper

@@ -26,8 +26,8 @@ Resources
 - `Code <http://github.com/kvesteri/validators/>`_
 
 
-.. |Build Status| image:: https://github.com/kvesteri/validators/workflows/GH/badge.svg
-   :target: https://github.com/kvesteri/validators/actions/workflows/main.yml
+.. |Build Status| image:: https://github.com/python-validators/validators/actions/workflows/main.yml/badge.svg
+   :target: https://github.com/python-validators/validators/actions/workflows/main.yml
 .. |Version Status| image:: https://img.shields.io/pypi/v/validators.svg
    :target: https://pypi.python.org/pypi/validators/
 .. |Downloads| image:: https://img.shields.io/pypi/dm/validators.svg
