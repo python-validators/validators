@@ -20,8 +20,8 @@ True
 - [Issue Tracker](http://github.com/kvesteri/validators/issues)
 - [Code](http://github.com/kvesteri/validators/)
 
-[bs-badge]: https://github.com/kvesteri/validators/workflows/GH/badge.svg
-[bs-link]: https://github.com/kvesteri/validators/actions/workflows/main.yml
+[bs-badge]: https://github.com/python-validators/validators/actions/workflows/main.yml/badge.svg
+[bs-link]: https://github.com/python-validators/validators/actions/workflows/main.yml
 [vs-badge]: https://img.shields.io/pypi/v/validators.svg
 [vs-link]: https://pypi.python.org/pypi/validators/
 [dw-badge]: https://img.shields.io/pypi/dm/validators.svg
