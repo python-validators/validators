@@ -1,25 +1,35 @@
-import validators
+"""Test validation Failure."""
+# -*- coding: utf-8 -*-
 
-obj_repr = (
-    "ValidationFailure(func=between"
-)
+# project
+from validators import between
 
 
-class TestValidationFailure(object):
-    def setup_method(self, method):
-        self.obj = validators.between(3, min=4, max=5)
+failed_obj_repr = "ValidationFailure(func=between"
+
+
+class TestValidationFailure:
+    """Test validation Failure."""
+
+    def setup_method(self):
+        """Setup Method."""
+        self.is_in_between = between(3, min_val=4, max_val=5)
 
     def test_boolean_coerce(self):
-        assert not bool(self.obj)
-        assert not self.obj
+        """Test Boolean."""
+        assert not bool(self.is_in_between)
+        assert not self.is_in_between
 
     def test_repr(self):
-        assert obj_repr in repr(self.obj)
+        """Test Repr."""
+        assert failed_obj_repr in repr(self.is_in_between)
 
-    def test_unicode(self):
-        assert obj_repr in str(self.obj)
+    def test_string(self):
+        """Test Repr."""
+        assert failed_obj_repr in str(self.is_in_between)
 
     def test_arguments_as_properties(self):
-        assert self.obj.value == 3
-        assert self.obj.min == 4
-        assert self.obj.max == 5
+        """Test argument properties."""
+        assert self.is_in_between.__dict__["value"] == 3
+        assert self.is_in_between.__dict__["min_val"] == 4
+        assert self.is_in_between.__dict__["max_val"] == 5

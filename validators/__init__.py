@@ -1,18 +1,12 @@
+"""Validate Anything!"""
+# -*- coding: utf-8 -*-
+# from ._extremes import AbsMax, AbsMin
+
 from .between import between
 from .btc_address import btc_address
-from .card import (
-    amex,
-    card_number,
-    diners,
-    discover,
-    jcb,
-    mastercard,
-    unionpay,
-    visa
-)
+from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
-from .extremes import Max, Min
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .i18n import fi_business_id, fi_ssn
 from .iban import iban
@@ -25,11 +19,41 @@ from .url import url
 from .utils import ValidationFailure, validator
 from .uuid import uuid
 
-__all__ = ('between', 'domain', 'email', 'Max', 'Min', 'md5', 'sha1', 'sha224',
-           'sha256', 'sha512', 'fi_business_id', 'fi_ssn', 'iban', 'ipv4',
-           'ipv4_cidr', 'ipv6', 'ipv6_cidr', 'length', 'mac_address', 'slug',
-           'truthy', 'url', 'ValidationFailure', 'validator', 'uuid',
-           'card_number', 'visa', 'mastercard', 'amex', 'unionpay', 'diners',
-           'jcb', 'discover', 'btc_address')
+__all__ = (
+    "amex",
+    "between",
+    "btc_address",
+    "card_number",
+    "diners",
+    "discover",
+    "domain",
+    "email",
+    "fi_business_id",
+    "fi_ssn",
+    "iban",
+    "ipv4_cidr",
+    "ipv4",
+    "ipv6_cidr",
+    "ipv6",
+    "jcb",
+    "length",
+    "mac_address",
+    "mastercard",
+    # "AbsMax",
+    "md5",
+    # "AbsMax",
+    "sha1",
+    "sha224",
+    "sha256",
+    "sha512",
+    "slug",
+    "truthy",
+    "unionpay",
+    "url",
+    "uuid",
+    "ValidationFailure",
+    "validator",
+    "visa",
+)
 
-__version__ = '0.20.0'
+__version__ = "0.20.0"

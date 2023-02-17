@@ -1,37 +1,41 @@
+"""Length."""
+# -*- coding: utf-8 -*-
+
+# project
 from .between import between
 from .utils import validator
 
 
 @validator
-def length(value, min=None, max=None):
-    """
-    Return whether or not the length of given string is within a specified
-    range.
+def length(value: str, /, *, min_val: int = 0, max_val: int = 0):
+    """Return whether or not the length of given string is within a specified range.
 
     Examples::
 
-        >>> length('something', min=2)
-        True
+        >>> length('something', min_val=2)
+        # Output: True
 
-        >>> length('something', min=9, max=9)
-        True
+        >>> length('something', min_val=9, max_val=9)
+        # Output: True
 
-        >>> length('something', max=5)
-        ValidationFailure(func=length, ...)
+        >>> length('something', max_val=5)
+        # Output: ValidationFailure(func=length, ...)
 
-    :param value:
-        The string to validate.
-    :param min:
-        The minimum required length of the string. If not provided, minimum
-        length will not be checked.
-    :param max:
-        The maximum length of the string. If not provided, maximum length
-        will not be checked.
+    Args:
+        `value`:
+            [Required] The string to validate.
+        `min_val`:
+            [Optional] The minimum required length of the string. If not provided,
+            minimum length will not be checked.
+        `max_val`:
+            [Optional] The maximum length of the string. If not provided,
+            maximum length will not be checked.
+        Either one of `min_val` or `max_val` must be provided.
+
+    Returns:
+        A `boolean` if `value` is greater than `min_val` and
+        less than `max_val`.
 
     .. versionadded:: 0.2
     """
-    if (min is not None and min < 0) or (max is not None and max < 0):
-        raise AssertionError(
-            '`min` and `max` need to be greater than zero.'
-        )
-    return between(len(value), min=min, max=max)
+    return between(len(value), min_val=min_val, max_val=max_val)
