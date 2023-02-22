@@ -2,13 +2,17 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from typing import Any
+from typing import TYPE_CHECKING
 
 # external
 import pytest
 
 # project
 from validators._extremes import AbsMax, AbsMin
+
+if TYPE_CHECKING:
+    # standard
+    from typing import Any
 
 abs_max = AbsMax()
 abs_min = AbsMin()

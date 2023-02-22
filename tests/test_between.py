@@ -2,24 +2,27 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from datetime import datetime
-from typing import TypeVar
+from typing import TYPE_CHECKING
 
 # external
 import pytest
 
-# project
+# local
 from validators import between, ValidationFailure
 
+if TYPE_CHECKING:
+    # standard
+    from datetime import datetime
+    from typing import TypeVar
 
-T = TypeVar("T", int, float, str, datetime)
+    T = TypeVar("T", int, float, str, datetime)
 
 
 @pytest.mark.parametrize(
     ("value", "min_val", "max_val"),
     [(12, 11, 13), (12, None, 14), (12, 11, None), (12, 12, 12)],
 )
-def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T) -> None:
+def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T):
     """Test returns true on valid range."""
     assert between(value, min_val=min_val, max_val=max_val)
 
@@ -28,7 +31,7 @@ def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T) -> None:
     ("value", "min_val", "max_val"),
     [(12, 13, 12), (12, None, None)],
 )
-def test_raises_assertion_error_for_invalid_args(value: T, min_val: T, max_val: T) -> None:
+def test_raises_assertion_error_for_invalid_args(value: T, min_val: T, max_val: T):
     """Test raises assertion error for invalid args."""
     with pytest.raises(AssertionError):
         assert between(value, min_val=min_val, max_val=max_val)
@@ -43,7 +46,7 @@ def test_raises_assertion_error_for_invalid_args(value: T, min_val: T, max_val: 
         (30, 40, "string"),
     ],
 )
-def test_raises_type_error_for_invalid_args(value: T, min_val: T, max_val: T) -> None:
+def test_raises_type_error_for_invalid_args(value: T, min_val: T, max_val: T):
     """Test raises type error for invalid args."""
     with pytest.raises(TypeError):
         assert between(value, min_val=min_val, max_val=max_val)
@@ -53,7 +56,7 @@ def test_raises_type_error_for_invalid_args(value: T, min_val: T, max_val: T) ->
     ("value", "min_val", "max_val"),
     [(12, 13, 14), (12, None, 11), (12, 13, None)],
 )
-def test_returns_failed_validation_on_invalid_range(value: T, min_val: T, max_val: T) -> None:
+def test_returns_failed_validation_on_invalid_range(value: T, min_val: T, max_val: T):
     """Test returns failed validation on invalid range."""
     result = between(value, min_val=min_val, max_val=max_val)
     assert isinstance(result, ValidationFailure)

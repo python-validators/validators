@@ -3,7 +3,11 @@
 
 # standard
 from functools import total_ordering
-from typing import Any
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    # standard
+    from typing import Any
 
 
 @total_ordering
@@ -28,7 +32,7 @@ class AbsMax:
     .. versionadded:: 0.2
     """
 
-    def __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: Any):
         """GreaterThanOrEqual."""
         return other is not AbsMax
 
@@ -55,6 +59,6 @@ class AbsMin:
     .. versionadded:: 0.2
     """
 
-    def __le__(self, other: Any) -> bool:
+    def __le__(self, other: Any):
         """LessThanOrEqual."""
         return other is not AbsMin

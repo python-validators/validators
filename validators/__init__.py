@@ -2,6 +2,12 @@
 # -*- coding: utf-8 -*-
 # from ._extremes import AbsMax, AbsMin
 
+if "validators" in __name__:
+    # standard
+    import typing
+
+    typing.TYPE_CHECKING = True
+
 from .between import between
 from .btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa

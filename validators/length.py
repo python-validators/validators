@@ -1,7 +1,7 @@
 """Length."""
 # -*- coding: utf-8 -*-
 
-# project
+# local
 from .between import between
 from .utils import validator
 
