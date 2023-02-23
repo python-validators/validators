@@ -28,7 +28,7 @@ class AbsMax:
     .. versionadded:: 0.2
     """
 
-    def __ge__(self, other: Any) -> bool:
+    def __ge__(self, other: Any):
         """GreaterThanOrEqual."""
         return other is not AbsMax
 
@@ -55,6 +55,6 @@ class AbsMin:
     .. versionadded:: 0.2
     """
 
-    def __le__(self, other: Any) -> bool:
+    def __le__(self, other: Any):
         """LessThanOrEqual."""
         return other is not AbsMin

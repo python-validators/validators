@@ -5,7 +5,7 @@
 from typing import TypeVar, Union
 from datetime import datetime
 
-# project
+# local
 from ._extremes import AbsMax, AbsMin
 from .utils import validator
 
@@ -19,7 +19,7 @@ def between(
     *,
     min_val: Union[T, AbsMin, None] = None,
     max_val: Union[T, AbsMax, None] = None,
-) -> bool:
+):
     """Validate that a number is between minimum and/or maximum value.
 
     This will work with any comparable type, such as floats, decimals and dates
@@ -79,9 +79,6 @@ def between(
         max_val = AbsMax()
     if min_val is None:
         min_val = AbsMin()
-
-    # if isinstance(min_val, AbsMin) and isinstance(max_val, AbsMax):
-    #     return min_val <= value <= max_val
 
     if isinstance(min_val, AbsMin):
         if type(value) is not type(max_val):
