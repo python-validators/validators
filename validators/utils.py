@@ -33,7 +33,6 @@ class ValidationFailure(Exception):
 
 def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any):
     """Return function's positional and key value arguments as an ordered dictionary."""
-    # TODO: find more efficient way to do it
     return dict(
         list(zip(dict.fromkeys(chain(getfullargspec(func)[0], kwargs.keys())), args))
         + list(kwargs.items())
@@ -43,26 +42,28 @@ def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any):
 def validator(func: Callable[..., Any]):
     """A decorator that makes given function validator.
 
-    Whenever the given function is called and returns ``False`` value
-    this decorator returns :class:`ValidationFailure` object.
+    Whenever the given `func` returns `False` this
+    decorator returns `ValidationFailure` object.
 
-    Example::
-
+    Examples:
         >>> @validator
         ... def even(value):
         ...     return not (value % 2)
-
         >>> even(4)
         # Output: True
-
         >>> even(5)
         # Output: ValidationFailure(func=even, args={'value': 5})
 
     Args:
-        `func`: function which is to be decorated.
+        func:
+            Function which is to be decorated.
 
     Returns:
-        Wrapper function as a decorator.
+        (Callable[..., ValidationFailure | Literal[True])):
+            A decorator which returns either `ValidationFailure`
+            or `Literal[True]`.
+
+    > *New in version 2013.10.21*.
     """
 
     def wrapper(*args: Any, **kwargs: Any):
@@ -71,15 +72,5 @@ def validator(func: Callable[..., Any]):
             if func(*args, **kwargs)
             else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
         )
-        # try:
-        #     return (
-        #         True
-        #         if func(*args, **kwargs)
-        #         else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
-        #     )
-        # except (AssertionError, TypeError) as err:
-        #     print(err)
-        # finally:
-        #     return ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
 
     return wrapper

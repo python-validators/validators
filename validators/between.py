@@ -9,68 +9,64 @@ from datetime import datetime
 from ._extremes import AbsMax, AbsMin
 from .utils import validator
 
-T = TypeVar("T", int, float, str, datetime)
+PossibleValueTypes = TypeVar("PossibleValueTypes", int, float, str, datetime)
 
 
 @validator
 def between(
-    value: T,
+    value: PossibleValueTypes,
     /,
     *,
-    min_val: Union[T, AbsMin, None] = None,
-    max_val: Union[T, AbsMax, None] = None,
+    min_val: Union[PossibleValueTypes, AbsMin, None] = None,
+    max_val: Union[PossibleValueTypes, AbsMax, None] = None,
 ):
     """Validate that a number is between minimum and/or maximum value.
 
     This will work with any comparable type, such as floats, decimals and dates
-    not just integers. This validator is originally based on `WTForms-NumberRange-Validator`_
+    not just integers. This validator is originally based on [WTForms-NumberRange-Validator][1].
 
-    .. _WTForms-NumberRange-Validator:
-        https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L166-L220
+    [1]: https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L166-L220
 
-    Examples::
-
+    Examples:
         >>> from datetime import datetime
-
         >>> between(5, min_val=2)
         # Output: True
-
         >>> between(13.2, min_val=13, max_val=14)
         # Output: True
-
         >>> between(500, max_val=400)
         # Output: ValidationFailure(func=between, args=...)
-
         >>> between(
         ...     datetime(2000, 11, 11),
         ...     min_val=datetime(1999, 11, 11)
         ... )
-        # True
+        # Output: True
 
     Args:
-        `value`:
-            [Required] Value which is to be compared.
-        `min_val`:
-            [Optional] The minimum required value of the number.
+        value:
+            Value which is to be compared.
+        min_val:
+            The minimum required value of the number.
             If not provided, minimum value will not be checked.
-        `max_val`:
-            [Optional] The maximum value of the number.
+        max_val:
+            The maximum value of the number.
             If not provided, maximum value will not be checked.
-        Either one of `min_val` or `max_val` must be provided.
 
     Returns:
-        A `boolean` if `value` is greater than `min_val` and
-        less than `max_val`.
+        (Literal[True]):
+            If `value` is in between the given conditions.
+        (ValidationFailure):
+            If `value` is not in between the given conditions.
 
     Raises:
-        `AssertionError`:
-        - If both `min_val` and `max_val` are `None`.
-        - If `min_val` is greater than `max_val`.
+        AssertionError: If both `min_val` and `max_val` are `None`,
+            or if `min_val` is greater than `max_val`.
+        TypeError: If there's a type mismatch before comparison.
 
-        `TypeError`:
-        - If there's a type mismatch before comparison
+    Note:
+        - `PossibleValueTypes` = `TypeVar("PossibleValueTypes", int, float, str, datetime)`
+        - Either one of `min_val` or `max_val` must be provided.
 
-    .. versionadded:: 0.2
+    > *New in version 0.2.0*.
     """
     if min_val is None and max_val is None:
         raise AssertionError("At least one of either `min_val` or `max_val` must be specified")
