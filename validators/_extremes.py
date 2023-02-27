@@ -10,22 +10,18 @@ from typing import Any
 class AbsMax:
     """An object that is greater than any other object (except itself).
 
-    Inspired by https://pypi.python.org/pypi/Extremes
+    Inspired by https://pypi.python.org/pypi/Extremes.
 
-    Examples::
-
-        >>> import sys
-
+    Examples:
+        >>> from sys import maxint
         >>> AbsMax > AbsMin
-        True
-
-        >>> AbsMax > sys.maxint
-        True
-
+        # Output: True
+        >>> AbsMax > maxint
+        # Output: True
         >>> AbsMax > 99999999999999999
-        True
+        # Output: True
 
-    .. versionadded:: 0.2
+    > *New in version 0.2.0*.
     """
 
     def __ge__(self, other: Any):
@@ -37,22 +33,18 @@ class AbsMax:
 class AbsMin:
     """An object that is less than any other object (except itself).
 
-    Inspired by https://pypi.python.org/pypi/Extremes
+    Inspired by https://pypi.python.org/pypi/Extremes.
 
-    Examples::
-
-        >>> import sys
-
-        >>> AbsMin < -sys.maxint
-        True
-
+    Examples:
+        >>> from sys import maxint
+        >>> AbsMin < -maxint
+        # Output: True
         >>> AbsMin < None
-        True
-
+        # Output: True
         >>> AbsMin < ''
-        True
+        # Output: True
 
-    .. versionadded:: 0.2
+    > *New in version 0.2.0*.
     """
 
     def __le__(self, other: Any):

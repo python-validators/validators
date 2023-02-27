@@ -34,23 +34,23 @@ def btc_address(value: str, /):
     For segwit addresses a regexp is used to provide a reasonable
     estimate on whether the address is valid.
 
-    Examples::
-
+    Examples:
         >>> btc_address('3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69')
         # Output: True
         >>> btc_address('1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2')
         # Output: ValidationFailure(func=btc_address, args=...)
 
     Args:
-        `value`:
-            [Required] Bitcoin address string to validate.
+        value:
+            Bitcoin address string to validate.
 
     Returns:
-        `True`:
-            If the value is valid bitcoin address.
-        `ValidationFailure`:
-            If the value is an invalid bitcoin address.
+        (Literal[True]):
+            If `value` is a valid bitcoin address.
+        (ValidationFailure):
+            If `value` is an invalid bitcoin address.
 
+    > *New in version 0.18.0*.
     """
     if value and type(value) is str:
         return (
