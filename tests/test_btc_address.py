@@ -1,7 +1,7 @@
 """Test BTC address."""
 # -*- coding: utf-8 -*-
 
-# standard
+# external
 import pytest
 
 # local
