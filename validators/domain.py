@@ -1,54 +1,58 @@
+"""Domain."""
+
+# standard
 import re
 
+# local
 from .utils import validator
-
-pattern = re.compile(
-    r'^(?:[a-zA-Z0-9]'  # First character of the domain
-    r'(?:[a-zA-Z0-9-_]{0,61}[A-Za-z0-9])?\.)'  # Sub domain + hostname
-    r'+[A-Za-z0-9][A-Za-z0-9-_]{0,61}'  # First 61 characters of the gTLD
-    r'[A-Za-z]$'  # Last character of the gTLD
-)
-
-
-def to_unicode(obj, charset='utf-8', errors='strict'):
-    if obj is None:
-        return None
-    if not isinstance(obj, bytes):
-        return str(obj)
-    return obj.decode(charset, errors)
 
 
 @validator
-def domain(value):
-    """
-    Return whether or not given value is a valid domain.
+def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
+    """Return whether or not given value is a valid domain.
 
-    If the value is valid domain name this function returns ``True``, otherwise
-    :class:`~validators.utils.ValidationFailure`.
-
-    Examples::
-
+    Examples:
         >>> domain('example.com')
-        True
-
+        # Output: True
         >>> domain('example.com/')
-        ValidationFailure(func=domain, ...)
-
-
-    Supports IDN domains as well::
-
+        # Output: ValidationFailure(func=domain, ...)
+        >>> # Supports IDN domains as well::
         >>> domain('xn----gtbspbbmkef.xn--p1ai')
-        True
+        # Output: True
 
-    .. versionadded:: 0.9
+    Args:
+        value:
+            Domain string to validate.
+        rfc_1034:
+            Allow trailing dot in domain name.
+            Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
+        rfc_2782:
+            Domain name is of type service record.
+            Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
-    .. versionchanged:: 0.10
 
-        Added support for internationalized domain name (IDN) validation.
+    Returns:
+        (Literal[True]):
+            If `value` is a valid domain name.
+        (ValidationFailure):
+            If `value` is an invalid domain name.
 
-    :param value: domain string to validate
+    Note:
+        - *In version 0.10.0*:
+            - Added support for internationalized domain name (IDN) validation.
+
+    > *New in version 0.9.0*.
     """
     try:
-        return pattern.match(to_unicode(value).encode('idna').decode('ascii'))
-    except (UnicodeError, AttributeError):
+        return not re.search(r"\s", value) and re.compile(
+            # First character of the domain
+            rf"^(?:[a-zA-Z0-9{'_'if rfc_2782 else ''}]"
+            # Sub domain + hostname
+            + r"(?:[a-zA-Z0-9-_]{0,61}[A-Za-z0-9])?\.)"
+            # First 61 characters of the gTLD
+            + r"+[A-Za-z0-9][A-Za-z0-9-_]{0,61}"
+            # Last character of the gTLD
+            + rf"[A-Za-z]{r'.$' if rfc_1034 else r'$'}"
+        ).match(value.encode("idna").decode("ascii"))
+    except UnicodeError:
         return False
