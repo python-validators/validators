@@ -1,6 +1,5 @@
 """Validate Anything!"""
 # -*- coding: utf-8 -*-
-# from ._extremes import AbsMax, AbsMin
 
 from .between import between
 from .btc_address import btc_address
@@ -39,9 +38,7 @@ __all__ = (
     "length",
     "mac_address",
     "mastercard",
-    # "AbsMax",
     "md5",
-    # "AbsMax",
     "sha1",
     "sha224",
     "sha256",

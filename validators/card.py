@@ -9,7 +9,7 @@ from .utils import validator
 
 
 @validator
-def card_number(value: str):
+def card_number(value: str, /):
     """Return whether or not given value is a valid generic card number.
 
     This validator is based on [Luhn's algorithm][1].
@@ -44,7 +44,7 @@ def card_number(value: str):
 
 
 @validator
-def visa(value: str):
+def visa(value: str, /):
     """Return whether or not given value is a valid Visa card number.
 
     Examples:
@@ -70,7 +70,7 @@ def visa(value: str):
 
 
 @validator
-def mastercard(value: str):
+def mastercard(value: str, /):
     """Return whether or not given value is a valid Mastercard card number.
 
     Examples:
@@ -96,7 +96,7 @@ def mastercard(value: str):
 
 
 @validator
-def amex(value: str):
+def amex(value: str, /):
     """Return whether or not given value is a valid American Express card number.
 
     Examples:
@@ -122,7 +122,7 @@ def amex(value: str):
 
 
 @validator
-def unionpay(value: str):
+def unionpay(value: str, /):
     """Return whether or not given value is a valid UnionPay card number.
 
     Examples:
@@ -148,7 +148,7 @@ def unionpay(value: str):
 
 
 @validator
-def diners(value: str):
+def diners(value: str, /):
     """Return whether or not given value is a valid Diners Club card number.
 
     Examples:
@@ -174,7 +174,7 @@ def diners(value: str):
 
 
 @validator
-def jcb(value: str):
+def jcb(value: str, /):
     """Return whether or not given value is a valid JCB card number.
 
     Examples:
@@ -200,7 +200,7 @@ def jcb(value: str):
 
 
 @validator
-def discover(value: str):
+def discover(value: str, /):
     """Return whether or not given value is a valid Discover card number.
 
     Examples:
