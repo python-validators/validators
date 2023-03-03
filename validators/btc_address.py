@@ -8,8 +8,6 @@ import re
 # local
 from .utils import validator
 
-_segwit_pattern = re.compile(r"^(bc|tc)[0-3][02-9ac-hj-np-z]{14,74}$")
-
 
 def _decode_base58(addr: str):
     """Decode base58."""
@@ -54,7 +52,8 @@ def btc_address(value: str, /):
     """
     if value and type(value) is str:
         return (
-            _segwit_pattern.match(value)
+            # segwit pattern
+            re.compile(r"^(bc|tc)[0-3][02-9ac-hj-np-z]{14,74}$").match(value)
             if value[:2] in ("bc", "tb")
             else _validate_old_btc_address(value)
         )

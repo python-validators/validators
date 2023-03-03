@@ -4,6 +4,7 @@
 # standard
 from typing import Any, Callable, Dict
 from inspect import getfullargspec
+from functools import wraps
 from itertools import chain
 
 
@@ -66,6 +67,7 @@ def validator(func: Callable[..., Any]):
     > *New in version 2013.10.21*.
     """
 
+    @wraps(func)
     def wrapper(*args: Any, **kwargs: Any):
         return (
             True
