@@ -1,0 +1,27 @@
+site_name: "validators"
+site_description: "Automatic documentation from sources, for MkDocs."
+site_url: "https://python-validators.github.io/"
+repo_url: "https://github.com/python-validators/validators"
+edit_uri: "tree/master/docs/"
+repo_name: "validators/validators"
+site_dir: "site"
+watch: [README.md, validators/]
+
+nav:
+  - Reference: index.md
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          import:
+            - https://docs.python-requests.org/en/master/objects.inv
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/python-validators/validators
