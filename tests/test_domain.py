@@ -1,7 +1,7 @@
 """Test Domain."""
 # -*- coding: utf-8 -*-
 
-# standard
+# external
 import pytest
 
 # local
