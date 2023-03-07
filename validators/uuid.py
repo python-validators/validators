@@ -1,41 +1,45 @@
-from __future__ import absolute_import
+"""UUID."""
 
-import re
+# standard
+from typing import Union
 from uuid import UUID
+import re
 
+# local
 from .utils import validator
-
-pattern = re.compile(r'^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$')
 
 
 @validator
-def uuid(value):
-    """
-    Return whether or not given value is a valid UUID.
+def uuid(value: Union[str, UUID]):
+    """Return whether or not given value is a valid UUID-v4 string.
 
-    If the value is valid UUID this function returns ``True``, otherwise
-    :class:`~validators.utils.ValidationFailure`.
+    This validator is based on [WTForms UUID validator][1].
 
-    This validator is based on `WTForms UUID validator`_.
+    [1]: https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539
 
-    .. _WTForms UUID validator:
-       https://github.com/wtforms/wtforms/blob/master/wtforms/validators.py
-
-    Examples::
-
+    Examples:
         >>> uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
-        True
-
+        # Output: True
         >>> uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
-        ValidationFailure(func=uuid, ...)
+        # Output: ValidationFailure(func=uuid, ...)
 
-    .. versionadded:: 0.2
+    Args:
+        value:
+            A string or UUID object to validate.
 
-    :param value: UUID value to validate
+    Returns:
+        (Literal[True]):
+            If `value` is a valid UUID.
+        (ValidationFailure):
+            If `value` is an invalid UUID.
+
+    > *New in version 0.2.0*.
     """
     if isinstance(value, UUID):
         return True
     try:
-        return pattern.match(value)
-    except TypeError:
+        return UUID(value) or re.match(
+            r"^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$", value
+        )
+    except ValueError:
         return False

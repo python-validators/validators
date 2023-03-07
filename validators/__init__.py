@@ -13,7 +13,6 @@ from .ip_address import ipv4, ipv4_cidr, ipv6, ipv6_cidr
 from .length import length
 from .mac_address import mac_address
 from .slug import slug
-from .truthy import truthy
 from .url import url
 from .utils import ValidationFailure, validator
 from .uuid import uuid
@@ -44,7 +43,6 @@ __all__ = (
     "sha256",
     "sha512",
     "slug",
-    "truthy",
     "unionpay",
     "url",
     "uuid",
