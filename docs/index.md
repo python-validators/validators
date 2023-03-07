@@ -12,4 +12,8 @@
 
 ::: validators.email
 
+::: validators.hashes
+
+::: validators.iban
+
 ::: validators.length
