@@ -21,7 +21,7 @@ def _mod_check(value: str):
 
 
 @validator
-def iban(value: str):
+def iban(value: str, /):
     """Return whether or not given value is a valid IBAN code.
 
     Examples:
@@ -31,7 +31,8 @@ def iban(value: str):
         # Output: ValidationFailure(func=iban, ...)
 
     Args:
-        value: IBAN string to validate.
+        value:
+            IBAN string to validate.
 
     Returns:
         (Literal[True]):

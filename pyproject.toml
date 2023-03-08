@@ -28,7 +28,6 @@ classifiers = [
 python = "^3.9"
 
 [tool.poetry.group.dev.dependencies]
-bandit = "^1.7.4"
 black = "^23.1.0"
 flake8 = "^6.0.0"
 flake8-docstrings = "^1.7.0"
@@ -38,6 +37,9 @@ setuptools = "^67.2.0"
 
 [tool.poetry.group.tests.dependencies]
 pytest = "^7.2.2"
+
+[tool.poetry.group.sast.dependencies]
+bandit = { extras = ["toml"], version = "^1.7.4" }
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.4.2"
@@ -55,6 +57,9 @@ build-backend = "poetry.core.masonry.api"
 [tool.black]
 line-length = 100
 target-version = ['py39', 'py310', 'py311']
+
+[tool.bandit]
+exclude_dirs = [".github", ".pytest_cache", ".tox", ".vscode", "tests", "docs"]
 
 [tool.tox]
 legacy_tox_ini = '''

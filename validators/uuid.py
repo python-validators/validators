@@ -10,7 +10,7 @@ from .utils import validator
 
 
 @validator
-def uuid(value: Union[str, UUID]):
+def uuid(value: Union[str, UUID], /):
     """Return whether or not given value is a valid UUID-v4 string.
 
     This validator is based on [WTForms UUID validator][1].
@@ -25,7 +25,7 @@ def uuid(value: Union[str, UUID]):
 
     Args:
         value:
-            A string or UUID object to validate.
+            UUID string or object to validate.
 
     Returns:
         (Literal[True]):

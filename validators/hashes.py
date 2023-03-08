@@ -9,7 +9,7 @@ from .utils import validator
 
 
 @validator
-def md5(value: str):
+def md5(value: str, /):
     """Return whether or not given value is a valid MD5 hash.
 
     Examples:
@@ -19,7 +19,8 @@ def md5(value: str):
         # Output: ValidationFailure(func=md5, args={'value': '900zz11'})
 
     Args:
-        value: MD5 string to validate.
+        value:
+            MD5 string to validate.
 
     Returns:
         (Literal[True]):
@@ -33,7 +34,7 @@ def md5(value: str):
 
 
 @validator
-def sha1(value: str):
+def sha1(value: str, /):
     """Return whether or not given value is a valid SHA1 hash.
 
     Examples:
@@ -43,7 +44,8 @@ def sha1(value: str):
         # Output: ValidationFailure(func=sha1, args={'value': '900zz11'})
 
     Args:
-        value: SHA1 string to validate.
+        value:
+            SHA1 string to validate.
 
     Returns:
         (Literal[True]):
@@ -57,7 +59,7 @@ def sha1(value: str):
 
 
 @validator
-def sha224(value: str):
+def sha224(value: str, /):
     """Return whether or not given value is a valid SHA224 hash.
 
     Examples:
@@ -67,7 +69,8 @@ def sha224(value: str):
         # Output: ValidationFailure(func=sha224, args={'value': '900zz11'})
 
     Args:
-        value: SHA224 string to validate.
+        value:
+            SHA224 string to validate.
 
     Returns:
         (Literal[True]):
@@ -81,7 +84,7 @@ def sha224(value: str):
 
 
 @validator
-def sha256(value: str):
+def sha256(value: str, /):
     """Return whether or not given value is a valid SHA256 hash.
 
     Examples:
@@ -94,7 +97,8 @@ def sha256(value: str):
         # Output: ValidationFailure(func=sha256, args={'value': '900zz11'})
 
     Args:
-        value: SHA256 string to validate.
+        value:
+            SHA256 string to validate.
 
     Returns:
         (Literal[True]):
@@ -108,7 +112,7 @@ def sha256(value: str):
 
 
 @validator
-def sha512(value: str):
+def sha512(value: str, /):
     """Return whether or not given value is a valid SHA512 hash.
 
     Examples:
@@ -122,7 +126,8 @@ def sha512(value: str):
         # Output: ValidationFailure(func=sha512, args={'value': '900zz11'})
 
     Args:
-        value: SHA512 string to validate.
+        value:
+            SHA512 string to validate.
 
     Returns:
         (Literal[True]):

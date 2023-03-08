@@ -9,7 +9,7 @@ from .utils import validator
 
 
 @validator
-def slug(value: str):
+def slug(value: str, /):
     """Validate whether or not given value is valid slug.
 
     Valid slug can contain only lowercase alphanumeric characters and hyphens.
@@ -23,7 +23,7 @@ def slug(value: str):
 
     Args:
         value:
-            A string to validate.
+            Slug string to validate.
 
     Returns:
         (Literal[True]):

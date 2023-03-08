@@ -9,7 +9,7 @@ from .utils import validator
 
 
 @validator
-def mac_address(value: str):
+def mac_address(value: str, /):
     """Return whether or not given value is a valid MAC address.
 
     This validator is based on [WTForms MacAddress validator][1].
@@ -24,7 +24,7 @@ def mac_address(value: str):
 
     Args:
         value:
-            A string to validate.
+            MAC address string to validate.
 
     Returns:
         (Literal[True]):
