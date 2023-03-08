@@ -1,7 +1,5 @@
 # Reference
 
-::: validators.utils
-
 ::: validators.between
 
 ::: validators.btc_address
@@ -16,4 +14,18 @@
 
 ::: validators.iban
 
+<!-- ::: validators.ip_address -->
+
 ::: validators.length
+
+::: validators.mac_address
+
+::: validators.slug
+
+<!-- ::: validators.url -->
+
+::: validators.uuid
+
+---
+
+::: validators.utils

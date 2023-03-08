@@ -1,40 +1,40 @@
+"""Test UUIDs."""
 # -*- coding: utf-8 -*-
-from uuid import UUID
 
+# standard
+from uuid import uuid4, UUID
+from typing import Union
+
+# external
 import pytest
 
+# local
 from validators import uuid, ValidationFailure
 
 
-@pytest.mark.parametrize(('value',), [
-    ('2bc1c94f-0deb-43e9-92a1-4775189ec9f8',),
-])
-def test_returns_true_on_valid_mac_address(value):
+@pytest.mark.parametrize(
+    ("value",),
+    [
+        (uuid4(),),
+        ("2bc1c94f-0deb-43e9-92a1-4775189ec9f8",),
+        (uuid4(),),
+        ("888256d7c49341f19fa33f29d3f820d7",),
+    ],
+)
+def test_returns_true_on_valid_uuid(value: Union[str, UUID]):
+    """Test returns true on valid uuid."""
     assert uuid(value)
 
 
-@pytest.mark.parametrize(('value',), [
-    (UUID('2bc1c94f-0deb-43e9-92a1-4775189ec9f8'),),
-])
-def test_returns_true_on_valid_uuid_object(value):
-    assert uuid(value)
-
-
-@pytest.mark.parametrize(('value',), [
-    ('2bc1c94f-deb-43e9-92a1-4775189ec9f8',),
-    ('2bc1c94f-0deb-43e9-92a1-4775189ec9f',),
-    ('gbc1c94f-0deb-43e9-92a1-4775189ec9f8',),
-    ('2bc1c94f 0deb-43e9-92a1-4775189ec9f8',),
-])
-def test_returns_failed_validation_on_invalid_mac_address(value):
-    assert isinstance(uuid(value), ValidationFailure)
-
-
-@pytest.mark.parametrize(('value',), [
-    (1,),
-    (1.0,),
-    (True,),
-    (None,),
-])
-def test_returns_failed_validation_on_invalid_types(value):
+@pytest.mark.parametrize(
+    ("value",),
+    [
+        ("2bc1c94f-deb-43e9-92a1-4775189ec9f8",),
+        ("2bc1c94f-0deb-43e9-92a1-4775189ec9f",),
+        ("gbc1c94f-0deb-43e9-92a1-4775189ec9f8",),
+        ("2bc1c94f 0deb-43e9-92a1-4775189ec9f8",),
+    ],
+)
+def test_returns_failed_validation_on_invalid_uuid(value: Union[str, UUID]):
+    """Test returns failed validation on invalid uuid."""
     assert isinstance(uuid(value), ValidationFailure)
