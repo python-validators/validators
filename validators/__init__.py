@@ -9,7 +9,7 @@ from .email import email
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .i18n import fi_business_id, fi_ssn
 from .iban import iban
-from .ip_address import ipv4, ipv4_cidr, ipv6, ipv6_cidr
+from .ip_address import ipv4, ipv6
 from .length import length
 from .mac_address import mac_address
 from .slug import slug
@@ -29,9 +29,7 @@ __all__ = (
     "fi_business_id",
     "fi_ssn",
     "iban",
-    "ipv4_cidr",
     "ipv4",
-    "ipv6_cidr",
     "ipv6",
     "jcb",
     "length",

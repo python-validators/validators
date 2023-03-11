@@ -14,7 +14,7 @@
 
 ::: validators.iban
 
-<!-- ::: validators.ip_address -->
+::: validators.ip_address
 
 ::: validators.length
 
