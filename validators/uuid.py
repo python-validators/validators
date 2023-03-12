@@ -1,4 +1,5 @@
 """UUID."""
+# -*- coding: utf-8 -*-
 
 # standard
 from typing import Union
