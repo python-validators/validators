@@ -12,6 +12,8 @@
 
 ::: validators.hashes
 
+::: validators.hostname
+
 ::: validators.iban
 
 ::: validators.ip_address

@@ -7,6 +7,7 @@ from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay
 from .domain import domain
 from .email import email
 from .hashes import md5, sha1, sha224, sha256, sha512
+from .hostname import hostname
 from .i18n import fi_business_id, fi_ssn
 from .iban import iban
 from .ip_address import ipv4, ipv6
@@ -28,6 +29,7 @@ __all__ = (
     "email",
     "fi_business_id",
     "fi_ssn",
+    "hostname",
     "iban",
     "ipv4",
     "ipv6",
