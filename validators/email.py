@@ -5,12 +5,20 @@
 import re
 
 # local
+from .hostname import hostname
 from .utils import validator
-from .domain import domain
 
 
 @validator
-def email(value: str, /):
+def email(
+    value: str,
+    /,
+    *,
+    simple_host: bool = False,
+    ip_address: bool = False,
+    rfc_1034: bool = False,
+    rfc_2782: bool = False,
+):
     """Validate an email address.
 
     This was inspired from [Django's email validator][1].
@@ -30,6 +38,16 @@ def email(value: str, /):
     Args:
         value:
             eMail string to validate.
+        simple_host:
+            When the domain part is a simple hostname.
+        ip_address:
+            When the domain part is an IP address.
+        rfc_1034:
+            Allow trailing dot in domain name.
+            Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
+        rfc_2782:
+            Domain name is of type service record.
+            Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
     Returns:
         (Literal[True]):
@@ -48,14 +66,31 @@ def email(value: str, /):
         # ref: RFC 1034 and 5231
         return False
 
+    if ip_address:
+        if domain_part.startswith("[") and domain_part.endswith("]"):
+            # ref: RFC 5321
+            domain_part = domain_part.lstrip("[").rstrip("]")
+        else:
+            return False
+
     return (
-        bool(domain(domain_part))
-        if re.compile(
+        bool(
+            hostname(
+                domain_part,
+                skip_ip_addr=not ip_address,
+                may_have_port=False,
+                maybe_simple=simple_host,
+                rfc_1034=rfc_1034,
+                rfc_2782=rfc_2782,
+            )
+        )
+        if re.match(
             # dot-atom
             r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
             # quoted-string
             + r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-\011\013\014\016-\177])*"$)',
+            username_part,
             re.IGNORECASE,
-        ).match(username_part)
+        )
         else False
     )
