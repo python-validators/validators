@@ -26,6 +26,21 @@ def _simple_hostname_regex():
     return re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$")
 
 
+def _port_validator(value: str):
+    """Returns host segment if port is valid."""
+    if value.count("]:") == 1:
+        # with ipv6
+        host_seg, port_seg = value.rsplit(":", 1)
+        if _port_regex().match(f":{port_seg}"):
+            return host_seg.lstrip("[").rstrip("]")
+
+    if value.count(":") == 1:
+        # with ipv4 or simple hostname
+        host_seg, port_seg = value.rsplit(":", 1)
+        if _port_regex().match(f":{port_seg}"):
+            return host_seg
+
+
 @validator
 def hostname(
     value: str,
@@ -85,19 +100,13 @@ def hostname(
 
     > *New in version 0.21.0*.
     """
-    if may_have_port:
-        if value.count("]:") == 1 and not skip_ip_addr:
-            host_seg, port_seg = value.rsplit(":", 1)
-            return _port_regex().match(f":{port_seg}") and ipv6(
-                host_seg.lstrip("[").rstrip("]"), cidr=False
-            )
-        if value.count(":") == 1:
-            host_seg, port_seg = value.rsplit(":", 1)
-            return _port_regex().match(f":{port_seg}") and (
-                (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
-                or domain(host_seg, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
-                or (False if skip_ip_addr else ipv4(host_seg, cidr=False))
-            )
+    if may_have_port and (host_seg := _port_validator(value)):
+        return (
+            (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
+            or domain(host_seg, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
+            or (False if skip_ip_addr else ipv4(host_seg, cidr=False))
+            or (False if skip_ip_addr else ipv6(host_seg, cidr=False))
+        )
 
     return (
         (_simple_hostname_regex().match(value) if maybe_simple else False)
