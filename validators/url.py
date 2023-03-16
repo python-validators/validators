@@ -70,10 +70,10 @@ regex = re.compile(  # noqa: W605
     r")\]|"
     # host name
     r"(?:(?:(?:xn--[-]{0,2})|[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]-?)*"
-    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]+)"
+    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9])"
     # domain name
     r"(?:\.(?:(?:xn--[-]{0,2})|[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]-?)*"
-    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]+)*"
+    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9])*"
     # TLD identifier
     r"(?:\.(?:(?:xn--[-]{0,2}[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]{2,})|"
     r"[a-z\u00a1-\uffff\U00010000-\U0010ffff]{2,}))"
