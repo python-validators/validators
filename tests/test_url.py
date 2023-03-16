@@ -134,6 +134,7 @@ def test_returns_true_on_valid_public_url(address, public):
     'http://[2010:836B:4179::836B:4179',
     'http://2010:836B:4179::836B:4179',
     'http://2010:836B:4179::836B:4179:80/index.html',
+    'http://0.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.', # ReDoS
 ])
 def test_returns_failed_validation_on_invalid_url(address):
     assert isinstance(url(address), ValidationFailure)
