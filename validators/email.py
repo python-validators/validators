@@ -14,8 +14,9 @@ def email(
     value: str,
     /,
     *,
+    ipv6_address: bool = False,
+    ipv4_address: bool = False,
     simple_host: bool = False,
-    ip_address: bool = False,
     rfc_1034: bool = False,
     rfc_2782: bool = False,
 ):
@@ -38,10 +39,12 @@ def email(
     Args:
         value:
             eMail string to validate.
+        ipv6_address:
+            When the domain part is an IPv6 address.
+        ipv4_address:
+            When the domain part is an IPv4 address.
         simple_host:
             When the domain part is a simple hostname.
-        ip_address:
-            When the domain part is an IP address.
         rfc_1034:
             Allow trailing dot in domain name.
             Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
@@ -66,7 +69,7 @@ def email(
         # ref: RFC 1034 and 5231
         return False
 
-    if ip_address:
+    if ipv6_address or ipv4_address:
         if domain_part.startswith("[") and domain_part.endswith("]"):
             # ref: RFC 5321
             domain_part = domain_part.lstrip("[").rstrip("]")
@@ -77,7 +80,8 @@ def email(
         bool(
             hostname(
                 domain_part,
-                skip_ip_addr=not ip_address,
+                skip_ipv6_addr=not ipv6_address,
+                skip_ipv4_addr=not ipv4_address,
                 may_have_port=False,
                 maybe_simple=simple_host,
                 rfc_1034=rfc_1034,
