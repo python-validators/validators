@@ -45,7 +45,7 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
     > *New in version 0.9.0*.
     """
     try:
-        return not re.search(r"\s", value) and re.compile(
+        return not re.search(r"\s", value) and re.match(
             # First character of the domain
             rf"^(?:[a-zA-Z0-9{'_'if rfc_2782 else ''}]"
             # Sub domain + hostname
@@ -53,7 +53,9 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
             # First 61 characters of the gTLD
             + r"+[A-Za-z0-9][A-Za-z0-9-_]{0,61}"
             # Last character of the gTLD
-            + rf"[A-Za-z]{r'.$' if rfc_1034 else r'$'}"
-        ).match(value.encode("idna").decode("ascii"))
+            + rf"[A-Za-z]{r'.$' if rfc_1034 else r'$'}",
+            value.encode("idna").decode("utf-8"),
+            re.IGNORECASE,
+        )
     except UnicodeError:
         return False

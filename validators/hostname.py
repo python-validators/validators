@@ -46,8 +46,9 @@ def hostname(
     value: str,
     /,
     *,
+    skip_ipv6_addr: bool = False,
+    skip_ipv4_addr: bool = False,
     may_have_port: bool = True,
-    skip_ip_addr: bool = False,
     maybe_simple: bool = True,
     rfc_1034: bool = False,
     rfc_2782: bool = False,
@@ -79,10 +80,12 @@ def hostname(
     Args:
         value:
             Hostname string to validate.
+        skip_ipv6_addr:
+            When hostname string cannot be an IPv6 address.
+        skip_ipv4_addr:
+            When hostname string cannot be an IPv4 address.
         may_have_port:
             Hostname string may contain port number.
-        skip_ip_addr:
-            When hostname string cannot be an IP address.
         maybe_simple:
             Hostname string maybe only hyphens and alpha-numerals.
         rfc_1034:
@@ -104,13 +107,13 @@ def hostname(
         return (
             (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
             or domain(host_seg, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
-            or (False if skip_ip_addr else ipv4(host_seg, cidr=False))
-            or (False if skip_ip_addr else ipv6(host_seg, cidr=False))
+            or (False if skip_ipv4_addr else ipv4(host_seg, cidr=False))
+            or (False if skip_ipv6_addr else ipv6(host_seg, cidr=False))
         )
 
     return (
         (_simple_hostname_regex().match(value) if maybe_simple else False)
         or domain(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
-        or (False if skip_ip_addr else ipv4(value, cidr=False))
-        or (False if skip_ip_addr else ipv6(value, cidr=False))
+        or (False if skip_ipv4_addr else ipv4(value, cidr=False))
+        or (False if skip_ipv6_addr else ipv6(value, cidr=False))
     )
