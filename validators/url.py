@@ -1,154 +1,208 @@
+"""URL."""
+# -*- coding: utf-8 -*-
+
+# standard
+from urllib.parse import urlsplit
+from functools import lru_cache
 import re
 
+# local
+from .hostname import hostname
 from .utils import validator
 
-ip_middle_octet = r"(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5]))"
-ip_last_octet = r"(?:\.(?:0|[1-9]\d?|1\d\d|2[0-4]\d|25[0-5]))"
 
-regex = re.compile(  # noqa: W605
-    r"^"
-    # protocol identifier
-    r"(?:(?:https?|ftp)://)"
-    # user:pass authentication
-    r"(?:[-a-z\u00a1-\uffff0-9._~%!$&'()*+,;=:]+"
-    r"(?::[-a-z0-9._~%!$&'()*+,;=:]*)?@)?"
-    r"(?:"
-    r"(?P<private_ip>"
-    # IP address exclusion
-    # private & local networks
-    r"(?:(?:10|127)" + ip_middle_octet + r"{2}" + ip_last_octet + r")|"
-    r"(?:(?:169\.254|192\.168)" + ip_middle_octet + ip_last_octet + r")|"
-    r"(?:172\.(?:1[6-9]|2\d|3[0-1])" + ip_middle_octet + ip_last_octet + r"))"
-    r"|"
-    # private & local hosts
-    r"(?P<private_host>"
-    r"(?:localhost))"
-    r"|"
-    # IP address dotted notation octets
-    # excludes loopback network 0.0.0.0
-    # excludes reserved space >= 224.0.0.0
-    # excludes network & broadcast addresses
-    # (first & last IP address of each class)
-    r"(?P<public_ip>"
-    r"(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])"
-    r"" + ip_middle_octet + r"{2}"
-    r"" + ip_last_octet + r")"
-    r"|"
-    # IPv6 RegEx from https://stackoverflow.com/a/17871737
-    r"\[("
-    # 1:2:3:4:5:6:7:8
-    r"([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|"
-    # 1::                              1:2:3:4:5:6:7::
-    r"([0-9a-fA-F]{1,4}:){1,7}:|"
-    # 1::8             1:2:3:4:5:6::8  1:2:3:4:5:6::8
-    r"([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|"
-    # 1::7:8           1:2:3:4:5::7:8  1:2:3:4:5::8
-    r"([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|"
-    # 1::6:7:8         1:2:3:4::6:7:8  1:2:3:4::8
-    r"([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|"
-    # 1::5:6:7:8       1:2:3::5:6:7:8  1:2:3::8
-    r"([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|"
-    # 1::4:5:6:7:8     1:2::4:5:6:7:8  1:2::8
-    r"([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|"
-    # 1::3:4:5:6:7:8   1::3:4:5:6:7:8  1::8
-    r"[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|"
-    # ::2:3:4:5:6:7:8  ::2:3:4:5:6:7:8 ::8       ::
-    r":((:[0-9a-fA-F]{1,4}){1,7}|:)|"
-    # fe80::7:8%eth0   fe80::7:8%1
-    # (link-local IPv6 addresses with zone index)
-    r"fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|"
-    r"::(ffff(:0{1,4}){0,1}:){0,1}"
-    r"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
-    # ::255.255.255.255   ::ffff:255.255.255.255  ::ffff:0:255.255.255.255
-    # (IPv4-mapped IPv6 addresses and IPv4-translated addresses)
-    r"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|"
-    r"([0-9a-fA-F]{1,4}:){1,4}:"
-    r"((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}"
-    # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33
-    # (IPv4-Embedded IPv6 Address)
-    r"(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])"
-    r")\]|"
-    # host name
-    r"(?:(?:(?:xn--[-]{0,2})|[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]-?)*"
-    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]+)"
-    # domain name
-    r"(?:\.(?:(?:xn--[-]{0,2})|[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]-?)*"
-    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]+)*"
-    # TLD identifier
-    r"(?:\.(?:(?:xn--[-]{0,2}[a-z\u00a1-\uffff\U00010000-\U0010ffff0-9]{2,})|"
-    r"[a-z\u00a1-\uffff\U00010000-\U0010ffff]{2,}))"
-    r")"
-    # port number
-    r"(?::\d{2,5})?"
-    # resource path
-    r"(?:/[-a-z\u00a1-\uffff\U00010000-\U0010ffff0-9._~%!$&'()*+,;=:@/]*)?"
-    # query string
-    r"(?:\?\S*)?"
-    # fragment
-    r"(?:#\S*)?"
-    r"$",
-    re.UNICODE | re.IGNORECASE
-)
+@lru_cache
+def _username_regex():
+    return re.compile(
+        # dot-atom
+        r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
+        # non-quoted-string
+        + r"|^([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-\011\013\014\016-\177])*$)",
+        re.IGNORECASE,
+    )
 
-pattern = re.compile(regex)
+
+@lru_cache
+def _path_regex():
+    return re.compile(r"^[\/a-zA-Z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%]+$", re.IGNORECASE)
+
+
+@lru_cache
+def _query_regex():
+    return re.compile(r"&?(\w+=?[^\s&]*)", re.IGNORECASE)
+
+
+def _validate_scheme(value: str):
+    """Validate scheme."""
+    # More schemes will be considered later.
+    return (
+        value in {"ftp", "ftps", "git", "http", "https", "rtsp", "sftp", "ssh", "telnet"}
+        if value
+        else False
+    )
+
+
+def _confirm_ipv6_skip(value: str, skip_ipv6_addr: bool):
+    """Confirm skip IPv6 check."""
+    return skip_ipv6_addr or value.count(":") < 2 or not value.startswith("[")
+
+
+def _validate_auth_segment(value: str):
+    """Validate authentication segment."""
+    if not value:
+        return True
+    if (colon_count := value.count(":")) > 1:
+        return False
+    if colon_count < 1:
+        return _username_regex().match(value)
+    username, password = value.rsplit(":", 1)
+    return _username_regex().match(username) and all(
+        char_to_avoid not in password for char_to_avoid in {"/", "?", "#", "@"}
+    )
+
+
+def _validate_netloc(
+    value: str,
+    skip_ipv6_addr: bool,
+    skip_ipv4_addr: bool,
+    may_have_port: bool,
+    simple_host: bool,
+    rfc_1034: bool,
+    rfc_2782: bool,
+):
+    """Validate netloc."""
+    if not value or value.count("@") > 1:
+        return False
+    if value.count("@") < 1:
+        return hostname(
+            value
+            if _confirm_ipv6_skip(value, skip_ipv6_addr) or "]:" in value
+            else value.lstrip("[").replace("]", "", 1),
+            skip_ipv6_addr=_confirm_ipv6_skip(value, skip_ipv6_addr),
+            skip_ipv4_addr=skip_ipv4_addr,
+            may_have_port=may_have_port,
+            maybe_simple=simple_host,
+            rfc_1034=rfc_1034,
+            rfc_2782=rfc_2782,
+        )
+    basic_auth, host = value.rsplit("@", 1)
+    return hostname(
+        host
+        if _confirm_ipv6_skip(host, skip_ipv6_addr) or "]:" in value
+        else host.lstrip("[").replace("]", "", 1),
+        skip_ipv6_addr=_confirm_ipv6_skip(host, skip_ipv6_addr),
+        skip_ipv4_addr=skip_ipv4_addr,
+        may_have_port=may_have_port,
+        maybe_simple=simple_host,
+        rfc_1034=rfc_1034,
+        rfc_2782=rfc_2782,
+    ) and _validate_auth_segment(basic_auth)
+
+
+def _validate_optionals(path: str, query: str, fragment: str):
+    """Validate path query and fragments."""
+    optional_segments = True
+    if path:
+        optional_segments &= bool(_path_regex().match(path.encode("idna").decode("utf-8")))
+    if query:
+        optional_segments &= bool(_query_regex().match(query.encode("idna").decode("utf-8")))
+    if fragment:
+        optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in {"/", "?"})
+    return optional_segments
 
 
 @validator
-def url(value, public=False):
-    """
-    Return whether or not given value is a valid URL.
+def url(
+    value: str,
+    /,
+    *,
+    skip_ipv6_addr: bool = False,
+    skip_ipv4_addr: bool = False,
+    may_have_port: bool = True,
+    simple_host: bool = False,
+    rfc_1034: bool = False,
+    rfc_2782: bool = False,
+):
+    r"""Return whether or not given value is a valid URL.
 
-    If the value is valid URL this function returns ``True``, otherwise
-    :class:`~validators.utils.ValidationFailure`.
+    This validator was inspired from [URL validator of dperini][1].
+    The following diagram is from [urlly][2].
 
-    This validator is based on the wonderful `URL validator of dperini`_.
+            foo://admin:hunter1@example.com:8042/over/there?name=ferret#nose
+            \_/   \___/ \_____/ \_________/ \__/\_________/ \_________/ \__/
+             |      |       |       |        |       |          |         |
+          scheme username password hostname port    path      query    fragment
 
-    .. _URL validator of dperini:
-        https://gist.github.com/dperini/729294
+    [1]: https://gist.github.com/dperini/729294
+    [2]: https://github.com/treeform/urlly
 
-    Examples::
-
-        >>> url('http://foobar.dk')
-        True
-
+    Examples:
+        >>> url('http://duck.com')
+        # Output: True
         >>> url('ftp://foobar.dk')
-        True
-
+        # Output: True
         >>> url('http://10.0.0.1')
-        True
+        # Output: True
+        >>> url('http://example.com/">user@example.com')
+        # Output: ValidationFailure(func=url, ...)
 
-        >>> url('http://foobar.d')
-        ValidationFailure(func=url, ...)
+    Args:
+        value:
+            URL string to validate.
+        skip_ipv6_addr:
+            When URL string cannot contain an IPv6 address.
+        skip_ipv4_addr:
+            When URL string cannot contain an IPv4 address.
+        may_have_port:
+            URL string may contain port number.
+        maybe_simple:
+            URL string maybe only hyphens and alpha-numerals.
+        rfc_1034:
+            Allow trailing dot in domain/host name.
+            Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
+        rfc_2782:
+            Domain/Host name is of type service record.
+            Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
-        >>> url('http://10.0.0.1', public=True)
-        ValidationFailure(func=url, ...)
+    Returns:
+        (Literal[True]):
+            If `value` is a valid slug.
+        (ValidationFailure):
+            If `value` is an invalid slug.
 
-    .. versionadded:: 0.2
+    Note:
+        - *In version 0.11.3*:
+            - Added support for URLs containing localhost.
+        - *In version 0.11.0*:
+            - Made the regular expression case insensitive.
+        - *In version 0.10.3*:
+            - Added a `public` parameter.
+        - *In version 0.10.2*:
+            - Added support for various exotic URLs.
+            - Fixed various false positives.
 
-    .. versionchanged:: 0.10.2
-
-        Added support for various exotic URLs and fixed various false
-        positives.
-
-    .. versionchanged:: 0.10.3
-
-        Added ``public`` parameter.
-
-    .. versionchanged:: 0.11.0
-
-        Made the regular expression this function uses case insensitive.
-
-    .. versionchanged:: 0.11.3
-
-        Added support for URLs containing localhost
-
-    :param value: URL address string to validate
-    :param public: (default=False) Set True to only allow a public IP address
+    > *New in version 0.2.0*.
     """
-    result = pattern.match(value)
-    if not public:
-        return result
+    if not value or re.search(r"\s", value):
+        # url must not contain any white
+        # spaces, they must be encoded
+        return False
 
-    return result and not any(
-        (result.groupdict().get(key) for key in ('private_ip', 'private_host'))
+    try:
+        scheme, netloc, path, query, fragment = urlsplit(value)
+    except ValueError:
+        return False
+
+    return (
+        _validate_scheme(scheme)
+        and _validate_netloc(
+            netloc,
+            skip_ipv6_addr,
+            skip_ipv4_addr,
+            may_have_port,
+            simple_host,
+            rfc_1034,
+            rfc_2782,
+        )
+        and _validate_optionals(path, query, fragment)
     )
