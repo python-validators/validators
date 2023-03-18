@@ -24,7 +24,7 @@
 
 ::: validators.slug
 
-<!-- ::: validators.url -->
+::: validators.url
 
 ::: validators.uuid
 
