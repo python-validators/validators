@@ -8,7 +8,8 @@ site_dir: "site"
 watch: [README.md, validators/]
 
 nav:
-  - Reference: index.md
+  - Home: index.md
+  - Code Reference: reference/
 
 theme:
   name: material
@@ -18,6 +19,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
+          options:
+            show_root_heading: true
           import:
             - https://docs.python-requests.org/en/master/objects.inv
 
