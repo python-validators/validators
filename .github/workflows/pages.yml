@@ -37,7 +37,7 @@ jobs:
       - name: Build documentation
         run: |
           source .venv/bin/activate
-          mkdocs build
+          python ./docs/gen_docs.py
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
