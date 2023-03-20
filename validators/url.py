@@ -57,7 +57,7 @@ def _validate_auth_segment(value: str):
         return _username_regex().match(value)
     username, password = value.rsplit(":", 1)
     return _username_regex().match(username) and all(
-        char_to_avoid not in password for char_to_avoid in {"/", "?", "#", "@"}
+        char_to_avoid not in password for char_to_avoid in ("/", "?", "#", "@")
     )
 
 
@@ -107,7 +107,7 @@ def _validate_optionals(path: str, query: str, fragment: str):
     if query:
         optional_segments &= bool(_query_regex().match(query.encode("idna").decode("utf-8")))
     if fragment:
-        optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in {"/", "?"})
+        optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in ("/", "?"))
     return optional_segments
 
 
@@ -155,7 +155,7 @@ def url(
             When URL string cannot contain an IPv4 address.
         may_have_port:
             URL string may contain port number.
-        maybe_simple:
+        simple_host:
             URL string maybe only hyphens and alpha-numerals.
         rfc_1034:
             Allow trailing dot in domain/host name.

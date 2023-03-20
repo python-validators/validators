@@ -6,7 +6,7 @@ from functools import lru_cache
 import re
 
 # local
-from .ip_address import ipv4, ipv6
+from .ip_address import ipv6, ipv4
 from .utils import validator
 from .domain import domain
 
@@ -39,6 +39,8 @@ def _port_validator(value: str):
         host_seg, port_seg = value.rsplit(":", 1)
         if _port_regex().match(f":{port_seg}"):
             return host_seg
+
+    return None
 
 
 @validator
@@ -103,6 +105,9 @@ def hostname(
 
     > *New in version 0.21.0*.
     """
+    if not value:
+        return False
+
     if may_have_port and (host_seg := _port_validator(value)):
         return (
             (_simple_hostname_regex().match(host_seg) if maybe_simple else False)

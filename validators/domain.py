@@ -44,6 +44,8 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
 
     > *New in version 0.9.0*.
     """
+    if not value:
+        return False
     try:
         return not re.search(r"\s", value) and re.match(
             # First character of the domain

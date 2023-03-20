@@ -7,8 +7,8 @@ from typing import Any
 # external
 import pytest
 
-# project
-from validators._extremes import AbsMax, AbsMin
+# local
+from validators._extremes import AbsMin, AbsMax
 
 abs_max = AbsMax()
 abs_min = AbsMin()

@@ -5,8 +5,7 @@
 import pytest
 
 # local
-from validators import md5, sha1, sha224, sha256, sha512, ValidationFailure
-
+from validators import sha512, sha256, sha224, sha1, md5, ValidationFailure
 
 # ==> md5 <== #
 

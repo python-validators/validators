@@ -33,4 +33,4 @@ def slug(value: str, /):
 
     > *New in version 0.6.0*.
     """
-    return re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", value)
+    return re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", value) if value else False

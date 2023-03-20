@@ -30,7 +30,7 @@ def md5(value: str, /):
 
     > *New in version 0.12.1*
     """
-    return re.match(r"^[0-9a-f]{32}$", value, re.IGNORECASE)
+    return re.match(r"^[0-9a-f]{32}$", value, re.IGNORECASE) if value else False
 
 
 @validator
@@ -55,7 +55,7 @@ def sha1(value: str, /):
 
     > *New in version 0.12.1*
     """
-    return re.match(r"^[0-9a-f]{40}$", value, re.IGNORECASE)
+    return re.match(r"^[0-9a-f]{40}$", value, re.IGNORECASE) if value else False
 
 
 @validator
@@ -80,7 +80,7 @@ def sha224(value: str, /):
 
     > *New in version 0.12.1*
     """
-    return re.match(r"^[0-9a-f]{56}$", value, re.IGNORECASE)
+    return re.match(r"^[0-9a-f]{56}$", value, re.IGNORECASE) if value else False
 
 
 @validator
@@ -108,7 +108,7 @@ def sha256(value: str, /):
 
     > *New in version 0.12.1*
     """
-    return re.match(r"^[0-9a-f]{64}$", value, re.IGNORECASE)
+    return re.match(r"^[0-9a-f]{64}$", value, re.IGNORECASE) if value else False
 
 
 @validator
@@ -137,4 +137,4 @@ def sha512(value: str, /):
 
     > *New in version 0.12.1*
     """
-    return re.match(r"^[0-9a-f]{128}$", value, re.IGNORECASE)
+    return re.match(r"^[0-9a-f]{128}$", value, re.IGNORECASE) if value else False

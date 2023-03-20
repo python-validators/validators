@@ -6,7 +6,7 @@ from typing import TypeVar, Union
 from datetime import datetime
 
 # local
-from ._extremes import AbsMax, AbsMin
+from ._extremes import AbsMin, AbsMax
 from .utils import validator
 
 PossibleValueTypes = TypeVar("PossibleValueTypes", int, float, str, datetime)

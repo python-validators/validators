@@ -5,7 +5,7 @@
 import pytest
 
 # local
-from validators import ipv4, ipv6, ValidationFailure
+from validators import ipv6, ipv4, ValidationFailure
 
 
 @pytest.mark.parametrize(

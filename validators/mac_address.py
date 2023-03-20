@@ -34,4 +34,4 @@ def mac_address(value: str, /):
 
     > *New in version 0.2.0*.
     """
-    return re.match(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", value)
+    return re.match(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", value) if value else False

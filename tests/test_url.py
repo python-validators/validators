@@ -5,7 +5,7 @@
 import pytest
 
 # local
-from validators import ValidationFailure, url
+from validators import url, ValidationFailure
 
 
 @pytest.mark.parametrize(

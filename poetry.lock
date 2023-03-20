@@ -866,6 +866,21 @@ pyyaml = ">=5.1"
 virtualenv = ">=20.10.0"
 
 [[package]]
+name = "pyaml"
+version = "21.10.1"
+description = "PyYAML-based module to produce pretty and readable YAML-serialized data"
+category = "dev"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pyaml-21.10.1-py2.py3-none-any.whl", hash = "sha256:19985ed303c3a985de4cf8fd329b6d0a5a5b5c9035ea240eccc709ebacbaf4a0"},
+    {file = "pyaml-21.10.1.tar.gz", hash = "sha256:c6519fee13bf06e3bb3f20cacdea8eba9140385a7c2546df5dbae4887f768383"},
+]
+
+[package.dependencies]
+PyYAML = "*"
+
+[[package]]
 name = "pycodestyle"
 version = "2.9.1"
 description = "Python style guide checker"
@@ -1439,4 +1454,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "0d3d02b694099f712d6ebec660a6854bca91b1ebebad0f81be5805b1974c9923"
+content-hash = "50370d78d455974d8323b523c02050900a5570ce08657757a1666a03c92fdca1"

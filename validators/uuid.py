@@ -36,6 +36,8 @@ def uuid(value: Union[str, UUID], /):
 
     > *New in version 0.2.0*.
     """
+    if not value:
+        return False
     if isinstance(value, UUID):
         return True
     try:
