@@ -1,9 +1,8 @@
 """Test validation Failure."""
 # -*- coding: utf-8 -*-
 
-# project
+# local
 from validators import between
-
 
 failed_obj_repr = "ValidationFailure(func=between"
 

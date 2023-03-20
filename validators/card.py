@@ -34,6 +34,8 @@ def card_number(value: str, /):
 
     > *New in version 0.15.0*.
     """
+    if not value:
+        return False
     try:
         digits = list(map(int, value))
         odd_sum = sum(digits[-1::-2])

@@ -42,4 +42,8 @@ def iban(value: str, /):
 
     > *New in version 0.8.0*
     """
-    return re.match(r"^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$", value) and _mod_check(value)
+    return (
+        (re.match(r"^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$", value) and _mod_check(value))
+        if value
+        else False
+    )

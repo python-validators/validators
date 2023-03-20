@@ -4,7 +4,7 @@
 # external
 import pytest
 
-# project
+# local
 from validators import length, ValidationFailure
 
 

@@ -6,7 +6,6 @@ import pytest
 
 # local
 from validators import (
-    ValidationFailure,
     card_number,
     mastercard,
     unionpay,
@@ -15,6 +14,7 @@ from validators import (
     visa,
     amex,
     jcb,
+    ValidationFailure,
 )
 
 visa_cards = ["4242424242424242", "4000002760003184"]

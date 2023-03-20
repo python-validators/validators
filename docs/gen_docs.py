@@ -1,14 +1,16 @@
 """Generate docs."""
 
 # standard
-from shutil import copy, move, rmtree
-from yaml import safe_load, safe_dump
+from shutil import rmtree, move, copy
 from ast import parse, ImportFrom
-from typing import Dict, List
+from typing import List, Dict
 from os.path import getsize
 from subprocess import run
 from pathlib import Path
 from sys import argv
+
+# external
+from yaml import safe_load, safe_dump
 
 
 def _write_ref_content(source: Path, module_name: str, func_name: str):
@@ -61,7 +63,7 @@ def generate_documentation(source: Path):
     # build docs as subprocess
     print(run(("mkdocs", "build"), capture_output=True).stderr.decode())
     # restore mkdocs config
-    move(source / "mkdocs.bak.yml", source / "mkdocs.yml")
+    move(str(source / "mkdocs.bak.yml"), source / "mkdocs.yml")
 
 
 if __name__ == "__main__":

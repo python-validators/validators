@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # local
-from .between import between
 from .utils import validator
+from .between import between
 
 
 @validator
@@ -36,4 +36,4 @@ def length(value: str, /, *, min_val: int = 0, max_val: int = 0):
 
     > *New in version 0.2.0*.
     """
-    return between(len(value), min_val=min_val, max_val=max_val)
+    return between(len(value), min_val=min_val, max_val=max_val) if value else False

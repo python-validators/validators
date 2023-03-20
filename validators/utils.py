@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from typing import Any, Callable, Dict
+from typing import Callable, Dict, Any
 from inspect import getfullargspec
-from functools import wraps
 from itertools import chain
+from functools import wraps
 
 
 class ValidationFailure(Exception):

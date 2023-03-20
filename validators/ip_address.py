@@ -3,12 +3,12 @@
 
 # standard
 from ipaddress import (
-    AddressValueError,
     NetmaskValueError,
-    IPv4Address,
-    IPv4Network,
-    IPv6Address,
+    AddressValueError,
     IPv6Network,
+    IPv6Address,
+    IPv4Network,
+    IPv4Address,
 )
 
 # local
@@ -56,6 +56,8 @@ def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False):
 
     > *New in version 0.2.0*
     """
+    if not value:
+        return False
     try:
         if cidr and value.count("/") == 1:
             return IPv4Network(value, strict=strict)
@@ -104,6 +106,8 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False):
 
     > *New in version 0.2.0*
     """
+    if not value:
+        return False
     try:
         if cidr and value.count("/") == 1:
             return IPv6Network(value, strict=strict)
