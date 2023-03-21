@@ -1,4 +1,5 @@
 """Generate docs."""
+# -*- coding: utf-8 -*-
 
 # standard
 from shutil import rmtree, move, copy

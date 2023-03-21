@@ -28,7 +28,6 @@ include = ["CHANGES.md", "docs/*"]
 python = "^3.8"
 
 [tool.poetry.group.dev.dependencies]
-pre-commit = "^3.2.0"
 tox = "^4.4.7"
 
 [tool.poetry.group.docs.dependencies]
@@ -36,6 +35,9 @@ mkdocs = "^1.4.2"
 mkdocs-material = "^9.1.3"
 mkdocstrings = { extras = ["python"], version = "^0.20.0" }
 pyaml = "^21.10.1"
+
+[tool.poetry.group.hooks.dependencies]
+pre-commit = "^3.2.0"
 
 [tool.poetry.group.sast.dependencies]
 bandit = "^1.7.5"
@@ -71,7 +73,9 @@ ensure_newline_before_comments = true
 extend_skip_glob = ["**/i18n/*"]
 force_grid_wrap = 0
 force_sort_within_sections = true
-ignore_comments = true
+import_heading_stdlib = "standard"
+import_heading_thirdparty = "external"
+import_heading_localfolder = "local"
 include_trailing_comma = true
 known_local_folder = ["validators"]
 length_sort = true
@@ -92,36 +96,39 @@ typeCheckingMode = "strict"
 
 [tool.tox]
 legacy_tox_ini = """
-    [tox]
-    requires =
-        tox >= 4.0
-    env_list = py{38,39,310,311}
-        fmt_black, fmt_isort, lint, type
+[tox]
+min_version = 4.0
+env_list =
+    py{38,39,310,311}
+    fmt_black
+    fmt_isort
+    lint
+    type
 
-    [testenv]
-    description = run unit tests
-    deps = pytest
-    commands = pytest
+[testenv]
+description = run unit tests
+deps = pytest
+commands = pytest tests/
 
-    [testenv:fmt_black]
-    description = run formatter
-    deps = black
-    commands = black .
+[testenv:fmt_black]
+description = run formatter
+deps = black
+commands = black .
 
-    [testenv:fmt_isort]
-    description = run formatter
-    deps = isort
-    commands = isort .
+[testenv:fmt_isort]
+description = run formatter
+deps = isort
+commands = isort .
 
-    [testenv:lint]
-    description = run linters
-    deps = flake8
-    commands = flake8
+[testenv:lint]
+description = run linters
+deps = flake8
+commands = flake8
 
-    [testenv:type]
-    description = run type checker
-    deps =
-        pyright
-        pytest
-    commands = pyright
+[testenv:type]
+description = run type checker
+deps =
+    pyright
+    pytest
+commands = pyright
 """

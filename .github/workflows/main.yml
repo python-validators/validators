@@ -8,51 +8,32 @@ on:
     branches: [master]
 
 jobs:
-  DevOps:
+  PreflightChecks:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: true
       matrix:
         python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
-      #----------------------------------------------
-      #       check-out repo and set-up python
-      #----------------------------------------------
+      # checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
+      # setup specific python version
       - name: Setup Python v${{ matrix.python-version }}
-        # id: setup-python
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
-      #----------------------------------------------
-      #          install & configure poetry
-      #----------------------------------------------
+      # install & configure poetry
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
-          version: 1.3.2
+          version: 1.4.1
           virtualenvs-create: true
           virtualenvs-in-project: true
-      #----------------------------------------------
-      #       load cached venv if cache exists
-      #----------------------------------------------
-      # - name: Load cached venv
-      #   id: cached-poetry-dependencies
-      #   uses: actions/cache@v3
-      #   with:
-      #     path: .venv
-      #     key: venv-${{ runner.os }}-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('**/poetry.lock') }}
-      #----------------------------------------------
-      # install dependencies if cache does not exist
-      #----------------------------------------------
-      - name: Install test dependencies
-        # if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-        run: poetry install --no-interaction --no-root --no-ansi --only tests
-      #----------------------------------------------
-      #              run test suite
-      #----------------------------------------------
-      - name: Run tests
+      # install dependencies
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-ansi --without docs,hooks,sast
+      # run preflight checks
+      - name: Preflight checks with tox
         run: |
           source .venv/bin/activate
-          pytest tests/
+          tox
