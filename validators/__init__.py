@@ -1,22 +1,29 @@
 """Validate Anything!"""
 # -*- coding: utf-8 -*-
 
-from .card import card_number, mastercard, unionpay, discover, diners, visa, amex, jcb
-from .hashes import sha512, sha256, sha224, sha1, md5
-from .utils import validator, ValidationFailure
-from .i18n import fi_business_id, fi_ssn
-from .mac_address import mac_address
-from .btc_address import btc_address
-from .ip_address import ipv6, ipv4
-from .hostname import hostname
+# isort: skip_file
+
+# The following imports are sorted alphabetically, manually.
+# Each line is grouped based first or type, then sorted alphabetically.
+# This is for the reference documentation.
+
+# local
 from .between import between
-from .length import length
+from .btc_address import btc_address
+from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
-from .uuid import uuid
-from .slug import slug
+from .hashes import md5, sha1, sha224, sha256, sha512
+from .hostname import hostname
+from .i18n import fi_business_id, fi_ssn
 from .iban import iban
+from .ip_address import ipv4, ipv6
+from .length import length
+from .mac_address import mac_address
+from .slug import slug
 from .url import url
+from .utils import validator, ValidationFailure
+from .uuid import uuid
 
 __all__ = (
     "amex",
