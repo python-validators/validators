@@ -15,7 +15,6 @@ from .domain import domain
 from .email import email
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
-from .i18n import fi_business_id, fi_ssn
 from .iban import iban
 from .ip_address import ipv4, ipv6
 from .length import length
@@ -24,6 +23,8 @@ from .slug import slug
 from .url import url
 from .utils import validator, ValidationFailure
 from .uuid import uuid
+
+from .i18n import es_cif, es_doi, es_nie, es_nif, fi_business_id, fi_ssn
 
 __all__ = (
     "amex",
@@ -34,8 +35,6 @@ __all__ = (
     "discover",
     "domain",
     "email",
-    "fi_business_id",
-    "fi_ssn",
     "hostname",
     "iban",
     "ipv4",
@@ -56,6 +55,13 @@ __all__ = (
     "ValidationFailure",
     "validator",
     "visa",
+    # i18n
+    "es_cif",
+    "es_doi",
+    "es_nie",
+    "es_nif",
+    "fi_business_id",
+    "fi_ssn",
 )
 
 __version__ = "0.20.0"
