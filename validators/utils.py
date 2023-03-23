@@ -11,8 +11,10 @@ from functools import wraps
 class ValidationFailure(Exception):
     """Exception class when validation failure occurs."""
 
-    def __init__(self, function: Callable[..., Any], arg_dict: Dict[str, Any]):
+    def __init__(self, function: Callable[..., Any], arg_dict: Dict[str, Any], message: str = ""):
         """Initialize Validation Failure."""
+        if message:
+            self.reason = message
         self.func = function
         self.__dict__.update(arg_dict)
 
@@ -60,7 +62,7 @@ def validator(func: Callable[..., Any]):
             Function which is to be decorated.
 
     Returns:
-        (Callable[..., ValidationFailure | Literal[True])):
+        (Callable[..., ValidationFailure | Literal[True]]):
             A decorator which returns either `ValidationFailure`
             or `Literal[True]`.
 
@@ -69,10 +71,13 @@ def validator(func: Callable[..., Any]):
 
     @wraps(func)
     def wrapper(*args: Any, **kwargs: Any):
-        return (
-            True
-            if func(*args, **kwargs)
-            else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
-        )
+        try:
+            return (
+                True
+                if func(*args, **kwargs)
+                else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
+            )
+        except Exception as exp:
+            return ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs), str(exp))
 
     return wrapper
