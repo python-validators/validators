@@ -22,7 +22,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-include = ["CHANGES.md", "docs/*"]
+include = ["CHANGES.md", "docs/*", "validators/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -50,7 +50,7 @@ black = "^23.1.0"
 flake8 = "^5.0.4"
 flake8-docstrings = "^1.7.0"
 isort = "^5.12.0"
-pyright = "^1.1.299"
+pyright = "^1.1.300"
 
 [build-system]
 requires = ["poetry-core"]

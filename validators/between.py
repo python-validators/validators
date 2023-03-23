@@ -58,7 +58,7 @@ def between(
             If `value` is not in between the given conditions.
 
     Raises:
-        AssertionError: If both `min_val` and `max_val` are `None`,
+        ValueError: If both `min_val` and `max_val` are `None`,
             or if `min_val` is greater than `max_val`.
         TypeError: If there's a type mismatch before comparison.
 
@@ -68,8 +68,11 @@ def between(
 
     > *New in version 0.2.0*.
     """
+    if not value:
+        return False
+
     if min_val is None and max_val is None:
-        raise AssertionError("At least one of either `min_val` or `max_val` must be specified")
+        raise ValueError("At least one of either `min_val` or `max_val` must be specified")
 
     if max_val is None:
         max_val = AbsMax()
@@ -77,20 +80,20 @@ def between(
         min_val = AbsMin()
 
     if isinstance(min_val, AbsMin):
-        if type(value) is not type(max_val):
-            raise TypeError("`value` and `max_val` must be of same type")
-        return min_val <= value <= max_val
+        if type(value) is type(max_val):
+            return min_val <= value <= max_val
+        raise TypeError("`value` and `max_val` must be of same type")
 
     if isinstance(max_val, AbsMax):
-        if type(value) is not type(min_val):
-            raise TypeError("`value` and `min_val` must be of same type")
-        return min_val <= value <= max_val
+        if type(value) is type(min_val):
+            return min_val <= value <= max_val
+        raise TypeError("`value` and `min_val` must be of same type")
 
     if type(min_val) is type(max_val):
         if min_val > max_val:
-            raise AssertionError("`min_val` cannot be more than `max_val`")
-        if type(value) is not type(min_val):  # or type(max_val):
-            raise TypeError("`value` and (`min_val` or `max_val`) must be of same type")
-        return min_val <= value <= max_val
+            raise ValueError("`min_val` cannot be more than `max_val`")
+        if type(value) is type(min_val):  # or is type(max_val)
+            return min_val <= value <= max_val
+        raise TypeError("`value` and (`min_val` or `max_val`) must be of same type")
 
     raise TypeError("`value` and `min_val` and `max_val` must be of same type")
