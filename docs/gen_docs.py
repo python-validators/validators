@@ -8,10 +8,11 @@ from typing import List, Dict
 from os.path import getsize
 from subprocess import run
 from pathlib import Path
-from sys import argv
 
 # external
 from yaml import safe_load, safe_dump
+
+__all__ = ("generate_documentation",)
 
 
 def _write_ref_content(source: Path, module_name: str, func_name: str):
@@ -23,7 +24,7 @@ def _write_ref_content(source: Path, module_name: str, func_name: str):
         )
 
 
-def generate_reference(source: Path, destination: Path):
+def _generate_reference(source: Path, destination: Path):
     """Generate reference."""
     nav_items: Dict[str, List[str]] = {"Code Reference": []}
     # clean destination
@@ -43,7 +44,7 @@ def generate_reference(source: Path, destination: Path):
     return nav_items
 
 
-def update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, List[str]]):
+def _update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, List[str]]):
     """Temporary update to mkdocs config."""
     copy(source, destination)
     with open(source, "rt") as mkf:
@@ -53,25 +54,27 @@ def update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, L
         safe_dump(mkdocs_conf, mkf, sort_keys=False)
 
 
-def generate_documentation(source: Path):
+def generate_documentation(source: Path, discard_refs: bool = True):
     """Generate documentation."""
     # copy readme as docs index file
     copy(source / "README.md", source / "docs/index.md")
     # generate reference documentation
-    nav_items = generate_reference(source / "validators/__init__.py", source / "docs/reference")
+    nav_items = _generate_reference(source / "validators/__init__.py", source / "docs/reference")
     # backup mkdocs config
-    update_mkdocs_config(source / "mkdocs.yml", source / "mkdocs.bak.yml", nav_items)
+    _update_mkdocs_config(source / "mkdocs.yml", source / "mkdocs.bak.yml", nav_items)
     # build docs as subprocess
     print(run(("mkdocs", "build"), capture_output=True).stderr.decode())
     # restore mkdocs config
     move(str(source / "mkdocs.bak.yml"), source / "mkdocs.yml")
+    # optionally discard reference folder
+    if discard_refs:
+        rmtree(source / "docs/reference")
 
 
 if __name__ == "__main__":
-    project_dir = Path(__file__).parent.parent
-    generate_documentation(project_dir)
-    # use this option before building package
-    # with `poetry build` to include refs
-    if len(argv) > 1 and argv[1] == "--keep":
-        quit()
-    rmtree(project_dir / "docs/reference")
+    project_root = Path(__file__).parent.parent
+    generate_documentation(project_root)
+    # NOTE: use following lines only for testing/debugging
+    # generate_documentation(project_root, discard_refs=False)
+    # from sys import argv
+    # generate_documentation(project_root, len(argv) > 1 and argv[1] == "--keep")
