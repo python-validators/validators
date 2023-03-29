@@ -35,7 +35,9 @@ jobs:
         run: poetry install --no-interaction --no-ansi --only docs
       # build package
       - name: Build package
-        run: python build.py
+        run: |
+          source .venv/bin/activate
+          python build.py
       # publish package
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

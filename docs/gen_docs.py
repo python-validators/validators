@@ -61,11 +61,11 @@ def generate_documentation(source: Path, discard_refs: bool = True):
     # generate reference documentation
     nav_items = _generate_reference(source / "validators/__init__.py", source / "docs/reference")
     # backup mkdocs config
-    _update_mkdocs_config(source / "mkdocs.yml", source / "mkdocs.bak.yml", nav_items)
+    _update_mkdocs_config(source / "mkdocs.yaml", source / "mkdocs.bak.yml", nav_items)
     # build docs as subprocess
     print(run(("mkdocs", "build"), capture_output=True).stderr.decode())
     # restore mkdocs config
-    move(str(source / "mkdocs.bak.yml"), source / "mkdocs.yml")
+    move(str(source / "mkdocs.bak.yml"), source / "mkdocs.yaml")
     # optionally discard reference folder
     if discard_refs:
         rmtree(source / "docs/reference")
