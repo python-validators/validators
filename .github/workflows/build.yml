@@ -14,7 +14,8 @@ permissions:
 jobs:
   build_and_publish:
     runs-on: ubuntu-latest
-
+    permissions:
+      id-token: write
     steps:
       # checkout repository
       - uses: actions/checkout@v3
