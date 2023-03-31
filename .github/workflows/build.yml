@@ -33,12 +33,12 @@ jobs:
           virtualenvs-in-project: true
       # install dependencies
       - name: Install dependencies
-        run: poetry install --no-interaction --no-ansi --only docs
+        run: poetry install --no-interaction --no-ansi --only sphinx
       # build package
       - name: Build package
         run: |
           source .venv/bin/activate
-          python build.py
+          python build_pkg.py
       # publish package
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
