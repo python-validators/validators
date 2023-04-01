@@ -8,10 +8,6 @@ from typing import List, Dict
 from os.path import getsize
 from subprocess import run
 from pathlib import Path
-from sys import argv
-
-# external
-from yaml import safe_load, safe_dump
 
 __all__ = ("generate_documentation",)
 
@@ -56,6 +52,9 @@ def _generate_reference(source: Path, destination: Path, ext: str):
 
 def _update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, List[str]]):
     """Temporary update to mkdocs config."""
+    # external
+    from yaml import safe_load, safe_dump
+
     copy(source, destination)
     with open(source, "rt") as mkf:
         mkdocs_conf = safe_load(mkf)
@@ -70,17 +69,18 @@ def _gen_md_docs(source: Path, refs_path: Path):
     # backup mkdocs config
     _update_mkdocs_config(source / "mkdocs.yaml", source / "mkdocs.bak.yaml", nav_items)
     # build mkdocs as subprocess
-    print(run(("mkdocs", "build"), capture_output=True).stderr.decode())
+    mkdocs_build = run(("mkdocs", "build"), capture_output=True)
+    print(mkdocs_build.stderr.decode() + mkdocs_build.stdout.decode())
     # restore mkdocs config
     move(str(source / "mkdocs.bak.yaml"), source / "mkdocs.yaml")
+    return mkdocs_build.returncode
 
 
-def _gen_rst_docs(source: Path, refs_path: Path):
+def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_man: bool = False):
     """Generate reStructuredText docs."""
     # external
     from pypandoc import convert_file  # type: ignore
 
-    # generate index.rst
     with open(source / "docs/index.rst", "wt") as idx_f:
         idx_f.write(
             convert_file(source_file=source / "docs/index.md", format="md", to="rst")
@@ -93,19 +93,33 @@ def _gen_rst_docs(source: Path, refs_path: Path):
         )
     # generate RST reference documentation
     _generate_reference(source / "validators/__init__.py", refs_path, "rst")
-    # build sphinx web pages as subprocess
-    web_build = run(("sphinx-build", "docs", "docs/_build/web"), capture_output=True)
-    print(web_build.stderr.decode(), "\n", web_build.stdout.decode(), sep="")
-    # build sphinx man pages as subprocess
-    man_build = run(("sphinx-build", "-b", "man", "docs", "docs/_build/man"), capture_output=True)
-    print(man_build.stderr.decode(), "\n", man_build.stdout.decode(), sep="")
+    rc = 0
+    if not only_man:
+        # build sphinx web pages as subprocess
+        web_build = run(("sphinx-build", "docs", "docs/_build/web"), capture_output=True)
+        print(web_build.stderr.decode() + web_build.stdout.decode())
+        rc = web_build.returncode
+    if not only_web:
+        # build sphinx man pages as subprocess
+        man_build = run(
+            ("sphinx-build", "-b", "man", "docs", "docs/_build/man"), capture_output=True
+        )
+        print(man_build.stderr.decode() + man_build.stdout.decode())
+        copy(source / "docs/_build/man/validators.1", source / "docs/validators.1")
+        print(f"Man page copied to: {source / 'docs/validators.1'}")
+        rc = man_build.returncode if rc == 0 else rc
+    return rc
 
 
 def generate_documentation(
-    source: Path, only_md: bool = False, only_rst: bool = False, discard_refs: bool = True
+    source: Path,
+    only_md: bool = False,
+    only_rst_web: bool = False,
+    only_rst_man: bool = False,
+    discard_refs: bool = True,
 ):
     """Generate documentation."""
-    if only_md and only_rst:
+    if only_md and only_rst_web and only_rst_man:
         return
     # copy readme as docs index file
     copy(source / "README.md", source / "docs/index.md")
@@ -114,21 +128,30 @@ def generate_documentation(
     if refs_path.exists() and refs_path.is_dir():
         rmtree(refs_path)
     refs_path.mkdir(exist_ok=True)
-    # documentation for each kind
-    if not only_rst:
-        _gen_md_docs(source, refs_path)
+    rc = 0 if (only_rst_web or only_rst_man) else _gen_md_docs(source, refs_path)
     if not only_md:
-        _gen_rst_docs(source, refs_path)
+        rc = _gen_rst_docs(source, refs_path, only_rst_web, only_rst_man) if rc == 0 else rc
     # optionally discard reference folder
     if discard_refs:
         rmtree(source / "docs/reference")
+    return rc
 
 
 if __name__ == "__main__":
     project_root = Path(__file__).parent.parent
-    generate_documentation(
+
+    # # standard
+    # from sys import argv
+
+    rc = generate_documentation(
         project_root,
         only_md=True,
-        only_rst=False,
-        discard_refs=len(argv) <= 1 or argv[1] != "--keep",
+        only_rst_web=False,
+        only_rst_man=False,
+        # # NOTE: use
+        # discard_refs=len(argv) <= 1 or argv[1] != "--keep",
+        # # instead of
+        discard_refs=True,
+        # # for debugging
     )
+    quit(rc)

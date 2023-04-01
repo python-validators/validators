@@ -72,6 +72,7 @@ instance/
 docs/reference/
 docs/_build/
 docs/*.rst
+docs/*.1
 
 # PyBuilder
 .pybuilder/

@@ -22,7 +22,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-include = ["CHANGES.md", "docs/*", "docs/reference/*", "validators/py.typed"]
+include = ["CHANGES.md", "docs/*", "docs/validators.1", "validators/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
