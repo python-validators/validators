@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "validators"
-version = "0.21.0"
+version = "0.21.1"
 description = "Python Data Validation for Humans™"
 authors = ["Konsta Vesterinen <konsta@fastmonkeys.com>"]
 license = "MIT"
@@ -28,16 +28,16 @@ include = ["CHANGES.md", "docs/*", "docs/validators.1", "validators/py.typed"]
 python = "^3.8"
 
 [tool.poetry.group.dev.dependencies]
-tox = "^4.4.8"
+tox = "^4.4.11"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.4.2"
-mkdocs-material = "^9.1.4"
+mkdocs-material = "^9.1.6"
 mkdocstrings = { extras = ["python"], version = "^0.20.0" }
 pyaml = "^21.10.1"
 
 [tool.poetry.group.hooks.dependencies]
-pre-commit = "^3.2.1"
+pre-commit = "^3.2.2"
 
 [tool.poetry.group.sast.dependencies]
 bandit = "^1.7.5"
@@ -48,14 +48,14 @@ myst-parser = "^1.0.0"
 pypandoc-binary = "^1.11"
 
 [tool.poetry.group.tests.dependencies]
-pytest = "^7.2.2"
+pytest = "^7.3.0"
 
 [tool.poetry.group.type-lint-format.dependencies]
-black = "^23.1.1"
+black = "^23.3.0"
 flake8 = "^5.0.4"
 flake8-docstrings = "^1.7.0"
 isort = "^5.12.0"
-pyright = "^1.1.301"
+pyright = "^1.1.302"
 
 [build-system]
 requires = ["poetry-core"]
