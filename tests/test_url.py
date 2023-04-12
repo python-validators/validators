@@ -83,6 +83,8 @@ from validators import url, ValidationFailure
         "http://президент.рф/",
         "http://10.24.90.255:83/",
         "https://travel-usa.com/wisconsin/旅行/",
+        "http://:::::::::::::@exmp.com",
+        "http://-.~_!$&'()*+,;=:%40:80%2f::::::@example.com",
         # when simple_host=True
         # "http://localhost",
         # "http://localhost:8000",

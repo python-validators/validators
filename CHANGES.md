@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.21.1 (2023-04-10)
+
+- fix: `source .venv/bin/activate` before build by @joe733 in [#260](https://github.com/python-validators/validators/pull/260)
+- fix: id-token write permission at job level by @joe733 in [#261](https://github.com/python-validators/validators/pull/261)
+- feat: docs can be built with both sphinx & mkdocs by @joe733 in [#262](https://github.com/python-validators/validators/pull/262)
+- fix: improves build process by @joe733 in [#263](https://github.com/python-validators/validators/pull/263)
+- fix: removes 64-char limit for url path & query by @joe733 in [#264](https://github.com/python-validators/validators/pull/264)
+
+**Full Changelog**: [0.21.0...0.21.1](https://github.com/python-validators/validators/compare/0.21.0...0.21.1)
+
 ## 0.21.0 (2023-03-25)
 
 - feat: add build for pypi workflow by @joe733 in [#255](https://github.com/python-validators/validators/pull/255)

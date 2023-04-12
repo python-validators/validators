@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, unquote
 from functools import lru_cache
 import re
 
@@ -24,7 +24,15 @@ def _username_regex():
 
 @lru_cache
 def _path_regex():
-    return re.compile(r"^[\/a-zA-Z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%]+$", re.IGNORECASE)
+    return re.compile(
+        # allowed symbols
+        r"^[\/a-zA-Z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%"
+        # emoticons / emoji
+        + r"\U0001F600-\U0001F64F"
+        # multilingual unicode ranges
+        + r"\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$",
+        re.IGNORECASE,
+    )
 
 
 @lru_cache
@@ -52,7 +60,9 @@ def _validate_auth_segment(value: str):
     if not value:
         return True
     if (colon_count := value.count(":")) > 1:
-        return False
+        # everything before @ is then considered as a username
+        # this is a bad practice, but syntactically valid URL
+        return _username_regex().match(unquote(value))
     if colon_count < 1:
         return _username_regex().match(value)
     username, password = value.rsplit(":", 1)
@@ -103,9 +113,9 @@ def _validate_optionals(path: str, query: str, fragment: str):
     """Validate path query and fragments."""
     optional_segments = True
     if path:
-        optional_segments &= bool(_path_regex().match(path.encode("idna").decode("utf-8")))
+        optional_segments &= bool(_path_regex().match(path))
     if query:
-        optional_segments &= bool(_query_regex().match(query.encode("idna").decode("utf-8")))
+        optional_segments &= bool(_query_regex().match(query))
     if fragment:
         optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in ("/", "?"))
     return optional_segments
