@@ -33,7 +33,7 @@ jobs:
           virtualenvs-create: true
           virtualenvs-in-project: true
       - name: Install dependencies
-        run: poetry install --no-interaction --no-root --no-ansi --only docs
+        run: poetry install --no-interaction --no-ansi --no-root --only docs
       - name: Build documentation
         run: |
           source .venv/bin/activate
