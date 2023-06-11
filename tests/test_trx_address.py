@@ -44,7 +44,7 @@ def test_returns_true_on_valid_trx_address(value: str):
         "TW5eZqUZgdW4rxFKAKsc2ryJbfFA94WXvD",
         "TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vdd",
         "tQmmhp6uz2Xre8yL3FsPYZyo4mhtw4vg4X",
-        "TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8VD",
+        "TR2G7Rm4vFqF8EpY4U5xdLdQ7Xg",
         "TQmmhp6uz2Xre8yL3FsPYZyo4mhtw4vg4x",
         "my-trox-address.trx"
     ],
