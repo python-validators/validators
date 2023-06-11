@@ -13,6 +13,7 @@ from .btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
+from .eth_address import eth_address
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
 from .iban import iban
@@ -30,6 +31,7 @@ __all__ = (
     "amex",
     "between",
     "btc_address",
+    "eth_address",
     "card_number",
     "diners",
     "discover",
