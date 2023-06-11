@@ -32,12 +32,12 @@ def _validate_trx_checksum_address(addr: str):
 def trx_address(value: str, /):
     """Return whether or not given value is a valid tron (trx) address.
 
-    Full validation is implemented for TRC20 addresses.
+    Full validation is implemented for TRC20 tron addresses.
 
     Examples:
         >>> trx_address('TLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38')
         # Output: True
-        >>> trx_address('TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd ')
+        >>> trx_address('TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd')
         # Output: ValidationFailure(func=trx_address, args=...)
 
     Args:
