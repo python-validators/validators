@@ -7,7 +7,7 @@ import re
 from sha3 import keccak_256
 
 # local
-from .utils import validator
+from validators.utils import validator
 
 
 def _validate_eth_checksum_address(addr: str):
