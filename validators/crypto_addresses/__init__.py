@@ -5,5 +5,6 @@
 
 # local
 from .eth_address import eth_address
+from .trx_address import trx_address
 
-__all__ = ("eth_address", )
+__all__ = ("eth_address", "trx_address")
