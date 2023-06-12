@@ -8,7 +8,7 @@ import re
 import base58
 
 # local
-from .utils import validator
+from validators.utils import validator
 
 
 def _validate_trx_checksum_address(addr: str):
