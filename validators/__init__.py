@@ -9,11 +9,11 @@
 
 # local
 from .between import between
-from .btc_address import btc_address
+from crypto_addresses.btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
-from .eth_address import eth_address
+from crypto_addresses.eth_address import eth_address
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
 from .iban import iban
