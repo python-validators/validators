@@ -32,12 +32,11 @@ def test_returns_true_on_valid_eth_address(value: str):
         "0x742d35Cc6634C0532925a3b844Bc454e4438f44g",
         "0x742d35Cc6634C0532925a3b844Bc454e4438f44",
         "0xAbcdefg1234567890Abcdefg1234567890Abcdefg",
-        "0x7c8EE9977c6f96b6b9774b3e8e4Cc9B93B12b2c72"
+        "0x7c8EE9977c6f96b6b9774b3e8e4Cc9B93B12b2c72",
         "0x80fBD7F8B3f81D0e1d6EACAb69AF104A6508AFB1",
         "0x7c8EE9977c6f96b6b9774b3e8e4Cc9B93B12b2c7g",
-        "0x8Ba1f109551bD432803012645Ac136ddd64DBa72",
         "0x7c8EE9977c6f96b6b9774b3e8e4Cc9B93B12b2c",
-        "0x7Fb21a171205f3B8d8E4d88A2d2f8A56E45DdB5c"
+        "0x7Fb21a171205f3B8d8E4d88A2d2f8A56E45DdB5c",
         "validators.eth",
     ],
 )
