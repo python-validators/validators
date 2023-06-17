@@ -9,7 +9,6 @@
 
 # local
 from .between import between
-from .btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
@@ -24,12 +23,14 @@ from .url import url
 from .utils import validator, ValidationFailure
 from .uuid import uuid
 
+from .crypto_addresses import btc_address, eth_address, trx_address
 from .i18n import es_cif, es_doi, es_nie, es_nif, fi_business_id, fi_ssn
 
 __all__ = (
     "amex",
     "between",
     "btc_address",
+    "eth_address",
     "card_number",
     "diners",
     "discover",
@@ -49,6 +50,7 @@ __all__ = (
     "sha256",
     "sha512",
     "slug",
+    "trx_address",
     "unionpay",
     "url",
     "uuid",
