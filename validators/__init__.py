@@ -13,7 +13,6 @@ from .btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .domain import domain
 from .email import email
-from crypto_addresses.eth_address import eth_address
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
 from .iban import iban
@@ -25,6 +24,7 @@ from .url import url
 from .utils import validator, ValidationFailure
 from .uuid import uuid
 
+from .crypto_addresses import eth_address
 from .i18n import es_cif, es_doi, es_nie, es_nif, fi_business_id, fi_ssn
 
 __all__ = (
