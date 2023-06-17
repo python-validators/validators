@@ -20,6 +20,7 @@ from .ip_address import ipv4, ipv6
 from .length import length
 from .mac_address import mac_address
 from .slug import slug
+from crypto_addresses.trx_address import trx_address
 from .url import url
 from .utils import validator, ValidationFailure
 from .uuid import uuid
