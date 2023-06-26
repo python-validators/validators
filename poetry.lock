@@ -286,6 +286,17 @@ files = [
 ]
 
 [[package]]
+name = "eth-hash"
+version = "0.5.2"
+description = "eth-hash: The Ethereum hashing function, keccak256, sometimes (erroneously) called sha3"
+optional = false
+python-versions = ">=3.7, <4"
+files = [
+    {file = "eth-hash-0.5.2.tar.gz", hash = "sha256:1b5f10eca7765cc385e1430eefc5ced6e2e463bb18d1365510e2e539c1a6fe4e"},
+    {file = "eth_hash-0.5.2-py3-none-any.whl", hash = "sha256:251f62f6579a1e247561679d78df37548bd5f59908da0b159982bf8293ad32f0"},
+]
+
+[[package]]
 name = "exceptiongroup"
 version = "1.1.1"
 description = "Backport of PEP 654 (exception groups)"
@@ -1086,37 +1097,6 @@ nodeenv = ">=1.6.0"
 [package.extras]
 all = ["twine (>=3.4.1)"]
 dev = ["twine (>=3.4.1)"]
-
-[[package]]
-name = "pysha3"
-version = "1.0.2"
-description = "SHA-3 (Keccak) for Python 2.7 - 3.5"
-category = "dev"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pysha3-1.0.2-cp27-cp27m-manylinux1_i686.whl", hash = "sha256:6e6a84efb7856f5d760ee55cd2b446972cb7b835676065f6c4f694913ea8f8d9"},
-    {file = "pysha3-1.0.2-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:f9046d59b3e72aa84f6dae83a040bd1184ebd7fef4e822d38186a8158c89e3cf"},
-    {file = "pysha3-1.0.2-cp27-cp27m-win32.whl", hash = "sha256:9fdd28884c5d0b4edfed269b12badfa07f1c89dbc5c9c66dd279833894a9896b"},
-    {file = "pysha3-1.0.2-cp27-cp27m-win_amd64.whl", hash = "sha256:41be70b06c8775a9e4d4eeb52f2f6a3f356f17539a54eac61f43a29e42fd453d"},
-    {file = "pysha3-1.0.2-cp27-cp27mu-manylinux1_i686.whl", hash = "sha256:68c3a60a39f9179b263d29e221c1bd6e01353178b14323c39cc70593c30f21c5"},
-    {file = "pysha3-1.0.2-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:59111c08b8f34495575d12e5f2ce3bafb98bea470bc81e70c8b6df99aef0dd2f"},
-    {file = "pysha3-1.0.2-cp33-cp33m-win32.whl", hash = "sha256:571a246308a7b63f15f5aa9651f99cf30f2a6acba18eddf28f1510935968b603"},
-    {file = "pysha3-1.0.2-cp33-cp33m-win_amd64.whl", hash = "sha256:93abd775dac570cb9951c4e423bcb2bc6303a9d1dc0dc2b7afa2dd401d195b24"},
-    {file = "pysha3-1.0.2-cp34-cp34m-manylinux1_i686.whl", hash = "sha256:11a2ba7a2e1d9669d0052fc8fb30f5661caed5512586ecbeeaf6bf9478ab5c48"},
-    {file = "pysha3-1.0.2-cp34-cp34m-manylinux1_x86_64.whl", hash = "sha256:5ec8da7c5c70a53b5fa99094af3ba8d343955b212bc346a0d25f6ff75853999f"},
-    {file = "pysha3-1.0.2-cp34-cp34m-win32.whl", hash = "sha256:9c778fa8b161dc9348dc5cc361e94d54aa5ff18413788f4641f6600d4893a608"},
-    {file = "pysha3-1.0.2-cp34-cp34m-win_amd64.whl", hash = "sha256:fd7e66999060d079e9c0e8893e78d8017dad4f59721f6fe0be6307cd32127a07"},
-    {file = "pysha3-1.0.2-cp35-cp35m-manylinux1_i686.whl", hash = "sha256:827b308dc025efe9b6b7bae36c2e09ed0118a81f792d888548188e97b9bf9a3d"},
-    {file = "pysha3-1.0.2-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:4416f16b0f1605c25f627966f76873e432971824778b369bd9ce1bb63d6566d9"},
-    {file = "pysha3-1.0.2-cp35-cp35m-win32.whl", hash = "sha256:c93a2676e6588abcfaecb73eb14485c81c63b94fca2000a811a7b4fb5937b8e8"},
-    {file = "pysha3-1.0.2-cp35-cp35m-win_amd64.whl", hash = "sha256:684cb01d87ed6ff466c135f1c83e7e4042d0fc668fa20619f581e6add1d38d77"},
-    {file = "pysha3-1.0.2-cp36-cp36m-manylinux1_i686.whl", hash = "sha256:386998ee83e313b6911327174e088021f9f2061cbfa1651b97629b761e9ef5c4"},
-    {file = "pysha3-1.0.2-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:c7c2adcc43836223680ebdf91f1d3373543dc32747c182c8ca2e02d1b69ce030"},
-    {file = "pysha3-1.0.2-cp36-cp36m-win32.whl", hash = "sha256:cd5c961b603bd2e6c2b5ef9976f3238a561c58569945d4165efb9b9383b050ef"},
-    {file = "pysha3-1.0.2-cp36-cp36m-win_amd64.whl", hash = "sha256:0060a66be16665d90c432f55a0ba1f6480590cfb7d2ad389e688a399183474f0"},
-    {file = "pysha3-1.0.2.tar.gz", hash = "sha256:fe988e73f2ce6d947220624f04d467faf05f1bbdbc64b0a201296bb3af92739e"},
-]
 
 [[package]]
 name = "pytest"

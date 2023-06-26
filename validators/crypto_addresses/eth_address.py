@@ -4,7 +4,7 @@
 # standard
 import re
 
-from sha3 import keccak_256
+from eth_hash.auto import keccak
 
 # local
 from validators.utils import validator
@@ -13,7 +13,7 @@ from validators.utils import validator
 def _validate_eth_checksum_address(addr: str):
     """Validate ETH type checksum address."""
     addr = addr.replace("0x", "")
-    addr_hash = keccak_256(addr.lower().encode("ascii")).hexdigest()
+    addr_hash = keccak.new(addr.lower().encode("ascii")).digest().hex()
 
     if len(addr) != 40:
         return False

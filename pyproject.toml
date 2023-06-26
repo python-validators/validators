@@ -49,6 +49,7 @@ include = ["CHANGES.md", "docs/*", "docs/validators.1", "validators/py.typed"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+eth-hash = "^0.5.2"
 
 [tool.poetry.group.docs]
 optional = true
