@@ -20,8 +20,9 @@ def _validate_eth_checksum_address(addr: str):
         return False
 
     for i in range(0, 40):
-        if ((int(addr_hash[i], 16) > 7 and addr[i].upper() != addr[i]) or
-                (int(addr_hash[i], 16) <= 7 and addr[i].lower() != addr[i])):
+        if (int(addr_hash[i], 16) > 7 and addr[i].upper() != addr[i]) or (
+            int(addr_hash[i], 16) <= 7 and addr[i].lower() != addr[i]
+        ):
             return False
     return True
 
@@ -52,7 +53,6 @@ def eth_address(value: str, /):
     if not value:
         return False
 
-    return (
-        re.compile(r"^0x[0-9a-f]{40}$|^0x[0-9A-F]{40}$").match(value) or
-        _validate_eth_checksum_address(value)
-    )
+    return re.compile(r"^0x[0-9a-f]{40}$|^0x[0-9A-F]{40}$").match(
+        value
+    ) or _validate_eth_checksum_address(value)

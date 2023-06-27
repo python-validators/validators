@@ -6,4 +6,4 @@
 # local
 from .eth_address import eth_address
 
-__all__ = ("eth_address", )
+__all__ = ("eth_address",)
