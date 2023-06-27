@@ -1,7 +1,7 @@
 """ETH Address."""
 # -*- coding: utf-8 -*-
 
-# standard
+# external
 import re
 
 from eth_hash.auto import keccak
