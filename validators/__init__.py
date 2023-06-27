@@ -24,12 +24,14 @@ from .url import url
 from .utils import validator, ValidationFailure
 from .uuid import uuid
 
+from .crypto_addresses import eth_address
 from .i18n import es_cif, es_doi, es_nie, es_nif, fi_business_id, fi_ssn
 
 __all__ = (
     "amex",
     "between",
     "btc_address",
+    "eth_address",
     "card_number",
     "diners",
     "discover",
