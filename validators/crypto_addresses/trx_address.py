@@ -5,6 +5,7 @@
 from _sha256 import sha256
 import re
 
+# external
 import base58
 
 # local
@@ -24,8 +25,7 @@ def _validate_trx_checksum_address(addr: str):
         return False
 
     check_sum = sha256(sha256(address[:-4]).digest()).digest()[:4]
-    if address[-4:] == check_sum:
-        return True
+    return True if address[-4:] == check_sum else False
 
 
 @validator
@@ -54,7 +54,6 @@ def trx_address(value: str, /):
     if not value:
         return False
 
-    return (
-        re.compile(r"^(T|41)[a-zA-Z0-9]{33}$").match(value) and
-        _validate_trx_checksum_address(value)
+    return re.compile(r"^(T|41)[a-zA-Z0-9]{33}$").match(value) and _validate_trx_checksum_address(
+        value
     )
