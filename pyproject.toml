@@ -50,6 +50,7 @@ include = ["CHANGES.md", "docs/*", "docs/validators.1", "validators/py.typed"]
 [tool.poetry.dependencies]
 python = "^3.8"
 eth-hash = {extras = ["pycryptodome"], version = "^0.5.2"}
+base58 = "^2.1.1"
 
 [tool.poetry.group.docs]
 optional = true
