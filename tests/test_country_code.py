@@ -5,7 +5,6 @@ import pytest
 from validators import country_code, ValidationFailure
 
 
-
 @pytest.mark.parametrize(
     ("value", "code", "expected_result"),
     [
@@ -62,8 +61,3 @@ def test_country_code_invalid_type(value: str, code: str):
 def test_country_code_auto_invalid(value: str, code: str):
     """Test country_code function for invalid auto identification."""
     assert isinstance(country_code(value, code=code), ValidationFailure)
-
-
-
-
-
