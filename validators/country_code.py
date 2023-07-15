@@ -54,7 +54,7 @@ def country_code(value: str, code: str='auto'):
         - The function performs a case-insensitive validation.
         - Leading and trailing whitespaces in the `value` are automatically removed.
 
-    > *New in version 0.21.2*
+    > *New in version 0.21.1*
     """
      
     if not value:
