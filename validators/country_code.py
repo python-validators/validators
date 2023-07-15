@@ -21,7 +21,42 @@ def get_code_type(value: str):
     
 @validator
 def country_code(value: str, code: str='auto'):
-    
+    """
+    Validates if the given `value` is a valid country code.
+
+    Args:
+        value (str):
+            Country code string to validate.
+
+        code (str, optional):
+            The type of country code to validate. Valid options are 'alpha2',
+            'alpha3', 'numeric', or 'auto' to automatically identify the type.
+            Default is 'auto'.
+
+    Returns:
+        bool:
+            True if `value` is a valid country code of the specified type.
+            False otherwise.
+
+    Examples:
+        >>> country_code('US')
+        # Output: True
+        >>> country_code('usa')
+        # Output: False
+        >>> country_code('USA', code='alpha3')
+        # Output: False
+        >>> country_code('840', code='numeric')
+        # Output: True
+        >>> country_code('Us', code='alpha2')
+        # Output: True
+
+    Note:
+        - The function performs a case-insensitive validation.
+        - Leading and trailing whitespaces in the `value` are automatically removed.
+
+    > *New in version 0.21.2*
+    """
+     
     if not value:
         return False
     else:
