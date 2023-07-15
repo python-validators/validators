@@ -6,10 +6,6 @@ from validators import country_code, ValidationFailure
 
 
 
-
-# Replace 'your_module' with the actual name of the module where your 'country_code' function is defined.
-
-
 @pytest.mark.parametrize(
     ("value", "code", "expected_result"),
     [
@@ -18,9 +14,9 @@ from validators import country_code, ValidationFailure
         ("usa", "alpha2", False),
         ("CA", "alpha2", True),
         ("840", "numeric", True),
-        ("124", "numeric", False),
+        ("123", "numeric", False),
         ("USA", "alpha3", True),
-        ("fra", "alpha3", False),
+        ("fre", "alpha3", False),
         ("ABCD", "auto", False),
         ("123456", "auto", False),
         ("XX", "auto", False),
@@ -58,9 +54,9 @@ def test_country_code_invalid_type(value: str, code: str):
     [
         ("123456", "auto"),
         ("XX", "auto"),
-        ("USA", "auto"),
-        ("usa", "auto"),
-        ("CA", "auto"),
+        ("1nd", "auto"),
+        ("4", "auto"),
+        ("CaLi", "auto"),
     ],
 )
 def test_country_code_auto_invalid(value: str, code: str):
