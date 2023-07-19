@@ -6,58 +6,36 @@ from validators import country_code, ValidationFailure
 
 
 @pytest.mark.parametrize(
-    ("value", "code", "expected_result"),
+    ("value", "iso_format"),
     [
-        ("US", "alpha2", True),
-        ("us", "alpha2", True),
-        ("usa", "alpha2", False),
-        ("CA", "alpha2", True),
-        ("840", "numeric", True),
-        ("123", "numeric", False),
-        ("USA", "alpha3", True),
-        ("fre", "alpha3", False),
-        ("ABCD", "auto", False),
-        ("123456", "auto", False),
-        ("XX", "auto", False),
-        ("USA", "auto", True),
-        ("840", "auto", True),
+        ("ISR", "auto"),
+        ("US", "alpha2"),
+        ("USA", "alpha3"),
+        ("840", "numeric"),
     ],
 )
-def test_country_code_validation(value: str, code: str, expected_result: bool):
-    """Test country_code function for various country codes."""
-    result = country_code(value, code=code)
-    if expected_result:
-        assert result is True
-    else:
-        assert isinstance(result, ValidationFailure)
+def test_returns_true_on_valid_country_code(value: str, iso_format: str):
+    """Test returns true on valid country code."""
+    assert country_code(value, iso_format=iso_format)
 
 
 @pytest.mark.parametrize(
-    ("value", "code"),
+    ("value", "iso_format"),
     [
-        ("USA", "alpha2"),
-        ("us", "alpha3"),
-        ("840", "alpha2"),
-        ("124", "alpha3"),
-        ("USA", "numeric"),
-        ("fra", "numeric"),
-    ],
-)
-def test_country_code_invalid_type(value: str, code: str):
-    """Test country_code function for invalid code types."""
-    assert isinstance(country_code(value, code=code), ValidationFailure)
-
-
-@pytest.mark.parametrize(
-    ("value", "code"),
-    [
+        (None, "auto"),
+        ("", "auto"),
         ("123456", "auto"),
-        ("XX", "auto"),
-        ("1nd", "auto"),
-        ("4", "auto"),
-        ("CaLi", "auto"),
+        ("XY", "alpha2"),
+        ("PPP", "alpha3"),
+        ("123", "numeric"),
+        ("us", "auto"),
+        ("uSa", "auto"),
+        ("US ", "auto"),
+        ("U.S", "auto"),
+        ("1ND", "unknown"),
+        ("ISR", None),
     ],
 )
-def test_country_code_auto_invalid(value: str, code: str):
-    """Test country_code function for invalid auto identification."""
-    assert isinstance(country_code(value, code=code), ValidationFailure)
+def test_returns_failed_validation_on_invalid_country_code(value: str, iso_format: str):
+    """Test returns failed validation on invalid country code."""
+    assert isinstance(country_code(value, iso_format=iso_format), ValidationFailure)
