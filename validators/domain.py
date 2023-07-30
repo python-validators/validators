@@ -14,7 +14,7 @@ def get_valid_tlds():
     tlds = response.text.strip().split("\n")[1:]
     return tlds
 
-
+VALID_TLDS = get_valid_tlds()
 
 @validator
 def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
@@ -55,6 +55,15 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
     if not value:
         return False
     try:
+        if rfc_1034 and value.endswith("."):
+            tld = value.rstrip(".")
+        else:
+            tld = value
+
+        _ , tld = tld.rsplit(".", 1)
+        if tld.upper() not in VALID_TLDS:
+            return False
+        
         return not re.search(r"\s", value) and re.match(
             # First character of the domain
             rf"^(?:[a-zA-Z0-9{'_'if rfc_2782 else ''}]"
