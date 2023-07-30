@@ -54,7 +54,10 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
         - *In version 0.10.0*:
             - Added support for internationalized domain name (IDN) validation.
 
-    > *New in version 0.9.0*.
+        - *In version 0.21.0*:
+            - Added active TLD validation.
+
+    > *New in version 0.21.0*.
     """
     if not value:
         return False
