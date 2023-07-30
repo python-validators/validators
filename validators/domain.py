@@ -12,7 +12,7 @@ from validators.utils import validator
 # Function to download the TLD list and create a set of valid TLDs
 def get_valid_tlds():
     """Return a set of regularly updated valid TLDs from inaa.org ."""
-    response = requests.get("https://data.iana.org/TLD/tlds-alpha-by-domain.txt")
+    response = requests.get("https://data.iana.org/TLD/tlds-alpha-by-domain.txt", timeout=30)
     tlds = response.text.strip().split("\n")[1:]
     return tlds
 
