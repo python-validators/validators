@@ -3,9 +3,23 @@
 
 # standard
 import re
+import requests
 
 # local
-from .utils import validator
+from validators.utils import validator
+
+
+# Function to download the TLD list and create a set of valid TLDs
+def get_valid_tlds():
+    """Return a set of regularly updated valid TLDs from inaa.org ."""
+    response = requests.get("https://data.iana.org/TLD/tlds-alpha-by-domain.txt", timeout=30)
+    if response.status_code != 200:
+        return None
+    tlds = response.text.strip().split("\n")[1:]
+    return tlds
+
+
+VALID_TLDS = get_valid_tlds()
 
 
 @validator
@@ -42,11 +56,25 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
         - *In version 0.10.0*:
             - Added support for internationalized domain name (IDN) validation.
 
-    > *New in version 0.9.0*.
+        - *In version 0.21.0*:
+            - Added active TLD validation.
+
+    > *New in version 0.21.0*.
     """
     if not value:
         return False
     try:
+        # Check if the TLD is active
+        if rfc_1034 and value.endswith("."):
+            tld = value.rstrip(".")
+            _, tld = tld.rsplit(".", 1)
+        else:
+            _, tld = value.rsplit(".", 1)
+
+        if VALID_TLDS:
+            if tld.upper() not in VALID_TLDS:
+                return False
+
         return not re.search(r"\s", value) and re.match(
             # First character of the domain
             rf"^(?:[a-zA-Z0-9{'_'if rfc_2782 else ''}]"

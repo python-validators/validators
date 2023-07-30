@@ -49,6 +49,8 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
         ("123.123", False, False),
         ("123.123.123.", True, False),
         ("123.123.123.123", False, False),
+        ("sanpellegrino-corporate.itOLDWEBSITE", False, False),
+        ("sanpellegrino-corporate.itOLDWEBSITE.", True, False),
     ],
 )
 def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool, rfc_2782: bool):

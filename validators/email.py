@@ -5,8 +5,8 @@
 import re
 
 # local
-from .hostname import hostname
-from .utils import validator
+from validators.hostname import hostname
+from validators.utils import validator
 
 
 @validator
