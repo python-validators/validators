@@ -13,6 +13,8 @@ from validators.utils import validator
 def get_valid_tlds():
     """Return a set of regularly updated valid TLDs from inaa.org ."""
     response = requests.get("https://data.iana.org/TLD/tlds-alpha-by-domain.txt", timeout=30)
+    if response.status_code != 200:
+        return None
     tlds = response.text.strip().split("\n")[1:]
     return tlds
 
@@ -62,14 +64,16 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
     if not value:
         return False
     try:
+        # Check if the TLD is active
         if rfc_1034 and value.endswith("."):
             tld = value.rstrip(".")
             _, tld = tld.rsplit(".", 1)
         else:
             _, tld = value.rsplit(".", 1)
 
-        if tld.upper() not in VALID_TLDS:
-            return False
+        if VALID_TLDS:
+            if tld.upper() not in VALID_TLDS:
+                return False
 
         return not re.search(r"\s", value) and re.match(
             # First character of the domain
