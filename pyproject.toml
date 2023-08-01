@@ -1,29 +1,15 @@
-# Utils PEP 621 is enhanced or some fancy build
-# system comes up with a clever mechanism to
-# itegrate it all. For now poetry works best.
-
-
-####################
-#   Build System   #
-####################
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-
 ####################
 #     Metadata     #
 ####################
 
-[tool.poetry]
+[project]
 name = "validators"
 version = "0.21.1"
 description = "Python Data Validation for Humans™"
-authors = ["Konsta Vesterinen <konsta@fastmonkeys.com>"]
-license = "MIT"
+authors = [{ name = "Konsta Vesterinen", email = "konsta@fastmonkeys.com" }]
+requires-python = ">=3.8"
 readme = "README.md"
-repository = "https://github.com/python-validators/validators"
+license = { text = "MIT" }
 keywords = ["validation", "validator", "python-validator"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -40,136 +26,106 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-include = ["CHANGES.md", "docs/*", "docs/validators.1", "validators/py.typed"]
-
 
 ####################
 #   Dependencies   #
 ####################
 
-[tool.poetry.dependencies]
-python = "^3.8"
-eth-hash = {extras = ["pycryptodome"], version = "^0.5.2"}
+dependencies = []
 
-[tool.poetry.group.docs]
-optional = true
+[project.optional-dependencies]
+docs-offline = ["myst-parser>=2.0.0", "pypandoc-binary>=1.11", "sphinx>=7.1.1"]
+docs-online = [
+    "mkdocs>=1.5.1",
+    "mkdocs-material>=9.1.21",
+    "mkdocstrings[python]>=0.22.0",
+    "pyaml>=23.7.0",
+]
+hooks = ["pre-commit>=3.3.3"]
+runner = ["tox>=4.6.4"]
+sast = ["bandit[toml]>=1.7.5"]
+testing = ["pytest>=7.4.0"]
+tooling = ["black>=23.7.0", "ruff>=0.0.280", "pyright>=1.1.318"]
 
-[tool.poetry.group.docs.dependencies]
-mkdocs = "^1.4.2"
-mkdocs-material = "^9.1.6"
-mkdocstrings = { extras = ["python"], version = "^0.21.2" }
-pyaml = "^21.10.1"
+####################
+#   Build System   #
+####################
 
-[tool.poetry.group.hooks]
-optional = true
-
-[tool.poetry.group.hooks.dependencies]
-pre-commit = "^3.2.2"
-
-[tool.poetry.group.sast]
-optional = true
-
-[tool.poetry.group.sast.dependencies]
-bandit = "^1.7.5"
-
-[tool.poetry.group.sphinx]
-optional = true
-
-[tool.poetry.group.sphinx.dependencies]
-sphinx = "^6.1.3"
-myst-parser = "^1.0.0"
-pypandoc-binary = "^1.11"
-
-[tool.poetry.group.testing]
-optional = true
-
-[tool.poetry.group.testing.dependencies]
-pytest = "^7.3.0"
-
-[tool.poetry.group.tooling]
-optional = true
-
-[tool.poetry.group.tooling.dependencies]
-black = "^23.3.0"
-flake8 = "^5.0.4"
-flake8-docstrings = "^1.7.0"
-isort = "^5.12.0"
-pyright = "^1.1.302"
-tox = "^4.4.11"
-
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
 
 ####################
 #  Configurations  #
 ####################
 
+[tool.bandit]
+exclude_dirs = [
+    ".github",
+    ".pytest_cache",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "site",
+    "tests",
+]
+
 [tool.black]
 line-length = 100
 target-version = ["py38", "py39", "py310", "py311"]
 
-[tool.bandit]
-exclude_dirs = [".github", ".pytest_cache", ".tox", ".vscode", "site", "tests"]
-
-[tool.isort]
-ensure_newline_before_comments = true
-force_grid_wrap = 0
-force_sort_within_sections = true
-import_heading_firstparty = "local"
-import_heading_localfolder = "local"
-import_heading_stdlib = "standard"
-import_heading_thirdparty = "external"
-include_trailing_comma = true
-known_local_folder = ["validators"]
-length_sort = true
-line_length = 100
-multi_line_output = 3
-profile = "black"
-reverse_relative = true
-reverse_sort = true
-skip_gitignore = true
-use_parentheses = true
-
 [tool.pyright]
-include = ["validators", "tests"]
-exclude = ["**/__pycache__", ".pytest_cache/", ".tox/", "site/"]
+include = ["src", "tests"]
+exclude = ["**/__pycache__", ".pytest_cache/", ".tox/", ".venv/", "site/"]
 pythonVersion = "3.8"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
 
+[tool.ruff]
+select = ["E", "F", "I", "N", "D"]
+line-length = 100
+target-version = "py38"
+extend-exclude = ["**/__pycache__", ".pytest_cache", "site"]
+
+[tool.ruff.isort]
+# case-sensitive = true
+combine-as-imports = true
+force-sort-within-sections = true
+force-wrap-aliases = true
+known-local-folder = ["src"]
+relative-imports-order = "closest-to-furthest"
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
 [tool.tox]
 legacy_tox_ini = """
 [tox]
-min_version = 4.0
-env_list =
-    py{38,39,310,311}
-    format_black
-    format_isort
-    lint
-    type_check
+requires =
+    tox>=4
+env_list = lint, type, format, sast, py{38,39,310,311}
 
-[testenv]
-description = run unit tests
-deps = pytest
-commands = pytest
+[testenv:lint]
+description = ruff linter
+deps = ruff
+commands = ruff check .
 
-[testenv:format_black]
-description = run formatter
+[testenv:type]
+description = pyright type checker
+deps = pyright
+commands = pyright .
+
+[testenv:format]
+description = code formatter
 deps = black
 commands = black .
 
-[testenv:format_isort]
-description = run formatter
-deps = isort
-commands = isort .
+[testenv:sast]
+deps = bandit[toml]
+commands = bandit -c pyproject.toml -r .
 
-[testenv:lint]
-description = run linters
-deps = flake8
-commands = flake8
-
-[testenv:type_check]
-description = run type checker
-deps =
-    pyright
-    pytest
-commands = pyright
+[testenv]
+description = unit tests
+deps = pytest
+commands = pytest .
 """

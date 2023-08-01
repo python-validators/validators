@@ -1,4 +1,6 @@
 """Tests."""
 # -*- coding: utf-8 -*-
 
-# isort: skip_file
+from src.validators import validator
+
+__all__ = ("validator",)

@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from typing import TypeVar, Union
 from datetime import datetime
+from typing import TypeVar, Union
 
 # local
-from ._extremes import AbsMin, AbsMax
+from ._extremes import AbsMax, AbsMin
 from .utils import validator
 
 PossibleValueTypes = TypeVar("PossibleValueTypes", int, float, str, datetime)
