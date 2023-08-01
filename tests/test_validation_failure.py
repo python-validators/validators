@@ -4,10 +4,10 @@
 # local
 from validators import between
 
-failed_obj_repr = "ValidationFailure(func=between"
+failed_obj_repr = "ValidationError(func=between"
 
 
-class TestValidationFailure:
+class TestValidationError:
     """Test validation Failure."""
 
     def setup_method(self):

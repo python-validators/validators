@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from typing import Callable, Dict, Any
+from functools import wraps
 from inspect import getfullargspec
 from itertools import chain
-from functools import wraps
+from typing import Any, Callable, Dict
 
 
-class ValidationFailure(Exception):
+class ValidationError(Exception):
     """Exception class when validation failure occurs."""
 
     def __init__(self, function: Callable[..., Any], arg_dict: Dict[str, Any], message: str = ""):
@@ -21,7 +21,7 @@ class ValidationFailure(Exception):
     def __repr__(self):
         """Repr Validation Failure."""
         return (
-            f"ValidationFailure(func={self.func.__name__}, "
+            f"ValidationError(func={self.func.__name__}, "
             + f"args={({k: v for (k, v) in self.__dict__.items() if k != 'func'})})"
         )
 
@@ -46,7 +46,7 @@ def validator(func: Callable[..., Any]):
     """A decorator that makes given function validator.
 
     Whenever the given `func` returns `False` this
-    decorator returns `ValidationFailure` object.
+    decorator returns `ValidationError` object.
 
     Examples:
         >>> @validator
@@ -55,15 +55,15 @@ def validator(func: Callable[..., Any]):
         >>> even(4)
         # Output: True
         >>> even(5)
-        # Output: ValidationFailure(func=even, args={'value': 5})
+        # Output: ValidationError(func=even, args={'value': 5})
 
     Args:
         func:
             Function which is to be decorated.
 
     Returns:
-        (Callable[..., ValidationFailure | Literal[True]]):
-            A decorator which returns either `ValidationFailure`
+        (Callable[..., ValidationError | Literal[True]]):
+            A decorator which returns either `ValidationError`
             or `Literal[True]`.
 
     > *New in version 2013.10.21*.
@@ -75,9 +75,9 @@ def validator(func: Callable[..., Any]):
             return (
                 True
                 if func(*args, **kwargs)
-                else ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs))
+                else ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
             )
         except Exception as exp:
-            return ValidationFailure(func, _func_args_as_dict(func, *args, **kwargs), str(exp))
+            return ValidationError(func, _func_args_as_dict(func, *args, **kwargs), str(exp))
 
     return wrapper

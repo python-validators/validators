@@ -5,8 +5,8 @@ https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 
 # standard
-from importlib.metadata import metadata
 from datetime import datetime
+from importlib.metadata import metadata
 
 # -- Project information ----------------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information

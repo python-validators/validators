@@ -20,7 +20,7 @@ def mac_address(value: str, /):
         >>> mac_address('01:23:45:67:ab:CD')
         # Output: True
         >>> mac_address('00:00:00:00:00')
-        # Output: ValidationFailure(func=mac_address, args={'value': '00:00:00:00:00'})
+        # Output: ValidationError(func=mac_address, args={'value': '00:00:00:00:00'})
 
     Args:
         value:
@@ -29,7 +29,7 @@ def mac_address(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid MAC address.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid MAC address.
 
     > *New in version 0.2.0*.

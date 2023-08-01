@@ -2,12 +2,12 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from shutil import rmtree, move, copy
-from ast import parse, ImportFrom
-from typing import List, Dict
+from ast import ImportFrom, parse
 from os.path import getsize
-from subprocess import run
 from pathlib import Path
+from shutil import copy, move, rmtree
+from subprocess import run  # nosec
+from typing import Dict, List
 
 __all__ = ("generate_documentation",)
 
@@ -53,7 +53,7 @@ def _generate_reference(source: Path, destination: Path, ext: str):
 def _update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, List[str]]):
     """Temporary update to mkdocs config."""
     # external
-    from yaml import safe_load, safe_dump
+    from yaml import safe_dump, safe_load
 
     copy(source, destination)
     with open(source, "rt") as mkf:
@@ -69,7 +69,7 @@ def _gen_md_docs(source: Path, refs_path: Path):
     # backup mkdocs config
     _update_mkdocs_config(source / "mkdocs.yaml", source / "mkdocs.bak.yaml", nav_items)
     # build mkdocs as subprocess
-    mkdocs_build = run(("mkdocs", "build"), capture_output=True)
+    mkdocs_build = run(("mkdocs", "build"), capture_output=True)  # nosec
     print(mkdocs_build.stderr.decode() + mkdocs_build.stdout.decode())
     # restore mkdocs config
     move(str(source / "mkdocs.bak.yaml"), source / "mkdocs.yaml")
@@ -96,12 +96,12 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
     rc = 0
     if not only_man:
         # build sphinx web pages as subprocess
-        web_build = run(("sphinx-build", "docs", "docs/_build/web"), capture_output=True)
+        web_build = run(("sphinx-build", "docs", "docs/_build/web"), capture_output=True)  # nosec
         print(web_build.stderr.decode() + web_build.stdout.decode())
         rc = web_build.returncode
     if not only_web:
         # build sphinx man pages as subprocess
-        man_build = run(
+        man_build = run(  # nosec
             ("sphinx-build", "-b", "man", "docs", "docs/_build/man"), capture_output=True
         )
         print(man_build.stderr.decode() + man_build.stdout.decode())
@@ -155,3 +155,5 @@ if __name__ == "__main__":
         # # for debugging
     )
     quit(rc)
+
+# TODO: Address all '# nosec'

@@ -5,7 +5,7 @@
 import pytest
 
 # local
-from validators import es_nif, es_nie, es_doi, es_cif, ValidationFailure
+from validators import ValidationError, es_cif, es_doi, es_nie, es_nif
 
 
 @pytest.mark.parametrize(
@@ -39,7 +39,7 @@ def test_returns_true_on_valid_cif(value: str):
 def test_returns_false_on_invalid_cif(value: str):
     """Test returns false on invalid cif."""
     result = es_cif(value)
-    assert isinstance(result, ValidationFailure)
+    assert isinstance(result, ValidationError)
 
 
 @pytest.mark.parametrize(
@@ -107,7 +107,7 @@ def test_returns_true_on_valid_nif(value: str):
 def test_returns_false_on_invalid_nif(value: str):
     """Test returns false on invalid nif."""
     result = es_nif(value)
-    assert isinstance(result, ValidationFailure)
+    assert isinstance(result, ValidationError)
 
 
 @pytest.mark.parametrize(

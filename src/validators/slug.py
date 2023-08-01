@@ -19,7 +19,7 @@ def slug(value: str, /):
         >>> slug('my-slug-2134')
         # Output: True
         >>> slug('my.slug')
-        # Output: ValidationFailure(func=slug, args={'value': 'my.slug'})
+        # Output: ValidationError(func=slug, args={'value': 'my.slug'})
 
     Args:
         value:
@@ -28,7 +28,7 @@ def slug(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid slug.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid slug.
 
     > *New in version 0.6.0*.

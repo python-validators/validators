@@ -16,7 +16,7 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
         >>> domain('example.com')
         # Output: True
         >>> domain('example.com/')
-        # Output: ValidationFailure(func=domain, ...)
+        # Output: ValidationError(func=domain, ...)
         >>> # Supports IDN domains as well::
         >>> domain('xn----gtbspbbmkef.xn--p1ai')
         # Output: True
@@ -35,7 +35,7 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
     Returns:
         (Literal[True]):
             If `value` is a valid domain name.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid domain name.
 
     Note:

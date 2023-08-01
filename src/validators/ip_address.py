@@ -3,12 +3,12 @@
 
 # standard
 from ipaddress import (
-    NetmaskValueError,
     AddressValueError,
-    IPv6Network,
-    IPv6Address,
-    IPv4Network,
     IPv4Address,
+    IPv4Network,
+    IPv6Address,
+    IPv6Network,
+    NetmaskValueError,
 )
 
 # local
@@ -31,7 +31,7 @@ def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False):
         >>> ipv4('1.1.1.1/8')
         # Output: True
         >>> ipv4('900.80.70.11')
-        # Output: ValidationFailure(func=ipv4, args={'value': '900.80.70.11'})
+        # Output: ValidationError(func=ipv4, args={'value': '900.80.70.11'})
 
     Args:
         value:
@@ -47,7 +47,7 @@ def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False):
     Returns:
         (Literal[True]):
             If `value` is a valid IPv4 address.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid IPv4 address.
 
     Note:
@@ -81,7 +81,7 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False):
         >>> ipv6('::1/128')
         # Output: True
         >>> ipv6('abc.0.0.1')
-        # Output: ValidationFailure(func=ipv6, args={'value': 'abc.0.0.1'})
+        # Output: ValidationError(func=ipv6, args={'value': 'abc.0.0.1'})
 
     Args:
         value:
@@ -97,7 +97,7 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False):
     Returns:
         (Literal[True]):
             If `value` is a valid IPv6 address.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid IPv6 address.
 
     Note:

@@ -42,7 +42,7 @@ def es_cif(value: str, /):
         >>> es_cif('B25162520')
         # Output: True
         >>> es_cif('B25162529')
-        # Output: ValidationFailure(func=es_cif, args=...)
+        # Output: ValidationError(func=es_cif, args=...)
 
     Args:
         value:
@@ -51,7 +51,7 @@ def es_cif(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid DOI string.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid DOI string.
 
     > *New in version 0.13.0*.
@@ -98,7 +98,7 @@ def es_nif(value: str, /):
         >>> es_nif('26643189N')
         # Output: True
         >>> es_nif('26643189X')
-        # Output: ValidationFailure(func=es_nif, args=...)
+        # Output: ValidationError(func=es_nif, args=...)
 
     Args:
         value:
@@ -107,7 +107,7 @@ def es_nif(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid DOI string.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid DOI string.
 
     > *New in version 0.13.0*.
@@ -133,7 +133,7 @@ def es_nie(value: str, /):
         >>> es_nie('X0095892M')
         # Output: True
         >>> es_nie('X0095892X')
-        # Output: ValidationFailure(func=es_nie, args=...)
+        # Output: ValidationError(func=es_nie, args=...)
 
     Args:
         value:
@@ -142,7 +142,7 @@ def es_nie(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid DOI string.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid DOI string.
 
     > *New in version 0.13.0*.
@@ -169,7 +169,7 @@ def es_doi(value: str, /):
         >>> es_doi('X0095892M')
         # Output: True
         >>> es_doi('X0095892X')
-        # Output: ValidationFailure(func=es_doi, args=...)
+        # Output: ValidationError(func=es_doi, args=...)
 
     Args:
         value:
@@ -178,7 +178,7 @@ def es_doi(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid DOI string.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid DOI string.
 
     > *New in version 0.13.0*.

@@ -28,7 +28,7 @@ def iban(value: str, /):
         >>> iban('DE29100500001061045672')
         # Output: True
         >>> iban('123456')
-        # Output: ValidationFailure(func=iban, ...)
+        # Output: ValidationError(func=iban, ...)
 
     Args:
         value:
@@ -37,7 +37,7 @@ def iban(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid IBAN code.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid IBAN code.
 
     > *New in version 0.8.0*

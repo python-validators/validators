@@ -16,7 +16,7 @@ def md5(value: str, /):
         >>> md5('d41d8cd98f00b204e9800998ecf8427e')
         # Output: True
         >>> md5('900zz11')
-        # Output: ValidationFailure(func=md5, args={'value': '900zz11'})
+        # Output: ValidationError(func=md5, args={'value': '900zz11'})
 
     Args:
         value:
@@ -25,7 +25,7 @@ def md5(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid MD5 hash.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid MD5 hash.
 
     > *New in version 0.12.1*
@@ -41,7 +41,7 @@ def sha1(value: str, /):
         >>> sha1('da39a3ee5e6b4b0d3255bfef95601890afd80709')
         # Output: True
         >>> sha1('900zz11')
-        # Output: ValidationFailure(func=sha1, args={'value': '900zz11'})
+        # Output: ValidationError(func=sha1, args={'value': '900zz11'})
 
     Args:
         value:
@@ -50,7 +50,7 @@ def sha1(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid SHA1 hash.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid SHA1 hash.
 
     > *New in version 0.12.1*
@@ -66,7 +66,7 @@ def sha224(value: str, /):
         >>> sha224('d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f')
         # Output: True
         >>> sha224('900zz11')
-        # Output: ValidationFailure(func=sha224, args={'value': '900zz11'})
+        # Output: ValidationError(func=sha224, args={'value': '900zz11'})
 
     Args:
         value:
@@ -75,7 +75,7 @@ def sha224(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid SHA224 hash.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid SHA224 hash.
 
     > *New in version 0.12.1*
@@ -94,7 +94,7 @@ def sha256(value: str, /):
         ... )
         # Output: True
         >>> sha256('900zz11')
-        # Output: ValidationFailure(func=sha256, args={'value': '900zz11'})
+        # Output: ValidationError(func=sha256, args={'value': '900zz11'})
 
     Args:
         value:
@@ -103,7 +103,7 @@ def sha256(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid SHA256 hash.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid SHA256 hash.
 
     > *New in version 0.12.1*
@@ -123,7 +123,7 @@ def sha512(value: str, /):
         ... )
         # Output: True
         >>> sha512('900zz11')
-        # Output: ValidationFailure(func=sha512, args={'value': '900zz11'})
+        # Output: ValidationError(func=sha512, args={'value': '900zz11'})
 
     Args:
         value:
@@ -132,7 +132,7 @@ def sha512(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid SHA512 hash.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid SHA512 hash.
 
     > *New in version 0.12.1*

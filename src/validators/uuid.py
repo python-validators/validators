@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # standard
+import re
 from typing import Union
 from uuid import UUID
-import re
 
 # local
 from .utils import validator
@@ -22,7 +22,7 @@ def uuid(value: Union[str, UUID], /):
         >>> uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
         # Output: True
         >>> uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
-        # Output: ValidationFailure(func=uuid, ...)
+        # Output: ValidationError(func=uuid, ...)
 
     Args:
         value:
@@ -31,7 +31,7 @@ def uuid(value: Union[str, UUID], /):
     Returns:
         (Literal[True]):
             If `value` is a valid UUID.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid UUID.
 
     > *New in version 0.2.0*.

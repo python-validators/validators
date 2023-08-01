@@ -36,7 +36,7 @@ def btc_address(value: str, /):
         >>> btc_address('3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69')
         # Output: True
         >>> btc_address('1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2')
-        # Output: ValidationFailure(func=btc_address, args=...)
+        # Output: ValidationError(func=btc_address, args=...)
 
     Args:
         value:
@@ -45,7 +45,7 @@ def btc_address(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid bitcoin address.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid bitcoin address.
 
     > *New in version 0.18.0*.

@@ -45,7 +45,7 @@ def fi_business_id(value: str, /):
         >>> fi_business_id('0112038-9')  # Fast Monkeys Ltd
         # Output: True
         >>> fi_business_id('1234567-8')  # Bogus ID
-        # Output: ValidationFailure(func=fi_business_id, ...)
+        # Output: ValidationError(func=fi_business_id, ...)
 
     Args:
         value:
@@ -54,7 +54,7 @@ def fi_business_id(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid finnish business id.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid finnish business id.
 
     Note:
@@ -86,7 +86,7 @@ def fi_ssn(value: str, /, *, allow_temporal_ssn: bool = True):
         >>> fi_ssn('010101-0101')
         # Output: True
         >>> fi_ssn('101010-0102')
-        # Output: ValidationFailure(func=fi_ssn, args=...)
+        # Output: ValidationError(func=fi_ssn, args=...)
 
     Args:
         value:
@@ -99,7 +99,7 @@ def fi_ssn(value: str, /, *, allow_temporal_ssn: bool = True):
     Returns:
         (Literal[True]):
             If `value` is a valid finnish SSN.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid finnish SSN.
 
     > *New in version 0.5.0*.

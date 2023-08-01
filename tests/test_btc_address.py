@@ -5,7 +5,7 @@
 import pytest
 
 # local
-from validators import btc_address, ValidationFailure
+from validators import ValidationError, btc_address
 
 
 @pytest.mark.parametrize(
@@ -38,4 +38,4 @@ def test_returns_true_on_valid_btc_address(value: str):
 )
 def test_returns_failed_validation_on_invalid_btc_address(value: str):
     """Test returns failed validation on invalid btc address."""
-    assert isinstance(btc_address(value), ValidationFailure)
+    assert isinstance(btc_address(value), ValidationError)

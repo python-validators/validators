@@ -20,7 +20,7 @@ def card_number(value: str, /):
         >>> card_number('4242424242424242')
         # Output: True
         >>> card_number('4242424242424241')
-        # Output: ValidationFailure(func=card_number, args={'value': '4242424242424241'})
+        # Output: ValidationError(func=card_number, args={'value': '4242424242424241'})
 
     Args:
         value:
@@ -29,7 +29,7 @@ def card_number(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid generic card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid generic card number.
 
     > *New in version 0.15.0*.
@@ -53,7 +53,7 @@ def visa(value: str, /):
         >>> visa('4242424242424242')
         # Output: True
         >>> visa('2223003122003222')
-        # Output: ValidationFailure(func=visa, args={'value': '2223003122003222'})
+        # Output: ValidationError(func=visa, args={'value': '2223003122003222'})
 
     Args:
         value:
@@ -62,7 +62,7 @@ def visa(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid Visa card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid Visa card number.
 
     > *New in version 0.15.0*.
@@ -79,7 +79,7 @@ def mastercard(value: str, /):
         >>> mastercard('5555555555554444')
         # Output: True
         >>> mastercard('4242424242424242')
-        # Output: ValidationFailure(func=mastercard, args={'value': '4242424242424242'})
+        # Output: ValidationError(func=mastercard, args={'value': '4242424242424242'})
 
     Args:
         value:
@@ -88,7 +88,7 @@ def mastercard(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid Mastercard card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid Mastercard card number.
 
     > *New in version 0.15.0*.
@@ -105,7 +105,7 @@ def amex(value: str, /):
         >>> amex('378282246310005')
         # Output: True
         >>> amex('4242424242424242')
-        # Output: ValidationFailure(func=amex, args={'value': '4242424242424242'})
+        # Output: ValidationError(func=amex, args={'value': '4242424242424242'})
 
     Args:
         value:
@@ -114,7 +114,7 @@ def amex(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid American Express card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid American Express card number.
 
     > *New in version 0.15.0*.
@@ -131,7 +131,7 @@ def unionpay(value: str, /):
         >>> unionpay('6200000000000005')
         # Output: True
         >>> unionpay('4242424242424242')
-        # Output: ValidationFailure(func=unionpay, args={'value': '4242424242424242'})
+        # Output: ValidationError(func=unionpay, args={'value': '4242424242424242'})
 
     Args:
         value:
@@ -140,7 +140,7 @@ def unionpay(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid UnionPay card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid UnionPay card number.
 
     > *New in version 0.15.0*.
@@ -157,7 +157,7 @@ def diners(value: str, /):
         >>> diners('3056930009020004')
         # Output: True
         >>> diners('4242424242424242')
-        # Output: ValidationFailure(func=diners, args={'value': '4242424242424242'})
+        # Output: ValidationError(func=diners, args={'value': '4242424242424242'})
 
     Args:
         value:
@@ -166,7 +166,7 @@ def diners(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid Diners Club card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid Diners Club card number.
 
     > *New in version 0.15.0*.
@@ -183,7 +183,7 @@ def jcb(value: str, /):
         >>> jcb('3566002020360505')
         # Output: True
         >>> jcb('4242424242424242')
-        # Output: ValidationFailure(func=jcb, args={'value': '4242424242424242'})
+        # Output: ValidationError(func=jcb, args={'value': '4242424242424242'})
 
     Args:
         value:
@@ -192,7 +192,7 @@ def jcb(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid JCB card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid JCB card number.
 
     > *New in version 0.15.0*.
@@ -209,7 +209,7 @@ def discover(value: str, /):
         >>> discover('6011111111111117')
         # Output: True
         >>> discover('4242424242424242')
-        # Output: ValidationFailure(func=discover, args={'value': '4242424242424242'})
+        # Output: ValidationError(func=discover, args={'value': '4242424242424242'})
 
     Args:
         value:
@@ -218,7 +218,7 @@ def discover(value: str, /):
     Returns:
         (Literal[True]):
             If `value` is a valid Discover card number.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid Discover card number.
 
     > *New in version 0.15.0*.

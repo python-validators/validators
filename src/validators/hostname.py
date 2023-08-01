@@ -5,10 +5,11 @@
 from functools import lru_cache
 import re
 
-# local
-from .ip_address import ipv6, ipv4
-from .utils import validator
 from .domain import domain
+
+# local
+from .ip_address import ipv4, ipv6
+from .utils import validator
 
 
 @lru_cache
@@ -75,9 +76,9 @@ def hostname(
         >>> hostname("dead:beef:0:0:0:0000:42:1")
         # Output: True
         >>> hostname("[0:0:0:0:0:ffff:1.2.3.4]:-65538")
-        # Output: ValidationFailure(func=hostname, ...)
+        # Output: ValidationError(func=hostname, ...)
         >>> hostname("[0:&:b:c:@:e:f::]:9999")
-        # Output: ValidationFailure(func=hostname, ...)
+        # Output: ValidationError(func=hostname, ...)
 
     Args:
         value:
@@ -100,7 +101,7 @@ def hostname(
     Returns:
         (Literal[True]):
             If `value` is a valid hostname.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid hostname.
 
     > *New in version 0.21.0*.

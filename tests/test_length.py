@@ -5,7 +5,7 @@
 import pytest
 
 # local
-from validators import length, ValidationFailure
+from validators import ValidationError, length
 
 
 @pytest.mark.parametrize(
@@ -23,4 +23,4 @@ def test_returns_true_on_valid_length(value: str, min_val: int, max_val: int):
 )
 def test_returns_failed_validation_on_invalid_range(value: str, min_val: int, max_val: int):
     """Test returns failed validation on invalid range."""
-    assert isinstance(length(value, min_val=min_val, max_val=max_val), ValidationFailure)
+    assert isinstance(length(value, min_val=min_val, max_val=max_val), ValidationError)

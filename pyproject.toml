@@ -7,9 +7,8 @@ name = "validators"
 version = "0.21.1"
 description = "Python Data Validation for Humans™"
 authors = [{ name = "Konsta Vesterinen", email = "konsta@fastmonkeys.com" }]
-requires-python = ">=3.8"
-readme = "README.md"
 license = { text = "MIT" }
+readme = "README.md"
 keywords = ["validation", "validator", "python-validator"]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -26,12 +25,18 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-
-####################
-#   Dependencies   #
-####################
-
+requires-python = ">=3.8"
 dependencies = []
+
+[project.urls]
+Homepage = "https://python-validators.github.io/validators"
+Documentation = "https://python-validators.github.io/validators"
+Repository = "https://github.com/python-validators/validators"
+Changelog = "https://github.com/python-validators/validators/blob/master/CHANGES.md"
+
+###########################
+#  Optional Dependencies  #
+###########################
 
 [project.optional-dependencies]
 docs-offline = ["myst-parser>=2.0.0", "pypandoc-binary>=1.11", "sphinx>=7.1.1"]
@@ -75,11 +80,14 @@ line-length = 100
 target-version = ["py38", "py39", "py310", "py311"]
 
 [tool.pyright]
-include = ["src", "tests"]
+extraPaths = ["src"]
 exclude = ["**/__pycache__", ".pytest_cache/", ".tox/", ".venv/", "site/"]
 pythonVersion = "3.8"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
 
 [tool.ruff]
 select = ["E", "F", "I", "N", "D"]
@@ -107,25 +115,33 @@ env_list = lint, type, format, sast, py{38,39,310,311}
 
 [testenv:lint]
 description = ruff linter
-deps = ruff
+deps =
+    ruff
 commands = ruff check .
 
 [testenv:type]
 description = pyright type checker
-deps = pyright
+deps =
+    pyright
+    pyaml
+    pypandoc-binary
+    pytest
 commands = pyright .
 
 [testenv:format]
 description = code formatter
-deps = black
+deps =
+    black
 commands = black .
 
 [testenv:sast]
-deps = bandit[toml]
+deps =
+    bandit[toml]
 commands = bandit -c pyproject.toml -r .
 
 [testenv]
 description = unit tests
-deps = pytest
+deps =
+    pytest
 commands = pytest .
 """

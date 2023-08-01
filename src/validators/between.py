@@ -34,7 +34,7 @@ def between(
         >>> between(13.2, min_val=13, max_val=14)
         # Output: True
         >>> between(500, max_val=400)
-        # Output: ValidationFailure(func=between, args=...)
+        # Output: ValidationError(func=between, args=...)
         >>> between(
         ...     datetime(2000, 11, 11),
         ...     min_val=datetime(1999, 11, 11)
@@ -54,7 +54,7 @@ def between(
     Returns:
         (Literal[True]):
             If `value` is in between the given conditions.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is not in between the given conditions.
 
     Raises:

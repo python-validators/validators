@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 # standard
-from urllib.parse import urlsplit, unquote
 from functools import lru_cache
 import re
+from urllib.parse import unquote, urlsplit
 
 # local
 from .hostname import hostname
@@ -154,7 +154,7 @@ def url(
         >>> url('http://10.0.0.1')
         # Output: True
         >>> url('http://example.com/">user@example.com')
-        # Output: ValidationFailure(func=url, ...)
+        # Output: ValidationError(func=url, ...)
 
     Args:
         value:
@@ -177,7 +177,7 @@ def url(
     Returns:
         (Literal[True]):
             If `value` is a valid slug.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid slug.
 
     Note:

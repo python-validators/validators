@@ -23,7 +23,7 @@ from .length import length
 from .mac_address import mac_address
 from .slug import slug
 from .url import url
-from .utils import validator, ValidationFailure
+from .utils import validator, ValidationError
 from .uuid import uuid
 
 # from .crypto_addresses import eth_address
@@ -57,7 +57,7 @@ __all__ = (
     "unionpay",
     "url",
     "uuid",
-    "ValidationFailure",
+    "ValidationError",
     "validator",
     "visa",
     # i18n

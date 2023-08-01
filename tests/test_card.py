@@ -6,15 +6,15 @@ import pytest
 
 # local
 from validators import (
+    ValidationError,
+    amex,
     card_number,
+    diners,
+    discover,
+    jcb,
     mastercard,
     unionpay,
-    discover,
-    diners,
     visa,
-    amex,
-    jcb,
-    ValidationFailure,
 )
 
 visa_cards = ["4242424242424242", "4000002760003184"]
@@ -44,7 +44,7 @@ def test_returns_true_on_valid_card_number(value: str):
 @pytest.mark.parametrize("value", ["4242424242424240", "4000002760003180", "400000276000318X"])
 def test_returns_failed_on_valid_card_number(value: str):
     """Test returns failed on valid card number."""
-    assert isinstance(card_number(value), ValidationFailure)
+    assert isinstance(card_number(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", visa_cards)
@@ -59,7 +59,7 @@ def test_returns_true_on_valid_visa(value: str):
 )
 def test_returns_failed_on_valid_visa(value: str):
     """Test returns failed on valid visa."""
-    assert isinstance(visa(value), ValidationFailure)
+    assert isinstance(visa(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", mastercard_cards)
@@ -74,7 +74,7 @@ def test_returns_true_on_valid_mastercard(value: str):
 )
 def test_returns_failed_on_valid_mastercard(value: str):
     """Test returns failed on valid mastercard."""
-    assert isinstance(mastercard(value), ValidationFailure)
+    assert isinstance(mastercard(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", amex_cards)
@@ -89,7 +89,7 @@ def test_returns_true_on_valid_amex(value: str):
 )
 def test_returns_failed_on_valid_amex(value: str):
     """Test returns failed on valid amex."""
-    assert isinstance(amex(value), ValidationFailure)
+    assert isinstance(amex(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", unionpay_cards)
@@ -104,7 +104,7 @@ def test_returns_true_on_valid_unionpay(value: str):
 )
 def test_returns_failed_on_valid_unionpay(value: str):
     """Test returns failed on valid unionpay."""
-    assert isinstance(unionpay(value), ValidationFailure)
+    assert isinstance(unionpay(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", diners_cards)
@@ -119,7 +119,7 @@ def test_returns_true_on_valid_diners(value: str):
 )
 def test_returns_failed_on_valid_diners(value: str):
     """Test returns failed on valid diners."""
-    assert isinstance(diners(value), ValidationFailure)
+    assert isinstance(diners(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", jcb_cards)
@@ -134,7 +134,7 @@ def test_returns_true_on_valid_jcb(value: str):
 )
 def test_returns_failed_on_valid_jcb(value: str):
     """Test returns failed on valid jcb."""
-    assert isinstance(jcb(value), ValidationFailure)
+    assert isinstance(jcb(value), ValidationError)
 
 
 @pytest.mark.parametrize("value", discover_cards)
@@ -149,4 +149,4 @@ def test_returns_true_on_valid_discover(value: str):
 )
 def test_returns_failed_on_valid_discover(value: str):
     """Test returns failed on valid discover."""
-    assert isinstance(discover(value), ValidationFailure)
+    assert isinstance(discover(value), ValidationError)

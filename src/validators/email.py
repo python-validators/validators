@@ -34,7 +34,7 @@ def email(
         >>> email('someone@example.com')
         # Output: True
         >>> email('bogus@@')
-        # Output: ValidationFailure(email=email, args={'value': 'bogus@@'})
+        # Output: ValidationError(email=email, args={'value': 'bogus@@'})
 
     Args:
         value:
@@ -55,7 +55,7 @@ def email(
     Returns:
         (Literal[True]):
             If `value` is a valid eMail.
-        (ValidationFailure):
+        (ValidationError):
             If `value` is an invalid eMail.
 
     > *New in version 0.1.0*.

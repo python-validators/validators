@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # local
-from .utils import validator
 from .between import between
+from .utils import validator
 
 
 @validator
@@ -16,7 +16,7 @@ def length(value: str, /, *, min_val: int = 0, max_val: int = 0):
         >>> length('something', min_val=9, max_val=9)
         # Output: True
         >>> length('something', max_val=5)
-        # Output: ValidationFailure(func=length, ...)
+        # Output: ValidationError(func=length, ...)
 
     Args:
         value:
@@ -31,7 +31,7 @@ def length(value: str, /, *, min_val: int = 0, max_val: int = 0):
     Returns:
         (Literal[True]):
             If `len(value)` is in between the given conditions.
-        (ValidationFailure):
+        (ValidationError):
             If `len(value)` is not in between the given conditions.
 
     > *New in version 0.2.0*.
