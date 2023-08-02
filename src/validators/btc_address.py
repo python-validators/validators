@@ -1,5 +1,4 @@
 """BTC Address."""
-# -*- coding: utf-8 -*-
 
 # standard
 from hashlib import sha256

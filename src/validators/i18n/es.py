@@ -1,5 +1,4 @@
 """Spain."""
-# -*- coding: utf-8 -*-
 
 # standard
 from typing import Dict, Set

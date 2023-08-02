@@ -1,12 +1,10 @@
 """Test i18n/es."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
-from validators import ValidationError
-
 # local
+from validators import ValidationError
 from validators.i18n.fi import fi_business_id, fi_ssn
 
 

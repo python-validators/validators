@@ -1,5 +1,4 @@
 """Test i18n/es."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

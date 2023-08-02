@@ -1,5 +1,4 @@
 """IP Address."""
-# -*- coding: utf-8 -*-
 
 # standard
 from ipaddress import (

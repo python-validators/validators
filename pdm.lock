@@ -2,11 +2,11 @@
 # It is not intended for manual editing.
 
 [metadata]
-groups = ["default", "docs-online", "docs-offline", "hooks", "sast", "testing", "tooling", "runner"]
+groups = ["default", "docs-offline", "docs-online", "hooks", "runner", "sast", "testing", "tooling", "tooling-extras"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:e2e8691f6ac77e5aac95cf12db8241a76237c563e9a716ff95741b04c6d87801"
+content_hash = "sha256:8ad17b62a081da026789bd1a4397d8746c9ba6295760799ee473dac97e8a5acf"
 
 [[package]]
 name = "alabaster"
@@ -134,12 +134,12 @@ files = [
 
 [[package]]
 name = "chardet"
-version = "5.1.0"
+version = "5.2.0"
 requires_python = ">=3.7"
 summary = "Universal encoding detector for Python 3"
 files = [
-    {file = "chardet-5.1.0-py3-none-any.whl", hash = "sha256:362777fb014af596ad31334fde1e8c327dfdb076e1960d1694662d46a6917ab9"},
-    {file = "chardet-5.1.0.tar.gz", hash = "sha256:0d62712b956bc154f85fb0a266e2a3c5913c2967e00348701b32411d6def31e5"},
+    {file = "chardet-5.2.0-py3-none-any.whl", hash = "sha256:e1cf59446890a00105fe7b7912492ea04b6e6f06d4b742b2c788469e34c82970"},
+    {file = "chardet-5.2.0.tar.gz", hash = "sha256:1b3b6ff479a8c414bc3fa2c0852995695c4a026dcd6d0633b2dd092ca39c1cf7"},
 ]
 
 [[package]]
@@ -501,7 +501,7 @@ files = [
 
 [[package]]
 name = "mkdocs"
-version = "1.5.1"
+version = "1.5.2"
 requires_python = ">=3.7"
 summary = "Project documentation with Markdown."
 dependencies = [
@@ -521,22 +521,22 @@ dependencies = [
     "watchdog>=2.0",
 ]
 files = [
-    {file = "mkdocs-1.5.1-py3-none-any.whl", hash = "sha256:67e889f8d8ba1fe5decdfc59f5f8f21d6a8925a129339e93dede303bdea03a98"},
-    {file = "mkdocs-1.5.1.tar.gz", hash = "sha256:f2f323c62fffdf1b71b84849e39aef56d6852b3f0a5571552bca32cefc650209"},
+    {file = "mkdocs-1.5.2-py3-none-any.whl", hash = "sha256:60a62538519c2e96fe8426654a67ee177350451616118a41596ae7c876bb7eac"},
+    {file = "mkdocs-1.5.2.tar.gz", hash = "sha256:70d0da09c26cff288852471be03c23f0f521fc15cf16ac89c7a3bfb9ae8d24f9"},
 ]
 
 [[package]]
 name = "mkdocs-autorefs"
-version = "0.4.1"
-requires_python = ">=3.7"
+version = "0.5.0"
+requires_python = ">=3.8"
 summary = "Automatically link across pages in MkDocs."
 dependencies = [
     "Markdown>=3.3",
     "mkdocs>=1.1",
 ]
 files = [
-    {file = "mkdocs-autorefs-0.4.1.tar.gz", hash = "sha256:70748a7bd025f9ecd6d6feeba8ba63f8e891a1af55f48e366d6d6e78493aba84"},
-    {file = "mkdocs_autorefs-0.4.1-py3-none-any.whl", hash = "sha256:a2248a9501b29dc0cc8ba4c09f4f47ff121945f6ce33d760f145d6f89d313f5b"},
+    {file = "mkdocs_autorefs-0.5.0-py3-none-any.whl", hash = "sha256:7930fcb8ac1249f10e683967aeaddc0af49d90702af111a5e390e8b20b3d97ff"},
+    {file = "mkdocs_autorefs-0.5.0.tar.gz", hash = "sha256:9a5054a94c08d28855cfab967ada10ed5be76e2bfad642302a610b252c3274c0"},
 ]
 
 [[package]]
@@ -592,16 +592,16 @@ files = [
 
 [[package]]
 name = "mkdocstrings-python"
-version = "1.2.1"
+version = "1.3.0"
 requires_python = ">=3.8"
 summary = "A Python handler for mkdocstrings."
 dependencies = [
-    "griffe>=0.30",
+    "griffe<0.33,>=0.30",
     "mkdocstrings>=0.20",
 ]
 files = [
-    {file = "mkdocstrings_python-1.2.1-py3-none-any.whl", hash = "sha256:7c08f33e9ba7b1655e9cf0608eba3ce7a9513bd8b42a68a8d24ffaf4a6a50cfc"},
-    {file = "mkdocstrings_python-1.2.1.tar.gz", hash = "sha256:ae40825b3b676a94626882901ed9c8fcf9a7f0330e466ffe37ce15c525987aa9"},
+    {file = "mkdocstrings_python-1.3.0-py3-none-any.whl", hash = "sha256:36c224c86ab77e90e0edfc9fea3307f7d0d245dd7c28f48bbb2203cf6e125530"},
+    {file = "mkdocstrings_python-1.3.0.tar.gz", hash = "sha256:f967f84bab530fcc13cc9c02eccf0c18bdb2c3bab5c55fa2045938681eec4fc4"},
 ]
 
 [[package]]
@@ -742,12 +742,12 @@ files = [
 
 [[package]]
 name = "pygments"
-version = "2.15.1"
+version = "2.16.1"
 requires_python = ">=3.7"
 summary = "Pygments is a syntax highlighting package written in Python."
 files = [
-    {file = "Pygments-2.15.1-py3-none-any.whl", hash = "sha256:db2db3deb4b4179f399a09054b023b6a586b76499d36965813c71aa8ed7b5fd1"},
-    {file = "Pygments-2.15.1.tar.gz", hash = "sha256:8ace4d3c1dd481894b2005f560ead0f9f19ee64fe983366be1a21e171d12775c"},
+    {file = "Pygments-2.16.1-py3-none-any.whl", hash = "sha256:13fc09fa63bc8d8671a6d247e1eb303c4b343eaee81d861f3404db2935653692"},
+    {file = "Pygments-2.16.1.tar.gz", hash = "sha256:1daff0494820c69bc8941e407aa20f577374ee88364ee10a98fdbe0aece96e29"},
 ]
 
 [[package]]
@@ -793,15 +793,15 @@ files = [
 
 [[package]]
 name = "pyright"
-version = "1.1.318"
+version = "1.1.320"
 requires_python = ">=3.7"
 summary = "Command line wrapper for pyright"
 dependencies = [
     "nodeenv>=1.6.0",
 ]
 files = [
-    {file = "pyright-1.1.318-py3-none-any.whl", hash = "sha256:056c1b2e711c3526e32919de1684ae599d34b7ec27e94398858a43f56ac9ba9b"},
-    {file = "pyright-1.1.318.tar.gz", hash = "sha256:69dcf9c32d5be27d531750de627e76a7cadc741d333b547c09044278b508db7b"},
+    {file = "pyright-1.1.320-py3-none-any.whl", hash = "sha256:cdf739f7827374575cefb134311457d08c189793c3da3097c023debec9acaedb"},
+    {file = "pyright-1.1.320.tar.gz", hash = "sha256:94223e3b82d0b4c99c5125bab4d628ec749ce0b5b2ae0471fd4921dd4eff460d"},
 ]
 
 [[package]]
@@ -979,7 +979,7 @@ files = [
 
 [[package]]
 name = "rich"
-version = "13.5.0"
+version = "13.5.2"
 requires_python = ">=3.7.0"
 summary = "Render rich text, tables, progress bars, syntax highlighting, markdown and more to the terminal"
 dependencies = [
@@ -988,33 +988,33 @@ dependencies = [
     "typing-extensions<5.0,>=4.0.0; python_version < \"3.9\"",
 ]
 files = [
-    {file = "rich-13.5.0-py3-none-any.whl", hash = "sha256:996670a7618ccce27c55ba6fc0142e6e343773e11d34c96566a17b71b0e6f179"},
-    {file = "rich-13.5.0.tar.gz", hash = "sha256:62c81e88dc078d2372858660e3d5566746870133e51321f852ccc20af5c7e7b2"},
+    {file = "rich-13.5.2-py3-none-any.whl", hash = "sha256:146a90b3b6b47cac4a73c12866a499e9817426423f57c5a66949c086191a8808"},
+    {file = "rich-13.5.2.tar.gz", hash = "sha256:fb9d6c0a0f643c99eed3875b5377a184132ba9be4d61516a55273d3554d75a39"},
 ]
 
 [[package]]
 name = "ruff"
-version = "0.0.280"
+version = "0.0.282"
 requires_python = ">=3.7"
 summary = "An extremely fast Python linter, written in Rust."
 files = [
-    {file = "ruff-0.0.280-py3-none-macosx_10_7_x86_64.whl", hash = "sha256:48ed5aca381050a4e2f6d232db912d2e4e98e61648b513c350990c351125aaec"},
-    {file = "ruff-0.0.280-py3-none-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:ef6ee3e429fd29d6a5ceed295809e376e6ece5b0f13c7e703efaf3d3bcb30b96"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d878370f7e9463ac40c253724229314ff6ebe4508cdb96cb536e1af4d5a9cd4f"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:83e8f372fa5627eeda5b83b5a9632d2f9c88fc6d78cead7e2a1f6fb05728d137"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:7008fc6ca1df18b21fa98bdcfc711dad5f94d0fc3c11791f65e460c48ef27c82"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:fe7118c1eae3fda17ceb409629c7f3b5a22dffa7caf1f6796776936dca1fe653"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:37359cd67d2af8e09110a546507c302cbea11c66a52d2a9b6d841d465f9962d4"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:bd58af46b0221efb95966f1f0f7576df711cb53e50d2fdb0e83c2f33360116a4"},
-    {file = "ruff-0.0.280-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2e7c15828d09f90e97bea8feefcd2907e8c8ce3a1f959c99f9b4b3469679f33c"},
-    {file = "ruff-0.0.280-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:2dae8f2d9c44c5c49af01733c2f7956f808db682a4193180dedb29dd718d7bbe"},
-    {file = "ruff-0.0.280-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:5f972567163a20fb8c2d6afc60c2ea5ef8b68d69505760a8bd0377de8984b4f6"},
-    {file = "ruff-0.0.280-py3-none-musllinux_1_2_i686.whl", hash = "sha256:8ffa7347ad11643f29de100977c055e47c988cd6d9f5f5ff83027600b11b9189"},
-    {file = "ruff-0.0.280-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:7a37dab70114671d273f203268f6c3366c035fe0c8056614069e90a65e614bfc"},
-    {file = "ruff-0.0.280-py3-none-win32.whl", hash = "sha256:7784e3606352fcfb193f3cd22b2e2117c444cb879ef6609ec69deabd662b0763"},
-    {file = "ruff-0.0.280-py3-none-win_amd64.whl", hash = "sha256:4a7d52457b5dfcd3ab24b0b38eefaead8e2dca62b4fbf10de4cd0938cf20ce30"},
-    {file = "ruff-0.0.280-py3-none-win_arm64.whl", hash = "sha256:b7de5b8689575918e130e4384ed9f539ce91d067c0a332aedef6ca7188adac2d"},
-    {file = "ruff-0.0.280.tar.gz", hash = "sha256:581c43e4ac5e5a7117ad7da2120d960a4a99e68ec4021ec3cd47fe1cf78f8380"},
+    {file = "ruff-0.0.282-py3-none-macosx_10_7_x86_64.whl", hash = "sha256:01b76309ddab16eb258dabc5e86e73e6542f59f3ea6b4ab886ecbcfc80ce062c"},
+    {file = "ruff-0.0.282-py3-none-macosx_10_9_x86_64.macosx_11_0_arm64.macosx_10_9_universal2.whl", hash = "sha256:e177cbb6dc0b1dbef5e999900d798b73e33602abf9b6c62d5d2cbe101026d931"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:5374b40b6d860d334d28678a53a92f0bf04b53acdf0395900361ad54ce71cd1d"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:d1ccbceb44e94fe2205b63996166e98a513a19ed23ec01d7193b7494b94ba30d"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:eee9c8c50bc77eb9c0811c91d9d67ff39fe4f394c2f44ada37dac6d45e50c9f1"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_ppc64.manylinux2014_ppc64.whl", hash = "sha256:826e4de98e91450a6fe699a4e4a7cf33b9a90a2c5c270dc5b202241c37359ff8"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:d99758f8bbcb8f8da99acabf711ffad5e7a015247adf27211100b3586777fd56"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:3f30c9958ab9cb02bf0c574c629e87c19454cbbdb82750e49e3d1559a5a8f216"},
+    {file = "ruff-0.0.282-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:47a7a9366ab8e4ee20df9339bef172eec7b2e9e123643bf3ede005058f5b114e"},
+    {file = "ruff-0.0.282-py3-none-musllinux_1_2_aarch64.whl", hash = "sha256:1f05f5e6d6df6f8b1974c08f963c33f0a4d8cfa15cba12d35ca3ece8e9be5b1f"},
+    {file = "ruff-0.0.282-py3-none-musllinux_1_2_armv7l.whl", hash = "sha256:0710ea2cadc504b96c1d94c414a7802369d0fff2ab7c94460344bba69135cb40"},
+    {file = "ruff-0.0.282-py3-none-musllinux_1_2_i686.whl", hash = "sha256:2ca52536e1c7603fe4cbb5ad9dc141df47c3200df782f5ec559364716ea27f96"},
+    {file = "ruff-0.0.282-py3-none-musllinux_1_2_x86_64.whl", hash = "sha256:aab9ed5bfba6b0a2242a7ec9a72858c802ceeaf0076fe72b2ad455639275f22c"},
+    {file = "ruff-0.0.282-py3-none-win32.whl", hash = "sha256:f51bbb64f8f29e444c16d21b269ba82e25f8d536beda3df7c9fe1816297e508e"},
+    {file = "ruff-0.0.282-py3-none-win_amd64.whl", hash = "sha256:bd25085c42ebaffe336ed7bda8a0ae7b6c454a5f386ec8b2299503f79bd12bdf"},
+    {file = "ruff-0.0.282-py3-none-win_arm64.whl", hash = "sha256:f03fba9621533d67d7ab995847467d78b9337e3697779ef2cea6f1deaee5fbef"},
+    {file = "ruff-0.0.282.tar.gz", hash = "sha256:ef677c26bae756e4c98af6d8972da83caea550bc92ffef97a6e939ca5b24ad06"},
 ]
 
 [[package]]
@@ -1058,7 +1058,7 @@ files = [
 
 [[package]]
 name = "sphinx"
-version = "7.1.1"
+version = "7.1.2"
 requires_python = ">=3.8"
 summary = "Python documentation generator"
 dependencies = [
@@ -1081,8 +1081,8 @@ dependencies = [
     "sphinxcontrib-serializinghtml>=1.1.5",
 ]
 files = [
-    {file = "sphinx-7.1.1-py3-none-any.whl", hash = "sha256:4e6c5ea477afa0fb90815210fd1312012e1d7542589ab251ac9b53b7c0751bce"},
-    {file = "sphinx-7.1.1.tar.gz", hash = "sha256:59b8e391f0768a96cd233e8300fe7f0a8dc2f64f83dc2a54336a9a84f428ff4e"},
+    {file = "sphinx-7.1.2-py3-none-any.whl", hash = "sha256:d170a81825b2fcacb6dfd5a0d7f578a053e45d3f2b153fecc948c37344eb4cbe"},
+    {file = "sphinx-7.1.2.tar.gz", hash = "sha256:780f4d32f1d7d1126576e0e5ecc19dc32ab76cd24e950228dcf7b1f6d3d9e22f"},
 ]
 
 [[package]]

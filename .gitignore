@@ -169,3 +169,6 @@ cython_debug/
 
 # asdf
 .tool-versions
+
+# ruff
+.ruff_cache

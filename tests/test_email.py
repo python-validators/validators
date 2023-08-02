@@ -1,5 +1,4 @@
 """Test eMail."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

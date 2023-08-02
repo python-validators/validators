@@ -1,5 +1,4 @@
 """UUID."""
-# -*- coding: utf-8 -*-
 
 # standard
 import re

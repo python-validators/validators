@@ -1,5 +1,4 @@
 """Country Codes."""
-# -*- coding: utf-8 -*-
 
 # local
 from validators.utils import validator

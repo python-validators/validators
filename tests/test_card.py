@@ -1,5 +1,4 @@
 """Test Card."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

@@ -1,5 +1,4 @@
 """Test Length."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

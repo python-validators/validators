@@ -12,9 +12,12 @@ from importlib.metadata import metadata
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 _metadata = metadata("validators")
 
+_author_name = _metadata["author-email"].split(" <")[0]
+# _author_email = _metadata["author-email"].split(" <")[1].rstrip(">")
+
 project: str = _metadata["name"]
-author: str = _metadata["author"]
-project_copyright = f"2013 - {datetime.now().year}, {_metadata['author']}"
+author: str = _author_name
+project_copyright = f"2013 - {datetime.now().year}, {_author_name}"
 version: str = _metadata["version"]
 release = version
 

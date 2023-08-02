@@ -1,5 +1,4 @@
 """Extremes."""
-# -*- coding: utf-8 -*-
 
 # standard
 from functools import total_ordering

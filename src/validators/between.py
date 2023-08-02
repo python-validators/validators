@@ -1,5 +1,4 @@
 """Between."""
-# -*- coding: utf-8 -*-
 
 # standard
 from datetime import datetime
@@ -71,7 +70,7 @@ def between(
     if not value:
         return False
 
-    if min_val is None and max_val is None:
+    if min_val is max_val is None:
         raise ValueError("At least one of either `min_val` or `max_val` must be specified")
 
     if max_val is None:

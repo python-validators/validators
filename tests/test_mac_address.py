@@ -1,5 +1,4 @@
 """MAC Address."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

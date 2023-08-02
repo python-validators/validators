@@ -1,5 +1,4 @@
 """Test Between."""
-# -*- coding: utf-8 -*-
 
 # standard
 from datetime import datetime

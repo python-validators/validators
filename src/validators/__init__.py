@@ -1,5 +1,4 @@
 """Validate Anything!"""
-# -*- coding: utf-8 -*-
 
 # local
 from .between import between
@@ -78,4 +77,4 @@ __all__ = (
     "validator",
 )
 
-__version__ = "0.21.1"
+__version__ = "0.21.2"

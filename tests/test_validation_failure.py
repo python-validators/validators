@@ -1,5 +1,4 @@
 """Test validation Failure."""
-# -*- coding: utf-8 -*-
 
 # local
 from validators import between

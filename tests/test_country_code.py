@@ -1,5 +1,4 @@
 """Test Country Codes."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

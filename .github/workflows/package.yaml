@@ -1,0 +1,52 @@
+# Publish to PyPI
+name: package
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+permissions:
+  contents: read
+env:
+  BUILD_PATH: "."
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      # set up specific python version
+      - name: Set up Python v3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      # install dependencies
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          ./.venv/Scripts/python -m pip install --upgrade pip
+          ./.venv/Scripts/pip install .
+          ./.venv/Scripts/pip install -r python/requirements.sphinx.txt
+          ./.venv/Scripts/pip install build
+      # build package
+      - name: Build package
+        run: ./.venv/Scripts/python src/export package
+      # upload package as artifact
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      # download artifact
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          path: ${{ env.BUILD_PATH }}/dist
+      # publish package
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}

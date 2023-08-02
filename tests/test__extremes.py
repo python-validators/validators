@@ -1,5 +1,4 @@
 """Test Extremes."""
-# -*- coding: utf-8 -*-
 
 # standard
 from typing import Any

@@ -1,5 +1,4 @@
 """Length."""
-# -*- coding: utf-8 -*-
 
 # local
 from .between import between

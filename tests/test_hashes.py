@@ -1,5 +1,4 @@
 """Test Hashes."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

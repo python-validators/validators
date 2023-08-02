@@ -1,5 +1,4 @@
 """Test IBAN."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

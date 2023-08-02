@@ -1,5 +1,4 @@
 """Test Slug."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

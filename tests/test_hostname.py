@@ -1,5 +1,4 @@
 """Test Hostname."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

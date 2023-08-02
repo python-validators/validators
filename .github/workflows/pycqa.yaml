@@ -1,0 +1,51 @@
+# Python Code Quality Analysis
+name: pycqa
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+jobs:
+  tooling:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      # set up specific python version
+      - name: Set up Python v3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.8"
+      # tooling
+      - name: Install 'tooling' dependencies
+        run: pip install -r python/requirements.tooling.txt
+      - name: Tooling
+        run: |
+          black .
+          ruff check .
+          pyright .
+  testing:
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # checkout repository again!
+      # ref: https://github.com/actions/checkout/issues/19
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      # set up specific python version
+      - name: Set up Python v${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+      # testing
+      - name: Install 'testing' dependencies
+        run: pip install pytest
+      - name: Testing
+        run: pytest .

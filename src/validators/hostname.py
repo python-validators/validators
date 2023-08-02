@@ -1,5 +1,4 @@
 """Hostname."""
-# -*- coding: utf-8 -*-
 
 # standard
 from functools import lru_cache

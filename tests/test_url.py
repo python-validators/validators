@@ -1,5 +1,4 @@
 """Test URL."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest

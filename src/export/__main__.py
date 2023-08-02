@@ -1,12 +1,12 @@
 """Generate docs."""
-# -*- coding: utf-8 -*-
 
 # standard
 from ast import ImportFrom, parse
+from os import getenv
 from os.path import getsize
 from pathlib import Path
 from shutil import copy, move, rmtree
-from subprocess import run  # nosec
+from subprocess import Popen  # nosec
 from typing import Dict, List
 
 __all__ = ("generate_documentation",)
@@ -65,12 +65,12 @@ def _update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, 
 
 def _gen_md_docs(source: Path, refs_path: Path):
     """Generate Markdown docs."""
-    nav_items = _generate_reference(source / "validators/__init__.py", refs_path, "md")
+    nav_items = _generate_reference(source / "src/validators/__init__.py", refs_path, "md")
     # backup mkdocs config
     _update_mkdocs_config(source / "mkdocs.yaml", source / "mkdocs.bak.yaml", nav_items)
     # build mkdocs as subprocess
-    mkdocs_build = run(("mkdocs", "build"), capture_output=True)  # nosec
-    print(mkdocs_build.stderr.decode() + mkdocs_build.stdout.decode())
+    mkdocs_build = Popen(("mkdocs", "build"))  # nosec
+    mkdocs_build.communicate()
     # restore mkdocs config
     move(str(source / "mkdocs.bak.yaml"), source / "mkdocs.yaml")
     return mkdocs_build.returncode
@@ -83,7 +83,9 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
 
     with open(source / "docs/index.rst", "wt") as idx_f:
         idx_f.write(
-            convert_file(source_file=source / "docs/index.md", format="md", to="rst")
+            convert_file(source_file=source / "docs/index.md", format="md", to="rst").replace(
+                "\r\n", "\n"  # remove carriage return in windows
+            )
             + "\n\n.. toctree::"
             + "\n   :hidden:"
             + "\n   :maxdepth: 2"
@@ -92,23 +94,23 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n   reference/*\n"
         )
     # generate RST reference documentation
-    _generate_reference(source / "validators/__init__.py", refs_path, "rst")
-    rc = 0
+    _generate_reference(source / "src/validators/__init__.py", refs_path, "rst")
+    exit_code = 0
     if not only_man:
         # build sphinx web pages as subprocess
-        web_build = run(("sphinx-build", "docs", "docs/_build/web"), capture_output=True)  # nosec
-        print(web_build.stderr.decode() + web_build.stdout.decode())
-        rc = web_build.returncode
+        web_build = Popen(("sphinx-build", "docs", "docs/_build/web"), shell=False)  # nosec
+        web_build.communicate()
+        exit_code = web_build.returncode
     if not only_web:
         # build sphinx man pages as subprocess
-        man_build = run(  # nosec
-            ("sphinx-build", "-b", "man", "docs", "docs/_build/man"), capture_output=True
+        man_build = Popen(  # nosec
+            ("sphinx-build", "-b", "man", "docs", "docs/_build/man"), shell=False
         )
-        print(man_build.stderr.decode() + man_build.stdout.decode())
+        man_build.communicate()
         copy(source / "docs/_build/man/validators.1", source / "docs/validators.1")
         print(f"Man page copied to: {source / 'docs/validators.1'}")
-        rc = man_build.returncode if rc == 0 else rc
-    return rc
+        exit_code = man_build.returncode if exit_code == 0 else exit_code
+    return exit_code
 
 
 def generate_documentation(
@@ -119,41 +121,61 @@ def generate_documentation(
     discard_refs: bool = True,
 ):
     """Generate documentation."""
-    if only_md and only_rst_web and only_rst_man:
+    if only_md is only_rst_web is only_rst_man is True:
+        return
+    if only_md is only_rst_web is only_rst_man is False:
         return
     # copy readme as docs index file
     copy(source / "README.md", source / "docs/index.md")
     # clean destination
     refs_path = source / "docs/reference"
-    if refs_path.exists() and refs_path.is_dir():
+    if refs_path.is_dir():
         rmtree(refs_path)
     refs_path.mkdir(exist_ok=True)
-    rc = 0 if (only_rst_web or only_rst_man) else _gen_md_docs(source, refs_path)
+    exit_code = 0 if (only_rst_web or only_rst_man) else _gen_md_docs(source, refs_path)
     if not only_md:
-        rc = _gen_rst_docs(source, refs_path, only_rst_web, only_rst_man) if rc == 0 else rc
+        exit_code = (
+            _gen_rst_docs(source, refs_path, only_rst_web, only_rst_man)
+            if exit_code == 0
+            else exit_code
+        )
     # optionally discard reference folder
     if discard_refs:
-        rmtree(source / "docs/reference")
-    return rc
+        rmtree(refs_path)
+    return exit_code
+
+
+def package(source: Path):
+    generate_documentation(source, only_rst_man=True)
+    # print()
+    if getenv("CI", "false") == "true":
+        process = Popen(("./venv/Scripts/python", "-m", "build"), shell=False)  # nosec
+    else:
+        process = Popen(("pdm", "build"), shell=False)  # nosec
+    process.communicate()
+    return process.returncode
 
 
 if __name__ == "__main__":
-    project_root = Path(__file__).parent.parent
+    project_root = Path(__file__).parent.parent.parent
+    exit_code = 0
 
-    # # standard
-    # from sys import argv
+    # standard
+    from sys import argv
 
-    rc = generate_documentation(
-        project_root,
-        only_md=True,
-        only_rst_web=False,
-        only_rst_man=False,
-        # # NOTE: use
-        # discard_refs=len(argv) <= 1 or argv[1] != "--keep",
-        # # instead of
-        discard_refs=True,
-        # # for debugging
-    )
-    quit(rc)
+    if len(argv) != 2:
+        quit(exit_code)
+
+    if argv[1] == "package":
+        exit_code = package(project_root)
+    if argv[1] == "docs":
+        exit_code = generate_documentation(
+            project_root,
+            only_md=True,
+            only_rst_web=False,
+            only_rst_man=False,
+            discard_refs=True,
+        )
+    quit(exit_code)
 
 # TODO: Address all '# nosec'
