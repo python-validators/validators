@@ -149,7 +149,7 @@ def package(source: Path):
     generate_documentation(source, only_rst_man=True)
     # print()
     if getenv("CI", "false") == "true":
-        process = Popen(("./venv/Scripts/python", "-m", "build"), shell=False)  # nosec
+        process = Popen(("./.venv/bin/python", "-m", "build"), shell=False)  # nosec
     else:
         process = Popen(("pdm", "build"), shell=False)  # nosec
     process.communicate()

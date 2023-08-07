@@ -9,6 +9,8 @@ on:
 jobs:
   tooling:
     runs-on: ubuntu-latest
+    env:
+      PIP_DISABLE_PIP_VERSION_CHECK: 1
     steps:
       # checkout repository
       - name: Checkout repository
@@ -20,7 +22,9 @@ jobs:
           python-version: "3.8"
       # tooling
       - name: Install 'tooling' dependencies
-        run: pip install -r python/requirements.tooling.txt
+        run: |
+          pip install .
+          pip install -r python/requirements.tooling.txt
       - name: Tooling
         run: |
           black .
