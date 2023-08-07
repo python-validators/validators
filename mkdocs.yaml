@@ -5,7 +5,7 @@ repo_url: "https://github.com/python-validators/validators"
 edit_uri: "tree/master/docs/"
 repo_name: "validators/validators"
 site_dir: "site"
-watch: [README.md, validators/]
+watch: [README.md, src/validators/]
 
 nav:
   - Home: index.md

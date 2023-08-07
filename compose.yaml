@@ -1,0 +1,8 @@
+services:
+  web:
+    image: docker.io/nginx:alpine-slim
+    container_name: validators
+    ports:
+      - "8080:80"
+    volumes:
+      - ./site:/usr/share/nginx/html:ro

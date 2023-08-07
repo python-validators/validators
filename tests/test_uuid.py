@@ -1,15 +1,14 @@
 """Test UUIDs."""
-# -*- coding: utf-8 -*-
 
 # standard
-from uuid import uuid4, UUID
 from typing import Union
+from uuid import UUID, uuid4
 
 # external
 import pytest
 
 # local
-from validators import uuid, ValidationFailure
+from validators import ValidationError, uuid
 
 
 @pytest.mark.parametrize(
@@ -37,4 +36,4 @@ def test_returns_true_on_valid_uuid(value: Union[str, UUID]):
 )
 def test_returns_failed_validation_on_invalid_uuid(value: Union[str, UUID]):
     """Test returns failed validation on invalid uuid."""
-    assert isinstance(uuid(value), ValidationFailure)
+    assert isinstance(uuid(value), ValidationError)

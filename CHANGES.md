@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.21.2 (2023-08-07)
+
+### What's Changed
+
+- feat: refactoring; updates; fixes; bump version by @joe733 in [#283](https://github.com/python-validators/validators/pull/283)
+- build(deps): bump pymdown-extensions from 9.11 to 10.0 by @dependabot in [#273](https://github.com/python-validators/validators/pull/273)
+- build(deps): bump requests from 2.28.2 to 2.31.0 by @dependabot in [#275](https://github.com/python-validators/validators/pull/275)
+- add validator ETH addresses (ERC20) by @msamsami in [#276](https://github.com/python-validators/validators/pull/276)
+- Added Country Code Validation by @aviiciii in [#280](https://github.com/python-validators/validators/pull/280)
+- build(deps-dev): bump certifi from 2022.12.7 to 2023.7.22 by @dependabot in [#281](https://github.com/python-validators/validators/pull/281)
+
+### New Contributors
+
+- @dependabot made their first contribution in [#273](https://github.com/python-validators/validators/pull/273)
+- @msamsami made their first contribution in [#276](https://github.com/python-validators/validators/pull/276)
+- @aviiciii made their first contribution in [#280](https://github.com/python-validators/validators/pull/280)
+
+**Full Changelog**: [`0.21.1...0.21.2`](https://github.com/python-validators/validators/compare/0.21.1...0.21.2)
+
 ## 0.21.1 (2023-04-10)
 
 - fix: `source .venv/bin/activate` before build by @joe733 in [#260](https://github.com/python-validators/validators/pull/260)
@@ -8,7 +27,7 @@
 - fix: improves build process by @joe733 in [#263](https://github.com/python-validators/validators/pull/263)
 - fix: removes 64-char limit for url path & query by @joe733 in [#264](https://github.com/python-validators/validators/pull/264)
 
-**Full Changelog**: [0.21.0...0.21.1](https://github.com/python-validators/validators/compare/0.21.0...0.21.1)
+**Full Changelog**: [`0.21.0...0.21.1`](https://github.com/python-validators/validators/compare/0.21.0...0.21.1)
 
 ## 0.21.0 (2023-03-25)
 
@@ -44,7 +63,7 @@
 - feat: add pyproject.toml, README.md, upd gitignore by @joe733 in [#221](https://github.com/python-validators/validators/pull/221)
 - remove Travis CI settings by @ktdreyer in [#196](https://github.com/python-validators/validators/pull/196)
 
-**Full Changelog**: [0.20.0...0.21.0](https://github.com/python-validators/validators/compare/0.20.0...0.21.0)
+**Full Changelog**: [`0.20.0...0.21.0`](https://github.com/python-validators/validators/compare/0.20.0...0.21.0)
 
 ## 0.20.0 (2022-06-05)
 

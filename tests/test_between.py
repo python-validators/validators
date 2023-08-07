@@ -1,5 +1,4 @@
 """Test Between."""
-# -*- coding: utf-8 -*-
 
 # standard
 from datetime import datetime
@@ -9,7 +8,7 @@ from typing import TypeVar
 import pytest
 
 # local
-from validators import between, ValidationFailure
+from validators import ValidationError, between
 
 T = TypeVar("T", int, float, str, datetime)
 
@@ -38,4 +37,4 @@ def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T):
 )
 def test_returns_failed_validation_on_invalid_range(value: T, min_val: T, max_val: T):
     """Test returns failed validation on invalid range."""
-    assert isinstance(between(value, min_val=min_val, max_val=max_val), ValidationFailure)
+    assert isinstance(between(value, min_val=min_val, max_val=max_val), ValidationError)

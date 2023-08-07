@@ -1,11 +1,10 @@
 """Test IP Address."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import ipv6, ipv4, ValidationFailure
+from validators import ValidationError, ipv4, ipv6
 
 
 @pytest.mark.parametrize(
@@ -42,7 +41,7 @@ def test_returns_true_on_valid_ipv4_address(address: str):
 )
 def test_returns_failed_validation_on_invalid_ipv4_address(address: str):
     """Test returns failed validation on invalid ipv4 address."""
-    assert isinstance(ipv4(address), ValidationFailure)
+    assert isinstance(ipv4(address), ValidationError)
 
 
 @pytest.mark.parametrize(
@@ -100,4 +99,4 @@ def test_returns_true_on_valid_ipv6_address(address: str):
 )
 def test_returns_failed_validation_on_invalid_ipv6_address(address: str):
     """Test returns failed validation on invalid ipv6 address."""
-    assert isinstance(ipv6(address), ValidationFailure)
+    assert isinstance(ipv6(address), ValidationError)

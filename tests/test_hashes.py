@@ -1,11 +1,10 @@
 """Test Hashes."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import sha512, sha256, sha224, sha1, md5, ValidationFailure
+from validators import ValidationError, md5, sha1, sha224, sha256, sha512
 
 # ==> md5 <== #
 
@@ -28,7 +27,7 @@ def test_returns_true_on_valid_md5(value: str):
 )
 def test_returns_failed_validation_on_invalid_md5(value: str):
     """Test returns failed validation on invalid md5."""
-    assert isinstance(md5(value), ValidationFailure)
+    assert isinstance(md5(value), ValidationError)
 
 
 # ==> sha1 <== #
@@ -53,7 +52,7 @@ def test_returns_true_on_valid_sha1(value: str):
 )
 def test_returns_failed_validation_on_invalid_sha1(value: str):
     """Test returns failed validation on invalid sha1."""
-    assert isinstance(sha1(value), ValidationFailure)
+    assert isinstance(sha1(value), ValidationError)
 
 
 # ==> sha224 <== #
@@ -81,7 +80,7 @@ def test_returns_true_on_valid_sha224(value: str):
 )
 def test_returns_failed_validation_on_invalid_sha224(value: str):
     """Test returns failed validation on invalid sha224."""
-    assert isinstance(sha224(value), ValidationFailure)
+    assert isinstance(sha224(value), ValidationError)
 
 
 # ==> sha256 <== #
@@ -109,7 +108,7 @@ def test_returns_true_on_valid_sha256(value: str):
 )
 def test_returns_failed_validation_on_invalid_sha256(value: str):
     """Test returns failed validation on invalid sha256."""
-    assert isinstance(sha256(value), ValidationFailure)
+    assert isinstance(sha256(value), ValidationError)
 
 
 # ==> sha256 <== #
@@ -152,4 +151,4 @@ def test_returns_true_on_valid_sha512(value: str):
 )
 def test_returns_failed_validation_on_invalid_sha512(value: str):
     """Test returns failed validation on invalid sha512."""
-    assert isinstance(sha512(value), ValidationFailure)
+    assert isinstance(sha512(value), ValidationError)

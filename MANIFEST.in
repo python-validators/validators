@@ -1,0 +1,21 @@
+# MANIFEST.in stays as long as pyproject.toml does not officially support it
+# https://packaging.python.org/en/latest/specifications/declaring-project-metadata/
+
+include docs/*
+include .gitignore
+
+# global-include
+
+recursive-include tests *
+recursive-include src/export *
+
+# graft
+
+# exclude
+
+# global-exclude
+
+recursive-exclude docs *.rst
+
+prune docs/_build
+prune **/__pycache__

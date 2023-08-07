@@ -1,11 +1,10 @@
 """Test eMail."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import email, ValidationFailure
+from validators import ValidationError, email
 
 
 @pytest.mark.parametrize(
@@ -51,4 +50,4 @@ def test_returns_true_on_valid_email(value: str):
 )
 def test_returns_failed_validation_on_invalid_email(value: str):
     """Test returns failed validation on invalid email."""
-    assert isinstance(email(value), ValidationFailure)
+    assert isinstance(email(value), ValidationError)

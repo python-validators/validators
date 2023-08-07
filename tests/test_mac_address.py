@@ -1,11 +1,10 @@
 """MAC Address."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import mac_address, ValidationFailure
+from validators import ValidationError, mac_address
 
 
 @pytest.mark.parametrize(
@@ -33,4 +32,4 @@ def test_returns_true_on_valid_mac_address(address: str):
 )
 def test_returns_failed_validation_on_invalid_mac_address(address: str):
     """Test returns failed validation on invalid mac address."""
-    assert isinstance(mac_address(address), ValidationFailure)
+    assert isinstance(mac_address(address), ValidationError)

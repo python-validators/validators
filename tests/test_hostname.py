@@ -1,11 +1,10 @@
 """Test Hostname."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import hostname, ValidationFailure
+from validators import ValidationError, hostname
 
 
 @pytest.mark.parametrize(
@@ -65,4 +64,4 @@ def test_returns_true_on_valid_hostname(value: str, rfc_1034: bool, rfc_2782: bo
 )
 def test_returns_failed_validation_on_invalid_hostname(value: str, rfc_1034: bool, rfc_2782: bool):
     """Test returns failed validation on invalid hostname."""
-    assert isinstance(hostname(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782), ValidationFailure)
+    assert isinstance(hostname(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782), ValidationError)

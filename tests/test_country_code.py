@@ -1,8 +1,10 @@
+"""Test Country Codes."""
+
 # external
 import pytest
 
 # local
-from validators import country_code, ValidationFailure
+from validators import ValidationError, country_code
 
 
 @pytest.mark.parametrize(
@@ -38,4 +40,4 @@ def test_returns_true_on_valid_country_code(value: str, iso_format: str):
 )
 def test_returns_failed_validation_on_invalid_country_code(value: str, iso_format: str):
     """Test returns failed validation on invalid country code."""
-    assert isinstance(country_code(value, iso_format=iso_format), ValidationFailure)
+    assert isinstance(country_code(value, iso_format=iso_format), ValidationError)

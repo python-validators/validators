@@ -1,11 +1,10 @@
 """Test URL."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import url, ValidationFailure
+from validators import ValidationError, url
 
 
 @pytest.mark.parametrize(
@@ -174,4 +173,4 @@ def test_returns_true_on_valid_url(value: str):
 )
 def test_returns_failed_validation_on_invalid_url(value: str):
     """Test returns failed validation on invalid url."""
-    assert isinstance(url(value), ValidationFailure)
+    assert isinstance(url(value), ValidationError)

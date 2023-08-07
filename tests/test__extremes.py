@@ -1,5 +1,4 @@
 """Test Extremes."""
-# -*- coding: utf-8 -*-
 
 # standard
 from typing import Any
@@ -8,7 +7,7 @@ from typing import Any
 import pytest
 
 # local
-from validators._extremes import AbsMin, AbsMax
+from validators._extremes import AbsMax, AbsMin
 
 abs_max = AbsMax()
 abs_min = AbsMin()

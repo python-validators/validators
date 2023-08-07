@@ -1,11 +1,10 @@
 """Test Domain."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
-from validators import domain, ValidationFailure
+from validators import ValidationError, domain
 
 
 @pytest.mark.parametrize(
@@ -53,4 +52,4 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
 )
 def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool, rfc_2782: bool):
     """Test returns failed validation on invalid domain."""
-    assert isinstance(domain(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782), ValidationFailure)
+    assert isinstance(domain(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782), ValidationError)

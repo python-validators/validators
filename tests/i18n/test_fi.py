@@ -1,12 +1,11 @@
 """Test i18n/es."""
-# -*- coding: utf-8 -*-
 
 # external
 import pytest
 
 # local
+from validators import ValidationError
 from validators.i18n.fi import fi_business_id, fi_ssn
-from validators import ValidationFailure
 
 
 @pytest.mark.parametrize(
@@ -34,7 +33,7 @@ def test_returns_true_on_valid_business_id(value: str):
 )
 def test_returns_failed_validation_on_invalid_business_id(value: str):
     """Test returns failed validation on invalid business id."""
-    assert isinstance(fi_business_id(value), ValidationFailure)
+    assert isinstance(fi_business_id(value), ValidationError)
 
 
 @pytest.mark.parametrize(
@@ -74,9 +73,9 @@ def test_returns_true_on_valid_ssn(value: str):
 )
 def test_returns_failed_validation_on_invalid_ssn(value: str):
     """Test returns failed validation on invalid_ssn."""
-    assert isinstance(fi_ssn(value), ValidationFailure)
+    assert isinstance(fi_ssn(value), ValidationError)
 
 
 def test_returns_failed_validation_on_temporal_ssn_when_not_allowed():
     """Test returns failed validation on temporal-ssn when not allowed."""
-    assert isinstance(fi_ssn("010190-900P", allow_temporal_ssn=False), ValidationFailure)
+    assert isinstance(fi_ssn("010190-900P", allow_temporal_ssn=False), ValidationError)
