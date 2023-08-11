@@ -2,16 +2,18 @@ site_name: "validators"
 site_description: "Automatic documentation from sources, for MkDocs."
 site_url: "https://python-validators.github.io/validators/"
 repo_url: "https://github.com/python-validators/validators"
-edit_uri: "tree/master/docs/"
+edit_uri: "edit/master/docs/"
 repo_name: "validators/validators"
 site_dir: "site"
 watch: [README.md, src/validators/]
 
-nav:
-  - Home: index.md
-
 theme:
   name: material
+  icon:
+    logo: material/marker-check
+  font:
+    text: Inter
+    code: "Fira Code"
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -28,6 +30,14 @@ theme:
         icon: material/toggle-switch-off-outline
         name: Switch to light mode
 
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      use_pygments: true
+  - pymdownx.inlinehilite
+
 plugins:
   - search
   - mkdocstrings:
@@ -37,8 +47,16 @@ plugins:
             show_root_heading: true
           import:
             - https://docs.python-requests.org/en/master/objects.inv
+  - git-revision-date-localized
 
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/python-validators/validators
+      link: https://github.com/python-validators
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/validators
+
+copyright: Copyright &copy; 2013 - 2023 Konsta Vesterinen
+
+nav:
+  - Home: index.md

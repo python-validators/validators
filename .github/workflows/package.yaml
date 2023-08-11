@@ -2,8 +2,9 @@
 name: package
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+  # uncomment the following lines to enable workflow on package release
+  # release:
+  #   types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
