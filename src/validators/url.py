@@ -116,6 +116,7 @@ def _validate_optionals(path: str, query: str, fragment: str):
     if query:
         optional_segments &= bool(_query_regex().match(query))
     if fragment:
+        fragment = fragment.lstrip("/") if fragment.startswith("/") else fragment
         optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in ("/", "?"))
     return optional_segments
 

@@ -84,6 +84,7 @@ from validators import ValidationError, url
         "https://travel-usa.com/wisconsin/旅行/",
         "http://:::::::::::::@exmp.com",
         "http://-.~_!$&'()*+,;=:%40:80%2f::::::@example.com",
+        "https://exchange.jetswap.finance/#/swap",
         # when simple_host=True
         # "http://localhost",
         # "http://localhost:8000",
