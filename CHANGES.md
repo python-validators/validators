@@ -5,6 +5,8 @@
 ### What's Changed
 
 - feat: refactoring; updates; fixes; bump version by @joe733 in [#283](https://github.com/python-validators/validators/pull/283)
+- *Breaking Changes*:
+  - `ValidationFailure` renamed to `ValidationError` in [joe733@12ae1f5](https://github.com/joe733/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a)
 - build(deps): bump pymdown-extensions from 9.11 to 10.0 by @dependabot in [#273](https://github.com/python-validators/validators/pull/273)
 - build(deps): bump requests from 2.28.2 to 2.31.0 by @dependabot in [#275](https://github.com/python-validators/validators/pull/275)
 - add validator ETH addresses (ERC20) by @msamsami in [#276](https://github.com/python-validators/validators/pull/276)
