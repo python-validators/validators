@@ -1,19 +1,50 @@
 # Changelog
 
+<!--
+
+Note to self: Breaking changes must increment either
+
+- minor version: as long as versions are in 0.y.z or
+- major version: when versions are in in x.y.z (x>0)
+
+-->
+
+## 0.22.0 (2023-09-02)
+
+_**What's Changed**_
+
+> - _Breaking_:
+>   - API changes in `validators.ipv4` and `validators.ipv6` functions
+>     - `strict` parameter now correctly validates IP addresses strictly in CIDR notation
+>     - `host_bit` parameter distinguishes between network and host IP address
+
+- fix: url validator considers urls with /#/ as valid by @adrienthiery in [#289](https://github.com/python-validators/validators/pull/289)
+- Add note about ValidationFailure to ValidationError in changes.md by @tswfi in [#291](https://github.com/python-validators/validators/pull/291)
+- fix: simple hostname validation regex by @joe733 in [#294](https://github.com/python-validators/validators/pull/294)
+- fix: strict CIDR IP validation; bump version by @joe733 in [#295](https://github.com/python-validators/validators/pull/295)
+
+_**New Contributors**_
+
+- @adrienthiery made their first contribution in [#289](https://github.com/python-validators/validators/pull/289)
+- @tswfi made their first contribution in [#291](https://github.com/python-validators/validators/pull/291)
+
+**Full Changelog**: [`0.21.2...0.22.0`](https://github.com/python-validators/validators/compare/0.21.2...0.22.0)
+
 ## 0.21.2 (2023-08-07)
 
-### What's Changed
+_**What's Changed**_
 
-- feat: refactoring; updates; fixes; bump version by @joe733 in [#283](https://github.com/python-validators/validators/pull/283)
-- *Breaking Changes*:
-  - `ValidationFailure` renamed to `ValidationError` in [joe733@12ae1f5](https://github.com/joe733/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a)
+> - _Breaking_:
+>   - `ValidationFailure` renamed to `ValidationError` in [`joe733@12ae1f5`](https://github.com/joe733/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a)
+
+- feat: refactoring; updates; fixes; bump version by @joe733 in [#283](https://github.com/python-validators/validators/pull/283)(<https://github.com/joe733/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a>)
 - build(deps): bump pymdown-extensions from 9.11 to 10.0 by @dependabot in [#273](https://github.com/python-validators/validators/pull/273)
 - build(deps): bump requests from 2.28.2 to 2.31.0 by @dependabot in [#275](https://github.com/python-validators/validators/pull/275)
 - add validator ETH addresses (ERC20) by @msamsami in [#276](https://github.com/python-validators/validators/pull/276)
 - Added Country Code Validation by @aviiciii in [#280](https://github.com/python-validators/validators/pull/280)
 - build(deps-dev): bump certifi from 2022.12.7 to 2023.7.22 by @dependabot in [#281](https://github.com/python-validators/validators/pull/281)
 
-### New Contributors
+_**New Contributors**_
 
 - @dependabot made their first contribution in [#273](https://github.com/python-validators/validators/pull/273)
 - @msamsami made their first contribution in [#276](https://github.com/python-validators/validators/pull/276)
@@ -32,6 +63,9 @@
 **Full Changelog**: [`0.21.0...0.21.1`](https://github.com/python-validators/validators/compare/0.21.0...0.21.1)
 
 ## 0.21.0 (2023-03-25)
+
+> - _Breaking_:
+>   - Couple of API changes, refer [documentation](https://python-validators.github.io/validators/)
 
 - feat: add build for pypi workflow by @joe733 in [#255](https://github.com/python-validators/validators/pull/255)
 - feat: @validator now catches `Exception` by @joe733 in [#254](https://github.com/python-validators/validators/pull/254)
@@ -125,11 +159,11 @@
 
 ## 0.14.0 (2019-08-21)
 
-- Added new validators ``ipv4_cidr``, ``ipv6_cidr`` (#117, pull request courtesy woodruffw)
+- Added new validators `ipv4_cidr`, `ipv6_cidr` (#117, pull request courtesy woodruffw)
 
 ## 0.13.0 (2019-05-20)
 
-- Added new validator: ``es_doi``, ``es_nif``, ``es_cif``, ``es_nie`` (#121, pull request courtesy kingbuzzman)
+- Added new validator: `es_doi`, `es_nif`, `es_cif`, `es_nie` (#121, pull request courtesy kingbuzzman)
 
 ## 0.12.6 (2019-05-08)
 
@@ -184,7 +218,7 @@
 
 ## 0.10.3 (2016-06-13)
 
-- Added ``public`` parameter to url validator (#26, pull request courtesy Iconceicao)
+- Added `public` parameter to url validator (#26, pull request courtesy Iconceicao)
 
 ## 0.10.2 (2016-06-11)
 
@@ -197,48 +231,48 @@
 
 ## 0.10.0 (2016-01-09)
 
-- Added support for internationalized domain names in ``domain`` validator
+- Added support for internationalized domain names in `domain` validator
 
 ## 0.9.0 (2015-10-10)
 
-- Added new validator: ``domain``
+- Added new validator: `domain`
 - Added flake8 and isort checks in travis config
 
 ## 0.8.0 (2015-06-24)
 
-- Added new validator: ``iban``
+- Added new validator: `iban`
 
 ## 0.7.0 (2014-09-07)
 
 - Fixed errors in code examples.
-- Fixed ``TypeError`` when using ``between`` validator with ``datetime`` objects
+- Fixed `TypeError` when using `between` validator with `datetime` objects
   like in the code example.
-- Changed validators to always return ``True`` instead of a truthy object when
+- Changed validators to always return `True` instead of a truthy object when
   the validation succeeds.
-- Fixed ``truthy`` validator to work like it's name suggests. Previously it
-  worked like ``falsy``.
+- Fixed `truthy` validator to work like it's name suggests. Previously it
+  worked like `falsy`.
 
 ## 0.6.0 (2014-06-25)
 
-- Added new validator: ``slug``
+- Added new validator: `slug`
 
 ## 0.5.0 (2013-10-31)
 
-- Renamed ``finnish_business_id`` to ``fi_business_id``
-- Added new validator: ``fi_ssn``
+- Renamed `finnish_business_id` to `fi_business_id`
+- Added new validator: `fi_ssn`
 
 ## 0.4.0 (2013-10-29)
 
-- Added new validator: ``finnish_business_id``
+- Added new validator: `finnish_business_id`
 
 ## 0.3.0 (2013-10-27)
 
-- ``number_range`` -> ``between``
+- `number_range` -> `between`
 
 ## 0.2.0 (2013-10-22)
 
-- Various new validators: ``ipv4``, ``ipv6``, ``length``, ``number_range``,
-  ``mac_address``, ``url``, ``uuid``
+- Various new validators: `ipv4`, `ipv6`, `length`, `number_range`,
+  `mac_address`, `url`, `uuid`
 
 ## 0.1.0 (2013-10-18)
 
