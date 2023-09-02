@@ -23,7 +23,9 @@ def _port_regex():
 @lru_cache
 def _simple_hostname_regex():
     """Simple hostname validation regex."""
-    return re.compile(r"^[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]$")
+    # {0,59} because two characters are already matched at
+    # the beginning and at the end, making the range {1, 61}
+    return re.compile(r"^(?!-)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,59}[a-zA-Z0-9])?(?<!-)$")
 
 
 def _port_validator(value: str):
