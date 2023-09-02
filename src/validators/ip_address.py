@@ -15,7 +15,7 @@ from .utils import validator
 
 
 @validator
-def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False):
+def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bool = True):
     """Returns whether a given value is a valid IPv4 address.
 
     From Python version 3.9.5 leading zeros are no longer tolerated
@@ -36,11 +36,12 @@ def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False):
         value:
             IP address string to validate.
         cidr:
-            IP address string may contain CIDR annotation
+            IP address string may contain CIDR notation
         strict:
-            If strict is True and host bits are set in the supplied address.
-            Otherwise, the host bits are masked out to determine the
-            appropriate network address. ref [IPv4Network][2].
+            IP address string is strictly in CIDR notation
+        host_bit:
+            If `False` and host bits (along with network bits) _are_ set in the supplied
+            address, this function raises a validation error. ref [IPv4Network][2].
             [2]: https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv4Network
 
     Returns:
@@ -58,15 +59,17 @@ def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False):
     if not value:
         return False
     try:
-        if cidr and value.count("/") == 1:
-            return IPv4Network(value, strict=strict)
+        if cidr:
+            if strict and value.count("/") != 1:
+                raise ValueError("IPv4 address was expected in CIDR notation")
+            return IPv4Network(value, strict=not host_bit)
         return IPv4Address(value)
-    except (AddressValueError, NetmaskValueError):
+    except (ValueError, AddressValueError, NetmaskValueError):
         return False
 
 
 @validator
-def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False):
+def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bool = True):
     """Returns if a given value is a valid IPv6 address.
 
     Including IPv4-mapped IPv6 addresses. The initial version of ipv6 validator
@@ -88,9 +91,10 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False):
         cidr:
             IP address string may contain CIDR annotation
         strict:
-            If strict is True and host bits are set in the supplied address.
-            Otherwise, the host bits are masked out to determine the
-            appropriate network address. ref [IPv6Network][2].
+            IP address string is strictly in CIDR notation
+        host_bit:
+            If `False` and host bits (along with network bits) _are_ set in the supplied
+            address, this function raises a validation error. ref [IPv6Network][2].
             [2]: https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv6Network
 
     Returns:
@@ -108,8 +112,10 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False):
     if not value:
         return False
     try:
-        if cidr and value.count("/") == 1:
-            return IPv6Network(value, strict=strict)
+        if cidr:
+            if strict and value.count("/") != 1:
+                raise ValueError("IPv6 address was expected in CIDR notation")
+            return IPv6Network(value, strict=not host_bit)
         return IPv6Address(value)
-    except (AddressValueError, NetmaskValueError):
+    except (ValueError, AddressValueError, NetmaskValueError):
         return False
