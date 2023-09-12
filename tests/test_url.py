@@ -19,7 +19,6 @@ from validators import ValidationError, url
         "http://foo.com/blah_blah_(wikipedia)",
         "http://foo.com/blah_blah_(wikipedia)_(again)",
         "http://www.example.com/wpstyle/?p=364",
-        "https://www.example.com/foo/?bar=baz&inga=42&quux",
         "https://www.example.com?bar=baz",
         "http://✪df.ws/123",
         "http://userid:password@example.com:8080",
@@ -85,12 +84,18 @@ from validators import ValidationError, url
         "http://:::::::::::::@exmp.com",
         "http://-.~_!$&'()*+,;=:%40:80%2f::::::@example.com",
         "https://exchange.jetswap.finance/#/swap",
+        "https://www.foo.com/bar#/baz/test",
         # when simple_host=True
         # "http://localhost",
         # "http://localhost:8000",
         # "http://pc:8081/",
         # "http://3628126748",
         # "http://foobar",
+        # when strict_query=False
+        # "https://www.example.com/foo/?bar=baz&inga=42&quux",
+        # "https://foo.bar.net/baz.php?-/inga/test-lenient-query/",
+        # "https://foo.com/img/bar/baz.jpg?-62169987208",
+        # "https://example.com/foo/?bar#!baz/inga/8SA-M3as7A8",
     ],
 )
 def test_returns_true_on_valid_url(value: str):
@@ -144,6 +149,10 @@ def test_returns_true_on_valid_url(value: str):
         "http://[2010:836B:4179::836B:4179",
         "http://2010:836B:4179::836B:4179",
         "http://2010:836B:4179::836B:4179:80/index.html",
+        "https://www.example.com/foo/?bar=baz&inga=42&quux",
+        "https://foo.com/img/bar/baz.jpg?-62169987208",
+        "https://foo.bar.net/baz.php?-/inga/test-lenient-query/",
+        "https://example.com/foo/?bar#!baz/inga/8SA-M3as7A8",
         "http://0.00.00.00.00.00.00.00.00.00.00.00.00.00.00."
         + "00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00."
         + "00.00.00.00.00.00.00.00.00.00.00.00.00.00.00.00."
