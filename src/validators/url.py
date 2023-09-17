@@ -103,12 +103,7 @@ def _validate_netloc(
     ) and _validate_auth_segment(basic_auth)
 
 
-def _validate_optionals(
-    path: str,
-    query: str,
-    fragment: str,
-    strict_query: bool = False,
-):
+def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool):
     """Validate path query and fragments."""
     optional_segments = True
     if path:
