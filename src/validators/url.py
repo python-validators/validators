@@ -3,7 +3,7 @@
 # standard
 from functools import lru_cache
 import re
-from urllib.parse import unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlsplit
 
 # local
 from .hostname import hostname
@@ -32,11 +32,6 @@ def _path_regex():
         + r"\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$",
         re.IGNORECASE,
     )
-
-
-@lru_cache
-def _query_regex():
-    return re.compile(r"&?(\w+=?[^\s&]*)", re.IGNORECASE)
 
 
 def _validate_scheme(value: str):
@@ -108,16 +103,16 @@ def _validate_netloc(
     ) and _validate_auth_segment(basic_auth)
 
 
-def _validate_optionals(path: str, query: str, fragment: str):
+def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool):
     """Validate path query and fragments."""
     optional_segments = True
     if path:
         optional_segments &= bool(_path_regex().match(path))
-    if query:
-        optional_segments &= bool(_query_regex().match(query))
+    if query and parse_qs(query, strict_parsing=strict_query):
+        optional_segments &= True
     if fragment:
         fragment = fragment.lstrip("/") if fragment.startswith("/") else fragment
-        optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in ("/", "?"))
+        optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in ("?",))
     return optional_segments
 
 
@@ -130,6 +125,7 @@ def url(
     skip_ipv4_addr: bool = False,
     may_have_port: bool = True,
     simple_host: bool = False,
+    strict_query: bool = True,
     rfc_1034: bool = False,
     rfc_2782: bool = False,
 ):
@@ -167,6 +163,8 @@ def url(
             URL string may contain port number.
         simple_host:
             URL string maybe only hyphens and alpha-numerals.
+        strict_query:
+            Fail validation on query string parsing error.
         rfc_1034:
             Allow trailing dot in domain/host name.
             Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
@@ -214,5 +212,5 @@ def url(
             rfc_1034,
             rfc_2782,
         )
-        and _validate_optionals(path, query, fragment)
+        and _validate_optionals(path, query, fragment, strict_query)
     )
