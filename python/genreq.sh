@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # tooling
-pdm export --group tooling,tooling-extras -f requirements -o python/requirements.tooling.txt
+pdm export -dG tooling,pycqa -f requirements -o python/requirements.tooling.txt
 # mkdocs
-pdm export --group docs-online -f requirements -o python/requirements.mkdocs.txt
+pdm export -dG docs-online -f requirements -o python/requirements.mkdocs.txt
 # sphinx
-pdm export --group docs-offline -f requirements -o python/requirements.sphinx.txt
+pdm export -dG docs-offline -f requirements -o python/requirements.sphinx.txt

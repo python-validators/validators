@@ -15,7 +15,7 @@ T = TypeVar("T", int, float, str, datetime)
 
 @pytest.mark.parametrize(
     ("value", "min_val", "max_val"),
-    [(12, 11, 13), (12, None, 14), (12, 11, None), (12, 12, 12)],
+    [(12, 11, 13), (12, None, 14), (12, 11, None), (12, 12, 12), (0, 0, 0), (0, -1, 3)],
 )
 def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T):
     """Test returns true on valid range."""
@@ -25,6 +25,7 @@ def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T):
 @pytest.mark.parametrize(
     ("value", "min_val", "max_val"),
     [
+        (None, 13, 14),
         (12, 13, 14),
         (12, None, 11),
         (12, None, None),

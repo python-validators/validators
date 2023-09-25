@@ -3,7 +3,7 @@
 ####################
 
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 ####################
@@ -12,7 +12,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "validators"
-version = "0.22.0"
 description = "Python Data Validation for Humans™"
 authors = [{ name = "Konsta Vesterinen", email = "konsta@fastmonkeys.com" }]
 license = { text = "MIT" }
@@ -34,6 +33,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 requires-python = ">=3.8"
+dynamic = ["version"]
 dependencies = []
 
 [project.urls]
@@ -46,22 +46,28 @@ Changelog = "https://github.com/python-validators/validators/blob/master/CHANGES
 #  Optional Dependencies  #
 ###########################
 
-[project.optional-dependencies]
+# [project.optional-dependencies]
+
+##############################
+#  Development Dependencies  #
+##############################
+
+[tool.pdm.dev-dependencies]
 docs-offline = ["myst-parser>=2.0.0", "pypandoc-binary>=1.11", "sphinx>=7.1.1"]
 docs-online = [
-    "mkdocs>=1.5.2",
+    "mkdocs>=1.5.3",
     "mkdocs-git-revision-date-localized-plugin>=1.2.0",
-    "mkdocs-material>=9.2.6",
-    "mkdocstrings[python]>=0.22.0",
-    "pyaml>=23.7.0",
+    "mkdocs-material>=9.4.1",
+    "mkdocstrings[python]>=0.23.0",
+    "pyaml>=23.9.6",
 ]
-hooks = ["pre-commit>=3.3.3"]
-package = ["build>=1.0.0", "twine>=4.0.2"]
-runner = ["tox>=4.11.1"]
+hooks = ["pre-commit>=3.4.0"]
+package = ["build>=1.0.3", "twine>=4.0.2"]
+pycqa = ["pyaml>=23.9.6", "pypandoc-binary>=1.11", "pytest>=7.4.2"]
+runner = ["tox>=4.11.3"]
 sast = ["bandit[toml]>=1.7.5"]
-testing = ["pytest>=7.4.0"]
-tooling = ["black>=23.7.0", "ruff>=0.0.287", "pyright>=1.1.325"]
-tooling-extras = ["pyaml>=23.7.0", "pypandoc-binary>=1.11", "pytest>=7.4.0"]
+testing = ["pytest>=7.4.2"]
+tooling = ["black>=23.9.1", "ruff>=0.0.291", "pyright>=1.1.327"]
 
 ####################
 #  Configurations  #
@@ -71,6 +77,12 @@ tooling-extras = ["pyaml>=23.7.0", "pypandoc-binary>=1.11", "pytest>=7.4.0"]
 where = ["src"]
 include = ["validators*"]
 namespaces = false
+
+[tool.setuptools.package-data]
+validators = ["py.typed"]
+
+[tool.setuptools.dynamic]
+version = { attr = "validators.__version__" }
 
 [tool.bandit]
 exclude_dirs = [

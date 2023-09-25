@@ -8,7 +8,7 @@ from typing import TypeVar, Union
 from ._extremes import AbsMax, AbsMin
 from .utils import validator
 
-PossibleValueTypes = TypeVar("PossibleValueTypes", int, float, str, datetime)
+PossibleValueTypes = TypeVar("PossibleValueTypes", int, float, str, datetime, None)
 
 
 @validator
@@ -67,7 +67,7 @@ def between(
 
     > *New in version 0.2.0*.
     """
-    if not value:
+    if value is None:
         return False
 
     if min_val is max_val is None:
