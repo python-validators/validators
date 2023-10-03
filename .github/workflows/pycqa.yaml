@@ -24,7 +24,7 @@ jobs:
       - name: Install 'tooling' dependencies
         run: |
           pip install .
-          pip install -r python/requirements.tooling.txt
+          pip install -r package/requirements.tooling.txt
       - name: Tooling
         run: |
           black .
