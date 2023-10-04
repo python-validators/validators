@@ -28,7 +28,7 @@ jobs:
           python -m venv .venv
           ./.venv/bin/python -m pip install --upgrade pip
           ./.venv/bin/pip install .
-          ./.venv/bin/pip install -r python/requirements.sphinx.txt
+          ./.venv/bin/pip install -r package/requirements.sphinx.txt
           ./.venv/bin/pip install build
       # build package
       - name: Build package

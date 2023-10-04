@@ -25,7 +25,7 @@ jobs:
       - name: Install 'documentation' dependencies
         run: |
           pip install .
-          pip install -r python/requirements.mkdocs.txt
+          pip install -r package/requirements.mkdocs.txt
       - name: Build documentation
         run: python src/export docs
       # set up Pages
