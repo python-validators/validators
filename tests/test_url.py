@@ -85,6 +85,8 @@ from validators import ValidationError, url
         "http://-.~_!$&'()*+,;=:%40:80%2f::::::@example.com",
         "https://exchange.jetswap.finance/#/swap",
         "https://www.foo.com/bar#/baz/test",
+        "https://matrix.to/#/!BSqRHgvCtIsGittkBG:talk.puri.sm/$1551464398"
+        + "853539kMJNP:matrix.org?via=talk.puri.sm&via=matrix.org&via=disroot.org",
         # when simple_host=True
         # "http://localhost",
         # "http://localhost:8000",
