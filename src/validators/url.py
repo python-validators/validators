@@ -111,8 +111,8 @@ def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool
     if query and parse_qs(query, strict_parsing=strict_query):
         optional_segments &= True
     if fragment:
-        fragment = fragment.lstrip("/") if fragment.startswith("/") else fragment
-        optional_segments &= all(char_to_avoid not in fragment for char_to_avoid in ("?",))
+        # See RFC3986 Section 3.5 Fragment for allowed characters
+        optional_segments &= bool(re.fullmatch(r"[0-9a-zA-Z?/:@\-._~!$&'()*+,;=]*", fragment))
     return optional_segments
 
 
