@@ -1,6 +1,9 @@
 """Test French validators."""
 
+# external
 import pytest
+
+# local
 from validators import ValidationError
 from validators.i18n.fr import fr_department, fr_ssn
 
