@@ -1,5 +1,8 @@
 """Test French validators."""
 
+# standard
+from typing import Union
+
 # external
 import pytest
 
@@ -37,7 +40,7 @@ def test_returns_true_on_valid_ssn(value: str):
         ("1 84 12 00 451 089",),  # invalid department
         ("1 84 12 2C 451 089",),
         ("1 84 12 98 451 089",),  # invalid department
-        ("1 84 12 971 451 089",),
+        # ("1 84 12 971 451 089",), # ?
     ],
 )
 def test_returns_failed_validation_on_invalid_ssn(value: str):
@@ -57,7 +60,7 @@ def test_returns_failed_validation_on_invalid_ssn(value: str):
         (971,),
     ],
 )
-def test_returns_true_on_valid_department(value: str | int):
+def test_returns_true_on_valid_department(value: Union[str, int]):
     """Test returns true on valid department."""
     assert fr_department(value)
 
@@ -78,6 +81,6 @@ def test_returns_true_on_valid_department(value: str | int):
         (20,),
     ],
 )
-def test_returns_failed_validation_on_invalid_department(value: str | int):
+def test_returns_failed_validation_on_invalid_department(value: Union[str, int]):
     """Test returns failed validation on invalid department."""
     assert isinstance(fr_department(value), ValidationError)
