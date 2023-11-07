@@ -87,6 +87,7 @@ from validators import ValidationError, url
         "https://www.foo.com/bar#/baz/test",
         "https://matrix.to/#/!BSqRHgvCtIsGittkBG:talk.puri.sm/$1551464398"
         + "853539kMJNP:matrix.org?via=talk.puri.sm&via=matrix.org&via=disroot.org",
+        "https://example.org/path#2022%201040%20(Cornelius%20Morgan%20G).pdf",
         # when simple_host=True
         # "http://localhost",
         # "http://localhost:8000",
