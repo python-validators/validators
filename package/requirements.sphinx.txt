@@ -88,6 +88,9 @@ charset-normalizer==3.3.0 \
     --hash=sha256:f0d1e3732768fecb052d90d62b220af62ead5748ac51ef61e7b32c266cac9293 \
     --hash=sha256:f5969baeaea61c97efa706b9b107dcba02784b1601c74ac84f2a532ea079403e \
     --hash=sha256:f8888e31e3a85943743f8fc15e71536bda1c81d5aa36d014a3c0c44481d7db6e
+colorama==0.4.6; sys_platform == "win32" \
+    --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
+    --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
 docutils==0.20.1 \
     --hash=sha256:96f387a2c5562db4476f09f13bbab2192e764cac08ebbf3a34a95d9b1e4a59d6 \
     --hash=sha256:f08a4e276c3a1583a86dce3e34aba3fe04d02bba2dd51ed16106244e8a923e3b
@@ -97,7 +100,7 @@ idna==3.4 \
 imagesize==1.4.1 \
     --hash=sha256:0d8d18d08f840c19d0ee7ca1fd82490fdc3729b7ac93f49870406ddde8ef8d8b \
     --hash=sha256:69150444affb9cb0d5cc5a92b3676f0b2fb7cd9ae39e947a5e11a36b4497cd4a
-importlib-metadata==6.8.0 \
+importlib-metadata==6.8.0; python_version < "3.10" \
     --hash=sha256:3ebb78df84a805d7698245025b975d9d67053cd94c79245ba4b3eb694abe68bb \
     --hash=sha256:dbace7892d8c0c4ac1ad096662232f831d4e64f4c4545bd53016a3e9d4654743
 Jinja2==3.1.2 \
@@ -173,13 +176,13 @@ packaging==23.2 \
 Pygments==2.16.1 \
     --hash=sha256:13fc09fa63bc8d8671a6d247e1eb303c4b343eaee81d861f3404db2935653692 \
     --hash=sha256:1daff0494820c69bc8941e407aa20f577374ee88364ee10a98fdbe0aece96e29
-pypandoc-binary==1.11 \
-    --hash=sha256:1ab00de66b7f36ba33590415811c1d4c72d9f515c4e8b2f1391f27cbddc7b229 \
-    --hash=sha256:1b0df61a96d679309769c21528cfbfb14d32ddee1854ae02e7b35b889d60d9e4 \
-    --hash=sha256:49436f0ffa489f02bac546e4fe42cbd3595202ee3a00492616b8f6bc358119c0 \
-    --hash=sha256:a08a66f12d5672f75cea8f6c29b3579aa70bad4b0c8844efdb6e8f6fddc8b359 \
-    --hash=sha256:ebd8036a71fb67c0d3bfc0f50a6af390afe0728ebe17b779f676fd25df76fca1
-pytz==2023.3.post1 \
+pypandoc-binary==1.12 \
+    --hash=sha256:3c6e4cccc87c13f2649dafcf5670a4e26774e5a3e39ab14ae43c6f3055a5f9b6 \
+    --hash=sha256:600006a15ff1729160c203768be0aa95fd43d50ec88f8b23ece0d1423b6f633c \
+    --hash=sha256:7eb1ac487453a1463355662860106640ac0204dedb40f586f66cff4c7a73e001 \
+    --hash=sha256:93c228e05852844a784d6a3f429a8ef28f30c5b77cca49d12493e6bdc8426925 \
+    --hash=sha256:dc0dd09289ff68c5b036f334921521c2622018d9c566ec3688f0eb635cb613c7
+pytz==2023.3.post1; python_version < "3.9" \
     --hash=sha256:7b4fddbeb94a1eba4b557da24f19fdf9db575192544270a9101d8509f9f43d7b \
     --hash=sha256:ce42d816b81b68506614c11e8937d3aa9e41007ceb50bfdcb0749b921bf646c7
 pyyaml==6.0.1 \
@@ -248,9 +251,9 @@ sphinxcontrib-qthelp==1.0.3 \
 sphinxcontrib-serializinghtml==1.1.5 \
     --hash=sha256:352a9a00ae864471d3a7ead8d7d79f5fc0b57e8b3f95e9867eb9eb28999b92fd \
     --hash=sha256:aa5f6de5dfdf809ef505c4895e51ef5c9eac17d0f287933eb49ec495280b6952
-urllib3==2.0.7 \
-    --hash=sha256:c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84 \
-    --hash=sha256:fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e
-zipp==3.17.0 \
+urllib3==2.0.6 \
+    --hash=sha256:7a7c7003b000adf9e7ca2a377c9688bbc54ed41b985789ed576570342a375cd2 \
+    --hash=sha256:b19e1a85d206b56d7df1d5e683df4a7725252a964e3993648dd0fb5a1c157564
+zipp==3.17.0; python_version < "3.10" \
     --hash=sha256:0e923e726174922dce09c53c59ad483ff7bbb8e572e00c7f7c46b88556409f31 \
     --hash=sha256:84e64a1c28cf7e91ed2078bb8cc8c259cb19b76942096c8d7b84947690cabaf0
