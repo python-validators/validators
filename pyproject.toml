@@ -58,17 +58,17 @@ docs-offline = ["myst-parser>=2.0.0", "pypandoc-binary>=1.12", "sphinx>=7.1.2"]
 docs-online = [
     "mkdocs>=1.5.3",
     "mkdocs-git-revision-date-localized-plugin>=1.2.2",
-    "mkdocs-material>=9.5.3",
+    "mkdocs-material>=9.5.6",
     "mkdocstrings[python]>=0.24.0",
-    "pyaml>=23.9.7",
+    "pyaml>=23.12.0",
 ]
 hooks = ["pre-commit>=3.5.0"]
 package = ["build>=1.0.3", "twine>=4.0.2"]
-pycqa = ["pyaml>=23.9.7", "pypandoc-binary>=1.12", "pytest>=7.4.3"]
-runner = ["tox>=4.11.4"]
-sast = ["bandit[toml]>=1.7.6"]
-testing = ["pytest>=7.4.3"]
-tooling = ["black>=23.12.1", "ruff>=0.1.9", "pyright>=1.1.342"]
+pycqa = ["pyaml>=23.12.0", "pypandoc-binary>=1.12", "pytest>=8.0.0"]
+runner = ["tox>=4.12.1"]
+sast = ["bandit[toml]>=1.7.7"]
+testing = ["pytest>=8.0.0"]
+tooling = ["black>=24.1.1", "ruff>=0.1.15", "pyright>=1.1.349"]
 
 ####################
 #  Configurations  #
