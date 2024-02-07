@@ -79,9 +79,11 @@ def _validate_netloc(
         return False
     if value.count("@") < 1:
         return hostname(
-            value
-            if _confirm_ipv6_skip(value, skip_ipv6_addr) or "]:" in value
-            else value.lstrip("[").replace("]", "", 1),
+            (
+                value
+                if _confirm_ipv6_skip(value, skip_ipv6_addr) or "]:" in value
+                else value.lstrip("[").replace("]", "", 1)
+            ),
             skip_ipv6_addr=_confirm_ipv6_skip(value, skip_ipv6_addr),
             skip_ipv4_addr=skip_ipv4_addr,
             may_have_port=may_have_port,
@@ -91,9 +93,11 @@ def _validate_netloc(
         )
     basic_auth, host = value.rsplit("@", 1)
     return hostname(
-        host
-        if _confirm_ipv6_skip(host, skip_ipv6_addr) or "]:" in value
-        else host.lstrip("[").replace("]", "", 1),
+        (
+            host
+            if _confirm_ipv6_skip(host, skip_ipv6_addr) or "]:" in value
+            else host.lstrip("[").replace("]", "", 1)
+        ),
         skip_ipv6_addr=_confirm_ipv6_skip(host, skip_ipv6_addr),
         skip_ipv4_addr=skip_ipv4_addr,
         may_have_port=may_have_port,
