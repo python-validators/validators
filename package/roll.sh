@@ -40,7 +40,7 @@ $venv_dir/bin/pip install build
 . $venv_dir/bin/activate
 
 # Run export script
-python src/export package
+python package/export pkg
 
 # Deactivate virtual environment
 deactivate

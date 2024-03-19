@@ -40,13 +40,13 @@ def _parse_package(source: Path):
 
 def _generate_reference(source: Path, destination: Path, ext: str):
     """Generate reference."""
-    nav_items: Dict[str, List[str]] = {"Code Reference": []}
+    nav_items: Dict[str, List[str]] = {"API": []}
     # generate reference content
     for module_name, aliases in _parse_package(source):
         for alias in aliases:
             _write_ref_content(destination / f"{module_name}.{ext}", module_name, alias.name)
         if ext == "md":
-            nav_items["Code Reference"].append(f"references/{module_name}.md")
+            nav_items["API"].append(f"references/{module_name}.md")
     return nav_items
 
 
@@ -65,6 +65,9 @@ def _update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, 
 
 def _gen_md_docs(source: Path, refs_path: Path):
     """Generate Markdown docs."""
+    # remove existing markdown files
+    for md_files in (source / "docs/references").glob("*.md"):
+        md_files.unlink()
     nav_items = _generate_reference(source / "src/validators/__init__.py", refs_path, "md")
     # backup mkdocs config
     _update_mkdocs_config(source / "mkdocs.yaml", source / "mkdocs.bak.yaml", nav_items)
@@ -166,7 +169,7 @@ if __name__ == "__main__":
     if len(argv) != 2:
         quit(exit_code)
 
-    if argv[1] == "package":
+    if argv[1] == "pkg":
         exit_code = package(project_root)
     if argv[1] == "docs":
         exit_code = generate_documentation(

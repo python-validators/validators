@@ -7,7 +7,6 @@ include .gitignore
 # global-include
 
 recursive-include tests *
-recursive-include src/export *
 
 # graft
 
@@ -16,6 +15,7 @@ recursive-include src/export *
 # global-exclude
 
 recursive-exclude docs *.rst
+recursive-exclude docs/references *.md
 
 prune docs/_build
 prune **/__pycache__

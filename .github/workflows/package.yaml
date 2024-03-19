@@ -34,7 +34,7 @@ jobs:
       - name: Build package
         run: |
           . ./.venv/bin/activate
-          python src/export package
+          python package/export pkg
           deactivate
       # upload package as artifact
       - name: Upload artifact

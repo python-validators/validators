@@ -9,7 +9,7 @@ from validators import ValidationError, length
 
 @pytest.mark.parametrize(
     ("value", "min_val", "max_val"),
-    [("password", 2, 10), ("password", 0, 10), ("password", 8, 8)],
+    [("password", 2, None), ("password", None, None), ("password", 0, 10), ("password", 8, 8)],
 )
 def test_returns_true_on_valid_length(value: str, min_val: int, max_val: int):
     """Test returns true on valid length."""
