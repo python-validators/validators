@@ -178,22 +178,9 @@ def url(
 
     Returns:
         (Literal[True]):
-            If `value` is a valid slug.
+            If `value` is a valid url.
         (ValidationError):
-            If `value` is an invalid slug.
-
-    Note:
-        - *In version 0.11.3*:
-            - Added support for URLs containing localhost.
-        - *In version 0.11.0*:
-            - Made the regular expression case insensitive.
-        - *In version 0.10.3*:
-            - Added a `public` parameter.
-        - *In version 0.10.2*:
-            - Added support for various exotic URLs.
-            - Fixed various false positives.
-
-    > *New in version 0.2.0*.
+            If `value` is an invalid url.
     """
     if not value or re.search(r"\s", value):
         # url must not contain any white

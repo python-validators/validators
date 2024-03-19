@@ -52,8 +52,6 @@ def es_cif(value: str, /):
             If `value` is a valid DOI string.
         (ValidationError):
             If `value` is an invalid DOI string.
-
-    > *New in version 0.13.0*.
     """
     if not value or len(value) != 9:
         return False
@@ -108,8 +106,6 @@ def es_nif(value: str, /):
             If `value` is a valid DOI string.
         (ValidationError):
             If `value` is an invalid DOI string.
-
-    > *New in version 0.13.0*.
     """
     number_by_letter = {"L": "0", "M": "0", "K": "0"}
     special_cases = {"X0000000T", "00000000T", "00000001R"}
@@ -143,8 +139,6 @@ def es_nie(value: str, /):
             If `value` is a valid DOI string.
         (ValidationError):
             If `value` is an invalid DOI string.
-
-    > *New in version 0.13.0*.
     """
     number_by_letter = {"X": "0", "Y": "1", "Z": "2"}
     # NIE must must start with X Y or Z
@@ -179,7 +173,5 @@ def es_doi(value: str, /):
             If `value` is a valid DOI string.
         (ValidationError):
             If `value` is an invalid DOI string.
-
-    > *New in version 0.13.0*.
     """
     return es_nie(value) or es_nif(value) or es_cif(value)

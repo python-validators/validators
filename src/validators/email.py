@@ -56,8 +56,6 @@ def email(
             If `value` is a valid eMail.
         (ValidationError):
             If `value` is an invalid eMail.
-
-    > *New in version 0.1.0*.
     """
     if not value or value.count("@") != 1:
         return False

@@ -64,8 +64,6 @@ def validator(func: Callable[..., Any]):
         (Callable[..., ValidationError | Literal[True]]):
             A decorator which returns either `ValidationError`
             or `Literal[True]`.
-
-    > *New in version 2013.10.21*.
     """
 
     @wraps(func)

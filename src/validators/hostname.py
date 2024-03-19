@@ -104,8 +104,6 @@ def hostname(
             If `value` is a valid hostname.
         (ValidationError):
             If `value` is an invalid hostname.
-
-    > *New in version 0.21.0*.
     """
     if not value:
         return False

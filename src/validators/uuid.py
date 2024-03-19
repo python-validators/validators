@@ -32,8 +32,6 @@ def uuid(value: Union[str, UUID], /):
             If `value` is a valid UUID.
         (ValidationError):
             If `value` is an invalid UUID.
-
-    > *New in version 0.2.0*.
     """
     if not value:
         return False

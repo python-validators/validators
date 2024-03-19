@@ -120,7 +120,7 @@ typeCheckingMode = "strict"
 pythonpath = ["src"]
 
 [tool.ruff]
-select = [
+lint.select = [
     # Pyflakes
     "F",
     # pycodestyle
@@ -139,7 +139,7 @@ line-length = 100
 target-version = "py38"
 extend-exclude = ["**/__pycache__", ".pytest_cache", "site"]
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 # case-sensitive = true
 combine-as-imports = true
 force-sort-within-sections = true
@@ -147,7 +147,7 @@ force-wrap-aliases = true
 known-local-folder = ["src"]
 relative-imports-order = "closest-to-furthest"
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.tox]

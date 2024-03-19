@@ -17,10 +17,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       # set up specific python version
-      - name: Set up Python v3.11
+      - name: Set up Python v3.12
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: "3.12"
       # building
       - name: Install 'documentation' dependencies
         run: |
