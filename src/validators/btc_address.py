@@ -46,8 +46,6 @@ def btc_address(value: str, /):
             If `value` is a valid bitcoin address.
         (ValidationError):
             If `value` is an invalid bitcoin address.
-
-    > *New in version 0.18.0*.
     """
     if not value:
         return False

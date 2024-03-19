@@ -33,8 +33,8 @@ True
 [sast-link]: https://github.com/python-validators/validators/actions/workflows/sast.yaml
 [pycqa-badge]: https://github.com/python-validators/validators/actions/workflows/pycqa.yaml/badge.svg
 [pycqa-link]: https://github.com/python-validators/validators/actions/workflows/pycqa.yaml
-[docs-badge]: https://github.com/python-validators/validators/actions/workflows/docs.yaml/badge.svg
-[docs-link]: https://github.com/python-validators/validators/actions/workflows/docs.yaml
+[docs-badge]: https://github.com/yozachar/pyvalidators/actions/workflows/pages/pages-build-deployment/badge.svg
+[docs-link]: https://github.com/yozachar/pyvalidators/actions/workflows/pages/pages-build-deployment
 [vs-badge]: https://img.shields.io/pypi/v/validators?logo=pypi&logoColor=white&label=version&color=blue
 [vs-link]: https://pypi.python.org/pypi/validators/
 [dw-badge]: https://img.shields.io/pypi/dm/validators?logo=pypi&logoColor=white&color=blue

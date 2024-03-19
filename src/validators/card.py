@@ -30,8 +30,6 @@ def card_number(value: str, /):
             If `value` is a valid generic card number.
         (ValidationError):
             If `value` is an invalid generic card number.
-
-    > *New in version 0.15.0*.
     """
     if not value:
         return False
@@ -63,8 +61,6 @@ def visa(value: str, /):
             If `value` is a valid Visa card number.
         (ValidationError):
             If `value` is an invalid Visa card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^4")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -89,8 +85,6 @@ def mastercard(value: str, /):
             If `value` is a valid Mastercard card number.
         (ValidationError):
             If `value` is an invalid Mastercard card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^(51|52|53|54|55|22|23|24|25|26|27)")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -115,8 +109,6 @@ def amex(value: str, /):
             If `value` is a valid American Express card number.
         (ValidationError):
             If `value` is an invalid American Express card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^(34|37)")
     return card_number(value) and len(value) == 15 and pattern.match(value)
@@ -141,8 +133,6 @@ def unionpay(value: str, /):
             If `value` is a valid UnionPay card number.
         (ValidationError):
             If `value` is an invalid UnionPay card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^62")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -167,8 +157,6 @@ def diners(value: str, /):
             If `value` is a valid Diners Club card number.
         (ValidationError):
             If `value` is an invalid Diners Club card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^(30|36|38|39)")
     return card_number(value) and len(value) in {14, 16} and pattern.match(value)
@@ -193,8 +181,6 @@ def jcb(value: str, /):
             If `value` is a valid JCB card number.
         (ValidationError):
             If `value` is an invalid JCB card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^35")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -219,8 +205,6 @@ def discover(value: str, /):
             If `value` is a valid Discover card number.
         (ValidationError):
             If `value` is an invalid Discover card number.
-
-    > *New in version 0.15.0*.
     """
     pattern = re.compile(r"^(60|64|65)")
     return card_number(value) and len(value) == 16 and pattern.match(value)

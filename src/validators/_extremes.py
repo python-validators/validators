@@ -19,8 +19,6 @@ class AbsMax:
         # Output: True
         >>> AbsMax > 99999999999999999
         # Output: True
-
-    > *New in version 0.2.0*.
     """
 
     def __ge__(self, other: Any):
@@ -42,8 +40,6 @@ class AbsMin:
         # Output: True
         >>> AbsMin < ''
         # Output: True
-
-    > *New in version 0.2.0*.
     """
 
     def __le__(self, other: Any):

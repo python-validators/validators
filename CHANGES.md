@@ -9,9 +9,26 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.23.1 (2024-03-19)
+
+_**Breaking**_ ⚠️
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
+
+- maint: fix `between` & `length` validators by @yozachar in [#334](https://github.com/python-validators/validators/pull/334)
+- fix: manual nav reference for mkdocs; bumps version by @yozachar in [#335](https://github.com/python-validators/validators/pull/335)
+
+**Full Changelog**: [`0.23.0...0.23.1`](https://github.com/python-validators/validators/compare/0.23.0...0.23.1)
+
 ## 0.23.0 (2024-03-19)
 
-_**Breaking**_
+_**Breaking**_ ⚠️
 
 > No breaking changes were introduced in this version.
 
@@ -37,108 +54,141 @@ _**Maintenance**_
 - build(deps): bump jinja2 from 3.1.2 to 3.1.3 in /package by @dependabot in [#332](https://github.com/python-validators/validators/pull/332)
 - build(deps): bump urllib3 from 2.0.6 to 2.0.7 in /package by @dependabot in [#319](https://github.com/python-validators/validators/pull/319)
 
-_**New Contributors**_
-
-- @danherbriley made their first contribution in [#297](https://github.com/python-validators/validators/pull/297)
-- @darkdragon-001 made their first contribution in [#305](https://github.com/python-validators/validators/pull/305)
-- @conitrade-as made their first contribution in [#317](https://github.com/python-validators/validators/pull/317)
-- @imperosol made their first contribution in [#308](https://github.com/python-validators/validators/pull/308)
-
-**Full Changelog**: [0.22.0...0.23.0](https://github.com/python-validators/validators/compare/0.22.0...0.23.0)
+**Full Changelog**: [`0.22.0...0.23.0`](https://github.com/python-validators/validators/compare/0.22.0...0.23.0)
 
 ---
 
 ## 0.22.0 (2023-09-02)
 
-_**What's Changed**_
+_**Breaking**_ ⚠️
 
-> - _Breaking_:
->   - API changes in `validators.ipv4` and `validators.ipv6` functions
->     - `strict` parameter now correctly validates IP addresses strictly in CIDR notation
->     - `host_bit` parameter distinguishes between network and host IP address
+- A new keyword parameter `host_bit = True`, is added to `validators.ipv4` and `validators.ipv6`.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
 
 - fix: url validator considers urls with /#/ as valid by @adrienthiery in [#289](https://github.com/python-validators/validators/pull/289)
 - Add note about ValidationFailure to ValidationError in changes.md by @tswfi in [#291](https://github.com/python-validators/validators/pull/291)
-- fix: simple hostname validation regex by @joe733 in [#294](https://github.com/python-validators/validators/pull/294)
-- fix: strict CIDR IP validation; bump version by @joe733 in [#295](https://github.com/python-validators/validators/pull/295)
-
-_**New Contributors**_
-
-- @adrienthiery made their first contribution in [#289](https://github.com/python-validators/validators/pull/289)
-- @tswfi made their first contribution in [#291](https://github.com/python-validators/validators/pull/291)
+- fix: simple hostname validation regex by @yozachar in [#294](https://github.com/python-validators/validators/pull/294)
+- fix: strict CIDR IP validation; bump version by @yozachar in [#295](https://github.com/python-validators/validators/pull/295)
 
 **Full Changelog**: [`0.21.2...0.22.0`](https://github.com/python-validators/validators/compare/0.21.2...0.22.0)
 
+---
+
 ## 0.21.2 (2023-08-07)
 
-_**What's Changed**_
+_**Breaking**_ ⚠️
 
-> - _Breaking_:
->   - `ValidationFailure` renamed to `ValidationError` in [`joe733@12ae1f5`](https://github.com/joe733/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a)
+- `ValidationFailure` is renamed to `ValidationError` in [`yozachar@12ae1f5`](https://github.com/yozachar/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a)
 
-- feat: refactoring; updates; fixes; bump version by @joe733 in [#283](https://github.com/python-validators/validators/pull/283)(<https://github.com/joe733/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a>)
+_**Features**_
+
+- Added Country Code Validation by @aviiciii in [#280](https://github.com/python-validators/validators/pull/280)
+- add validator ETH addresses (ERC20) by @msamsami in [#276](https://github.com/python-validators/validators/pull/276)
+
+_**Maintenance**_
+
+- feat: refactoring; updates; fixes; bump version by @yozachar in [#283](https://github.com/python-validators/validators/pull/283)(ref: <https://github.com/yozachar/pyvalidators/commit/12ae1f5850555d11e1f1a2c03f597fd10610215a>)
 - build(deps): bump pymdown-extensions from 9.11 to 10.0 by @dependabot in [#273](https://github.com/python-validators/validators/pull/273)
 - build(deps): bump requests from 2.28.2 to 2.31.0 by @dependabot in [#275](https://github.com/python-validators/validators/pull/275)
-- add validator ETH addresses (ERC20) by @msamsami in [#276](https://github.com/python-validators/validators/pull/276)
-- Added Country Code Validation by @aviiciii in [#280](https://github.com/python-validators/validators/pull/280)
 - build(deps-dev): bump certifi from 2022.12.7 to 2023.7.22 by @dependabot in [#281](https://github.com/python-validators/validators/pull/281)
-
-_**New Contributors**_
-
-- @dependabot made their first contribution in [#273](https://github.com/python-validators/validators/pull/273)
-- @msamsami made their first contribution in [#276](https://github.com/python-validators/validators/pull/276)
-- @aviiciii made their first contribution in [#280](https://github.com/python-validators/validators/pull/280)
 
 **Full Changelog**: [`0.21.1...0.21.2`](https://github.com/python-validators/validators/compare/0.21.1...0.21.2)
 
 ## 0.21.1 (2023-04-10)
 
-- fix: `source .venv/bin/activate` before build by @joe733 in [#260](https://github.com/python-validators/validators/pull/260)
-- fix: id-token write permission at job level by @joe733 in [#261](https://github.com/python-validators/validators/pull/261)
-- feat: docs can be built with both sphinx & mkdocs by @joe733 in [#262](https://github.com/python-validators/validators/pull/262)
-- fix: improves build process by @joe733 in [#263](https://github.com/python-validators/validators/pull/263)
-- fix: removes 64-char limit for url path & query by @joe733 in [#264](https://github.com/python-validators/validators/pull/264)
+_**Breaking**_ ⚠️
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
+
+- fix: `source .venv/bin/activate` before build by @yozachar in [#260](https://github.com/python-validators/validators/pull/260)
+- fix: id-token write permission at job level by @yozachar in [#261](https://github.com/python-validators/validators/pull/261)
+- feat: docs can be built with both sphinx & mkdocs by @yozachar in [#262](https://github.com/python-validators/validators/pull/262)
+- fix: improves build process by @yozachar in [#263](https://github.com/python-validators/validators/pull/263)
+- fix: removes 64-char limit for url path & query by @yozachar in [#264](https://github.com/python-validators/validators/pull/264)
 
 **Full Changelog**: [`0.21.0...0.21.1`](https://github.com/python-validators/validators/compare/0.21.0...0.21.1)
 
 ## 0.21.0 (2023-03-25)
 
-> - _Breaking_:
->   - Couple of API changes, refer [documentation](https://python-validators.github.io/validators/)
+_**Breaking**_ ⚠️
 
-- feat: add build for pypi workflow by @joe733 in [#255](https://github.com/python-validators/validators/pull/255)
-- feat: @validator now catches `Exception` by @joe733 in [#254](https://github.com/python-validators/validators/pull/254)
-- maint: improves `i18n` package by @joe733 in [#252](https://github.com/python-validators/validators/pull/252)
-- maint: misc changes to dev and ci by @joe733 in [#251](https://github.com/python-validators/validators/pull/251)
-- maint: misc fixes and improvements by @joe733 in [#249](https://github.com/python-validators/validators/pull/249)
-- maint: improves state of package development by @joe733 in [#248](https://github.com/python-validators/validators/pull/248)
-- fix: generate dynamic reference docs by @joe733 in [#247](https://github.com/python-validators/validators/pull/247)
-- maint: moving docs from `.rst` to `.md` by @joe733 in [#246](https://github.com/python-validators/validators/pull/246)
-- maint: improves `url` module by @joe733 in [#245](https://github.com/python-validators/validators/pull/245)
-- maint: improve `domain`, `email` & `hostname` by @joe733 in [#244](https://github.com/python-validators/validators/pull/244)
-- maint: simplified `hostname` module by @joe733 in [#242](https://github.com/python-validators/validators/pull/242)
-- maint: update `email` module by @joe733 in [#241](https://github.com/python-validators/validators/pull/241)
-- feat: adds `hostname` validator by @joe733 in [#240](https://github.com/python-validators/validators/pull/240)
-- maint: improves `ip_address` module by @joe733 in [#239](https://github.com/python-validators/validators/pull/239)
-- fix: misc fixes, use bandit by @joe733 in [#238](https://github.com/python-validators/validators/pull/238)
-- Create SECURITY.md by @joe733 in [#237](https://github.com/python-validators/validators/pull/237)
-- maint: improves `mac_address`, `slug` and `uuid` by @joe733 in [#236](https://github.com/python-validators/validators/pull/236)
-- maint: improve `hashes` and `iban` modules by @joe733 in [#235](https://github.com/python-validators/validators/pull/235)
-- feat: auto docs using mkdocstrings by @joe733 in [#234](https://github.com/python-validators/validators/pull/234)
-- maint: improves `email` module by @joe733 in [#233](https://github.com/python-validators/validators/pull/233)
-- maint: minor improvements by @joe733 in [#232](https://github.com/python-validators/validators/pull/232)
-- maint: improves `domain` module by @joe733 in [#231](https://github.com/python-validators/validators/pull/231)
-- maint: reformats `card` module, fix typo by @joe733 in [#230](https://github.com/python-validators/validators/pull/230)
-- feat: formats google pydoc style for mkdocstring by @joe733 in [#229](https://github.com/python-validators/validators/pull/229)
-- maint: refresh `btc_address` module by @joe733 in [#228](https://github.com/python-validators/validators/pull/228)
-- maint: improve type annotations by @joe733 in [#227](https://github.com/python-validators/validators/pull/227)
-- maint: improves `between` and `length` modules by @joe733 in [#225](https://github.com/python-validators/validators/pull/225)
-- maint: follows google's python style guide for docstrings by @joe733 in [#224](https://github.com/python-validators/validators/pull/224)
-- feat: type hints in utils.py, gh-actions by @joe733 in [#223](https://github.com/python-validators/validators/pull/223)
-- feat: add pyproject.toml, README.md, upd gitignore by @joe733 in [#221](https://github.com/python-validators/validators/pull/221)
+- Drops support for all Python versions below `v3.8`.
+- Makes API's primary parameter, `positional`, and the remaining, `keyword-only`.
+- Keyword-only parameters like `max` and `min`, has been renamed to `max_val` and `min_val` respectively.
+- `domain` API now accepts two new keyword-only arguments: `rfc_1034: bool = False` and `rfc_2782: bool = False`.
+- `extremes.py` renamed to `_extremes.py` and is no longer exposed.
+- `truthy` was discarded in favour of simple `bool()` function.
+- `ipv4_cidr()` and `ipv6_cidr()` has been dropped in favour of `cidr: bool = True` and `cidr: bool = True` keyword-only parameters.
+- `email` API now accepts the following keyword-only arguments:
+  - `simple_host: bool = False`,
+  - `ipv6_address: bool = False`,
+  - `ipv4_address: bool = False`,
+  - `rfc_1034: bool = False` and
+  - `rfc_2782: bool = False`.
+- `url` has been refactored, it accepts the following keyword-only arguments:
+  - `skip_ipv6_addr: bool = False`,
+  - `skip_ipv4_addr: bool = False`,
+  - `may_have_port: bool = True`,
+  - `simple_host: bool = False`,
+  - `rfc_1034: bool = False` and
+  - `rfc_2782: bool = False`.
+- Exposes `i18n` functions directly via `__init__.py`.
+- `@validator` decorator catches `Exception`.
+
+<!-- please don't shoot me -->
+
+_**Features**_
+
+- Adds `hostname` validator.
+
+_**Maintenance**_
+
+- feat: add build for pypi workflow by @yozachar in [#255](https://github.com/python-validators/validators/pull/255)
+- feat: @validator now catches `Exception` by @yozachar in [#254](https://github.com/python-validators/validators/pull/254)
+- maint: improves `i18n` package by @yozachar in [#252](https://github.com/python-validators/validators/pull/252)
+- maint: misc changes to dev and ci by @yozachar in [#251](https://github.com/python-validators/validators/pull/251)
+- maint: misc fixes and improvements by @yozachar in [#249](https://github.com/python-validators/validators/pull/249)
+- maint: improves state of package development by @yozachar in [#248](https://github.com/python-validators/validators/pull/248)
+- fix: generate dynamic reference docs by @yozachar in [#247](https://github.com/python-validators/validators/pull/247)
+- maint: moving docs from `.rst` to `.md` by @yozachar in [#246](https://github.com/python-validators/validators/pull/246)
+- maint: improves `url` module by @yozachar in [#245](https://github.com/python-validators/validators/pull/245)
+- maint: improve `domain`, `email` & `hostname` by @yozachar in [#244](https://github.com/python-validators/validators/pull/244)
+- maint: simplified `hostname` module by @yozachar in [#242](https://github.com/python-validators/validators/pull/242)
+- maint: update `email` module by @yozachar in [#241](https://github.com/python-validators/validators/pull/241)
+- feat: adds `hostname` validator by @yozachar in [#240](https://github.com/python-validators/validators/pull/240)
+- maint: improves `ip_address` module by @yozachar in [#239](https://github.com/python-validators/validators/pull/239)
+- fix: misc fixes, use bandit by @yozachar in [#238](https://github.com/python-validators/validators/pull/238)
+- Create SECURITY.md by @yozachar in [#237](https://github.com/python-validators/validators/pull/237)
+- maint: improves `mac_address`, `slug` and `uuid` by @yozachar in [#236](https://github.com/python-validators/validators/pull/236)
+- maint: improve `hashes` and `iban` modules by @yozachar in [#235](https://github.com/python-validators/validators/pull/235)
+- feat: auto docs using mkdocstrings by @yozachar in [#234](https://github.com/python-validators/validators/pull/234)
+- maint: improves `email` module by @yozachar in [#233](https://github.com/python-validators/validators/pull/233)
+- maint: minor improvements by @yozachar in [#232](https://github.com/python-validators/validators/pull/232)
+- maint: improves `domain` module by @yozachar in [#231](https://github.com/python-validators/validators/pull/231)
+- maint: reformats `card` module, fix typo by @yozachar in [#230](https://github.com/python-validators/validators/pull/230)
+- feat: formats google pydoc style for mkdocstring by @yozachar in [#229](https://github.com/python-validators/validators/pull/229)
+- maint: refresh `btc_address` module by @yozachar in [#228](https://github.com/python-validators/validators/pull/228)
+- maint: improve type annotations by @yozachar in [#227](https://github.com/python-validators/validators/pull/227)
+- maint: improves `between` and `length` modules by @yozachar in [#225](https://github.com/python-validators/validators/pull/225)
+- maint: follows google's python style guide for docstrings by @yozachar in [#224](https://github.com/python-validators/validators/pull/224)
+- feat: type hints in utils.py, gh-actions by @yozachar in [#223](https://github.com/python-validators/validators/pull/223)
+- feat: add pyproject.toml, README.md, upd gitignore by @yozachar in [#221](https://github.com/python-validators/validators/pull/221)
 - remove Travis CI settings by @ktdreyer in [#196](https://github.com/python-validators/validators/pull/196)
 
 **Full Changelog**: [`0.20.0...0.21.0`](https://github.com/python-validators/validators/compare/0.20.0...0.21.0)
+
+---
 
 ## 0.20.0 (2022-06-05)
 
@@ -270,7 +320,7 @@ _**New Contributors**_
 
 ## 0.10.0 (2016-01-09)
 
-- Added support for internationalized domain names in `domain` validator
+- Added support for internationalized domain names (IDN) in `domain` validator
 
 ## 0.9.0 (2015-10-10)
 

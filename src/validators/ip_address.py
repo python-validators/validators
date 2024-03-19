@@ -49,12 +49,6 @@ def ipv4(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
             If `value` is a valid IPv4 address.
         (ValidationError):
             If `value` is an invalid IPv4 address.
-
-    Note:
-        - *In version 0.14.0*:
-            - Add supports for CIDR notation
-
-    > *New in version 0.2.0*
     """
     if not value:
         return False
@@ -102,12 +96,6 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
             If `value` is a valid IPv6 address.
         (ValidationError):
             If `value` is an invalid IPv6 address.
-
-    Note:
-        - *In version 0.14.0*:
-            - Add supports for CIDR notation
-
-    > *New in version 0.2.0*
     """
     if not value:
         return False

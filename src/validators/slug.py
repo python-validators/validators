@@ -29,7 +29,5 @@ def slug(value: str, /):
             If `value` is a valid slug.
         (ValidationError):
             If `value` is an invalid slug.
-
-    > *New in version 0.6.0*.
     """
     return re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", value) if value else False

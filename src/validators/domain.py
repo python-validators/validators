@@ -36,12 +36,6 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
             If `value` is a valid domain name.
         (ValidationError):
             If `value` is an invalid domain name.
-
-    Note:
-        - *In version 0.10.0*:
-            - Added support for internationalized domain name (IDN) validation.
-
-    > *New in version 0.9.0*.
     """
     if not value:
         return False
