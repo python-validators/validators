@@ -2,6 +2,8 @@ card
 ----
 
 .. module:: validators.card
+.. autofunction:: visa
+.. module:: validators.card
 .. autofunction:: amex
 .. module:: validators.card
 .. autofunction:: card_number
