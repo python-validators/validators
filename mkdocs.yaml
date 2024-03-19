@@ -58,7 +58,7 @@ extra:
       link: https://pypi.org/project/validators
   version:
     provider: mike
-    default: dev
+    default: stable
 
 copyright: Copyright &copy; 2013 - 2024 Konsta Vesterinen
 

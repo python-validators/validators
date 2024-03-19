@@ -129,8 +129,8 @@ def generate_documentation(
     copy(source / "README.md", source / "docs/index.md")
     # clean destination
     refs_path = source / "docs/references"
-    if refs_path.is_dir():
-        rmtree(refs_path)
+    # if refs_path.is_dir():
+    #     rmtree(refs_path)
     refs_path.mkdir(exist_ok=True)
     exit_code = 0 if (only_rst_web or only_rst_man) else _gen_md_docs(source, refs_path)
     if not only_md:
@@ -146,7 +146,7 @@ def generate_documentation(
 
 
 def package(source: Path):
-    generate_documentation(source, only_rst_man=True)
+    generate_documentation(source, only_rst_man=True, discard_refs=False)
     # print()
     if getenv("CI", "false") == "true":
         process = Popen(("./.venv/bin/python", "-m", "build"), shell=False)  # nosec
