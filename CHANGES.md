@@ -9,6 +9,45 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.23.0 (2024-03-19)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: add french i18n validation by @imperosol in [#308](https://github.com/python-validators/validators/pull/308)
+
+_**Maintenance**_
+
+- fix: Valid URLs failing validation - query and fragment parts by @danherbriley in [#297](https://github.com/python-validators/validators/pull/297)
+- fix: bug in `between` module by @yozachar in [#301](https://github.com/python-validators/validators/pull/301)
+- chore: update dependencies, improve packaging by @yozachar in [#304](https://github.com/python-validators/validators/pull/304)
+- Fix fragment check by @darkdragon-001 in [#305](https://github.com/python-validators/validators/pull/305)
+- build(deps): bump urllib3 from 2.0.6 to 2.0.7 in /package by @dependabot in [#310](https://github.com/python-validators/validators/pull/310)
+- fix: allow pct-encoded entities in fragments by @conitrade-as in [#317](https://github.com/python-validators/validators/pull/317)
+- chore: update dev dependencies by @yozachar in [#318](https://github.com/python-validators/validators/pull/318)
+- build(deps): bump gitpython from 3.1.37 to 3.1.41 in /package by @dependabot in [#321](https://github.com/python-validators/validators/pull/321)
+- build(deps): bump jinja2 from 3.1.2 to 3.1.3 in /package by @dependabot in [#322](https://github.com/python-validators/validators/pull/322)
+- chore: monthly updates for Jan'24 by @yozachar in [#324](https://github.com/python-validators/validators/pull/324)
+- maint: adds versiond docs; update copyright year by @yozachar in [#329](https://github.com/python-validators/validators/pull/329)
+- chore: update dev dependencies by @yozachar in [#330](https://github.com/python-validators/validators/pull/330)
+- build(deps): bump gitpython from 3.1.37 to 3.1.41 in /package by @dependabot in [#331](https://github.com/python-validators/validators/pull/331)
+- build(deps): bump jinja2 from 3.1.2 to 3.1.3 in /package by @dependabot in [#332](https://github.com/python-validators/validators/pull/332)
+- build(deps): bump urllib3 from 2.0.6 to 2.0.7 in /package by @dependabot in [#319](https://github.com/python-validators/validators/pull/319)
+
+_**New Contributors**_
+
+- @danherbriley made their first contribution in [#297](https://github.com/python-validators/validators/pull/297)
+- @darkdragon-001 made their first contribution in [#305](https://github.com/python-validators/validators/pull/305)
+- @conitrade-as made their first contribution in [#317](https://github.com/python-validators/validators/pull/317)
+- @imperosol made their first contribution in [#308](https://github.com/python-validators/validators/pull/308)
+
+**Full Changelog**: [0.22.0...0.23.0](https://github.com/python-validators/validators/compare/0.22.0...0.23.0)
+
+---
+
 ## 0.22.0 (2023-09-02)
 
 _**What's Changed**_
