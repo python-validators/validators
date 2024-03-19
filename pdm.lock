@@ -5,7 +5,7 @@
 groups = ["default", "docs-offline", "docs-online", "hooks", "package", "pycqa", "runner", "sast", "testing", "tooling"]
 strategy = ["cross_platform"]
 lock_version = "4.4.1"
-content_hash = "sha256:90bf5fd8d39d4fcf26c942edf3e4b72d92eaecf9f17158730f162624cfc94029"
+content_hash = "sha256:0b28fa0002f81e6dc424a697963c9df6c2c25a4906777694d8d07aa1aa33960f"
 
 [[package]]
 name = "alabaster"
@@ -691,6 +691,24 @@ files = [
 ]
 
 [[package]]
+name = "mike"
+version = "2.0.0"
+summary = "Manage multiple versions of your MkDocs-powered documentation"
+dependencies = [
+    "importlib-metadata",
+    "importlib-resources",
+    "jinja2>=2.7",
+    "mkdocs>=1.0",
+    "pyparsing>=3.0",
+    "pyyaml>=5.1",
+    "verspec",
+]
+files = [
+    {file = "mike-2.0.0-py3-none-any.whl", hash = "sha256:87f496a65900f93ba92d72940242b65c86f3f2f82871bc60ebdcffc91fad1d9e"},
+    {file = "mike-2.0.0.tar.gz", hash = "sha256:566f1cab1a58cc50b106fb79ea2f1f56e7bfc8b25a051e95e6eaee9fba0922de"},
+]
+
+[[package]]
 name = "mkdocs"
 version = "1.5.3"
 requires_python = ">=3.7"
@@ -1047,6 +1065,16 @@ files = [
     {file = "pypandoc_binary-1.12-py3-none-musllinux_1_1_x86_64.whl", hash = "sha256:dc0dd09289ff68c5b036f334921521c2622018d9c566ec3688f0eb635cb613c7"},
     {file = "pypandoc_binary-1.12-py3-none-win32.whl", hash = "sha256:93c228e05852844a784d6a3f429a8ef28f30c5b77cca49d12493e6bdc8426925"},
     {file = "pypandoc_binary-1.12-py3-none-win_amd64.whl", hash = "sha256:600006a15ff1729160c203768be0aa95fd43d50ec88f8b23ece0d1423b6f633c"},
+]
+
+[[package]]
+name = "pyparsing"
+version = "3.1.2"
+requires_python = ">=3.6.8"
+summary = "pyparsing module - Classes and methods to define and execute parsing grammars"
+files = [
+    {file = "pyparsing-3.1.2-py3-none-any.whl", hash = "sha256:f9db75911801ed778fe61bb643079ff86601aca99fcae6345aa67292038fb742"},
+    {file = "pyparsing-3.1.2.tar.gz", hash = "sha256:a1bac0ce561155ecc3ed78ca94d3c9378656ad4c94c1270de543f621420f94ad"},
 ]
 
 [[package]]
@@ -1586,6 +1614,15 @@ summary = "HTTP library with thread-safe connection pooling, file post, and more
 files = [
     {file = "urllib3-2.0.6-py3-none-any.whl", hash = "sha256:7a7c7003b000adf9e7ca2a377c9688bbc54ed41b985789ed576570342a375cd2"},
     {file = "urllib3-2.0.6.tar.gz", hash = "sha256:b19e1a85d206b56d7df1d5e683df4a7725252a964e3993648dd0fb5a1c157564"},
+]
+
+[[package]]
+name = "verspec"
+version = "0.1.0"
+summary = "Flexible version handling"
+files = [
+    {file = "verspec-0.1.0-py3-none-any.whl", hash = "sha256:741877d5633cc9464c45a469ae2a31e801e6dbbaa85b9675d481cda100f11c31"},
+    {file = "verspec-0.1.0.tar.gz", hash = "sha256:c4504ca697b2056cdb4bfa7121461f5a0e81809255b41c03dda4ba823637c01e"},
 ]
 
 [[package]]

@@ -46,7 +46,7 @@ def _generate_reference(source: Path, destination: Path, ext: str):
         for alias in aliases:
             _write_ref_content(destination / f"{module_name}.{ext}", module_name, alias.name)
         if ext == "md":
-            nav_items["Code Reference"].append(f"reference/{module_name}.md")
+            nav_items["Code Reference"].append(f"references/{module_name}.md")
     return nav_items
 
 
@@ -91,7 +91,7 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n   :maxdepth: 2"
             + "\n   :caption: Reference:"
             + "\n   :glob:\n"
-            + "\n   reference/*\n"
+            + "\n   references/*\n"
         )
     # generate RST reference documentation
     _generate_reference(source / "src/validators/__init__.py", refs_path, "rst")
@@ -128,7 +128,7 @@ def generate_documentation(
     # copy readme as docs index file
     copy(source / "README.md", source / "docs/index.md")
     # clean destination
-    refs_path = source / "docs/reference"
+    refs_path = source / "docs/references"
     if refs_path.is_dir():
         rmtree(refs_path)
     refs_path.mkdir(exist_ok=True)
@@ -174,7 +174,7 @@ if __name__ == "__main__":
             only_md=True,
             only_rst_web=False,
             only_rst_man=False,
-            discard_refs=True,
+            discard_refs=False,
         )
     quit(exit_code)
 

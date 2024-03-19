@@ -69,7 +69,7 @@ instance/
 .scrapy
 
 # Sphinx documentation
-docs/reference/
+# docs/references/
 docs/_build/
 docs/*.rst
 docs/*.1
