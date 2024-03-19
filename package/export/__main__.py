@@ -7,7 +7,6 @@ from os.path import getsize
 from pathlib import Path
 from shutil import copy, move, rmtree
 from subprocess import Popen  # nosec
-from typing import Dict, List
 
 __all__ = ("generate_documentation",)
 
@@ -38,39 +37,11 @@ def _parse_package(source: Path):
         yield (namespace.module, namespace.names)
 
 
-def _generate_reference(source: Path, destination: Path, ext: str):
-    """Generate reference."""
-    nav_items: Dict[str, List[str]] = {"API": []}
-    # generate reference content
-    for module_name, aliases in _parse_package(source):
-        for alias in aliases:
-            _write_ref_content(destination / f"{module_name}.{ext}", module_name, alias.name)
-        if ext == "md":
-            nav_items["API"].append(f"references/{module_name}.md")
-    return nav_items
-
-
-def _update_mkdocs_config(source: Path, destination: Path, nav_items: Dict[str, List[str]]):
-    """Temporary update to mkdocs config."""
-    # external
-    from yaml import safe_dump, safe_load
-
-    copy(source, destination)
-    with open(source, "rt") as mkf:
-        mkdocs_conf = safe_load(mkf)
-    mkdocs_conf["nav"] += [nav_items]
-    with open(source, "wt") as mkf:
-        safe_dump(mkdocs_conf, mkf, sort_keys=False)
-
-
 def _gen_md_docs(source: Path, refs_path: Path):
     """Generate Markdown docs."""
     # remove existing markdown files
     for md_files in (source / "docs/references").glob("*.md"):
         md_files.unlink()
-    nav_items = _generate_reference(source / "src/validators/__init__.py", refs_path, "md")
-    # backup mkdocs config
-    _update_mkdocs_config(source / "mkdocs.yaml", source / "mkdocs.bak.yaml", nav_items)
     # build mkdocs as subprocess
     mkdocs_build = Popen(("mkdocs", "build"))  # nosec
     mkdocs_build.communicate()
@@ -97,7 +68,9 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n   references/*\n"
         )
     # generate RST reference documentation
-    _generate_reference(source / "src/validators/__init__.py", refs_path, "rst")
+    for module_name, aliases in _parse_package(source / "src/validators/__init__.py"):
+        for alias in aliases:
+            _write_ref_content(refs_path / f"{module_name}.rst", module_name, alias.name)
     exit_code = 0
     if not only_man:
         # build sphinx web pages as subprocess
