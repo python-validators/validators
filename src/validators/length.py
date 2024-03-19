@@ -1,12 +1,15 @@
 """Length."""
 
+# standard
+from typing import Union
+
 # local
 from .between import between
 from .utils import validator
 
 
 @validator
-def length(value: str, /, *, min_val: int = 0, max_val: int = 0):
+def length(value: str, /, *, min_val: Union[int, None] = None, max_val: Union[int, None] = None):
     """Return whether or not the length of given string is within a specified range.
 
     Examples:
@@ -33,6 +36,12 @@ def length(value: str, /, *, min_val: int = 0, max_val: int = 0):
         (ValidationError):
             If `len(value)` is not in between the given conditions.
 
-    > *New in version 0.2.0*.
+    Raises:
+        (ValueError): If either `min_val` or `max_val` is negative.
     """
-    return between(len(value), min_val=min_val, max_val=max_val) if value else False
+    if min_val is not None and min_val < 0:
+        raise ValueError("Length cannot be negative. `min_val` is less than zero.")
+    if max_val is not None and max_val < 0:
+        raise ValueError("Length cannot be negative. `max_val` is less than zero.")
+
+    return bool(between(len(value), min_val=min_val, max_val=max_val))

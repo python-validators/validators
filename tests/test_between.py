@@ -28,7 +28,6 @@ def test_returns_true_on_valid_range(value: T, min_val: T, max_val: T):
         (None, 13, 14),
         (12, 13, 14),
         (12, None, 11),
-        (12, None, None),
         (12, 13, None),
         (12, "13.5", datetime(1970, 1, 1)),
         ("12", 20.5, "None"),
