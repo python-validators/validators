@@ -934,18 +934,6 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
     </tbody>
   </table>
 
-<details class="note" open>
-  <summary>Note</summary>
-  <ul>
-<li><em>In version 0.14.0</em>:<ul>
-<li>Add supports for CIDR notation</li>
-</ul>
-</li>
-</ul>
-</details>      <blockquote>
-<p><em>New in version 0.2.0</em></p>
-</blockquote>
-
           <details class="quote">
             <summary>Source code in <code>src/validators/ip_address.py</code></summary>
             <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
@@ -993,13 +981,7 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
 <span class="normal">59</span>
 <span class="normal">60</span>
 <span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">ipv4</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">cidr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">host_bit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns whether a given value is a valid IPv4 address.</span>
 
@@ -1034,12 +1016,6 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
 <span class="sd">            If `value` is a valid IPv4 address.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid IPv4 address.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        - *In version 0.14.0*:</span>
-<span class="sd">            - Add supports for CIDR notation</span>
-
-<span class="sd">    &gt; *New in version 0.2.0*</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -1192,21 +1168,15 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
     </tbody>
   </table>
 
-<details class="note" open>
-  <summary>Note</summary>
-  <ul>
-<li><em>In version 0.14.0</em>:<ul>
-<li>Add supports for CIDR notation</li>
-</ul>
-</li>
-</ul>
-</details>      <blockquote>
-<p><em>New in version 0.2.0</em></p>
-</blockquote>
-
           <details class="quote">
             <summary>Source code in <code>src/validators/ip_address.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 71</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
 <span class="normal"> 72</span>
 <span class="normal"> 73</span>
 <span class="normal"> 74</span>
@@ -1244,19 +1214,7 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
 <span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">ipv6</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">cidr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">strict</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">host_bit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Returns if a given value is a valid IPv6 address.</span>
 
@@ -1290,12 +1248,6 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
 <span class="sd">            If `value` is a valid IPv6 address.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid IPv6 address.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        - *In version 0.14.0*:</span>
-<span class="sd">            - Add supports for CIDR notation</span>
-
-<span class="sd">    &gt; *New in version 0.2.0*</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>

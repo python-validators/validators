@@ -1000,9 +1000,6 @@ will continue to call CIFs NIFs, that are used for companies.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.13.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/es.py</code></summary>
@@ -1062,9 +1059,7 @@ will continue to call CIFs NIFs, that are used for companies.</p>
 <span class="normal">76</span>
 <span class="normal">77</span>
 <span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">79</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_cif</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish CIF.</span>
 
@@ -1096,8 +1091,6 @@ will continue to call CIFs NIFs, that are used for companies.</p>
 <span class="sd">            If `value` is a valid DOI string.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid DOI string.</span>
-
-<span class="sd">    &gt; *New in version 0.13.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">9</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -1219,13 +1212,16 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.13.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/es.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">156</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
 <span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
@@ -1246,15 +1242,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="normal">174</span>
 <span class="normal">175</span>
 <span class="normal">176</span>
-<span class="normal">177</span>
-<span class="normal">178</span>
-<span class="normal">179</span>
-<span class="normal">180</span>
-<span class="normal">181</span>
-<span class="normal">182</span>
-<span class="normal">183</span>
-<span class="normal">184</span>
-<span class="normal">185</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">177</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_doi</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish DOI.</span>
 
@@ -1280,8 +1268,6 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="sd">            If `value` is a valid DOI string.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid DOI string.</span>
-
-<span class="sd">    &gt; *New in version 0.13.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">es_nie</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">or</span> <span class="n">es_nif</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">or</span> <span class="n">es_cif</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -1381,13 +1367,14 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.13.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/es.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">119</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
 <span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
@@ -1415,13 +1402,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span>
-<span class="normal">151</span>
-<span class="normal">152</span>
-<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_nie</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish NIE.</span>
 
@@ -1448,8 +1429,6 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="sd">            If `value` is a valid DOI string.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid DOI string.</span>
-
-<span class="sd">    &gt; *New in version 0.13.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">number_by_letter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}</span>
     <span class="c1"># NIE must must start with X Y or Z</span>
@@ -1553,13 +1532,12 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.13.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/es.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 84</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
 <span class="normal"> 85</span>
 <span class="normal"> 86</span>
 <span class="normal"> 87</span>
@@ -1587,11 +1565,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="normal">109</span>
 <span class="normal">110</span>
 <span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">112</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_nif</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish NIF.</span>
 
@@ -1618,8 +1592,6 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="sd">            If `value` is a valid DOI string.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid DOI string.</span>
-
-<span class="sd">    &gt; *New in version 0.13.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">number_by_letter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">}</span>
     <span class="n">special_cases</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X0000000T&quot;</span><span class="p">,</span> <span class="s2">&quot;00000000T&quot;</span><span class="p">,</span> <span class="s2">&quot;00000001R&quot;</span><span class="p">}</span>
@@ -1720,18 +1692,6 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
     </tbody>
   </table>
 
-<details class="note" open>
-  <summary>Note</summary>
-  <ul>
-<li><em>In version 0.5.0</em>:<ul>
-<li>Function renamed from <code>finnish_business_id</code> to <code>fi_business_id</code></li>
-</ul>
-</li>
-</ul>
-</details>      <blockquote>
-<p><em>New in version 0.4.0</em>.</p>
-</blockquote>
-
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/fi.py</code></summary>
             <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
@@ -1767,13 +1727,7 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 <span class="normal">64</span>
 <span class="normal">65</span>
 <span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">fi_business_id</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Finnish Business ID.</span>
 
@@ -1797,12 +1751,6 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 <span class="sd">            If `value` is a valid finnish business id.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid finnish business id.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        - *In version 0.5.0*:</span>
-<span class="sd">            - Function renamed from `finnish_business_id` to `fi_business_id`</span>
-
-<span class="sd">    &gt; *New in version 0.4.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -1923,13 +1871,16 @@ SSN numbers are valid.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.5.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/fi.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 76</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
 <span class="normal"> 77</span>
 <span class="normal"> 78</span>
 <span class="normal"> 79</span>
@@ -1962,15 +1913,7 @@ SSN numbers are valid.</p>
 <span class="normal">106</span>
 <span class="normal">107</span>
 <span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">fi_ssn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">allow_temporal_ssn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Finnish Social Security Number.</span>
 
@@ -1997,8 +1940,6 @@ SSN numbers are valid.</p>
 <span class="sd">            If `value` is a valid finnish SSN.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid finnish SSN.</span>
-
-<span class="sd">    &gt; *New in version 0.5.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -2115,9 +2056,6 @@ SSN numbers are valid.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.23.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/fr.py</code></summary>
@@ -2160,9 +2098,7 @@ SSN numbers are valid.</p>
 <span class="normal">63</span>
 <span class="normal">64</span>
 <span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">66</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">fr_department</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a french department number.</span>
 
@@ -2191,8 +2127,6 @@ SSN numbers are valid.</p>
 <span class="sd">            If `value` is a valid french department number.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid french department number.</span>
-
-<span class="sd">    &gt; *New in version 0.23.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
@@ -2303,13 +2237,12 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.23.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/i18n/fr.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 71</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
 <span class="normal"> 72</span>
 <span class="normal"> 73</span>
 <span class="normal"> 74</span>
@@ -2361,11 +2294,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 <span class="normal">120</span>
 <span class="normal">121</span>
 <span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">123</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">fr_ssn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a french Social Security Number.</span>
 
@@ -2393,8 +2322,6 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 <span class="sd">            If `value` is a valid french Social Security Number.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid french Social Security Number.</span>
-
-<span class="sd">    &gt; *New in version 0.23.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>

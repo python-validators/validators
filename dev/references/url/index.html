@@ -962,7 +962,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If <code>value</code> is a valid slug.</p>
+              <p>If <code>value</code> is a valid url.</p>
             </div>
           </td>
         </tr>
@@ -972,37 +972,12 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If <code>value</code> is an invalid slug.</p>
+              <p>If <code>value</code> is an invalid url.</p>
             </div>
           </td>
         </tr>
     </tbody>
   </table>
-
-<details class="note" open>
-  <summary>Note</summary>
-  <ul>
-<li><em>In version 0.11.3</em>:<ul>
-<li>Added support for URLs containing localhost.</li>
-</ul>
-</li>
-<li><em>In version 0.11.0</em>:<ul>
-<li>Made the regular expression case insensitive.</li>
-</ul>
-</li>
-<li><em>In version 0.10.3</em>:<ul>
-<li>Added a <code>public</code> parameter.</li>
-</ul>
-</li>
-<li><em>In version 0.10.2</em>:<ul>
-<li>Added support for various exotic URLs.</li>
-<li>Fixed various false positives.</li>
-</ul>
-</li>
-</ul>
-</details>      <blockquote>
-<p><em>New in version 0.2.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/url.py</code></summary>
@@ -1090,20 +1065,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">204</span>
 <span class="normal">205</span>
 <span class="normal">206</span>
-<span class="normal">207</span>
-<span class="normal">208</span>
-<span class="normal">209</span>
-<span class="normal">210</span>
-<span class="normal">211</span>
-<span class="normal">212</span>
-<span class="normal">213</span>
-<span class="normal">214</span>
-<span class="normal">215</span>
-<span class="normal">216</span>
-<span class="normal">217</span>
-<span class="normal">218</span>
-<span class="normal">219</span>
-<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">207</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">url</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1161,22 +1123,9 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        (Literal[True]):</span>
-<span class="sd">            If `value` is a valid slug.</span>
+<span class="sd">            If `value` is a valid url.</span>
 <span class="sd">        (ValidationError):</span>
-<span class="sd">            If `value` is an invalid slug.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        - *In version 0.11.3*:</span>
-<span class="sd">            - Added support for URLs containing localhost.</span>
-<span class="sd">        - *In version 0.11.0*:</span>
-<span class="sd">            - Made the regular expression case insensitive.</span>
-<span class="sd">        - *In version 0.10.3*:</span>
-<span class="sd">            - Added a `public` parameter.</span>
-<span class="sd">        - *In version 0.10.2*:</span>
-<span class="sd">            - Added support for various exotic URLs.</span>
-<span class="sd">            - Fixed various false positives.</span>
-
-<span class="sd">    &gt; *New in version 0.2.0*.</span>
+<span class="sd">            If `value` is an invalid url.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="c1"># url must not contain any white</span>

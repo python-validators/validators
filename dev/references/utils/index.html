@@ -1180,9 +1180,6 @@ or <code>Literal[True]</code>.</p>
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 2013.10.21</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/utils.py</code></summary>
@@ -1222,9 +1219,7 @@ or <code>Literal[True]</code>.</p>
 <span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validator</span><span class="p">(</span><span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A decorator that makes given function validator.</span>
 
 <span class="sd">    Whenever the given `func` returns `False` this</span>
@@ -1247,8 +1242,6 @@ or <code>Literal[True]</code>.</p>
 <span class="sd">        (Callable[..., ValidationError | Literal[True]]):</span>
 <span class="sd">            A decorator which returns either `ValidationError`</span>
 <span class="sd">            or `Literal[True]`.</span>
-
-<span class="sd">    &gt; *New in version 2013.10.21*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>

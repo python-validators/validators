@@ -52,8 +52,8 @@ Resources
    :target: https://github.com/python-validators/validators/actions/workflows/pycqa.yaml
 .. |SAST| image:: https://github.com/python-validators/validators/actions/workflows/sast.yaml/badge.svg
    :target: https://github.com/python-validators/validators/actions/workflows/sast.yaml
-.. |Docs| image:: https://github.com/python-validators/validators/actions/workflows/docs.yaml/badge.svg
-   :target: https://github.com/python-validators/validators/actions/workflows/docs.yaml
+.. |Docs| image:: https://github.com/yozachar/pyvalidators/actions/workflows/pages/pages-build-deployment/badge.svg
+   :target: https://github.com/yozachar/pyvalidators/actions/workflows/pages/pages-build-deployment
 .. |Version| image:: https://img.shields.io/pypi/v/validators?logo=pypi&logoColor=white&label=version&color=blue
    :target: https://pypi.python.org/pypi/validators/
 .. |Downloads| image:: https://img.shields.io/pypi/dm/validators?logo=pypi&logoColor=white&color=blue

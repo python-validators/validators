@@ -868,9 +868,6 @@
         </tr>
     </tbody>
   </table>
-      <blockquote>
-<p><em>New in version 0.2.0</em>.</p>
-</blockquote>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/mac_address.py</code></summary>
@@ -898,9 +895,7 @@
 <span class="normal">31</span>
 <span class="normal">32</span>
 <span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">mac_address</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid MAC address.</span>
 
@@ -923,8 +918,6 @@
 <span class="sd">            If `value` is a valid MAC address.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid MAC address.</span>
-
-<span class="sd">    &gt; *New in version 0.2.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^([0-9A-Fa-f]</span><span class="si">{2}</span><span class="s2">[:-])</span><span class="si">{5}</span><span class="s2">([0-9A-Fa-f]</span><span class="si">{2}</span><span class="s2">)$&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>

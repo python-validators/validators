@@ -901,18 +901,6 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
     </tbody>
   </table>
 
-<details class="note" open>
-  <summary>Note</summary>
-  <ul>
-<li><em>In version 0.10.0</em>:<ul>
-<li>Added support for internationalized domain name (IDN) validation.</li>
-</ul>
-</li>
-</ul>
-</details>      <blockquote>
-<p><em>New in version 0.9.0</em>.</p>
-</blockquote>
-
           <details class="quote">
             <summary>Source code in <code>src/validators/domain.py</code></summary>
             <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
@@ -961,13 +949,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">53</span>
 <span class="normal">54</span>
 <span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">domain</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid domain.</span>
 
@@ -996,12 +978,6 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="sd">            If `value` is a valid domain name.</span>
 <span class="sd">        (ValidationError):</span>
 <span class="sd">            If `value` is an invalid domain name.</span>
-
-<span class="sd">    Note:</span>
-<span class="sd">        - *In version 0.10.0*:</span>
-<span class="sd">            - Added support for internationalized domain name (IDN) validation.</span>
-
-<span class="sd">    &gt; *New in version 0.9.0*.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
