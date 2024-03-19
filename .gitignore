@@ -71,6 +71,8 @@ instance/
 # Sphinx documentation
 # docs/references/
 docs/_build/
+# temporary
+docs/references/*.rst
 docs/*.rst
 docs/*.1
 

@@ -18,12 +18,17 @@ True
 
 ## Resources
 
+<!-- Temporary documentation URL :  https://yozachar.github.io/pyvalidators/ -->
+<!-- Original documentation URL :  https://python-validators.github.io/validators/ -->
+
 - [Documentation](https://yozachar.github.io/pyvalidators/)
 - [Bugtracker](https://github.com/python-validators/validators/issues)
 - [Security](https://github.com/python-validators/validators/blob/master/SECURITY.md)
 - [Code](https://github.com/python-validators/validators/)
 
-[//]: #(Links)
+<!-- Original docs URL will be restored, once properly versioned docs is ready. -->
+
+<!-- Links -->
 [sast-badge]: https://github.com/python-validators/validators/actions/workflows/sast.yaml/badge.svg
 [sast-link]: https://github.com/python-validators/validators/actions/workflows/sast.yaml
 [pycqa-badge]: https://github.com/python-validators/validators/actions/workflows/pycqa.yaml/badge.svg
