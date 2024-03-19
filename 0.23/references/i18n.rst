@@ -2,6 +2,8 @@ i18n
 ----
 
 .. module:: validators.i18n
+.. autofunction:: fr_ssn
+.. module:: validators.i18n
 .. autofunction:: es_cif
 .. module:: validators.i18n
 .. autofunction:: es_doi

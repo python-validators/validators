@@ -925,8 +925,7 @@ If not provided, maximum value will not be checked.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If both <code>min_val</code> and <code>max_val</code> are <code>None</code>,
-or if <code>min_val</code> is greater than <code>max_val</code>.</p>
+              <p>If <code>min_val</code> is greater than <code>max_val</code>.</p>
             </div>
           </td>
         </tr>
@@ -936,7 +935,7 @@ or if <code>min_val</code> is greater than <code>max_val</code>.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If there's a type mismatch before comparison.</p>
+              <p>If there's a type mismatch during comparison.</p>
             </div>
           </td>
         </tr>
@@ -947,12 +946,9 @@ or if <code>min_val</code> is greater than <code>max_val</code>.</p>
   <summary>Note</summary>
   <ul>
 <li><code>PossibleValueTypes</code> = <code>TypeVar("PossibleValueTypes", int, float, str, datetime)</code></li>
-<li>Either one of <code>min_val</code> or <code>max_val</code> must be provided.</li>
+<li>If neither <code>min_val</code> nor <code>max_val</code> is provided, result will always be <code>True</code>.</li>
 </ul>
-</details>      <blockquote>
-<p><em>New in version 0.2.0</em>.</p>
-</blockquote>
-
+</details>
           <details class="quote">
             <summary>Source code in <code>src/validators/between.py</code></summary>
             <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
@@ -1022,24 +1018,7 @@ or if <code>min_val</code> is greater than <code>max_val</code>.</p>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span>
-<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">between</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="n">PossibleValueTypes</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1085,45 +1064,28 @@ or if <code>min_val</code> is greater than <code>max_val</code>.</p>
 <span class="sd">            If `value` is not in between the given conditions.</span>
 
 <span class="sd">    Raises:</span>
-<span class="sd">        ValueError: If both `min_val` and `max_val` are `None`,</span>
-<span class="sd">            or if `min_val` is greater than `max_val`.</span>
-<span class="sd">        TypeError: If there&#39;s a type mismatch before comparison.</span>
+<span class="sd">        (ValueError): If `min_val` is greater than `max_val`.</span>
+<span class="sd">        (TypeError): If there&#39;s a type mismatch during comparison.</span>
 
 <span class="sd">    Note:</span>
 <span class="sd">        - `PossibleValueTypes` = `TypeVar(&quot;PossibleValueTypes&quot;, int, float, str, datetime)`</span>
-<span class="sd">        - Either one of `min_val` or `max_val` must be provided.</span>
-
-<span class="sd">    &gt; *New in version 0.2.0*.</span>
+<span class="sd">        - If neither `min_val` nor `max_val` is provided, result will always be `True`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">if</span> <span class="n">min_val</span> <span class="ow">is</span> <span class="n">max_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;At least one of either `min_val` or `max_val` must be specified&quot;</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">max_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">max_val</span> <span class="o">=</span> <span class="n">AbsMax</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">min_val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">min_val</span> <span class="o">=</span> <span class="n">AbsMin</span><span class="p">()</span>
 
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">AbsMin</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">max_val</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">max_val</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;`value` and `max_val` must be of same type&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">max_val</span><span class="p">,</span> <span class="n">AbsMax</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">min_val</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">max_val</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;`value` and `min_val` must be of same type&quot;</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">min_val</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">max_val</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">min_val</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`min_val` cannot be more than `max_val`&quot;</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="n">min_val</span><span class="p">):</span>  <span class="c1"># or is type(max_val)</span>
-            <span class="k">return</span> <span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">max_val</span>
-        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;`value` and (`min_val` or `max_val`) must be of same type&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;`min_val` cannot be greater than `max_val`&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Comparison type mismatch&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
 
-    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;`value` and `min_val` and `max_val` must be of same type&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">min_val</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">max_val</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
