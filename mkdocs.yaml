@@ -1,6 +1,6 @@
 site_name: "validators"
 site_description: "Automatic documentation from sources, for MkDocs."
-site_url: "https://python-validators.github.io/validators/"
+site_url: "https://yozachar.github.io/pyvalidators/"
 repo_url: "https://github.com/python-validators/validators"
 edit_uri: "edit/master/docs/"
 repo_name: "validators/validators"
@@ -48,6 +48,7 @@ plugins:
           import:
             - https://docs.python-requests.org/en/master/objects.inv
   - git-revision-date-localized
+  - mike
 
 extra:
   social:
@@ -55,8 +56,29 @@ extra:
       link: https://github.com/python-validators
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/validators
+  version:
+    provider: mike
+    default: dev
 
-copyright: Copyright &copy; 2013 - 2023 Konsta Vesterinen
+copyright: Copyright &copy; 2013 - 2024 Konsta Vesterinen
 
 nav:
   - Home: index.md
+  - API:
+      - references/between.md
+      - references/btc_address.md
+      - references/card.md
+      - references/country_code.md
+      - references/domain.md
+      - references/email.md
+      - references/hashes.md
+      - references/hostname.md
+      - references/i18n.md
+      - references/iban.md
+      - references/ip_address.md
+      - references/length.md
+      - references/mac_address.md
+      - references/slug.md
+      - references/url.md
+      - references/utils.md
+      - references/uuid.md
