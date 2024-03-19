@@ -46,7 +46,7 @@ if ($IsLinux || $IsMacOS) {
 . $venv_dir\$bin_path\Activate.ps1
 
 # Run export script
-python src/export package
+python package/export pkg
 
 # Deactivate virtual environment
 deactivate
