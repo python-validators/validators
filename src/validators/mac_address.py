@@ -26,9 +26,7 @@ def mac_address(value: str, /):
             MAC address string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid MAC address.
-        (ValidationError):
-            If `value` is an invalid MAC address.
+        (Literal[True]): If `value` is a valid MAC address.
+        (ValidationError): If `value` is an invalid MAC address.
     """
     return re.match(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", value) if value else False

@@ -22,10 +22,8 @@ def md5(value: str, /):
             MD5 string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid MD5 hash.
-        (ValidationError):
-            If `value` is an invalid MD5 hash.
+        (Literal[True]): If `value` is a valid MD5 hash.
+        (ValidationError): If `value` is an invalid MD5 hash.
     """
     return re.match(r"^[0-9a-f]{32}$", value, re.IGNORECASE) if value else False
 
@@ -45,10 +43,8 @@ def sha1(value: str, /):
             SHA1 string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid SHA1 hash.
-        (ValidationError):
-            If `value` is an invalid SHA1 hash.
+        (Literal[True]): If `value` is a valid SHA1 hash.
+        (ValidationError): If `value` is an invalid SHA1 hash.
     """
     return re.match(r"^[0-9a-f]{40}$", value, re.IGNORECASE) if value else False
 
@@ -68,10 +64,8 @@ def sha224(value: str, /):
             SHA224 string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid SHA224 hash.
-        (ValidationError):
-            If `value` is an invalid SHA224 hash.
+        (Literal[True]): If `value` is a valid SHA224 hash.
+        (ValidationError): If `value` is an invalid SHA224 hash.
     """
     return re.match(r"^[0-9a-f]{56}$", value, re.IGNORECASE) if value else False
 
@@ -94,10 +88,8 @@ def sha256(value: str, /):
             SHA256 string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid SHA256 hash.
-        (ValidationError):
-            If `value` is an invalid SHA256 hash.
+        (Literal[True]): If `value` is a valid SHA256 hash.
+        (ValidationError): If `value` is an invalid SHA256 hash.
     """
     return re.match(r"^[0-9a-f]{64}$", value, re.IGNORECASE) if value else False
 
@@ -121,9 +113,7 @@ def sha512(value: str, /):
             SHA512 string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid SHA512 hash.
-        (ValidationError):
-            If `value` is an invalid SHA512 hash.
+        (Literal[True]): If `value` is a valid SHA512 hash.
+        (ValidationError): If `value` is an invalid SHA512 hash.
     """
     return re.match(r"^[0-9a-f]{128}$", value, re.IGNORECASE) if value else False

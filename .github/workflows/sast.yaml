@@ -16,7 +16,7 @@ jobs:
       actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Bandit
         uses: mdegis/bandit-action@85fcc340c3b0bf5d86029abb49b9aac916d807b2
         with:

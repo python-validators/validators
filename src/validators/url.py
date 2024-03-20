@@ -135,8 +135,9 @@ def url(
 ):
     r"""Return whether or not given value is a valid URL.
 
-    This validator was inspired from [URL validator of dperini][1].
-    The following diagram is from [urlly][2].
+    This validator was originally inspired from [URL validator of dperini][1].
+    The following diagram is from [urlly][2]::
+
 
             foo://admin:hunter1@example.com:8042/over/there?name=ferret#nose
             \_/   \___/ \_____/ \_________/ \__/\_________/ \_________/ \__/
@@ -177,10 +178,8 @@ def url(
             Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid url.
-        (ValidationError):
-            If `value` is an invalid url.
+        (Literal[True]): If `value` is a valid url.
+        (ValidationError): If `value` is an invalid url.
     """
     if not value or re.search(r"\s", value):
         # url must not contain any white

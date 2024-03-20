@@ -5,10 +5,8 @@ from ast import ImportFrom, parse
 from os import getenv
 from os.path import getsize
 from pathlib import Path
-from shutil import copy, move, rmtree
+from shutil import copy, rmtree
 from subprocess import Popen  # nosec
-
-__all__ = ("generate_documentation",)
 
 
 def _write_ref_content(source: Path, module_name: str, func_name: str):
@@ -21,8 +19,12 @@ def _write_ref_content(source: Path, module_name: str, func_name: str):
             )
             if f"{source}".endswith(".md")
             else (
-                (f"{module_name}\n{len(module_name) * '-'}\n\n" if getsize(source) == 0 else "")
-                + f".. module:: validators.{module_name}\n"
+                (
+                    f"{module_name}\n{len(module_name) * '-'}\n\n"
+                    + f".. module:: validators.{module_name}\n"
+                    if getsize(source) == 0
+                    else ""
+                )
                 + f".. autofunction:: {func_name}\n"
             )
         )
@@ -40,13 +42,15 @@ def _parse_package(source: Path):
 def _gen_md_docs(source: Path, refs_path: Path):
     """Generate Markdown docs."""
     # remove existing markdown files
-    for md_files in (source / "docs/references").glob("*.md"):
+    for md_files in (source / "docs/api").glob("*.md"):
         md_files.unlink()
+    # generate md reference documentation
+    for module_name, aliases in _parse_package(source / "src/validators/__init__.py"):
+        for alias in aliases:
+            _write_ref_content(refs_path / f"{module_name}.md", module_name, alias.name)
     # build mkdocs as subprocess
     mkdocs_build = Popen(("mkdocs", "build"))  # nosec
     mkdocs_build.communicate()
-    # restore mkdocs config
-    move(str(source / "mkdocs.bak.yaml"), source / "mkdocs.yaml")
     return mkdocs_build.returncode
 
 
@@ -54,6 +58,10 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
     """Generate reStructuredText docs."""
     # external
     from pypandoc import convert_file  # type: ignore
+
+    # remove existing rST files
+    for rst_files in (source / "docs/api").glob("*.rst"):
+        rst_files.unlink()
 
     with open(source / "docs/index.rst", "wt") as idx_f:
         idx_f.write(
@@ -65,9 +73,9 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n   :maxdepth: 2"
             + "\n   :caption: Reference:"
             + "\n   :glob:\n"
-            + "\n   references/*\n"
+            + "\n   api/*\n"
         )
-    # generate RST reference documentation
+    # generate rST reference documentation
     for module_name, aliases in _parse_package(source / "src/validators/__init__.py"):
         for alias in aliases:
             _write_ref_content(refs_path / f"{module_name}.rst", module_name, alias.name)
@@ -89,7 +97,7 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
     return exit_code
 
 
-def generate_documentation(
+def _generate_documentation(
     source: Path,
     only_md: bool = False,
     only_rst_web: bool = False,
@@ -104,7 +112,7 @@ def generate_documentation(
     # copy readme as docs index file
     copy(source / "README.md", source / "docs/index.md")
     # clean destination
-    refs_path = source / "docs/references"
+    refs_path = source / "docs/api"
     # if refs_path.is_dir():
     #     rmtree(refs_path)
     refs_path.mkdir(exist_ok=True)
@@ -122,7 +130,8 @@ def generate_documentation(
 
 
 def package(source: Path):
-    generate_documentation(source, only_rst_man=True, discard_refs=False)
+    """Package the source code."""
+    _generate_documentation(source, only_rst_man=True, discard_refs=False)
     # print()
     if getenv("CI", "false") == "true":
         process = Popen(("./.venv/bin/python", "-m", "build"), shell=False)  # nosec
@@ -145,7 +154,7 @@ if __name__ == "__main__":
     if argv[1] == "pkg":
         exit_code = package(project_root)
     if argv[1] == "docs":
-        exit_code = generate_documentation(
+        exit_code = _generate_documentation(
             project_root,
             only_md=True,
             only_rst_web=False,

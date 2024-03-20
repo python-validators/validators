@@ -26,10 +26,8 @@ def card_number(value: str, /):
             Generic card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid generic card number.
-        (ValidationError):
-            If `value` is an invalid generic card number.
+        (Literal[True]): If `value` is a valid generic card number.
+        (ValidationError): If `value` is an invalid generic card number.
     """
     if not value:
         return False
@@ -57,10 +55,8 @@ def visa(value: str, /):
             Visa card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid Visa card number.
-        (ValidationError):
-            If `value` is an invalid Visa card number.
+        (Literal[True]): If `value` is a valid Visa card number.
+        (ValidationError): If `value` is an invalid Visa card number.
     """
     pattern = re.compile(r"^4")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -81,10 +77,8 @@ def mastercard(value: str, /):
             Mastercard card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid Mastercard card number.
-        (ValidationError):
-            If `value` is an invalid Mastercard card number.
+        (Literal[True]): If `value` is a valid Mastercard card number.
+        (ValidationError): If `value` is an invalid Mastercard card number.
     """
     pattern = re.compile(r"^(51|52|53|54|55|22|23|24|25|26|27)")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -105,10 +99,8 @@ def amex(value: str, /):
             American Express card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid American Express card number.
-        (ValidationError):
-            If `value` is an invalid American Express card number.
+        (Literal[True]): If `value` is a valid American Express card number.
+        (ValidationError): If `value` is an invalid American Express card number.
     """
     pattern = re.compile(r"^(34|37)")
     return card_number(value) and len(value) == 15 and pattern.match(value)
@@ -129,10 +121,8 @@ def unionpay(value: str, /):
             UnionPay card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid UnionPay card number.
-        (ValidationError):
-            If `value` is an invalid UnionPay card number.
+        (Literal[True]): If `value` is a valid UnionPay card number.
+        (ValidationError): If `value` is an invalid UnionPay card number.
     """
     pattern = re.compile(r"^62")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -153,10 +143,8 @@ def diners(value: str, /):
             Diners Club card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid Diners Club card number.
-        (ValidationError):
-            If `value` is an invalid Diners Club card number.
+        (Literal[True]): If `value` is a valid Diners Club card number.
+        (ValidationError): If `value` is an invalid Diners Club card number.
     """
     pattern = re.compile(r"^(30|36|38|39)")
     return card_number(value) and len(value) in {14, 16} and pattern.match(value)
@@ -177,10 +165,8 @@ def jcb(value: str, /):
             JCB card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid JCB card number.
-        (ValidationError):
-            If `value` is an invalid JCB card number.
+        (Literal[True]): If `value` is a valid JCB card number.
+        (ValidationError): If `value` is an invalid JCB card number.
     """
     pattern = re.compile(r"^35")
     return card_number(value) and len(value) == 16 and pattern.match(value)
@@ -201,10 +187,8 @@ def discover(value: str, /):
             Discover card number string to validate
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid Discover card number.
-        (ValidationError):
-            If `value` is an invalid Discover card number.
+        (Literal[True]): If `value` is a valid Discover card number.
+        (ValidationError): If `value` is an invalid Discover card number.
     """
     pattern = re.compile(r"^(60|64|65)")
     return card_number(value) and len(value) == 16 and pattern.match(value)

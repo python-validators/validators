@@ -141,10 +141,8 @@ def country_code(value: str, /, *, iso_format: str = "auto"):
             `auto`, `alpha2`, `alpha3` and `numeric`.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid country code.
-        (ValidationError):
-            If `value` is an invalid country code.
+        (Literal[True]): If `value` is a valid country code.
+        (ValidationError): If `value` is an invalid country code.
     """
     if not value:
         return False

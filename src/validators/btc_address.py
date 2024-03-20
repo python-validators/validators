@@ -42,10 +42,8 @@ def btc_address(value: str, /):
             Bitcoin address string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid bitcoin address.
-        (ValidationError):
-            If `value` is an invalid bitcoin address.
+        (Literal[True]): If `value` is a valid bitcoin address.
+        (ValidationError): If `value` is an invalid bitcoin address.
     """
     if not value:
         return False

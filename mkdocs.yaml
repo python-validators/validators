@@ -65,20 +65,20 @@ copyright: Copyright &copy; 2013 - 2024 Konsta Vesterinen
 nav:
   - Home: index.md
   - API:
-      - references/between.md
-      - references/btc_address.md
-      - references/card.md
-      - references/country_code.md
-      - references/domain.md
-      - references/email.md
-      - references/hashes.md
-      - references/hostname.md
-      - references/i18n.md
-      - references/iban.md
-      - references/ip_address.md
-      - references/length.md
-      - references/mac_address.md
-      - references/slug.md
-      - references/url.md
-      - references/utils.md
-      - references/uuid.md
+      - api/between.md
+      - api/btc_address.md
+      - api/card.md
+      - api/country_code.md
+      - api/domain.md
+      - api/email.md
+      - api/hashes.md
+      - api/hostname.md
+      - api/i18n.md
+      - api/iban.md
+      - api/ip_address.md
+      - api/length.md
+      - api/mac_address.md
+      - api/slug.md
+      - api/url.md
+      - api/utils.md
+      - api/uuid.md

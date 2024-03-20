@@ -52,10 +52,8 @@ def email(
             Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid eMail.
-        (ValidationError):
-            If `value` is an invalid eMail.
+        (Literal[True]): If `value` is a valid eMail.
+        (ValidationError): If `value` is an invalid eMail.
     """
     if not value or value.count("@") != 1:
         return False

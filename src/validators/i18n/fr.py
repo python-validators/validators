@@ -49,10 +49,8 @@ def fr_department(value: typing.Union[str, int]):
             French department number to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid french department number.
-        (ValidationError):
-            If `value` is an invalid french department number.
+        (Literal[True]): If `value` is a valid french department number.
+        (ValidationError): If `value` is an invalid french department number.
     """
     if not value:
         return False
@@ -90,10 +88,8 @@ def fr_ssn(value: str):
             French Social Security Number string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid french Social Security Number.
-        (ValidationError):
-            If `value` is an invalid french Social Security Number.
+        (Literal[True]): If `value` is a valid french Social Security Number.
+        (ValidationError): If `value` is an invalid french Social Security Number.
     """
     if not value:
         return False

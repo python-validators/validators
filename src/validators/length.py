@@ -31,10 +31,8 @@ def length(value: str, /, *, min_val: Union[int, None] = None, max_val: Union[in
             maximum length will not be checked.
 
     Returns:
-        (Literal[True]):
-            If `len(value)` is in between the given conditions.
-        (ValidationError):
-            If `len(value)` is not in between the given conditions.
+        (Literal[True]): If `len(value)` is in between the given conditions.
+        (ValidationError): If `len(value)` is not in between the given conditions.
 
     Raises:
         (ValueError): If either `min_val` or `max_val` is negative.
