@@ -9,9 +9,26 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.23.2 (2024-03-20)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
+
+- maint: rectifies changelog by @yozachar in [#336](ttps://github.com/python-validators/validators/pull/336)
+- fix: packaging as well as `rST` & `md` document generation by @yozachar in [#337](ttps://github.com/python-validators/validators/pull/337)
+
+**Full Changelog**: [`0.23.1...0.23.2`](https://github.com/python-validators/validators/compare/0.23.1...0.23.2)
+
 ## 0.23.1 (2024-03-19)
 
-_**Breaking**_ ⚠️
+_**Breaking**_
 
 > No breaking changes were introduced in this version.
 
@@ -28,7 +45,7 @@ _**Maintenance**_
 
 ## 0.23.0 (2024-03-19)
 
-_**Breaking**_ ⚠️
+_**Breaking**_
 
 > No breaking changes were introduced in this version.
 
@@ -101,7 +118,7 @@ _**Maintenance**_
 
 ## 0.21.1 (2023-04-10)
 
-_**Breaking**_ ⚠️
+_**Breaking**_
 
 > No breaking changes were introduced in this version.
 

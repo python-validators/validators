@@ -100,10 +100,8 @@ def hostname(
             Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid hostname.
-        (ValidationError):
-            If `value` is an invalid hostname.
+        (Literal[True]): If `value` is a valid hostname.
+        (ValidationError): If `value` is an invalid hostname.
     """
     if not value:
         return False

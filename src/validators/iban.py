@@ -34,10 +34,8 @@ def iban(value: str, /):
             IBAN string to validate.
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid IBAN code.
-        (ValidationError):
-            If `value` is an invalid IBAN code.
+        (Literal[True]): If `value` is a valid IBAN code.
+        (ValidationError): If `value` is an invalid IBAN code.
     """
     return (
         (re.match(r"^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$", value) and _mod_check(value))

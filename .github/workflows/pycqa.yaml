@@ -14,10 +14,10 @@ jobs:
     steps:
       # checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # set up specific python version
       - name: Set up Python v3.8
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.8"
       # tooling
@@ -41,10 +41,10 @@ jobs:
       # checkout repository again!
       # ref: https://github.com/actions/checkout/issues/19
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # set up specific python version
       - name: Set up Python v${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: "pip"

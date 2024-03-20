@@ -51,10 +51,8 @@ def between(
             If not provided, maximum value will not be checked.
 
     Returns:
-        (Literal[True]):
-            If `value` is in between the given conditions.
-        (ValidationError):
-            If `value` is not in between the given conditions.
+        (Literal[True]): If `value` is in between the given conditions.
+        (ValidationError): If `value` is not in between the given conditions.
 
     Raises:
         (ValueError): If `min_val` is greater than `max_val`.

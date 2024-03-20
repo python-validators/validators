@@ -7,7 +7,7 @@ set -e
 # Using the wrong way see: https://stackoverflow.com/a/13864829
 if [ -z "$CI" ] || [ "$CI" = "false" ]; then
     # tooling
-    pdm export --group tooling,pycqa -f requirements -o package/requirements.tooling.txt
+    pdm export --group tooling -f requirements -o package/requirements.tooling.txt
     # mkdocs
     pdm export --group docs-online -f requirements -o package/requirements.mkdocs.txt
     # sphinx
@@ -15,11 +15,14 @@ if [ -z "$CI" ] || [ "$CI" = "false" ]; then
     export CI=true
 fi
 
-# Check if venv directory exists and remove it if it does
+# Cleanup directories
 venv_dir="./.venv.dev"
-if [ -d "$venv_dir" ]; then
-    rm -rf $venv_dir
-fi
+directories=("$venv_dir" "./build" "./dist")
+for dir in "${directories[@]}"; do
+    if [ -d "$dir" ]; then
+        rm -rf "$dir"
+    fi
+done
 
 # Create venv
 python -m venv $venv_dir

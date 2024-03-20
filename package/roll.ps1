@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 # Check if CI environment variable is set to "false"
 if ($null -eq $env:CI || "false" -eq $env:CI) {
     # tooling
-    pdm export --group tooling,pycqa -f requirements -o package/requirements.tooling.txt
+    pdm export --group tooling -f requirements -o package/requirements.tooling.txt
     # mkdocs
     pdm export --group docs-online -f requirements -o package/requirements.mkdocs.txt
     # sphinx
@@ -15,10 +15,13 @@ if ($null -eq $env:CI || "false" -eq $env:CI) {
     $env:CI = "true";
 }
 
-# Check if venv directory exists and remove it if it does
-$venv_dir = "./.venv.dev"
-if (Test-Path $venv_dir) {
-    Remove-Item -Path $venv_dir -Recurse -Force
+# Cleanup directories
+$venv_dir = ".\.venv.dev"
+$directories = @($venv_dir, ".\build", ".\dist")
+foreach ($dir in $directories) {
+    if (Test-Path $dir -PathType Container) {
+        Remove-Item $dir -Recurse -Force
+    }
 }
 
 # Create venv

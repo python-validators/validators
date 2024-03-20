@@ -32,10 +32,8 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
 
 
     Returns:
-        (Literal[True]):
-            If `value` is a valid domain name.
-        (ValidationError):
-            If `value` is an invalid domain name.
+        (Literal[True]): If `value` is a valid domain name.
+        (ValidationError): If `value` is an invalid domain name.
     """
     if not value:
         return False
