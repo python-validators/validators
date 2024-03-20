@@ -66,4 +66,4 @@ Resources
    :caption: Reference:
    :glob:
 
-   references/*
+   api/*

@@ -28,7 +28,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "myst_parser",
 ]
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "*.md"]
+exclude_patterns = ["_build", "Thumbs.db", ".DS_Store", "**/*.md", "*.md"]
 
 
 # -- Options for HTML output -------------------------------------------------
