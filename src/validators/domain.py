@@ -42,7 +42,8 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
             # First character of the domain
             rf"^(?:[a-zA-Z0-9{'_'if rfc_2782 else ''}]"
             # Sub domain + hostname
-            + rf"(?:[a-zA-Z0-9-_]{{0,61}}[A-Za-z0-9{'_'if rfc_2782 else ''}])?\.)"
+            + rf"(?:[a-zA-Z0-9-{'_'if rfc_2782 else ''}]{{0,61}}"
+            + rf"[A-Za-z0-9{'_'if rfc_2782 else ''}])?\.)"
             # First 61 characters of the gTLD
             + r"+[A-Za-z0-9][A-Za-z0-9-_]{0,61}"
             # Last character of the gTLD
