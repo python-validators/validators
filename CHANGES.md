@@ -147,19 +147,21 @@ _**Breaking**_ ⚠️
 - `extremes.py` renamed to `_extremes.py` and is no longer exposed.
 - `truthy` was discarded in favour of simple `bool()` function.
 - `ipv4_cidr()` and `ipv6_cidr()` has been dropped in favour of `cidr: bool = True` and `cidr: bool = True` keyword-only parameters.
-- `email` API now accepts the following keyword-only arguments:
+- `email()` API now accepts the following keyword-only arguments:
   - `simple_host: bool = False`,
   - `ipv6_address: bool = False`,
   - `ipv4_address: bool = False`,
   - `rfc_1034: bool = False` and
   - `rfc_2782: bool = False`.
-- `url` has been refactored, it accepts the following keyword-only arguments:
+- `whitelist=None` has been removed from `email()`.
+- `url()` has been refactored, it accepts the following keyword-only arguments:
   - `skip_ipv6_addr: bool = False`,
   - `skip_ipv4_addr: bool = False`,
   - `may_have_port: bool = True`,
   - `simple_host: bool = False`,
   - `rfc_1034: bool = False` and
   - `rfc_2782: bool = False`.
+- `public=False` keyword argument has been removed from `url()`.
 - Exposes `i18n` functions directly via `__init__.py`.
 - `@validator` decorator catches `Exception`.
 
