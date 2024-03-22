@@ -11,8 +11,9 @@ from validators import ValidationError, domain
     ("value", "rfc_1034", "rfc_2782"),
     [
         ("example.com", False, False),
+        ("exa_mple.com", False, True),
         ("xn----gtbspbbmkef.xn--p1ai", False, False),
-        ("underscore_subdomain.example.com", False, False),
+        ("underscore_subdomain.example.com", False, True),
         ("something.versicherung", False, False),
         ("someThing.versicherung.", True, False),
         ("11.com", False, False),
