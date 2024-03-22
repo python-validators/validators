@@ -982,7 +982,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
             <span class="c1"># First character of the domain</span>
             <span class="sa">rf</span><span class="s2">&quot;^(?:[a-zA-Z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]&quot;</span>
             <span class="c1"># Sub domain + hostname</span>
-            <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;(?:[a-zA-Z0-9-_]{0,61}[A-Za-z0-9])?\.)&quot;</span>
+            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;(?:[a-zA-Z0-9-_]</span><span class="se">{{</span><span class="s2">0,61</span><span class="se">}}</span><span class="s2">[A-Za-z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">])?\.)&quot;</span>
             <span class="c1"># First 61 characters of the gTLD</span>
             <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;+[A-Za-z0-9][A-Za-z0-9-_]{0,61}&quot;</span>
             <span class="c1"># Last character of the gTLD</span>
