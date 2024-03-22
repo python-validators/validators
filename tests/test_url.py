@@ -152,6 +152,7 @@ def test_returns_true_on_valid_url(value: str):
         "http://[2010:836B:4179::836B:4179",
         "http://2010:836B:4179::836B:4179",
         "http://2010:836B:4179::836B:4179:80/index.html",
+        "https://example.org?q=search');alert(document.domain);",
         "https://www.example.com/foo/?bar=baz&inga=42&quux",
         "https://foo.com/img/bar/baz.jpg?-62169987208",
         "https://foo.bar.net/baz.php?-/inga/test-lenient-query/",

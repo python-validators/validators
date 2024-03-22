@@ -18,6 +18,7 @@ from validators import ValidationError, domain
         ("11.com", False, False),
         ("3.cn.", True, False),
         ("_example.com", False, True),
+        ("example_.com", False, True),
         ("a.cn", False, False),
         ("sub1.sub2.sample.co.uk", False, False),
         ("somerandomexample.xn--fiqs8s", False, False),

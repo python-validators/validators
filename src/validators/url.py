@@ -38,7 +38,14 @@ def _validate_scheme(value: str):
     """Validate scheme."""
     # More schemes will be considered later.
     return (
-        value in {"ftp", "ftps", "git", "http", "https", "rtsp", "sftp", "ssh", "telnet"}
+        value
+        # fmt: off
+        in {
+            "ftp", "ftps", "git", "http", "https",
+            "rtmp", "rtmps", "rtsp", "sftp",
+            "ssh", "telnet",
+        }
+        # fmt: on
         if value
         else False
     )
@@ -112,8 +119,18 @@ def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool
     optional_segments = True
     if path:
         optional_segments &= bool(_path_regex().match(path))
-    if query and parse_qs(query, strict_parsing=strict_query):
-        optional_segments &= True
+    try:
+        if (
+            query
+            # ref: https://github.com/python/cpython/issues/117109
+            and parse_qs(query, strict_parsing=strict_query, separator="&")
+            and parse_qs(query, strict_parsing=strict_query, separator=";")
+        ):
+            optional_segments &= True
+    except TypeError:
+        # for Python < v3.9.2 (official v3.10)
+        if query and parse_qs(query, strict_parsing=strict_query):
+            optional_segments &= True
     if fragment:
         # See RFC3986 Section 3.5 Fragment for allowed characters
         optional_segments &= bool(re.fullmatch(r"[0-9a-zA-Z?/:@\-._~%!$&'()*+,;=]*", fragment))
