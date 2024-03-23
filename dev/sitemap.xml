@@ -2,92 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/between/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/btc_address/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/card/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/country_code/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/domain/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/email/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/hashes/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/hostname/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/i18n/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/iban/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/ip_address/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/length/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/mac_address/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/slug/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/url/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/utils/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://yozachar.github.io/pyvalidators/dev/api/uuid/</loc>
-         <lastmod>2024-03-22</lastmod>
+         <lastmod>2024-03-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

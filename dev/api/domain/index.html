@@ -19,7 +19,7 @@
         <link rel="next" href="../email/">
       
       
-      <link rel="icon" href="../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/icons/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.14">
     
     
@@ -947,7 +947,8 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">51</span>
 <span class="normal">52</span>
 <span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">54</span>
+<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">domain</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid domain.</span>
 
@@ -982,7 +983,8 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
             <span class="c1"># First character of the domain</span>
             <span class="sa">rf</span><span class="s2">&quot;^(?:[a-zA-Z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]&quot;</span>
             <span class="c1"># Sub domain + hostname</span>
-            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;(?:[a-zA-Z0-9-_]</span><span class="se">{{</span><span class="s2">0,61</span><span class="se">}}</span><span class="s2">[A-Za-z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">])?\.)&quot;</span>
+            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;(?:[a-zA-Z0-9-</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]</span><span class="se">{{</span><span class="s2">0,61</span><span class="se">}}</span><span class="s2">&quot;</span>
+            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;[A-Za-z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">])?\.)&quot;</span>
             <span class="c1"># First 61 characters of the gTLD</span>
             <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;+[A-Za-z0-9][A-Za-z0-9-_]{0,61}&quot;</span>
             <span class="c1"># Last character of the gTLD</span>
