@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Mar 23, 2024" "0.23.2" "validators"
+.TH "VALIDATORS" "1" "Mar 24, 2024" "0.24.0" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -1378,6 +1378,9 @@ or \fILiteral[True]\fP\&.
 .TP
 .B Return type
 (Callable[\&..., ValidationError | Literal[True]])
+.TP
+.B Raises
+\fB(\fP\fBValidationError\fP\fB)\fP \-\- If \fIr_ve\fP or \fIRAISE_VALIDATION_ERROR\fP is \fITrue\fP
 .UNINDENT
 .UNINDENT
 .SS uuid
