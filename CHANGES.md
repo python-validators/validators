@@ -9,6 +9,24 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.24.0 (2024-03-24)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: conditionally raises `ValidationError`; bump version by @yozachar in [#343](https://github.com/python-validators/validators/pull/343)
+
+_**Maintenance**_
+
+- patch: `domain` & `url` modules by @yozachar in [#339](https://github.com/python-validators/validators/pull/339)
+- fix: domain name not confirming to rfc_2782 by @yozachar in [#341](https://github.com/python-validators/validators/pull/341)
+- maint: update dev dependencies; adds favicon to docs by @yozachar in [#342](https://github.com/python-validators/validators/pull/342)
+
+**Full Changelog**: [`0.23.2...0.24.0`](https://github.com/python-validators/validators/compare/0.23.2...0.24.0)
+
 ## 0.23.2 (2024-03-20)
 
 _**Breaking**_
