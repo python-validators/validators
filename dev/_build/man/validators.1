@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Mar 24, 2024" "0.24.0" "validators"
+.TH "VALIDATORS" "1" "Mar 26, 2024" "0.24.0" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -60,6 +60,76 @@ True
 \fI\%Security\fP
 .IP \(bu 2
 \fI\%Code\fP
+.UNINDENT
+.SS Install and Use
+.SS Installation
+.sp
+Execute the following command:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+pip install validators
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.INDENT 3.5
+It\(aqs preferable to use \fBpip\fP within a virtual environment.
+.UNINDENT
+.UNINDENT
+.SS Usage
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+import validators
+print(validators.email(\(aqsomeone@example.com\(aq))
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS To raise validation error
+.INDENT 0.0
+.IP 1. 3
+Either set the environment variable \fBRAISE_VALIDATION_ERROR\fP to
+\fBTrue\fP
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ export RAISE_VALIDATION_ERROR=True
+$ python \-c \(dqfrom validators import url; print(url(\(aqhttps//bad_url\(aq))\(dq
+Traceback (most recent call last):
+File \(dq<string>\(dq, line 1, in <module>
+File \(dq/path/to/lib/validators/utils.py\(dq, line 87, in wrapper
+    raise ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
+validators.utils.ValidationError: ValidationError(func=url, args={\(aqvalue\(aq: \(aqhttps//bad_url\(aq})
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP 2. 3
+Or pass \fBr_ve=True\fP to each caller function:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ python \-c \(dqfrom validators.card import visa; print(visa(\(aqbad_visa_number\(aq, r_ve=True))\(dq
+Traceback (most recent call last):
+File \(dq<string>\(dq, line 1, in <module>
+File \(dq/path/to/lib/validators/utils.py\(dq, line 87, in wrapper
+    raise ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
+validators.utils.ValidationError: ValidationError(func=visa, args={\(aqvalue\(aq: \(aqbad_visa_number\(aq})
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
 .UNINDENT
 .SS between
 .INDENT 0.0
