@@ -27,7 +27,7 @@ jobs:
           pip install .
           pip install -r package/requirements.mkdocs.txt
       - name: Build documentation
-        run: python package/export docs
+        run: python package/export doc
       # set up Pages
       - name: Set up Pages
         uses: actions/configure-pages@v4

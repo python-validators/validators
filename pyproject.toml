@@ -54,7 +54,12 @@ Changelog = "https://github.com/python-validators/validators/blob/master/CHANGES
 ##############################
 
 [tool.pdm.dev-dependencies]
-docs-offline = ["myst-parser>=2.0.0", "pypandoc-binary>=1.13", "sphinx>=7.1.2"]
+docs-offline = [
+    "myst-parser>=2.0.0",
+    "pypandoc-binary>=1.13",
+    "sphinx>=7.1.2",
+    "furo>=2024.1.29",
+]
 docs-online = [
     "mkdocs>=1.5.3",
     "mkdocs-git-revision-date-localized-plugin>=1.2.4",

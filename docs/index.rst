@@ -63,7 +63,15 @@ Resources
 .. toctree::
    :hidden:
    :maxdepth: 2
-   :caption: Reference:
+   :caption: Quick Start:
+   :glob:
+
+   install_and_use
+
+.. toctree::
+   :hidden:
+   :maxdepth: 2
+   :caption: API Reference:
    :glob:
 
    api/*
