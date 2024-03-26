@@ -5,7 +5,7 @@ from ast import ImportFrom, parse
 from os import getenv
 from os.path import getsize
 from pathlib import Path
-from shutil import copy, rmtree
+from shutil import copy
 from subprocess import Popen  # nosec
 
 
@@ -71,10 +71,24 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n\n.. toctree::"
             + "\n   :hidden:"
             + "\n   :maxdepth: 2"
-            + "\n   :caption: Reference:"
+            + "\n   :caption: Quick Start:"
+            + "\n   :glob:\n"
+            + "\n   install_and_use"
+            + "\n\n.. toctree::"
+            + "\n   :hidden:"
+            + "\n   :maxdepth: 2"
+            + "\n   :caption: API Reference:"
             + "\n   :glob:\n"
             + "\n   api/*\n"
         )
+
+    with open(source / "docs/install_and_use.rst", "wt") as iau_f:
+        iau_f.write(
+            convert_file(source_file=source / "docs/install_and_use.md", format="md", to="rst")
+            .replace("\r\n", "\n")  # remove carriage return in windows
+            .replace("’", "'")
+        )
+
     # generate rST reference documentation
     for module_name, aliases in _parse_package(source / "src/validators/__init__.py"):
         for alias in aliases:
@@ -85,6 +99,7 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
         web_build = Popen(("sphinx-build", "docs", "docs/_build/web"), shell=False)  # nosec
         web_build.communicate()
         exit_code = web_build.returncode
+        print("Run `python -m http.server -d docs/_build/web` to preview.")
     if not only_web:
         # build sphinx man pages as subprocess
         man_build = Popen(  # nosec
@@ -102,7 +117,6 @@ def _generate_documentation(
     only_md: bool = False,
     only_rst_web: bool = False,
     only_rst_man: bool = False,
-    discard_refs: bool = True,
 ):
     """Generate documentation."""
     if only_md is only_rst_web is only_rst_man is True:
@@ -123,16 +137,12 @@ def _generate_documentation(
             if exit_code == 0
             else exit_code
         )
-    # optionally discard reference folder
-    if discard_refs:
-        rmtree(refs_path)
     return exit_code
 
 
 def package(source: Path):
     """Package the source code."""
-    _generate_documentation(source, only_rst_man=True, discard_refs=False)
-    # print()
+    _generate_documentation(source, only_rst_man=True)
     if getenv("CI", "false") == "true":
         process = Popen(("./.venv/bin/python", "-m", "build"), shell=False)  # nosec
     else:
@@ -149,18 +159,17 @@ if __name__ == "__main__":
     from sys import argv
 
     if len(argv) != 2:
-        quit(exit_code)
+        print("Expected one of these augments: `pkg` `doc` `man` or `web`")
+        quit(1)
 
     if argv[1] == "pkg":
         exit_code = package(project_root)
-    if argv[1] == "docs":
-        exit_code = _generate_documentation(
-            project_root,
-            only_md=True,
-            only_rst_web=False,
-            only_rst_man=False,
-            discard_refs=False,
-        )
+    elif argv[1] == "doc":
+        exit_code = _generate_documentation(project_root, only_md=True)
+    elif argv[1] == "man":
+        exit_code = _generate_documentation(project_root, only_rst_man=True)
+    elif argv[1] == "web":
+        exit_code = _generate_documentation(project_root, only_rst_web=True)
     quit(exit_code)
 
 # TODO: Address all '# nosec'

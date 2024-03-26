@@ -15,6 +15,8 @@ theme:
   font:
     text: Inter
     code: "Fira Code"
+  features:
+    - content.code.copy
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -65,6 +67,7 @@ copyright: Copyright &copy; 2013 - 2024 Konsta Vesterinen
 
 nav:
   - Home: index.md
+  - Install and Use: install_and_use.md
   - API:
       - api/between.md
       - api/btc_address.md
