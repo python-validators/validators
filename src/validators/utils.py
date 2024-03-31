@@ -91,7 +91,7 @@ def validator(func: Callable[..., Any]):
                     if func(*args, **kwargs)
                     else ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
                 )
-        except (ValueError, TypeError) as exp:
+        except (ValueError, TypeError, UnicodeError) as exp:
             if raise_validation_error:
                 raise ValidationError(
                     func, _func_args_as_dict(func, *args, **kwargs), str(exp)
