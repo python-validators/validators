@@ -861,7 +861,7 @@
           </td>
           <td>
             <div class="doc-md-description">
-              <p>Allow trailing dot in domain name.
+              <p>Allows optional trailing dot in the domain name.
 Ref: <a href="https://www.rfc-editor.org/rfc/rfc1034">RFC 1034</a>.</p>
             </div>
           </td>
@@ -877,6 +877,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc1034">RFC 1034</a>.</p>
           <td>
             <div class="doc-md-description">
               <p>Domain name is of type service record.
+Allows optional underscores in the domain name.
 Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
             </div>
           </td>
@@ -915,6 +916,30 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
           <td>
             <div class="doc-md-description">
               <p>If <code>value</code> is an invalid domain name.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Raises:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>UnicodeError</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> cannot be encoded into <code>idna</code> or decoded into <code>utf-8</code>.</p>
             </div>
           </td>
         </tr>
@@ -968,7 +993,12 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">domain</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid domain.</span>
 
@@ -985,35 +1015,40 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="sd">        value:</span>
 <span class="sd">            Domain string to validate.</span>
 <span class="sd">        rfc_1034:</span>
-<span class="sd">            Allow trailing dot in domain name.</span>
+<span class="sd">            Allows optional trailing dot in the domain name.</span>
 <span class="sd">            Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).</span>
 <span class="sd">        rfc_2782:</span>
 <span class="sd">            Domain name is of type service record.</span>
+<span class="sd">            Allows optional underscores in the domain name.</span>
 <span class="sd">            Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).</span>
 
 
 <span class="sd">    Returns:</span>
 <span class="sd">        (Literal[True]): If `value` is a valid domain name.</span>
 <span class="sd">        (ValidationError): If `value` is an invalid domain name.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        (UnicodeError): If `value` cannot be encoded into `idna` or decoded into `utf-8`.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
             <span class="c1"># First character of the domain</span>
-            <span class="sa">rf</span><span class="s2">&quot;^(?:[a-zA-Z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]&quot;</span>
-            <span class="c1"># Sub domain + hostname</span>
-            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;(?:[a-zA-Z0-9-</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]</span><span class="se">{{</span><span class="s2">0,61</span><span class="se">}}</span><span class="s2">&quot;</span>
-            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;[A-Za-z0-9</span><span class="si">{</span><span class="s1">&#39;_&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">])?\.)&quot;</span>
+            <span class="sa">rf</span><span class="s2">&quot;^(?:[a-z0-9</span><span class="si">{</span><span class="sa">r</span><span class="s1">&#39;_?&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]&quot;</span>
+            <span class="c1"># Sub-domain</span>
+            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;(?:[a-z0-9-</span><span class="si">{</span><span class="sa">r</span><span class="s1">&#39;_?&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">]</span><span class="se">{{</span><span class="s2">0,61</span><span class="se">}}</span><span class="s2">&quot;</span>
+            <span class="c1"># Hostname</span>
+            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;[a-z0-9</span><span class="si">{</span><span class="sa">r</span><span class="s1">&#39;_?&#39;</span><span class="k">if</span><span class="w"> </span><span class="n">rfc_2782</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="si">}</span><span class="s2">])?\.)&quot;</span>
             <span class="c1"># First 61 characters of the gTLD</span>
-            <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;+[A-Za-z0-9][A-Za-z0-9-_]{0,61}&quot;</span>
+            <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;+[a-z0-9][a-z0-9-_]{0,61}&quot;</span>
             <span class="c1"># Last character of the gTLD</span>
-            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;[A-Za-z]</span><span class="si">{</span><span class="sa">r</span><span class="s1">&#39;.$&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">rfc_1034</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="sa">r</span><span class="s1">&#39;$&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="o">+</span> <span class="sa">rf</span><span class="s2">&quot;[a-z]</span><span class="si">{</span><span class="sa">r</span><span class="s1">&#39;.?$&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">rfc_1034</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="sa">r</span><span class="s1">&#39;$&#39;</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="n">value</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;idna&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">),</span>
             <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">,</span>
         <span class="p">)</span>
-    <span class="k">except</span> <span class="ne">UnicodeError</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">except</span> <span class="ne">UnicodeError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">UnicodeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to encode/decode </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">err</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
