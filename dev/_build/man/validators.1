@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Mar 26, 2024" "0.24.0" "validators"
+.TH "VALIDATORS" "1" "Apr 02, 2024" "0.25.0" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -509,6 +509,35 @@ If \fIvalue\fP is a valid country code.
 (Literal[True])
 .UNINDENT
 .UNINDENT
+.SS cron
+.INDENT 0.0
+.TP
+.B validators.cron.cron(value:  str, /)
+Return whether or not given value is a valid cron string.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> cron(\(aq*/5 * * * *\(aq)
+# Output: True
+>>> cron(\(aq30\-20 * * * *\(aq)
+# Output: ValidationError(func=cron, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Cron string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid cron string.
+(ValidationError): If \fIvalue\fP is an invalid cron string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
 .SS domain
 .INDENT 0.0
 .TP
@@ -535,10 +564,11 @@ Examples
 .IP \(bu 2
 \fBvalue\fP \-\- Domain string to validate.
 .IP \(bu 2
-\fBrfc_1034\fP \-\- Allow trailing dot in domain name.
+\fBrfc_1034\fP \-\- Allows optional trailing dot in the domain name.
 Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
 .IP \(bu 2
 \fBrfc_2782\fP \-\- Domain name is of type service record.
+Allows optional underscores in the domain name.
 Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
 .UNINDENT
 .TP
@@ -548,6 +578,9 @@ If \fIvalue\fP is a valid domain name.
 .TP
 .B Return type
 (Literal[True])
+.TP
+.B Raises
+\fB(\fP\fBUnicodeError\fP\fB)\fP \-\- If \fIvalue\fP cannot be encoded into \fIidna\fP or decoded into \fIutf\-8\fP\&.
 .UNINDENT
 .UNINDENT
 .SS email

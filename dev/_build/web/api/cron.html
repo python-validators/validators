@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="i18n" href="i18n.html" /><link rel="prev" title="hashes" href="hashes.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="domain" href="domain.html" /><link rel="prev" title="country_code" href="country_code.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>hostname - validators 0.23.2 documentation</title>
+        <title>cron - validators 0.23.2 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -164,11 +164,11 @@
 <li class="toctree-l1"><a class="reference internal" href="btc_address.html">btc_address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="card.html">card</a></li>
 <li class="toctree-l1"><a class="reference internal" href="country_code.html">country_code</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">cron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hashes.html">hashes</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">hostname</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hostname.html">hostname</a></li>
 <li class="toctree-l1"><a class="reference internal" href="i18n.html">i18n</a></li>
 <li class="toctree-l1"><a class="reference internal" href="iban.html">iban</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ip_address.html">ip_address</a></li>
@@ -212,52 +212,26 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-validators.hostname">
-<span id="hostname"></span><h1>hostname<a class="headerlink" href="#module-validators.hostname" title="Permalink to this heading">#</a></h1>
+          <section id="module-validators.cron">
+<span id="cron"></span><h1>cron<a class="headerlink" href="#module-validators.cron" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="validators.hostname.hostname">
-<span class="sig-prename descclassname"><span class="pre">validators.hostname.</span></span><span class="sig-name descname"><span class="pre">hostname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_ipv6_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_ipv4_addr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">may_have_port</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">maybe_simple</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rfc_1034</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rfc_2782</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.hostname.hostname" title="Permalink to this definition">#</a></dt>
-<dd><p>Return whether or not given value is a valid hostname.</p>
+<dt class="sig sig-object py" id="validators.cron.cron">
+<span class="sig-prename descclassname"><span class="pre">validators.cron.</span></span><span class="sig-name descname"><span class="pre">cron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.cron.cron" title="Permalink to this definition">#</a></dt>
+<dd><p>Return whether or not given value is a valid cron string.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;ubuntu-pc:443&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cron</span><span class="p">(</span><span class="s1">&#39;*/5 * * * *&#39;</span><span class="p">)</span>
 <span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;this-pc&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;xn----gtbspbbmkef.xn--p1ai:65535&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;_example.com&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;123.5.77.88:31000&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;12.12.12.12&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;[::1]:22&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;dead:beef:0:0:0:0000:42:1&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;[0:0:0:0:0:ffff:1.2.3.4]:-65538&quot;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=hostname, ...)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;[0:&amp;:b:c:@:e:f::]:9999&quot;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=hostname, ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cron</span><span class="p">(</span><span class="s1">&#39;30-20 * * * *&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=cron, ...)</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>value</strong> – Hostname string to validate.</p></li>
-<li><p><strong>skip_ipv6_addr</strong> – When hostname string cannot be an IPv6 address.</p></li>
-<li><p><strong>skip_ipv4_addr</strong> – When hostname string cannot be an IPv4 address.</p></li>
-<li><p><strong>may_have_port</strong> – Hostname string may contain port number.</p></li>
-<li><p><strong>maybe_simple</strong> – Hostname string maybe only hyphens and alpha-numerals.</p></li>
-<li><p><strong>rfc_1034</strong> – Allow trailing dot in domain/host name.
-Ref: [RFC 1034](<a class="reference external" href="https://www.rfc-editor.org/rfc/rfc1034">https://www.rfc-editor.org/rfc/rfc1034</a>).</p></li>
-<li><p><strong>rfc_2782</strong> – Domain/Host name is of type service record.
-Ref: [RFC 2782](<a class="reference external" href="https://www.rfc-editor.org/rfc/rfc2782">https://www.rfc-editor.org/rfc/rfc2782</a>).</p></li>
-</ul>
+<dd class="field-odd"><p><strong>value</strong> – Cron string to validate.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>If <cite>value</cite> is a valid hostname.
-(ValidationError): If <cite>value</cite> is an invalid hostname.</p>
+<dd class="field-even"><p>If <cite>value</cite> is a valid cron string.
+(ValidationError): If <cite>value</cite> is an invalid cron string.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(Literal[True])</p>
@@ -272,23 +246,23 @@ Ref: [RFC 2782](<a class="reference external" href="https://www.rfc-editor.org/r
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="i18n.html">
+          <a class="next-page" href="domain.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">i18n</div>
+                <div class="title">domain</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="hashes.html">
+          <a class="prev-page" href="country_code.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">hashes</div>
+                <div class="title">country_code</div>
                 
               </div>
             </a>
@@ -322,8 +296,8 @@ Ref: [RFC 2782](<a class="reference external" href="https://www.rfc-editor.org/r
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">hostname</a><ul>
-<li><a class="reference internal" href="#validators.hostname.hostname"><code class="docutils literal notranslate"><span class="pre">hostname()</span></code></a></li>
+<li><a class="reference internal" href="#">cron</a><ul>
+<li><a class="reference internal" href="#validators.cron.cron"><code class="docutils literal notranslate"><span class="pre">cron()</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -422,6 +422,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../cron/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cron
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../domain/" class="md-nav__link">
         
   
@@ -931,7 +952,7 @@
 <span class="sd">        (ValidationError): If `value` is an invalid IBAN code.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span>
-        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[A-Z]</span><span class="si">{2}</span><span class="s2">[0-9]</span><span class="si">{2}</span><span class="s2">[A-Z0-9]{11,30}$&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_mod_check</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+        <span class="p">(</span><span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[a-z]</span><span class="si">{2}</span><span class="s2">[0-9]</span><span class="si">{2}</span><span class="s2">[a-z0-9]{11,30}$&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">)</span> <span class="ow">and</span> <span class="n">_mod_check</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
         <span class="k">if</span> <span class="n">value</span>
         <span class="k">else</span> <span class="kc">False</span>
     <span class="p">)</span>
