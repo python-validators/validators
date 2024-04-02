@@ -17,6 +17,8 @@ from validators import ValidationError, email
         ("example@valid-with-hyphens.com",),
         ("test@domain.with.idn.tld.उदाहरण.परीक्षा",),
         ("email@localhost.in",),
+        ("Łókaść@email.com",),
+        ("łemłail@here.com",),
         ("email@localdomain.org",),
         ('"\\\011"@here.com',),
     ],
