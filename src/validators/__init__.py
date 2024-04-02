@@ -8,7 +8,7 @@ from .country_code import country_code
 from .cron import cron
 from .domain import domain
 from .email import email
-from .hashes import md5, sha1, sha224, sha256, sha512
+from .hashes import base58, base64, md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
 from .i18n import es_cif, es_doi, es_nie, es_nif, fi_business_id, fi_ssn, fr_department, fr_ssn
 from .iban import iban
@@ -46,6 +46,8 @@ __all__ = (
     # ...
     "email",
     # hashes
+    "base58",
+    "base64",
     "md5",
     "sha1",
     "sha224",
@@ -82,4 +84,4 @@ __all__ = (
     "validator",
 )
 
-__version__ = "0.25.0"
+__version__ = "0.26.0"
