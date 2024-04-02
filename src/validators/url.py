@@ -14,7 +14,7 @@ from .utils import validator
 def _username_regex():
     return re.compile(
         # dot-atom
-        r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*$"
+        r"(^[-!#$%&'*+/=?^_`{}|~0-9a-z]+(\.[-!#$%&'*+/=?^_`{}|~0-9a-z]+)*$"
         # non-quoted-string
         + r"|^([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-\011\013\014\016-\177])*$)",
         re.IGNORECASE,
@@ -25,7 +25,7 @@ def _username_regex():
 def _path_regex():
     return re.compile(
         # allowed symbols
-        r"^[\/a-zA-Z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%"
+        r"^[\/a-z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%"
         # emoticons / emoji
         + r"\U0001F600-\U0001F64F"
         # multilingual unicode ranges
@@ -133,7 +133,9 @@ def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool
             optional_segments &= True
     if fragment:
         # See RFC3986 Section 3.5 Fragment for allowed characters
-        optional_segments &= bool(re.fullmatch(r"[0-9a-zA-Z?/:@\-._~%!$&'()*+,;=]*", fragment))
+        optional_segments &= bool(
+            re.fullmatch(r"[0-9a-z?/:@\-._~%!$&'()*+,;=]*", fragment, re.IGNORECASE)
+        )
     return optional_segments
 
 

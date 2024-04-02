@@ -38,7 +38,7 @@ def iban(value: str, /):
         (ValidationError): If `value` is an invalid IBAN code.
     """
     return (
-        (re.match(r"^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$", value) and _mod_check(value))
+        (re.match(r"^[a-z]{2}[0-9]{2}[a-z0-9]{11,30}$", value, re.IGNORECASE) and _mod_check(value))
         if value
         else False
     )
