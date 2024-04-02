@@ -73,6 +73,7 @@ nav:
       - api/btc_address.md
       - api/card.md
       - api/country_code.md
+      - api/cron.md
       - api/domain.md
       - api/email.md
       - api/hashes.md
