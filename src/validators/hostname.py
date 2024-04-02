@@ -25,7 +25,7 @@ def _simple_hostname_regex():
     """Simple hostname validation regex."""
     # {0,59} because two characters are already matched at
     # the beginning and at the end, making the range {1, 61}
-    return re.compile(r"^(?!-)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,59}[a-zA-Z0-9])?(?<!-)$")
+    return re.compile(r"^(?!-)[a-z0-9](?:[a-z0-9-]{0,59}[a-z0-9])?(?<!-)$", re.IGNORECASE)
 
 
 def _port_validator(value: str):
