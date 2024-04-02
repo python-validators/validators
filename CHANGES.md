@@ -9,6 +9,25 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.26.0 (2024-04-02)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: adds `base58` and `base64` validators by @yozachar in [#351](https://github.com/python-validators/validators/pull/351)
+
+_**Maintenance**_
+
+- fix: regex ignore-case uses only `a-z` by @yozachar in [#349](https://github.com/python-validators/validators/pull/349)
+- patch: supported extended latin in username by @yozachar in [#350](https://github.com/python-validators/validators/pull/350)
+
+**Full Changelog**: [`0.25.0...0.26.0`](https://github.com/python-validators/validators/compare/0.25.0...0.26.0)
+
+---
+
 ## 0.25.0 (2024-04-02)
 
 _**Breaking**_
@@ -24,7 +43,7 @@ _**Maintenance**_
 - maint: adds quick start docs by @yozachar in [#344](https://github.com/python-validators/validators/pull/344)
 - fix: `domain` validation is now more consistent across rfcs by @yozachar in [#347](https://github.com/python-validators/validators/pull/347)
 
-**Full Changelog**: [`0.24.2...0.25.0`](https://github.com/python-validators/validators/compare/0.23.2...0.24.0)
+**Full Changelog**: [`0.24.2...0.25.0`](https://github.com/python-validators/validators/compare/0.24.2...0.25.0)
 
 ---
 
