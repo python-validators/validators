@@ -9,6 +9,25 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.25.0 (2024-04-02)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: adds basic `cron` validator by @yozachar in [#348](https://github.com/python-validators/validators/pull/348)
+
+_**Maintenance**_
+
+- maint: adds quick start docs by @yozachar in [#344](https://github.com/python-validators/validators/pull/344)
+- fix: `domain` validation is now more consistent across rfcs by @yozachar in [#347](https://github.com/python-validators/validators/pull/347)
+
+**Full Changelog**: [`0.24.2...0.25.0`](https://github.com/python-validators/validators/compare/0.23.2...0.24.0)
+
+---
+
 ## 0.24.0 (2024-03-24)
 
 _**Breaking**_
@@ -26,6 +45,8 @@ _**Maintenance**_
 - maint: update dev dependencies; adds favicon to docs by @yozachar in [#342](https://github.com/python-validators/validators/pull/342)
 
 **Full Changelog**: [`0.23.2...0.24.0`](https://github.com/python-validators/validators/compare/0.23.2...0.24.0)
+
+---
 
 ## 0.23.2 (2024-03-20)
 

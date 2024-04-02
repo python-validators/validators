@@ -5,6 +5,7 @@ from .between import between
 from .btc_address import btc_address
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .country_code import country_code
+from .cron import cron
 from .domain import domain
 from .email import email
 from .hashes import md5, sha1, sha224, sha256, sha512
@@ -38,6 +39,8 @@ __all__ = (
     "unionpay",
     # ...
     "country_code",
+    # ...
+    "cron",
     # ...
     "domain",
     # ...
@@ -79,4 +82,4 @@ __all__ = (
     "validator",
 )
 
-__version__ = "0.24.0"
+__version__ = "0.25.0"
