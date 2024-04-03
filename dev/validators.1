@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Apr 02, 2024" "0.25.0" "validators"
+.TH "VALIDATORS" "1" "Apr 03, 2024" "0.26.0" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -630,6 +630,63 @@ Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
 .B Returns
 If \fIvalue\fP is a valid eMail.
 (ValidationError): If \fIvalue\fP is an invalid eMail.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS encoding
+.INDENT 0.0
+.TP
+.B validators.encoding.base58(value:  str, /)
+Return whether or not given value is a valid base58 encoding.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> base58(\(aq14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx\(aq)
+# Output: True
+>>> base58(\(aqcUSECm5YzcXJwP\(aq)
+# Output: ValidationError(func=base58, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- base58 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid base58 encoding.
+(ValidationError): If \fIvalue\fP is an invalid base58 encoding.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.encoding.base64(value:  str, /)
+Return whether or not given value is a valid base64 encoding.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> base64(\(aqY2hhcmFjdGVyIHNldA==\(aq)
+# Output: True
+>>> base64(\(aqcUSECm5YzcXJwP\(aq)
+# Output: ValidationError(func=base64, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- base64 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid base64 encoding.
+(ValidationError): If \fIvalue\fP is an invalid base64 encoding.
 .TP
 .B Return type
 (Literal[True])

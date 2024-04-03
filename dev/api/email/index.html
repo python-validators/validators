@@ -16,7 +16,7 @@
         <link rel="prev" href="../domain/">
       
       
-        <link rel="next" href="../hashes/">
+        <link rel="next" href="../encoding/">
       
       
       <link rel="icon" href="../../assets/icons/favicon.svg">
@@ -522,6 +522,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../encoding/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    encoding
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1069,7 +1090,9 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">92</span>
 <span class="normal">93</span>
 <span class="normal">94</span>
-<span class="normal">95</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">email</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1145,10 +1168,12 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
             <span class="p">)</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
+            <span class="c1"># extended latin</span>
+            <span class="sa">r</span><span class="s2">&quot;(^[\u0100-\u017F\u0180-\u024F]&quot;</span>
             <span class="c1"># dot-atom</span>
-            <span class="sa">r</span><span class="s2">&quot;(^[-!#$%&amp;&#39;*+/=?^_`</span><span class="si">{}</span><span class="s2">|~0-9a-z]+(\.[-!#$%&amp;&#39;*+/=?^_`</span><span class="si">{}</span><span class="s2">|~0-9a-z]+)*$&quot;</span>
+            <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;|[-!#$%&amp;&#39;*+/=?^_`</span><span class="si">{}</span><span class="s2">|~0-9a-z]+(\.[-!#$%&amp;&#39;*+/=?^_`</span><span class="si">{}</span><span class="s2">|~0-9a-z]+)*$&quot;</span>
             <span class="c1"># quoted-string</span>
-            <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;|^&quot;([\001-\010\013\014\016-\037!#-\[\]-\177]|</span><span class="se">\\</span><span class="s1">[\001-\011\013\014\016-\177])*&quot;$)&#39;</span><span class="p">,</span>
+            <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;|^&quot;([\001-\010\013\014\016-\037!#-\[\]-\177]|</span><span class="se">\\</span><span class="s1">[\011.])*&quot;$)&#39;</span><span class="p">,</span>
             <span class="n">username_part</span><span class="p">,</span>
             <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">,</span>
         <span class="p">)</span>
