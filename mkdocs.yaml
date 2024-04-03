@@ -72,7 +72,7 @@ nav:
       - api/between.md
       - api/btc_address.md
       - api/card.md
-      - api/country_code.md
+      - api/country.md
       - api/cron.md
       - api/domain.md
       - api/email.md
