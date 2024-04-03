@@ -76,6 +76,7 @@ nav:
       - api/cron.md
       - api/domain.md
       - api/email.md
+      - api/encoding.md
       - api/hashes.md
       - api/hostname.md
       - api/i18n.md
