@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://yozachar.github.io/pyvalidators/dev/api/email/">
+        <link rel="canonical" href="https://yozachar.github.io/pyvalidators/dev/api/finance/">
       
       
-        <link rel="prev" href="../domain/">
+        <link rel="prev" href="../encoding/">
       
       
-        <link rel="next" href="../encoding/">
+        <link rel="next" href="../hashes/">
       
       
       <link rel="icon" href="../../assets/icons/favicon.svg">
@@ -24,7 +24,7 @@
     
     
       
-        <title>email - validators</title>
+        <title>finance - validators</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#email" class="md-skip">
+        <a href="#finance" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              email
+              finance
             
           </span>
         </div>
@@ -461,30 +461,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    email
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../email/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -493,35 +473,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#validators.email.email" class="md-nav__link">
-    <span class="md-ellipsis">
-      email
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -552,10 +503,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../finance/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    finance
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -564,6 +535,53 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#validators.finance.cusip" class="md-nav__link">
+    <span class="md-ellipsis">
+      cusip
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.finance.isin" class="md-nav__link">
+    <span class="md-ellipsis">
+      isin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.finance.sedol" class="md-nav__link">
+    <span class="md-ellipsis">
+      sedol
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -834,9 +852,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#validators.email.email" class="md-nav__link">
+  <a href="#validators.finance.cusip" class="md-nav__link">
     <span class="md-ellipsis">
-      email
+      cusip
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.finance.isin" class="md-nav__link">
+    <span class="md-ellipsis">
+      isin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.finance.sedol" class="md-nav__link">
+    <span class="md-ellipsis">
+      sedol
     </span>
   </a>
   
@@ -860,7 +896,7 @@
   
 
 
-<h1 id="email">email<a class="headerlink" href="#email" title="Permanent link">&para;</a></h1>
+<h1 id="finance">finance<a class="headerlink" href="#finance" title="Permanent link">&para;</a></h1>
 
 
 
@@ -868,25 +904,24 @@
 
 
 
-<h2 id="validators.email.email" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">email</span><span class="o">.</span><span class="n">email</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ipv6_address</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ipv4_address</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simple_host</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<h2 id="validators.finance.cusip" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">cusip</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
-<a href="#validators.email.email" class="headerlink" title="Permanent link">&para;</a></h2>
+<a href="#validators.finance.cusip" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
   <div class="doc doc-contents first">
   
-      <p>Validate an email address.</p>
-<p>This was inspired from <a href="https://github.com/django/django/blob/main/django/core/validators.py#L174">Django's email validator</a>.
-Also ref: <a href="https://www.rfc-editor.org/rfc/rfc1034">RFC 1034</a>, <a href="https://www.rfc-editor.org/rfc/rfc5321">RFC 5321</a> and <a href="https://www.rfc-editor.org/rfc/rfc5322">RFC 5322</a>.</p>
+      <p>Return whether or not given value is a valid CUSIP.</p>
+<p>Checks if the value is a valid <a href="https://en.wikipedia.org/wiki/CUSIP">CUSIP</a>.</p>
 
 
 
 <p><strong>Examples:</strong></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="p">(</span><span class="s1">&#39;someone@example.com&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">email</span><span class="p">(</span><span class="s1">&#39;bogus@@&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(email=email, args={&#39;value&#39;: &#39;bogus@@&#39;})</span>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">cusip</span><span class="p">(</span><span class="s1">&#39;037833DP2&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cusip</span><span class="p">(</span><span class="s1">&#39;037833DP3&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=cusip, ...)</span>
 </code></pre></div>
 
 
@@ -909,83 +944,11 @@ Also ref: <a href="https://www.rfc-editor.org/rfc/rfc1034">RFC 1034</a>, <a href
           </td>
           <td>
             <div class="doc-md-description">
-              <p>eMail string to validate.</p>
+              <p>CUSIP string to validate.</p>
             </div>
           </td>
           <td>
               <em>required</em>
-          </td>
-        </tr>
-        <tr>
-          <td><code>ipv6_address</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>When the domain part is an IPv6 address.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>ipv4_address</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>When the domain part is an IPv4 address.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>simple_host</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>When the domain part is a simple hostname.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>rfc_1034</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Allow trailing dot in domain name.
-Ref: <a href="https://www.rfc-editor.org/rfc/rfc1034">RFC 1034</a>.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
-          </td>
-        </tr>
-        <tr>
-          <td><code>rfc_2782</code></td>
-          <td>
-                <code>bool</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Domain name is of type service record.
-Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
-            </div>
-          </td>
-          <td>
-                <code>False</code>
           </td>
         </tr>
     </tbody>
@@ -1008,7 +971,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If <code>value</code> is a valid eMail.</p>
+              <p>If <code>value</code> is a valid CUSIP string.</p>
             </div>
           </td>
         </tr>
@@ -1018,7 +981,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
           </td>
           <td>
             <div class="doc-md-description">
-              <p>If <code>value</code> is an invalid eMail.</p>
+              <p>If <code>value</code> is an invalid CUSIP string.</p>
             </div>
           </td>
         </tr>
@@ -1026,51 +989,8 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
   </table>
 
           <details class="quote">
-            <summary>Source code in <code>src/validators/email.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
+            <summary>Source code in <code>src/validators/finance.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
@@ -1090,10 +1010,125 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">71</span>
 <span class="normal">72</span>
 <span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">cusip</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid CUSIP.</span>
+
+<span class="sd">    Checks if the value is a valid [CUSIP][1].</span>
+<span class="sd">    [1]: https://en.wikipedia.org/wiki/CUSIP</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; cusip(&#39;037833DP2&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; cusip(&#39;037833DP3&#39;)</span>
+<span class="sd">        ValidationFailure(func=cusip, ...)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value: CUSIP string to validate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (Literal[True]): If `value` is a valid CUSIP string.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid CUSIP string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span> <span class="ow">and</span> <span class="n">_cusip_checksum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="validators.finance.isin" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#validators.finance.isin" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Return whether or not given value is a valid ISIN.</p>
+<p>Checks if the value is a valid <a href="https://en.wikipedia.org/wiki/International_Securities_Identification_Number">ISIN</a>.</p>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">isin</span><span class="p">(</span><span class="s1">&#39;037833DP2&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">isin</span><span class="p">(</span><span class="s1">&#39;037833DP3&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=isin, ...)</span>
+</code></pre></div>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>ISIN string to validate.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>Literal[True]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is a valid ISIN string.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is an invalid ISIN string.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>src/validators/finance.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
@@ -1114,92 +1149,202 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">95</span>
 <span class="normal">96</span>
 <span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
-<span class="k">def</span> <span class="nf">email</span><span class="p">(</span>
-    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-    <span class="o">/</span><span class="p">,</span>
-    <span class="o">*</span><span class="p">,</span>
-    <span class="n">ipv6_address</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">ipv4_address</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">simple_host</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-<span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate an email address.</span>
+<span class="k">def</span> <span class="nf">isin</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid ISIN.</span>
 
-<span class="sd">    This was inspired from [Django&#39;s email validator][1].</span>
-<span class="sd">    Also ref: [RFC 1034][2], [RFC 5321][3] and [RFC 5322][4].</span>
-
-<span class="sd">    [1]: https://github.com/django/django/blob/main/django/core/validators.py#L174</span>
-<span class="sd">    [2]: https://www.rfc-editor.org/rfc/rfc1034</span>
-<span class="sd">    [3]: https://www.rfc-editor.org/rfc/rfc5321</span>
-<span class="sd">    [4]: https://www.rfc-editor.org/rfc/rfc5322</span>
+<span class="sd">    Checks if the value is a valid [ISIN][1].</span>
+<span class="sd">    [1]: https://en.wikipedia.org/wiki/International_Securities_Identification_Number</span>
 
 <span class="sd">    Examples:</span>
-<span class="sd">        &gt;&gt;&gt; email(&#39;someone@example.com&#39;)</span>
-<span class="sd">        # Output: True</span>
-<span class="sd">        &gt;&gt;&gt; email(&#39;bogus@@&#39;)</span>
-<span class="sd">        # Output: ValidationError(email=email, args={&#39;value&#39;: &#39;bogus@@&#39;})</span>
+<span class="sd">        &gt;&gt;&gt; isin(&#39;037833DP2&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; isin(&#39;037833DP3&#39;)</span>
+<span class="sd">        ValidationFailure(func=isin, ...)</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        value:</span>
-<span class="sd">            eMail string to validate.</span>
-<span class="sd">        ipv6_address:</span>
-<span class="sd">            When the domain part is an IPv6 address.</span>
-<span class="sd">        ipv4_address:</span>
-<span class="sd">            When the domain part is an IPv4 address.</span>
-<span class="sd">        simple_host:</span>
-<span class="sd">            When the domain part is a simple hostname.</span>
-<span class="sd">        rfc_1034:</span>
-<span class="sd">            Allow trailing dot in domain name.</span>
-<span class="sd">            Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).</span>
-<span class="sd">        rfc_2782:</span>
-<span class="sd">            Domain name is of type service record.</span>
-<span class="sd">            Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).</span>
+<span class="sd">        value: ISIN string to validate.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        (Literal[True]): If `value` is a valid eMail.</span>
-<span class="sd">        (ValidationError): If `value` is an invalid eMail.</span>
+<span class="sd">        (Literal[True]): If `value` is a valid ISIN string.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid ISIN string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span> <span class="ow">and</span> <span class="n">_isin_checksum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="validators.finance.sedol" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">sedol</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#validators.finance.sedol" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Return whether or not given value is a valid SEDOL.</p>
+<p>Checks if the value is a valid <a href="https://en.wikipedia.org/wiki/SEDOL">SEDOL</a>.</p>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">sedol</span><span class="p">(</span><span class="s1">&#39;2936921&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sedol</span><span class="p">(</span><span class="s1">&#39;29A6922&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=sedol, ...)</span>
+</code></pre></div>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>SEDOL string to validate.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>Literal[True]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is a valid SEDOL string.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is an invalid SEDOL string.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>src/validators/finance.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">sedol</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid SEDOL.</span>
+
+<span class="sd">    Checks if the value is a valid [SEDOL][1].</span>
+<span class="sd">    [1]: https://en.wikipedia.org/wiki/SEDOL</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; sedol(&#39;2936921&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; sedol(&#39;29A6922&#39;)</span>
+<span class="sd">        ValidationFailure(func=sedol, ...)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value: SEDOL string to validate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (Literal[True]): If `value` is a valid SEDOL string.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid SEDOL string.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">7</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="n">username_part</span><span class="p">,</span> <span class="n">domain_part</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;@&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">username_part</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">64</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">domain_part</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">253</span><span class="p">:</span>
-        <span class="c1"># ref: RFC 1034 and 5231</span>
-        <span class="k">return</span> <span class="kc">False</span>
-
-    <span class="k">if</span> <span class="n">ipv6_address</span> <span class="ow">or</span> <span class="n">ipv4_address</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">domain_part</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">domain_part</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">):</span>
-            <span class="c1"># ref: RFC 5321</span>
-            <span class="n">domain_part</span> <span class="o">=</span> <span class="n">domain_part</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
+    <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="n">check</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="s2">&quot;AEIOU&quot;</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span>
 
-    <span class="k">return</span> <span class="p">(</span>
-        <span class="nb">bool</span><span class="p">(</span>
-            <span class="n">hostname</span><span class="p">(</span>
-                <span class="n">domain_part</span><span class="p">,</span>
-                <span class="n">skip_ipv6_addr</span><span class="o">=</span><span class="ow">not</span> <span class="n">ipv6_address</span><span class="p">,</span>
-                <span class="n">skip_ipv4_addr</span><span class="o">=</span><span class="ow">not</span> <span class="n">ipv4_address</span><span class="p">,</span>
-                <span class="n">may_have_port</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-                <span class="n">maybe_simple</span><span class="o">=</span><span class="n">simple_host</span><span class="p">,</span>
-                <span class="n">rfc_1034</span><span class="o">=</span><span class="n">rfc_1034</span><span class="p">,</span>
-                <span class="n">rfc_2782</span><span class="o">=</span><span class="n">rfc_2782</span><span class="p">,</span>
-            <span class="p">)</span>
-        <span class="p">)</span>
-        <span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
-            <span class="c1"># extended latin</span>
-            <span class="sa">r</span><span class="s2">&quot;(^[\u0100-\u017F\u0180-\u024F]&quot;</span>
-            <span class="c1"># dot-atom</span>
-            <span class="o">+</span> <span class="sa">r</span><span class="s2">&quot;|[-!#$%&amp;&#39;*+/=?^_`</span><span class="si">{}</span><span class="s2">|~0-9a-z]+(\.[-!#$%&amp;&#39;*+/=?^_`</span><span class="si">{}</span><span class="s2">|~0-9a-z]+)*$&quot;</span>
-            <span class="c1"># quoted-string</span>
-            <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;|^&quot;([\001-\010\013\014\016-\037!#-\[\]-\177]|</span><span class="se">\\</span><span class="s1">[\011.])*&quot;$)&#39;</span><span class="p">,</span>
-            <span class="n">username_part</span><span class="p">,</span>
-            <span class="n">re</span><span class="o">.</span><span class="n">IGNORECASE</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="k">else</span> <span class="kc">False</span>
-    <span class="p">)</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="s2">&quot;0&quot;</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="s2">&quot;9&quot;</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="s2">&quot;A&quot;</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">&lt;=</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">check</span> <span class="o">+=</span> <span class="n">val</span> <span class="o">*</span> <span class="n">weights</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">check</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1225,7 +1370,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2024</span>
   </span>
 
     

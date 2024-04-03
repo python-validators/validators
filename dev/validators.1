@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Apr 03, 2024" "0.26.0" "validators"
+.TH "VALIDATORS" "1" "Apr 03, 2024" "0.27.0" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -464,10 +464,40 @@ If \fIvalue\fP is a valid Visa card number.
 (Literal[True])
 .UNINDENT
 .UNINDENT
-.SS country_code
+.SS country
 .INDENT 0.0
 .TP
-.B validators.country_code.country_code(value:  str, /, *, iso_format:  str  =  \(aqauto\(aq)
+.B validators.country.calling_code(value:  str, /)
+Validates given calling code.
+.sp
+This performs country\(aqs calling code validation.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> calling_code(\(aq+91\(aq)
+# Output: True
+>>> calling_code(\(aq\-31\(aq)
+# Output: ValidationError(func=calling_code, args={\(aqvalue\(aq: \(aq\-31\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Country\(aqs calling code string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid calling code.
+(ValidationError): If \fIvalue\fP is an invalid calling code.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.country.country_code(value:  str, /, *, iso_format:  str  =  \(aqauto\(aq, ignore_case:  bool  =  False)
 Validates given country code.
 .sp
 This performs a case\-sensitive [ISO 3166][1] country code validation.
@@ -499,11 +529,52 @@ Examples
 .IP \(bu 2
 \fBiso_format\fP \-\- ISO format to be used. Available options are:
 \fIauto\fP, \fIalpha2\fP, \fIalpha3\fP and \fInumeric\fP\&.
+.IP \(bu 2
+\fBignore_case\fP \-\- Enable/Disable case\-sensitive matching.
 .UNINDENT
 .TP
 .B Returns
 If \fIvalue\fP is a valid country code.
 (ValidationError): If \fIvalue\fP is an invalid country code.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.country.currency(value:  str, /, *, skip_symbols:  bool  =  True, ignore_case:  bool  =  False)
+Validates given currency code.
+.sp
+This performs [ISO 4217][1] currency code/symbol validation.
+.sp
+[1]: \fI\%https://www.iso.org/iso\-4217\-currency\-codes.html\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> currency(\(aqUSD\(aq)
+# Output: True
+>>> currency(\(aqZWX\(aq)
+# Output: ValidationError(func=currency, args={\(aqvalue\(aq: \(aqZWX\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Currency code/symbol string to validate.
+.IP \(bu 2
+\fBskip_symbols\fP \-\- Skip currency symbol validation.
+.IP \(bu 2
+\fBignore_case\fP \-\- Enable/Disable case\-sensitive matching.
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid currency code.
+(ValidationError): If \fIvalue\fP is an invalid currency code.
 .TP
 .B Return type
 (Literal[True])
@@ -692,6 +763,100 @@ If \fIvalue\fP is a valid base64 encoding.
 (Literal[True])
 .UNINDENT
 .UNINDENT
+.SS finance
+.INDENT 0.0
+.TP
+.B validators.finance.cusip(value:  str)
+Return whether or not given value is a valid CUSIP.
+.sp
+Checks if the value is a valid [CUSIP][1].
+[1]: \fI\%https://en.wikipedia.org/wiki/CUSIP\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> cusip(\(aq037833DP2\(aq)
+True
+>>> cusip(\(aq037833DP3\(aq)
+ValidationFailure(func=cusip, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- CUSIP string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid CUSIP string.
+(ValidationError): If \fIvalue\fP is an invalid CUSIP string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.finance.isin(value:  str)
+Return whether or not given value is a valid ISIN.
+.sp
+Checks if the value is a valid [ISIN][1].
+[1]: \fI\%https://en.wikipedia.org/wiki/International_Securities_Identification_Number\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> isin(\(aq037833DP2\(aq)
+True
+>>> isin(\(aq037833DP3\(aq)
+ValidationFailure(func=isin, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- ISIN string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid ISIN string.
+(ValidationError): If \fIvalue\fP is an invalid ISIN string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.finance.sedol(value:  str)
+Return whether or not given value is a valid SEDOL.
+.sp
+Checks if the value is a valid [SEDOL][1].
+[1]: \fI\%https://en.wikipedia.org/wiki/SEDOL\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> sedol(\(aq2936921\(aq)
+True
+>>> sedol(\(aq29A6922\(aq)
+ValidationFailure(func=sedol, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- SEDOL string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid SEDOL string.
+(ValidationError): If \fIvalue\fP is an invalid SEDOL string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
 .SS hashes
 .INDENT 0.0
 .TP
@@ -843,7 +1008,7 @@ If \fIvalue\fP is a valid SHA512 hash.
 .SS hostname
 .INDENT 0.0
 .TP
-.B validators.hostname.hostname(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, maybe_simple:  bool  =  True, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+.B validators.hostname.hostname(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, maybe_simple:  bool  =  True, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
 Return whether or not given value is a valid hostname.
 .sp
 Examples
@@ -886,6 +1051,8 @@ Examples
 \fBmay_have_port\fP \-\- Hostname string may contain port number.
 .IP \(bu 2
 \fBmaybe_simple\fP \-\- Hostname string maybe only hyphens and alpha\-numerals.
+.IP \(bu 2
+\fBprivate\fP \-\- Embedded IP address is public if \fIFalse\fP, private/local if \fITrue\fP\&.
 .IP \(bu 2
 \fBrfc_1034\fP \-\- Allow trailing dot in domain/host name.
 Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
@@ -1198,6 +1365,62 @@ If \fIvalue\fP is a valid french Social Security Number.
 (Literal[True])
 .UNINDENT
 .UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.ind_aadhar(value:  str)
+Validate an indian aadhar card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ind_aadhar(\(aq3675 9834 6015\(aq)
+True
+>>> ind_aadhar(\(aq3675 ABVC 2133\(aq)
+ValidationFailure(func=aadhar, args={\(aqvalue\(aq: \(aq3675 ABVC 2133\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Aadhar card number string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid aadhar card number.
+(ValidationError): If \fIvalue\fP is an invalid aadhar card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.ind_pan(value:  str)
+Validate a pan card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ind_pan(\(aqABCDE9999K\(aq)
+True
+>>> ind_pan(\(aqABC5d7896B\(aq)
+ValidationFailure(func=pan, args={\(aqvalue\(aq: \(aqABC5d7896B\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- PAN card number string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid PAN card number.
+(ValidationError): If \fIvalue\fP is an invalid PAN card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
 .SS iban
 .INDENT 0.0
 .TP
@@ -1230,7 +1453,7 @@ If \fIvalue\fP is a valid IBAN code.
 .SS ip_address
 .INDENT 0.0
 .TP
-.B validators.ip_address.ipv4(value:  str, /, *, cidr:  bool  =  True, strict:  bool  =  False, host_bit:  bool  =  True)
+.B validators.ip_address.ipv4(value:  str, /, *, cidr:  bool  =  True, strict:  bool  =  False, private:  bool  |  None  =  None, host_bit:  bool  =  True)
 Returns whether a given value is a valid IPv4 address.
 .sp
 From Python version 3.9.5 leading zeros are no longer tolerated
@@ -1258,9 +1481,11 @@ Examples
 .IP \(bu 2
 \fBvalue\fP \-\- IP address string to validate.
 .IP \(bu 2
-\fBcidr\fP \-\- IP address string may contain CIDR notation
+\fBcidr\fP \-\- IP address string may contain CIDR notation.
 .IP \(bu 2
-\fBstrict\fP \-\- IP address string is strictly in CIDR notation
+\fBstrict\fP \-\- IP address string is strictly in CIDR notation.
+.IP \(bu 2
+\fBprivate\fP \-\- IP address is public if \fIFalse\fP, private/local/loopback/broadcast if \fITrue\fP\&.
 .IP \(bu 2
 \fBhost_bit\fP \-\- If \fIFalse\fP and host bits (along with network bits) _are_ set in the supplied
 address, this function raises a validation error. ref [IPv4Network][2].
@@ -1304,9 +1529,9 @@ Examples
 .IP \(bu 2
 \fBvalue\fP \-\- IP address string to validate.
 .IP \(bu 2
-\fBcidr\fP \-\- IP address string may contain CIDR annotation
+\fBcidr\fP \-\- IP address string may contain CIDR annotation.
 .IP \(bu 2
-\fBstrict\fP \-\- IP address string is strictly in CIDR notation
+\fBstrict\fP \-\- IP address string is strictly in CIDR notation.
 .IP \(bu 2
 \fBhost_bit\fP \-\- If \fIFalse\fP and host bits (along with network bits) _are_ set in the supplied
 address, this function raises a validation error. ref [IPv6Network][2].
@@ -1432,7 +1657,7 @@ If \fIvalue\fP is a valid slug.
 .SS url
 .INDENT 0.0
 .TP
-.B validators.url.url(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, simple_host:  bool  =  False, strict_query:  bool  =  True, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+.B validators.url.url(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, simple_host:  bool  =  False, strict_query:  bool  =  True, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
 Return whether or not given value is a valid URL.
 .sp
 This validator was originally inspired from [URL validator of dperini][1].
@@ -1484,6 +1709,8 @@ Examples
 \fBsimple_host\fP \-\- URL string maybe only hyphens and alpha\-numerals.
 .IP \(bu 2
 \fBstrict_query\fP \-\- Fail validation on query string parsing error.
+.IP \(bu 2
+\fBprivate\fP \-\- Embedded IP address is public if \fIFalse\fP, private/local if \fITrue\fP\&.
 .IP \(bu 2
 \fBrfc_1034\fP \-\- Allow trailing dot in domain/host name.
 Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).

@@ -401,11 +401,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../country_code/" class="md-nav__link">
+      <a href="../country/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    country_code
+    country
   </span>
   
 
@@ -490,6 +490,27 @@
   
   <span class="md-ellipsis">
     encoding
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../finance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    finance
   </span>
   
 
@@ -660,6 +681,24 @@
   <a href="#validators.i18n.fr_ssn" class="md-nav__link">
     <span class="md-ellipsis">
       fr_ssn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.i18n.ind_aadhar" class="md-nav__link">
+    <span class="md-ellipsis">
+      ind_aadhar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.i18n.ind_pan" class="md-nav__link">
+    <span class="md-ellipsis">
+      ind_pan
     </span>
   </a>
   
@@ -942,6 +981,24 @@
   <a href="#validators.i18n.fr_ssn" class="md-nav__link">
     <span class="md-ellipsis">
       fr_ssn
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.i18n.ind_aadhar" class="md-nav__link">
+    <span class="md-ellipsis">
+      ind_aadhar
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validators.i18n.ind_pan" class="md-nav__link">
+    <span class="md-ellipsis">
+      ind_pan
     </span>
   </a>
   
@@ -2386,6 +2443,268 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 </div>
 
 
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="validators.i18n.ind_aadhar" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">ind_aadhar</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#validators.i18n.ind_aadhar" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Validate an indian aadhar card number.</p>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 9834 6015&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 ABVC 2133&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+</code></pre></div>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Aadhar card number string to validate.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>Literal[True]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is a valid aadhar card number.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is an invalid aadhar card number.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>src/validators/i18n/ind.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">ind_aadhar</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate an indian aadhar card number.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; ind_aadhar(&#39;3675 9834 6015&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; ind_aadhar(&#39;3675 ABVC 2133&#39;)</span>
+<span class="sd">        ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value: Aadhar card number string to validate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (Literal[True]): If `value` is a valid aadhar card number.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid aadhar card number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[2-9]</span><span class="si">{1}</span><span class="s2">\d</span><span class="si">{3}</span><span class="s2">\s\d</span><span class="si">{4}</span><span class="s2">\s\d</span><span class="si">{4}</span><span class="s2">$&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="validators.i18n.ind_pan" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">ind_pan</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#validators.i18n.ind_pan" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+  <div class="doc doc-contents first">
+  
+      <p>Validate a pan card number.</p>
+
+
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABCDE9999K&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABC5d7896B&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+</code></pre></div>
+
+
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>value</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>PAN card number string to validate.</p>
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>
+                <code>Literal[True]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is a valid PAN card number.</p>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>If <code>value</code> is an invalid PAN card number.</p>
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+          <details class="quote">
+            <summary>Source code in <code>src/validators/i18n/ind.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">ind_pan</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a pan card number.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; ind_pan(&#39;ABCDE9999K&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; ind_pan(&#39;ABC5d7896B&#39;)</span>
+<span class="sd">        ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value: PAN card number string to validate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (Literal[True]): If `value` is a valid PAN card number.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid PAN card number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[A-Z]</span><span class="si">{5}</span><span class="s2">\d</span><span class="si">{4}</span><span class="s2">[A-Z]</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
 
 
 
@@ -2404,7 +2723,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2024</span>
   </span>
 
     
