@@ -8,7 +8,8 @@ from .country_code import country_code
 from .cron import cron
 from .domain import domain
 from .email import email
-from .hashes import base58, base64, md5, sha1, sha224, sha256, sha512
+from .encoding import base58, base64
+from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
 from .i18n import es_cif, es_doi, es_nie, es_nif, fi_business_id, fi_ssn, fr_department, fr_ssn
 from .iban import iban
@@ -25,9 +26,8 @@ from .uuid import uuid
 __all__ = (
     # ...
     "between",
-    # crypto addresses
+    # crypto_addresses
     "btc_address",
-    # "eth_address",
     # cards
     "amex",
     "card_number",
@@ -45,9 +45,10 @@ __all__ = (
     "domain",
     # ...
     "email",
-    # hashes
+    # encodings
     "base58",
     "base64",
+    # hashes
     "md5",
     "sha1",
     "sha224",
@@ -66,7 +67,7 @@ __all__ = (
     "fr_ssn",
     # ...
     "iban",
-    # ip addresses
+    # ip_addresses
     "ipv4",
     "ipv6",
     # ...
