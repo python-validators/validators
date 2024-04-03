@@ -33,6 +33,28 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
 
 
 @pytest.mark.parametrize(
+    ("value", "consider_tld", "rfc_1034", "rfc_2782"),
+    [
+        ("example.com", True, False, False),
+        ("exa_mple.com", True, False, True),
+        ("xn----gtbspbbmkef.xn--p1ai", True, False, False),
+        ("underscore_subdomain.example.com", True, False, True),
+        ("someThing.versicherung.", True, True, False),
+        ("11.com", True, False, False),
+        ("3.cn.", True, True, False),
+        ("_example.com", True, False, True),
+        ("example_.com", True, False, True),
+        ("somerandomexample.xn--fiqs8s", True, False, False),
+    ],
+)
+def test_returns_true_on_valid_top_level_domain(
+    value: str, consider_tld: bool, rfc_1034: bool, rfc_2782: bool
+):
+    """Test returns true on valid top level domain."""
+    assert domain(value, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
+
+
+@pytest.mark.parametrize(
     ("value", "rfc_1034", "rfc_2782"),
     [
         ("example.com/.", True, False),
@@ -55,3 +77,28 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
 def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool, rfc_2782: bool):
     """Test returns failed validation on invalid domain."""
     assert isinstance(domain(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("value", "consider_tld", "rfc_1034", "rfc_2782"),
+    [
+        ("example.266", True, False, False),
+        ("exa_mple.org_", True, False, True),
+        ("xn----gtbspbbmkef.xn-p1ai", True, False, False),
+        ("underscore_subdomain.example.flat", True, False, True),
+        ("someThing.versicherung.reddit.", True, True, False),
+        ("11.twitter", True, False, False),
+        ("3.cnx.", True, True, False),
+        ("_example.#13", True, False, True),
+        ("example_.fo-ul", True, False, True),
+        ("somerandomexample.xn-n-fiqs8s", True, False, False),
+    ],
+)
+def test_returns_failed_validation_invalid_top_level_domain(
+    value: str, consider_tld: bool, rfc_1034: bool, rfc_2782: bool
+):
+    """Test returns failed validation invalid top level domain."""
+    assert isinstance(
+        domain(value, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782),
+        ValidationError,
+    )
