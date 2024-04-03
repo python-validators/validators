@@ -9,6 +9,7 @@ from .cron import cron
 from .domain import domain
 from .email import email
 from .encoding import base58, base64
+from .finance import cusip, isin, sedol
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
 from .i18n import (
@@ -61,6 +62,10 @@ __all__ = (
     # encodings
     "base58",
     "base64",
+    # finance
+    "cusip",
+    "isin",
+    "sedol",
     # hashes
     "md5",
     "sha1",
