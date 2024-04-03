@@ -10,3 +10,5 @@ i18n
 .. autofunction:: fi_ssn
 .. autofunction:: fr_department
 .. autofunction:: fr_ssn
+.. autofunction:: ind_aadhar
+.. autofunction:: ind_pan
