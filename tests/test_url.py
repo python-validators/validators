@@ -1,5 +1,8 @@
 """Test URL."""
 
+# standard
+from typing import Optional
+
 # external
 import pytest
 
@@ -107,6 +110,19 @@ def test_returns_true_on_valid_url(value: str):
 
 
 @pytest.mark.parametrize(
+    "value, private",
+    [
+        ("http://username:password@10.0.10.1/", True),
+        ("http://username:password@192.168.10.10:4010/", True),
+        ("http://127.0.0.1", True),
+    ],
+)
+def test_returns_true_on_valid_private_url(value: str, private: Optional[bool]):
+    """Test returns true on valid private url."""
+    assert url(value, private=private)
+
+
+@pytest.mark.parametrize(
     "value",
     [
         "foobar.dk",
@@ -188,3 +204,17 @@ def test_returns_true_on_valid_url(value: str):
 def test_returns_failed_validation_on_invalid_url(value: str):
     """Test returns failed validation on invalid url."""
     assert isinstance(url(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value, private",
+    [
+        ("http://username:password@192.168.10.10:4010", False),
+        ("http://username:password@127.0.0.1:8080", False),
+        ("http://10.0.10.1", False),
+        ("http://255.255.255.255", False),
+    ],
+)
+def test_returns_failed_validation_on_invalid_private_url(value: str, private: Optional[bool]):
+    """Test returns failed validation on invalid private url."""
+    assert isinstance(url(value, private=private), ValidationError)

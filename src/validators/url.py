@@ -3,6 +3,7 @@
 # standard
 from functools import lru_cache
 import re
+from typing import Optional
 from urllib.parse import parse_qs, unquote, urlsplit
 
 # local
@@ -80,6 +81,7 @@ def _validate_netloc(
     skip_ipv4_addr: bool,
     may_have_port: bool,
     simple_host: bool,
+    private: Optional[bool],
     rfc_1034: bool,
     rfc_2782: bool,
 ):
@@ -97,6 +99,7 @@ def _validate_netloc(
             skip_ipv4_addr=skip_ipv4_addr,
             may_have_port=may_have_port,
             maybe_simple=simple_host,
+            private=private,
             rfc_1034=rfc_1034,
             rfc_2782=rfc_2782,
         )
@@ -111,6 +114,7 @@ def _validate_netloc(
         skip_ipv4_addr=skip_ipv4_addr,
         may_have_port=may_have_port,
         maybe_simple=simple_host,
+        private=private,
         rfc_1034=rfc_1034,
         rfc_2782=rfc_2782,
     ) and _validate_auth_segment(basic_auth)
@@ -151,6 +155,7 @@ def url(
     may_have_port: bool = True,
     simple_host: bool = False,
     strict_query: bool = True,
+    private: Optional[bool] = None,  # only for ip-addresses
     rfc_1034: bool = False,
     rfc_2782: bool = False,
 ):
@@ -191,6 +196,8 @@ def url(
             URL string maybe only hyphens and alpha-numerals.
         strict_query:
             Fail validation on query string parsing error.
+        private:
+            Embedded IP address is public if `False`, private/local if `True`.
         rfc_1034:
             Allow trailing dot in domain/host name.
             Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
@@ -220,6 +227,7 @@ def url(
             skip_ipv4_addr,
             may_have_port,
             simple_host,
+            private,
             rfc_1034,
             rfc_2782,
         )
