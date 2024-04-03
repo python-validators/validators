@@ -9,6 +9,25 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.27.0 (2024-04-03)
+
+_**Breaking**_ ⚠️
+
+- patch: moves `base58` and `base64` into `encoding` by @yozachar in [#354](https://github.com/python-validators/validators/pull/354)
+
+_**Features**_
+
+- feat: lays foundation for URI validation by @yozachar in [#353](https://github.com/python-validators/validators/pull/353)
+- feat: adds `private` parameter to `ip_address`, `hostname` & `url` by @yozachar in [#356](https://github.com/python-validators/validators/pull/356)
+
+_**Maintenance**_
+
+- patch: adds `encoding` tests and docs by @yozachar in [#355](https://github.com/python-validators/validators/pull/355)
+
+**Full Changelog**: [`0.26.0...0.27.0`](https://github.com/python-validators/validators/compare/0.26.0...0.27.0)
+
+---
+
 ## 0.26.0 (2024-04-02)
 
 _**Breaking**_
