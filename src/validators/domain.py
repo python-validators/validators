@@ -1,14 +1,23 @@
 """Domain."""
 
 # standard
+from pathlib import Path
 import re
 
 # local
 from .utils import validator
 
 
+def _iana_tld():
+    """Load IANA TLDs."""
+    with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
+        return (line.strip() for line in tld_f.readlines()[1:])
+
+
 @validator
-def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
+def domain(
+    value: str, /, *, consider_tld: bool = False, rfc_1034: bool = False, rfc_2782: bool = False
+):
     """Return whether or not given value is a valid domain.
 
     Examples:
@@ -23,6 +32,8 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
     Args:
         value:
             Domain string to validate.
+        consider_tld:
+            Restrict domain to TLDs allowed by IANA.
         rfc_1034:
             Allows optional trailing dot in the domain name.
             Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).
@@ -41,6 +52,10 @@ def domain(value: str, /, *, rfc_1034: bool = False, rfc_2782: bool = False):
     """
     if not value:
         return False
+
+    if consider_tld and value.rstrip(".").rsplit(".", 1)[-1].upper() not in _iana_tld():
+        return False
+
     try:
         return not re.search(r"\s", value) and re.match(
             # First character of the domain
