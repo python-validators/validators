@@ -869,7 +869,7 @@
 
 
 <h2 id="validators.hostname.hostname" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">hostname</span><span class="o">.</span><span class="n">hostname</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">skip_ipv6_addr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">skip_ipv4_addr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">may_have_port</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">maybe_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">private</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">hostname</span><span class="o">.</span><span class="n">hostname</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">skip_ipv6_addr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">skip_ipv4_addr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">may_have_port</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">maybe_simple</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">consider_tld</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">private</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#validators.hostname.hostname" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -984,6 +984,20 @@
           </td>
           <td>
                 <code>True</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>consider_tld</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Restrict domain to TLDs allowed by IANA.</p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
           </td>
         </tr>
         <tr>
@@ -1146,7 +1160,10 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">123</span>
 <span class="normal">124</span>
 <span class="normal">125</span>
-<span class="normal">126</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">hostname</span><span class="p">(</span>
     <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1155,6 +1172,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
     <span class="n">skip_ipv4_addr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">may_have_port</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="n">maybe_simple</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">consider_tld</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">private</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># only for ip-addresses</span>
     <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
@@ -1194,6 +1212,8 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="sd">            Hostname string may contain port number.</span>
 <span class="sd">        maybe_simple:</span>
 <span class="sd">            Hostname string maybe only hyphens and alpha-numerals.</span>
+<span class="sd">        consider_tld:</span>
+<span class="sd">            Restrict domain to TLDs allowed by IANA.</span>
 <span class="sd">        private:</span>
 <span class="sd">            Embedded IP address is public if `False`, private/local if `True`.</span>
 <span class="sd">        rfc_1034:</span>
@@ -1213,14 +1233,14 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
     <span class="k">if</span> <span class="n">may_have_port</span> <span class="ow">and</span> <span class="p">(</span><span class="n">host_seg</span> <span class="o">:=</span> <span class="n">_port_validator</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="p">(</span><span class="n">_simple_hostname_regex</span><span class="p">()</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">host_seg</span><span class="p">)</span> <span class="k">if</span> <span class="n">maybe_simple</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
-            <span class="ow">or</span> <span class="n">domain</span><span class="p">(</span><span class="n">host_seg</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="n">rfc_1034</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="n">rfc_2782</span><span class="p">)</span>
+            <span class="ow">or</span> <span class="n">domain</span><span class="p">(</span><span class="n">host_seg</span><span class="p">,</span> <span class="n">consider_tld</span><span class="o">=</span><span class="n">consider_tld</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="n">rfc_1034</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="n">rfc_2782</span><span class="p">)</span>
             <span class="ow">or</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="n">skip_ipv4_addr</span> <span class="k">else</span> <span class="n">ipv4</span><span class="p">(</span><span class="n">host_seg</span><span class="p">,</span> <span class="n">cidr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">private</span><span class="o">=</span><span class="n">private</span><span class="p">))</span>
             <span class="ow">or</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="n">skip_ipv6_addr</span> <span class="k">else</span> <span class="n">ipv6</span><span class="p">(</span><span class="n">host_seg</span><span class="p">,</span> <span class="n">cidr</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
         <span class="p">)</span>
 
     <span class="k">return</span> <span class="p">(</span>
         <span class="p">(</span><span class="n">_simple_hostname_regex</span><span class="p">()</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="n">maybe_simple</span> <span class="k">else</span> <span class="kc">False</span><span class="p">)</span>
-        <span class="ow">or</span> <span class="n">domain</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="n">rfc_1034</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="n">rfc_2782</span><span class="p">)</span>
+        <span class="ow">or</span> <span class="n">domain</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">consider_tld</span><span class="o">=</span><span class="n">consider_tld</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="n">rfc_1034</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="n">rfc_2782</span><span class="p">)</span>
         <span class="ow">or</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="n">skip_ipv4_addr</span> <span class="k">else</span> <span class="n">ipv4</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">cidr</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">private</span><span class="o">=</span><span class="n">private</span><span class="p">))</span>
         <span class="ow">or</span> <span class="p">(</span><span class="kc">False</span> <span class="k">if</span> <span class="n">skip_ipv6_addr</span> <span class="k">else</span> <span class="n">ipv6</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">cidr</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
     <span class="p">)</span>

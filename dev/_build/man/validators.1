@@ -612,7 +612,7 @@ If \fIvalue\fP is a valid cron string.
 .SS domain
 .INDENT 0.0
 .TP
-.B validators.domain.domain(value:  str, /, *, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+.B validators.domain.domain(value:  str, /, *, consider_tld:  bool  =  False, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
 Return whether or not given value is a valid domain.
 .sp
 Examples
@@ -634,6 +634,8 @@ Examples
 .INDENT 7.0
 .IP \(bu 2
 \fBvalue\fP \-\- Domain string to validate.
+.IP \(bu 2
+\fBconsider_tld\fP \-\- Restrict domain to TLDs allowed by IANA.
 .IP \(bu 2
 \fBrfc_1034\fP \-\- Allows optional trailing dot in the domain name.
 Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
@@ -1008,7 +1010,7 @@ If \fIvalue\fP is a valid SHA512 hash.
 .SS hostname
 .INDENT 0.0
 .TP
-.B validators.hostname.hostname(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, maybe_simple:  bool  =  True, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+.B validators.hostname.hostname(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, maybe_simple:  bool  =  True, consider_tld:  bool  =  False, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
 Return whether or not given value is a valid hostname.
 .sp
 Examples
@@ -1051,6 +1053,8 @@ Examples
 \fBmay_have_port\fP \-\- Hostname string may contain port number.
 .IP \(bu 2
 \fBmaybe_simple\fP \-\- Hostname string maybe only hyphens and alpha\-numerals.
+.IP \(bu 2
+\fBconsider_tld\fP \-\- Restrict domain to TLDs allowed by IANA.
 .IP \(bu 2
 \fBprivate\fP \-\- Embedded IP address is public if \fIFalse\fP, private/local if \fITrue\fP\&.
 .IP \(bu 2
@@ -1657,7 +1661,7 @@ If \fIvalue\fP is a valid slug.
 .SS url
 .INDENT 0.0
 .TP
-.B validators.url.url(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, simple_host:  bool  =  False, strict_query:  bool  =  True, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+.B validators.url.url(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, simple_host:  bool  =  False, strict_query:  bool  =  True, consider_tld:  bool  =  False, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
 Return whether or not given value is a valid URL.
 .sp
 This validator was originally inspired from [URL validator of dperini][1].
@@ -1709,6 +1713,8 @@ Examples
 \fBsimple_host\fP \-\- URL string maybe only hyphens and alpha\-numerals.
 .IP \(bu 2
 \fBstrict_query\fP \-\- Fail validation on query string parsing error.
+.IP \(bu 2
+\fBconsider_tld\fP \-\- Restrict domain to TLDs allowed by IANA.
 .IP \(bu 2
 \fBprivate\fP \-\- Embedded IP address is public if \fIFalse\fP, private/local if \fITrue\fP\&.
 .IP \(bu 2

@@ -869,7 +869,7 @@
 
 
 <h2 id="validators.domain.domain" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">domain</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">consider_tld</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 <a href="#validators.domain.domain" class="headerlink" title="Permanent link">&para;</a></h2>
 
@@ -915,6 +915,20 @@
           </td>
           <td>
               <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>consider_tld</code></td>
+          <td>
+                <code>bool</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>Restrict domain to TLDs allowed by IANA.</p>
+            </div>
+          </td>
+          <td>
+                <code>False</code>
           </td>
         </tr>
         <tr>
@@ -1011,14 +1025,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 
           <details class="quote">
             <summary>Source code in <code>src/validators/domain.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
 <span class="normal">18</span>
 <span class="normal">19</span>
 <span class="normal">20</span>
@@ -1061,8 +1068,25 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
-<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
-<span class="k">def</span> <span class="nf">domain</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">domain</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">consider_tld</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rfc_1034</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">rfc_2782</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid domain.</span>
 
 <span class="sd">    Examples:</span>
@@ -1077,6 +1101,8 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
 <span class="sd">            Domain string to validate.</span>
+<span class="sd">        consider_tld:</span>
+<span class="sd">            Restrict domain to TLDs allowed by IANA.</span>
 <span class="sd">        rfc_1034:</span>
 <span class="sd">            Allows optional trailing dot in the domain name.</span>
 <span class="sd">            Ref: [RFC 1034](https://www.rfc-editor.org/rfc/rfc1034).</span>
@@ -1095,6 +1121,10 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">consider_tld</span> <span class="ow">and</span> <span class="n">value</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_iana_tld</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
     <span class="k">try</span><span class="p">:</span>
         <span class="k">return</span> <span class="ow">not</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span>
             <span class="c1"># First character of the domain</span>
