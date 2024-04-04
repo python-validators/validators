@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="length" href="length.html" /><link rel="prev" title="iban" href="iban.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>ip_address - validators 0.23.2 documentation</title>
+        <title>ip_address - validators 0.27.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.23.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.27.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.23.2 documentation</span>
+  <span class="sidebar-brand-text">validators 0.27.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -163,10 +163,12 @@
 <li class="toctree-l1"><a class="reference internal" href="between.html">between</a></li>
 <li class="toctree-l1"><a class="reference internal" href="btc_address.html">btc_address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="card.html">card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="country_code.html">country_code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="country.html">country</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finance.html">finance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hashes.html">hashes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname.html">hostname</a></li>
 <li class="toctree-l1"><a class="reference internal" href="i18n.html">i18n</a></li>
@@ -216,7 +218,7 @@
 <span id="ip-address"></span><h1>ip_address<a class="headerlink" href="#module-validators.ip_address" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="validators.ip_address.ipv4">
-<span class="sig-prename descclassname"><span class="pre">validators.ip_address.</span></span><span class="sig-name descname"><span class="pre">ipv4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cidr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_bit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.ip_address.ipv4" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">validators.ip_address.</span></span><span class="sig-name descname"><span class="pre">ipv4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cidr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">private</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">host_bit</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.ip_address.ipv4" title="Permalink to this definition">#</a></dt>
 <dd><p>Returns whether a given value is a valid IPv4 address.</p>
 <p>From Python version 3.9.5 leading zeros are no longer tolerated
 and are treated as an error. The initial version of ipv4 validator
@@ -235,8 +237,9 @@ was inspired from [WTForms IPAddress validator][1].</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – IP address string to validate.</p></li>
-<li><p><strong>cidr</strong> – IP address string may contain CIDR notation</p></li>
-<li><p><strong>strict</strong> – IP address string is strictly in CIDR notation</p></li>
+<li><p><strong>cidr</strong> – IP address string may contain CIDR notation.</p></li>
+<li><p><strong>strict</strong> – IP address string is strictly in CIDR notation.</p></li>
+<li><p><strong>private</strong> – IP address is public if <cite>False</cite>, private/local/loopback/broadcast if <cite>True</cite>.</p></li>
 <li><p><strong>host_bit</strong> – If <cite>False</cite> and host bits (along with network bits) _are_ set in the supplied
 address, this function raises a validation error. ref [IPv4Network][2].
 [2]: <a class="reference external" href="https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv4Network">https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv4Network</a></p></li>
@@ -272,8 +275,8 @@ was inspired from [WTForms IPAddress validator][1].</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – IP address string to validate.</p></li>
-<li><p><strong>cidr</strong> – IP address string may contain CIDR annotation</p></li>
-<li><p><strong>strict</strong> – IP address string is strictly in CIDR notation</p></li>
+<li><p><strong>cidr</strong> – IP address string may contain CIDR annotation.</p></li>
+<li><p><strong>strict</strong> – IP address string is strictly in CIDR notation.</p></li>
 <li><p><strong>host_bit</strong> – If <cite>False</cite> and host bits (along with network bits) _are_ set in the supplied
 address, this function raises a validation error. ref [IPv6Network][2].
 [2]: <a class="reference external" href="https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv6Network">https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv6Network</a></p></li>
@@ -360,7 +363,7 @@ address, this function raises a validation error. ref [IPv6Network][2].
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ccf60281"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=435223d7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>

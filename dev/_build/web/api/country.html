@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="utils" href="utils.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="cron" href="cron.html" /><link rel="prev" title="card" href="card.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>uuid - validators 0.27.0 documentation</title>
+        <title>country - validators 0.27.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -163,7 +163,7 @@
 <li class="toctree-l1"><a class="reference internal" href="between.html">between</a></li>
 <li class="toctree-l1"><a class="reference internal" href="btc_address.html">btc_address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="card.html">card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="country.html">country</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">country</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
@@ -179,7 +179,7 @@
 <li class="toctree-l1"><a class="reference internal" href="slug.html">slug</a></li>
 <li class="toctree-l1"><a class="reference internal" href="url.html">url</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">uuid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uuid.html">uuid</a></li>
 </ul>
 
 </div>
@@ -214,28 +214,96 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-validators.uuid">
-<span id="uuid"></span><h1>uuid<a class="headerlink" href="#module-validators.uuid" title="Permalink to this heading">#</a></h1>
+          <section id="module-validators.country">
+<span id="country"></span><h1>country<a class="headerlink" href="#module-validators.country" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="validators.uuid.uuid">
-<span class="sig-prename descclassname"><span class="pre">validators.uuid.</span></span><span class="sig-name descname"><span class="pre">uuid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">UUID</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.uuid.uuid" title="Permalink to this definition">#</a></dt>
-<dd><p>Return whether or not given value is a valid UUID-v4 string.</p>
-<p>This validator is based on [WTForms UUID validator][1].</p>
-<p>[1]: <a class="reference external" href="https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539">https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539</a></p>
+<dt class="sig sig-object py" id="validators.country.calling_code">
+<span class="sig-prename descclassname"><span class="pre">validators.country.</span></span><span class="sig-name descname"><span class="pre">calling_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.country.calling_code" title="Permalink to this definition">#</a></dt>
+<dd><p>Validates given calling code.</p>
+<p>This performs country’s calling code validation.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uuid</span><span class="p">(</span><span class="s1">&#39;2bc1c94f-0deb-43e9-92a1-4775189ec9f8&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">calling_code</span><span class="p">(</span><span class="s1">&#39;+91&#39;</span><span class="p">)</span>
 <span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">uuid</span><span class="p">(</span><span class="s1">&#39;2bc1c94f 0deb-43e9-92a1-4775189ec9f8&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=uuid, ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">calling_code</span><span class="p">(</span><span class="s1">&#39;-31&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=calling_code, args={&#39;value&#39;: &#39;-31&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> – UUID string or object to validate.</p>
+<dd class="field-odd"><p><strong>value</strong> – Country’s calling code string to validate.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>If <cite>value</cite> is a valid UUID.
-(ValidationError): If <cite>value</cite> is an invalid UUID.</p>
+<dd class="field-even"><p>If <cite>value</cite> is a valid calling code.
+(ValidationError): If <cite>value</cite> is an invalid calling code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.country.country_code">
+<span class="sig-prename descclassname"><span class="pre">validators.country.</span></span><span class="sig-name descname"><span class="pre">country_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iso_format</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_case</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.country.country_code" title="Permalink to this definition">#</a></dt>
+<dd><p>Validates given country code.</p>
+<p>This performs a case-sensitive [ISO 3166][1] country code validation.</p>
+<p>[1]: <a class="reference external" href="https://www.iso.org/iso-3166-country-codes.html">https://www.iso.org/iso-3166-country-codes.html</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;alpha3&#39;</span><span class="p">)</span>
+<span class="go"># Output: False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;USA&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;840&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;numeric&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;iN&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;alpha2&#39;</span><span class="p">)</span>
+<span class="go"># Output: False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;ZWE&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;alpha3&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – Country code string to validate.</p></li>
+<li><p><strong>iso_format</strong> – ISO format to be used. Available options are:
+<cite>auto</cite>, <cite>alpha2</cite>, <cite>alpha3</cite> and <cite>numeric</cite>.</p></li>
+<li><p><strong>ignore_case</strong> – Enable/Disable case-sensitive matching.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid country code.
+(ValidationError): If <cite>value</cite> is an invalid country code.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.country.currency">
+<span class="sig-prename descclassname"><span class="pre">validators.country.</span></span><span class="sig-name descname"><span class="pre">currency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_symbols</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_case</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.country.currency" title="Permalink to this definition">#</a></dt>
+<dd><p>Validates given currency code.</p>
+<p>This performs [ISO 4217][1] currency code/symbol validation.</p>
+<p>[1]: <a class="reference external" href="https://www.iso.org/iso-4217-currency-codes.html">https://www.iso.org/iso-4217-currency-codes.html</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">currency</span><span class="p">(</span><span class="s1">&#39;USD&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">currency</span><span class="p">(</span><span class="s1">&#39;ZWX&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=currency, args={&#39;value&#39;: &#39;ZWX&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – Currency code/symbol string to validate.</p></li>
+<li><p><strong>skip_symbols</strong> – Skip currency symbol validation.</p></li>
+<li><p><strong>ignore_case</strong> – Enable/Disable case-sensitive matching.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid currency code.
+(ValidationError): If <cite>value</cite> is an invalid currency code.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(Literal[True])</p>
@@ -250,15 +318,23 @@
       <footer>
         
         <div class="related-pages">
-          
-          <a class="prev-page" href="utils.html">
+          <a class="next-page" href="cron.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">cron</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="card.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">utils</div>
+                <div class="title">card</div>
                 
               </div>
             </a>
@@ -292,8 +368,10 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">uuid</a><ul>
-<li><a class="reference internal" href="#validators.uuid.uuid"><code class="docutils literal notranslate"><span class="pre">uuid()</span></code></a></li>
+<li><a class="reference internal" href="#">country</a><ul>
+<li><a class="reference internal" href="#validators.country.calling_code"><code class="docutils literal notranslate"><span class="pre">calling_code()</span></code></a></li>
+<li><a class="reference internal" href="#validators.country.country_code"><code class="docutils literal notranslate"><span class="pre">country_code()</span></code></a></li>
+<li><a class="reference internal" href="#validators.country.currency"><code class="docutils literal notranslate"><span class="pre">currency()</span></code></a></li>
 </ul>
 </li>
 </ul>

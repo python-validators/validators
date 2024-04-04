@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="iban" href="iban.html" /><link rel="prev" title="hostname" href="hostname.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>i18n - validators 0.23.2 documentation</title>
+        <title>i18n - validators 0.27.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.23.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.27.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.23.2 documentation</span>
+  <span class="sidebar-brand-text">validators 0.27.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -163,10 +163,12 @@
 <li class="toctree-l1"><a class="reference internal" href="between.html">between</a></li>
 <li class="toctree-l1"><a class="reference internal" href="btc_address.html">btc_address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="card.html">card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="country_code.html">country_code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="country.html">country</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finance.html">finance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hashes.html">hashes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname.html">hostname</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">i18n</a></li>
@@ -467,6 +469,56 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 </dl>
 </dd></dl>
 
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.ind_aadhar">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">ind_aadhar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.ind_aadhar" title="Permalink to this definition">#</a></dt>
+<dd><p>Validate an indian aadhar card number.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 9834 6015&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 ABVC 2133&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Aadhar card number string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid aadhar card number.
+(ValidationError): If <cite>value</cite> is an invalid aadhar card number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.ind_pan">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">ind_pan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.ind_pan" title="Permalink to this definition">#</a></dt>
+<dd><p>Validate a pan card number.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABCDE9999K&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABC5d7896B&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – PAN card number string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid PAN card number.
+(ValidationError): If <cite>value</cite> is an invalid PAN card number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 
         </article>
@@ -533,6 +585,8 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 <li><a class="reference internal" href="#validators.i18n.fi_ssn"><code class="docutils literal notranslate"><span class="pre">fi_ssn()</span></code></a></li>
 <li><a class="reference internal" href="#validators.i18n.fr_department"><code class="docutils literal notranslate"><span class="pre">fr_department()</span></code></a></li>
 <li><a class="reference internal" href="#validators.i18n.fr_ssn"><code class="docutils literal notranslate"><span class="pre">fr_ssn()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.ind_aadhar"><code class="docutils literal notranslate"><span class="pre">ind_aadhar()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.ind_pan"><code class="docutils literal notranslate"><span class="pre">ind_pan()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -544,7 +598,7 @@ For more information see [French Social Security Number][1] (sadly unavailable i
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ccf60281"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=435223d7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>

@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="prev" title="utils" href="utils.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="finance" href="finance.html" /><link rel="prev" title="email" href="email.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>uuid - validators 0.27.0 documentation</title>
+        <title>encoding - validators 0.27.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -167,7 +167,7 @@
 <li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
 <li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
-<li class="toctree-l1"><a class="reference internal" href="encoding.html">encoding</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">encoding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="finance.html">finance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hashes.html">hashes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname.html">hostname</a></li>
@@ -179,7 +179,7 @@
 <li class="toctree-l1"><a class="reference internal" href="slug.html">slug</a></li>
 <li class="toctree-l1"><a class="reference internal" href="url.html">url</a></li>
 <li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">uuid</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uuid.html">uuid</a></li>
 </ul>
 
 </div>
@@ -214,28 +214,51 @@
           </label>
         </div>
         <article role="main">
-          <section id="module-validators.uuid">
-<span id="uuid"></span><h1>uuid<a class="headerlink" href="#module-validators.uuid" title="Permalink to this heading">#</a></h1>
+          <section id="module-validators.encoding">
+<span id="encoding"></span><h1>encoding<a class="headerlink" href="#module-validators.encoding" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="validators.uuid.uuid">
-<span class="sig-prename descclassname"><span class="pre">validators.uuid.</span></span><span class="sig-name descname"><span class="pre">uuid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">UUID</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.uuid.uuid" title="Permalink to this definition">#</a></dt>
-<dd><p>Return whether or not given value is a valid UUID-v4 string.</p>
-<p>This validator is based on [WTForms UUID validator][1].</p>
-<p>[1]: <a class="reference external" href="https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539">https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539</a></p>
+<dt class="sig sig-object py" id="validators.encoding.base58">
+<span class="sig-prename descclassname"><span class="pre">validators.encoding.</span></span><span class="sig-name descname"><span class="pre">base58</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.encoding.base58" title="Permalink to this definition">#</a></dt>
+<dd><p>Return whether or not given value is a valid base58 encoding.</p>
 <p class="rubric">Examples</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">uuid</span><span class="p">(</span><span class="s1">&#39;2bc1c94f-0deb-43e9-92a1-4775189ec9f8&#39;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base58</span><span class="p">(</span><span class="s1">&#39;14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx&#39;</span><span class="p">)</span>
 <span class="go"># Output: True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">uuid</span><span class="p">(</span><span class="s1">&#39;2bc1c94f 0deb-43e9-92a1-4775189ec9f8&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=uuid, ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base58</span><span class="p">(</span><span class="s1">&#39;cUSECm5YzcXJwP&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=base58, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>value</strong> – UUID string or object to validate.</p>
+<dd class="field-odd"><p><strong>value</strong> – base58 string to validate.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>If <cite>value</cite> is a valid UUID.
-(ValidationError): If <cite>value</cite> is an invalid UUID.</p>
+<dd class="field-even"><p>If <cite>value</cite> is a valid base58 encoding.
+(ValidationError): If <cite>value</cite> is an invalid base58 encoding.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.encoding.base64">
+<span class="sig-prename descclassname"><span class="pre">validators.encoding.</span></span><span class="sig-name descname"><span class="pre">base64</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.encoding.base64" title="Permalink to this definition">#</a></dt>
+<dd><p>Return whether or not given value is a valid base64 encoding.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base64</span><span class="p">(</span><span class="s1">&#39;Y2hhcmFjdGVyIHNldA==&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">base64</span><span class="p">(</span><span class="s1">&#39;cUSECm5YzcXJwP&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=base64, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – base64 string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid base64 encoding.
+(ValidationError): If <cite>value</cite> is an invalid base64 encoding.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>(Literal[True])</p>
@@ -250,15 +273,23 @@
       <footer>
         
         <div class="related-pages">
-          
-          <a class="prev-page" href="utils.html">
+          <a class="next-page" href="finance.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">finance</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="email.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">utils</div>
+                <div class="title">email</div>
                 
               </div>
             </a>
@@ -292,8 +323,9 @@
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">uuid</a><ul>
-<li><a class="reference internal" href="#validators.uuid.uuid"><code class="docutils literal notranslate"><span class="pre">uuid()</span></code></a></li>
+<li><a class="reference internal" href="#">encoding</a><ul>
+<li><a class="reference internal" href="#validators.encoding.base58"><code class="docutils literal notranslate"><span class="pre">base58()</span></code></a></li>
+<li><a class="reference internal" href="#validators.encoding.base64"><code class="docutils literal notranslate"><span class="pre">base64()</span></code></a></li>
 </ul>
 </li>
 </ul>

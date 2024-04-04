@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="email" href="email.html" /><link rel="prev" title="cron" href="cron.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.01.29 -->
-        <title>domain - validators 0.23.2 documentation</title>
+        <title>domain - validators 0.27.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
@@ -123,7 +123,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.23.2 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.27.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -146,7 +146,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.23.2 documentation</span>
+  <span class="sidebar-brand-text">validators 0.27.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -163,10 +163,12 @@
 <li class="toctree-l1"><a class="reference internal" href="between.html">between</a></li>
 <li class="toctree-l1"><a class="reference internal" href="btc_address.html">btc_address</a></li>
 <li class="toctree-l1"><a class="reference internal" href="card.html">card</a></li>
-<li class="toctree-l1"><a class="reference internal" href="country_code.html">country_code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="country.html">country</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
 <li class="toctree-l1 current current-page"><a class="current reference internal" href="#">domain</a></li>
 <li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finance.html">finance</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hashes.html">hashes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="hostname.html">hostname</a></li>
 <li class="toctree-l1"><a class="reference internal" href="i18n.html">i18n</a></li>
@@ -216,7 +218,7 @@
 <span id="domain"></span><h1>domain<a class="headerlink" href="#module-validators.domain" title="Permalink to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="validators.domain.domain">
-<span class="sig-prename descclassname"><span class="pre">validators.domain.</span></span><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rfc_1034</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rfc_2782</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.domain.domain" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">validators.domain.</span></span><span class="sig-name descname"><span class="pre">domain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">consider_tld</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rfc_1034</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rfc_2782</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.domain.domain" title="Permalink to this definition">#</a></dt>
 <dd><p>Return whether or not given value is a valid domain.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example.com&#39;</span><span class="p">)</span>
@@ -232,6 +234,7 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>value</strong> – Domain string to validate.</p></li>
+<li><p><strong>consider_tld</strong> – Restrict domain to TLDs allowed by IANA.</p></li>
 <li><p><strong>rfc_1034</strong> – Allows optional trailing dot in the domain name.
 Ref: [RFC 1034](<a class="reference external" href="https://www.rfc-editor.org/rfc/rfc1034">https://www.rfc-editor.org/rfc/rfc1034</a>).</p></li>
 <li><p><strong>rfc_2782</strong> – Domain name is of type service record.
@@ -322,7 +325,7 @@ Ref: [RFC 2782](<a class="reference external" href="https://www.rfc-editor.org/r
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=ccf60281"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=435223d7"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=32e29ea5"></script>
