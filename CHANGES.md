@@ -9,6 +9,26 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.28.0 (2024-04-04)
+
+_**Breaking**_ ⚠️
+
+- patch: moves `country_code` module to `country` module by @yozachar in [#357](https://github.com/python-validators/validators/pull/357)
+
+_**Features**_
+
+- feat: adds indian aadhar and pan validator by @yozachar in [#358](https://github.com/python-validators/validators/pull/358)
+- feat: adds `finance` validator by @yozachar in [#359](https://github.com/python-validators/validators/pull/359)
+- feat: adds `consider_tld` parameter to `domain`, `hostname` and `url` modules by @yozachar in [#360](https://github.com/python-validators/validators/pull/360)
+
+_**Maintenance**_
+
+- maint: updated dev dependencies, doc links; bump version by @yozachar in [#361](https://github.com/python-validators/validators/pull/361)
+
+**Full Changelog**: [`0.27.0...0.28.0`](https://github.com/python-validators/validators/compare/0.27.0...0.28.0)
+
+---
+
 ## 0.27.0 (2024-04-03)
 
 _**Breaking**_ ⚠️

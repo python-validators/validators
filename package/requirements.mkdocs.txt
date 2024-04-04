@@ -188,15 +188,15 @@ mkdocs-autorefs==1.0.1 \
 mkdocs-git-revision-date-localized-plugin==1.2.4 \
     --hash=sha256:08fd0c6f33c8da9e00daf40f7865943113b3879a1c621b2bbf0fa794ffe997d3 \
     --hash=sha256:1f94eb510862ef94e982a2910404fa17a1657ecf29f45a07b0f438c00767fc85
-mkdocs-material==9.5.14 \
-    --hash=sha256:2a1f8e67cda2587ab93ecea9ba42d0ca61d1d7b5fad8cf690eeaeb39dcd4b9af \
-    --hash=sha256:a45244ac221fda46ecf8337f00ec0e5cb5348ab9ffb203ca2a0c313b0d4dbc27
+mkdocs-material==9.5.17 \
+    --hash=sha256:06ae1275a72db1989cf6209de9e9ecdfbcfdbc24c58353877b2bb927dbe413e4 \
+    --hash=sha256:14a2a60119a785e70e765dd033e6211367aca9fc70230e577c1cf6a326949571
 mkdocs-material-extensions==1.3.1 \
     --hash=sha256:10c9511cea88f568257f960358a467d12b970e1f7b2c0e5fb2bb48cab1928443 \
     --hash=sha256:adff8b62700b25cb77b53358dad940f3ef973dd6db797907c49e3c2ef3ab4e31
-mkdocstrings==0.24.1 \
-    --hash=sha256:b4206f9a2ca8a648e222d5a0ca1d36ba7dee53c88732818de183b536f9042b5d \
-    --hash=sha256:cc83f9a1c8724fc1be3c2fa071dd73d91ce902ef6a79710249ec8d0ee1064401
+mkdocstrings==0.24.2 \
+    --hash=sha256:61440b77542170238099a7d87882c3417897771950e3aafe6e22abff3d1c51fb \
+    --hash=sha256:b91b9cdd9490ef2e8957000bff1d34a4b308b9cd57b10f26169f085def4c6a92
 mkdocstrings-python==1.9.0 \
     --hash=sha256:6e1a442367cf75d30cf69774cbb1ad02aebec58bfff26087439df4955efecfde \
     --hash=sha256:fad27d7314b4ec9c0359a187b477fb94c65ef561fdae941dca1b717c59aae96f
