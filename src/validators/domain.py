@@ -9,9 +9,11 @@ from .utils import validator
 
 
 def _iana_tld():
-    """Load IANA TLDs."""
+    """Load IANA TLDs as a Generator."""
     with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
-        return (line.strip() for line in tld_f.readlines()[1:])
+        _ = next(tld_f)  # ignore the first line
+        for line in tld_f:
+            yield line.strip()
 
 
 @validator
