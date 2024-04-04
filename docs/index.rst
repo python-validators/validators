@@ -30,7 +30,7 @@ Resources
 
    <!-- Original documentation URL :  https://python-validators.github.io/validators/ -->
 
--  `Documentation <https://yozachar.github.io/pyvalidators/>`__
+-  `Documentation <https://python-validators.github.io/validators/>`__
 -  `Bugtracker <https://github.com/python-validators/validators/issues>`__
 -  `Security <https://github.com/python-validators/validators/blob/master/SECURITY.md>`__
 -  `Code <https://github.com/python-validators/validators/>`__

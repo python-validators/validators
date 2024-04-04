@@ -21,7 +21,7 @@ True
 <!-- Temporary documentation URL :  https://yozachar.github.io/pyvalidators/ -->
 <!-- Original documentation URL :  https://python-validators.github.io/validators/ -->
 
-- [Documentation](https://yozachar.github.io/pyvalidators/)
+- [Documentation](https://python-validators.github.io/validators/)
 - [Bugtracker](https://github.com/python-validators/validators/issues)
 - [Security](https://github.com/python-validators/validators/blob/master/SECURITY.md)
 - [Code](https://github.com/python-validators/validators/)
