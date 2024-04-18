@@ -59,17 +59,21 @@ def domain(
         return False
 
     try:
-        return not re.search(r"\s", value) and re.match(
+
+        service_record = r"_" if rfc_2782 else ""
+        trailing_dot = r"\.?$" if rfc_1034 else r"$"
+
+        return not re.search(r"\s|__+", value) and re.match(
             # First character of the domain
-            rf"^(?:[a-z0-9{r'_?'if rfc_2782 else ''}]"
+            rf"^(?:[a-z0-9{service_record}]"
             # Sub-domain
-            + rf"(?:[a-z0-9-{r'_?'if rfc_2782 else ''}]{{0,61}}"
+            + rf"(?:[a-z0-9-{service_record}]{{0,61}}"
             # Hostname
-            + rf"[a-z0-9{r'_?'if rfc_2782 else ''}])?\.)"
+            + rf"[a-z0-9{service_record}])?\.)"
             # First 61 characters of the gTLD
             + r"+[a-z0-9][a-z0-9-_]{0,61}"
             # Last character of the gTLD
-            + rf"[a-z]{r'.?$' if rfc_1034 else r'$'}",
+            + rf"[a-z]{trailing_dot}",
             value.encode("idna").decode("utf-8"),
             re.IGNORECASE,
         )
