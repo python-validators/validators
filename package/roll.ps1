@@ -16,8 +16,8 @@ if ($null -eq $env:CI || "false" -eq $env:CI) {
 }
 
 # Cleanup directories
-$venv_dir = ".\.venv.dev"
-$directories = @($venv_dir, ".\build", ".\dist")
+$venv_dir = "./.venv.dev"
+$directories = @($venv_dir, "./build", "./dist")
 foreach ($dir in $directories) {
     if (Test-Path $dir -PathType Container) {
         Remove-Item $dir -Recurse -Force
