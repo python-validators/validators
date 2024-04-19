@@ -24,13 +24,13 @@ Resources
 
 .. raw:: html
 
-   <!-- Temporary documentation URL :  https://yozachar.github.io/pyvalidators/ -->
+   <!-- Backup documentation URL :  https://yozachar.github.io/pyvalidators/ -->
 
 .. raw:: html
 
    <!-- Original documentation URL :  https://python-validators.github.io/validators/ -->
 
--  `Documentation <https://python-validators.github.io/validators/>`__
+-  `Documentation <https://yozachar.github.io/pyvalidators>`__
 -  `Bugtracker <https://github.com/python-validators/validators/issues>`__
 -  `Security <https://github.com/python-validators/validators/blob/master/SECURITY.md>`__
 -  `Code <https://github.com/python-validators/validators/>`__
