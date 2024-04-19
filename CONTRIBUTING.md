@@ -28,9 +28,7 @@ $ . ./.venv/bin/activate # replace `/bin/` with `/Scripts/` if you're on Windows
 $ tox
 ```
 
-Create a git branch. You can now make changes to the source code. If needed, test your change by running `tox`. Commit, push and create a pull request.
-
-If you're in doubt feel free to start a discussion [here](https://github.com/python-validators/validators/discussions). Thanks for taking interest in this library.
+Create a git branch and make changes to the source code. If needed, test your changes by running `pytest`. Execute `tox` to format, lint and type-check your code before committing. Commit, push and create a pull request. If you're in doubt, feel free to start a discussion [here](https://github.com/python-validators/validators/discussions).
 
 ## Documentation
 
@@ -67,7 +65,7 @@ $ python -m http.server -d docs/_build/web
 
 1. Take a look at the [`CHANGES.md`](CHANGES.md). They are generated with [GitHub's releaser](https://github.com/python-validators/validators/releases/new), and then modified.
 2. Update the changelog. Version number must be updated in both [`SECURITY.md`](SECURITY.md) and [`src/validators/__init__.py`](src/validators/__init__.py).
-3. The final merge commit on the upstream (ie. this repo) is tagged.
+3. The final merge commit on the upstream (i.e. this repo) is tagged.
 
     ```sh
     # syncing with upstream
@@ -99,3 +97,5 @@ $ python -m http.server -d docs/_build/web
     # generate sha256sum
     $ sha256sum dist/validators-VERSION-py3-none-any.whl > dist/validators-VERSION-py3-none-any.whl.sha256
     ```
+
+Thanks for taking interest in this library!

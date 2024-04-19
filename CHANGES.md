@@ -9,6 +9,27 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.28.1 (2024-04-19)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
+
+- fix: reduce memory footprint when loading TLDs by @yozachar in [362](https://github.com/python-validators/validators/pull/362)
+- build(deps): bump idna from 3.6 to 3.7 in /package by @dependabot in [365](https://github.com/python-validators/validators/pull/365)
+- fix: rfc cases in the `domain` validator by @yozachar in [367](https://github.com/python-validators/validators/pull/367)
+- chore: documentation maintenance  by @yozachar in [368](https://github.com/python-validators/validators/pull/368)
+- chore: update contribution guidelines by @yozachar in [369](https://github.com/python-validators/validators/pull/369)
+- chore: updated dev dependencies; bump version by @yozachar in [370](https://github.com/python-validators/validators/pull/370)
+
+**Full Changelog**: [`0.27.0...0.28.0`](https://github.com/python-validators/validators/compare/0.28.0...0.28.1)
+
 ## 0.28.0 (2024-04-04)
 
 _**Breaking**_ ⚠️
