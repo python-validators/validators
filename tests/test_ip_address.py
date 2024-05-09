@@ -201,6 +201,6 @@ def test_returns_failed_validation_on_not_private_ipv4_address(address: str, pri
         ("7.53.12.1", False),
     ],
 )
-def test_returns_valid_on_private_ipv4_address(address: str, private: bool):
+def test_returns_valid_on_private_public_ipv4_address(address: str, private: bool):
     """Test returns failed validation on invalid ipv4 CIDR address."""
     assert ipv4(address, private=private)
