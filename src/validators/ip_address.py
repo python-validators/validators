@@ -33,9 +33,9 @@ def _check_private_ip(value: str, is_private: Optional[bool]):
         or re.match(r"^172\.(?:1[6-9]|2\d|3[0-1])\.", value)  # private
         or re.match(r"^(?:22[4-9]|23[0-9]|24[0-9]|25[0-5])\.", value)  # broadcast
     ):
-        return bool(is_private)
+        return is_private
     else:
-        return not bool(is_private)
+        return not is_private
 
 
 @validator
