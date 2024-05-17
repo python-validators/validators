@@ -160,7 +160,7 @@ def test_returns_failed_validation_on_invalid_ipv6_cidr_address(
         ("0.0.0.0", True),
     ],
 )
-def test_returns_valid_on_private_ipv4_address(address: str, private: bool):
+def test_returns_true_on_valid_private_ipv4_address(address: str, private: bool):
     """Test returns true on private ipv4 address."""
     assert ipv4(address, private=private)
 
@@ -186,7 +186,7 @@ def test_returns_failed_validation_on_invalid_private_ipv4_address(address: str,
         ("7.53.12.1", False),
     ],
 )
-def test_returns_valid_on_public_ipv4_address(address: str, private: bool):
+def test_returns_true_on_valid_public_ipv4_address(address: str, private: bool):
     """Test returns true on valid public ipv4 address."""
     assert ipv4(address, private=private)
 
@@ -201,6 +201,6 @@ def test_returns_valid_on_public_ipv4_address(address: str, private: bool):
         ("0.0.0.0", False),
     ],
 )
-def test_returns_failed_validation_on_private_ipv4_address(address: str, private: bool):
+def test_returns_failed_validation_on_invalid_public_ipv4_address(address: str, private: bool):
     """Test returns failed validation on private ipv4 address."""
     assert isinstance(ipv4(address, private=private), ValidationError)
