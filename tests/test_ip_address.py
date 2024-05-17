@@ -148,3 +148,59 @@ def test_returns_failed_validation_on_invalid_ipv6_cidr_address(
 ):
     """Test returns failed validation on invalid ipv6 CIDR address."""
     assert isinstance(ipv6(address, cidr=cidr, strict=strict, host_bit=host_bit), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("address", "private"),
+    [
+        ("10.1.1.1", True),
+        ("192.168.1.1", True),
+        ("169.254.1.1", True),
+        ("127.0.0.1", True),
+        ("0.0.0.0", True),
+    ],
+)
+def test_returns_true_on_valid_private_ipv4_address(address: str, private: bool):
+    """Test returns true on private ipv4 address."""
+    assert ipv4(address, private=private)
+
+
+@pytest.mark.parametrize(
+    ("address", "private"),
+    [
+        ("1.1.1.1", True),
+        ("192.169.1.1", True),
+        ("7.53.12.1", True),
+    ],
+)
+def test_returns_failed_validation_on_invalid_private_ipv4_address(address: str, private: bool):
+    """Test returns failed validation on invalid private ipv4 address."""
+    assert isinstance(ipv4(address, private=private), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("address", "private"),
+    [
+        ("1.1.1.1", False),
+        ("192.169.1.1", False),
+        ("7.53.12.1", False),
+    ],
+)
+def test_returns_true_on_valid_public_ipv4_address(address: str, private: bool):
+    """Test returns true on valid public ipv4 address."""
+    assert ipv4(address, private=private)
+
+
+@pytest.mark.parametrize(
+    ("address", "private"),
+    [
+        ("10.1.1.1", False),
+        ("192.168.1.1", False),
+        ("169.254.1.1", False),
+        ("127.0.0.1", False),
+        ("0.0.0.0", False),
+    ],
+)
+def test_returns_failed_validation_on_invalid_public_ipv4_address(address: str, private: bool):
+    """Test returns failed validation on private ipv4 address."""
+    assert isinstance(ipv4(address, private=private), ValidationError)
