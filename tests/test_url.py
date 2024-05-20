@@ -76,6 +76,7 @@ from validators import ValidationError, url
         "http://[::FFFF:129.144.52.38]:80/index.html",
         "http://[2010:836B:4179::836B:4179]",
         "http://foo.bar",
+        "http://foo.bar/📍",
         "http://google.com:9/test",
         "http://5.196.190.0/",
         "http://username:password@example.com:4010/",

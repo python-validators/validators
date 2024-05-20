@@ -29,6 +29,8 @@ def _path_regex():
     return re.compile(
         # allowed symbols
         r"^[\/a-z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%"
+        # symbols / pictographs
+        + r"\U0001F300-\U0001F5FF"
         # emoticons / emoji
         + r"\U0001F600-\U0001F64F"
         # multilingual unicode ranges
