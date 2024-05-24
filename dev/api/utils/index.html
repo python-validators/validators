@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/icons/favicon.svg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -970,22 +970,22 @@
 
 
 <h2 id="validators.utils.ValidationError" class="doc doc-heading">
-          <code>validators.utils.ValidationError</code>
+            <code>validators.utils.ValidationError</code>
 
 
 <a href="#validators.utils.ValidationError" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents first">
-          <p class="doc doc-class-bases">
-            Bases: <code>Exception</code></p>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
 
-  
+
       <p>Exception class when validation failure occurs.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>src/validators/utils.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
+              <details class="quote">
+                <summary>Source code in <code>src/validators/utils.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
 <span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
@@ -1033,9 +1033,9 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Bool Validation Failure.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -1047,52 +1047,48 @@
 
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="validators.utils.ValidationError.__bool__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__bool__</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="fm">__bool__</span><span class="p">()</span></code>
 
 <a href="#validators.utils.ValidationError.__bool__" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Bool Validation Failure.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/utils.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Bool Validation Failure.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="validators.utils.ValidationError.__init__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">arg_dict</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">function</span><span class="p">,</span> <span class="n">arg_dict</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span></code>
 
 <a href="#validators.utils.ValidationError.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Initialize Validation Failure.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/utils.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">14</span>
 <span class="normal">15</span>
 <span class="normal">16</span>
 <span class="normal">17</span>
@@ -1104,29 +1100,27 @@
     <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="n">function</span>
     <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">arg_dict</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="validators.utils.ValidationError.__repr__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__repr__</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="fm">__repr__</span><span class="p">()</span></code>
 
 <a href="#validators.utils.ValidationError.__repr__" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Repr Validation Failure.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/utils.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
 <span class="normal">22</span>
 <span class="normal">23</span>
 <span class="normal">24</span>
@@ -1138,36 +1132,34 @@
         <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;args=</span><span class="si">{</span><span class="p">({</span><span class="n">k</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;func&#39;</span><span class="p">})</span><span class="si">}</span><span class="s2">)&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h3 id="validators.utils.ValidationError.__str__" class="doc doc-heading">
-          <code class="highlight language-python"><span class="fm">__str__</span><span class="p">()</span></code>
+            <code class="highlight language-python"><span class="fm">__str__</span><span class="p">()</span></code>
 
 <a href="#validators.utils.ValidationError.__str__" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>Str Validation Failure.</p>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/utils.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Str Validation Failure.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1175,31 +1167,27 @@
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="validators.utils.validator" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">validator</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">validator</span><span class="p">(</span><span class="n">func</span><span class="p">)</span></code>
 
 <a href="#validators.utils.validator" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>A decorator that makes given function validator.</p>
 <p>Whenever the given <code>func</code> returns <code>False</code> this
 decorator returns <code>ValidationError</code> object.</p>
 
 
-
-<p><strong>Examples:</strong></p>
+<p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="nd">@validator</span>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">even</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">value</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
@@ -1210,87 +1198,84 @@ decorator returns <code>ValidationError</code> object.</p>
 </code></pre></div>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>func</code></td>
-          <td>
-                <code><span title="typing.Callable">Callable</span>[..., <span title="typing.Any">Any</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>Function which is to be decorated.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>func</code></td>
+            <td>
+                  <code><span title="typing.Callable">Callable</span>[..., <span title="typing.Any">Any</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Function which is to be decorated.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code><span title="typing.Callable">Callable</span>[..., <a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="#validators.utils.ValidationError">ValidationError</a> | Literal[True]]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>A decorator which returns either <code>ValidationError</code>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="typing.Callable">Callable</span>[..., <a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="#validators.utils.ValidationError">ValidationError</a> | Literal[True]]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A decorator which returns either <code>ValidationError</code>
 or <code>Literal[True]</code>.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Raises:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="#validators.utils.ValidationError">ValidationError</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>r_ve</code> or <code>RAISE_VALIDATION_ERROR</code> is <code>True</code></p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>r_ve</code> or <code>RAISE_VALIDATION_ERROR</code> is <code>True</code></p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/utils.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 45</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/utils.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 45</span>
 <span class="normal"> 46</span>
 <span class="normal"> 47</span>
 <span class="normal"> 48</span>
@@ -1406,8 +1391,8 @@ or <code>Literal[True]</code>.</p>
 
     <span class="k">return</span> <span class="n">wrapper</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1510,7 +1495,7 @@ or <code>Literal[True]</code>.</p>
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>

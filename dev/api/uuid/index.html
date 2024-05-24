@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/icons/favicon.svg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -861,25 +861,22 @@
 <h1 id="uuid">uuid<a class="headerlink" href="#uuid" title="Permanent link">&para;</a></h1>
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="validators.uuid.uuid" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
 <a href="#validators.uuid.uuid" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Return whether or not given value is a valid UUID-v4 string.</p>
 <p>This validator is based on <a href="https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539">WTForms UUID validator</a>.</p>
 
 
-
-<p><strong>Examples:</strong></p>
+<p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">uuid</span><span class="p">(</span><span class="s1">&#39;2bc1c94f-0deb-43e9-92a1-4775189ec9f8&#39;</span><span class="p">)</span>
 <span class="go"># Output: True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">uuid</span><span class="p">(</span><span class="s1">&#39;2bc1c94f 0deb-43e9-92a1-4775189ec9f8&#39;</span><span class="p">)</span>
@@ -887,72 +884,70 @@
 </code></pre></div>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>value</code></td>
-          <td>
-                <code><span title="typing.Union">Union</span>[str, <span title="uuid.UUID">UUID</span>]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>UUID string or object to validate.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code><span title="typing.Union">Union</span>[str, <span title="uuid.UUID">UUID</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>UUID string or object to validate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>Literal[True]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is a valid UUID.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is an invalid UUID.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Literal[True]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is a valid UUID.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is an invalid UUID.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/uuid.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/uuid.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">12</span>
 <span class="normal">13</span>
 <span class="normal">14</span>
 <span class="normal">15</span>
@@ -1016,8 +1011,8 @@
     <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1120,7 +1115,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>

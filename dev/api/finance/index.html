@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../assets/icons/favicon.svg">
-      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.18">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
     
     
       
@@ -28,7 +28,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.66ac8b77.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -899,25 +899,22 @@
 <h1 id="finance">finance<a class="headerlink" href="#finance" title="Permanent link">&para;</a></h1>
 
 
-
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="validators.finance.cusip" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">cusip</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">cusip</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
 <a href="#validators.finance.cusip" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Return whether or not given value is a valid CUSIP.</p>
 <p>Checks if the value is a valid <a href="https://en.wikipedia.org/wiki/CUSIP">CUSIP</a>.</p>
 
 
-
-<p><strong>Examples:</strong></p>
+<p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">cusip</span><span class="p">(</span><span class="s1">&#39;037833DP2&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cusip</span><span class="p">(</span><span class="s1">&#39;037833DP3&#39;</span><span class="p">)</span>
@@ -925,72 +922,70 @@
 </code></pre></div>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>value</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>CUSIP string to validate.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>CUSIP string to validate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>Literal[True]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is a valid CUSIP string.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is an invalid CUSIP string.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Literal[True]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is a valid CUSIP string.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is an invalid CUSIP string.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/finance.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/finance.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
 <span class="normal">57</span>
@@ -1032,30 +1027,27 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">9</span> <span class="ow">and</span> <span class="n">_cusip_checksum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="validators.finance.isin" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
 <a href="#validators.finance.isin" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Return whether or not given value is a valid ISIN.</p>
 <p>Checks if the value is a valid <a href="https://en.wikipedia.org/wiki/International_Securities_Identification_Number">ISIN</a>.</p>
 
 
-
-<p><strong>Examples:</strong></p>
+<p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">isin</span><span class="p">(</span><span class="s1">&#39;037833DP2&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">isin</span><span class="p">(</span><span class="s1">&#39;037833DP3&#39;</span><span class="p">)</span>
@@ -1063,72 +1055,70 @@
 </code></pre></div>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>value</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>ISIN string to validate.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>ISIN string to validate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>Literal[True]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is a valid ISIN string.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is an invalid ISIN string.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Literal[True]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is a valid ISIN string.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is an invalid ISIN string.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/finance.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/finance.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">77</span>
 <span class="normal">78</span>
 <span class="normal">79</span>
 <span class="normal">80</span>
@@ -1170,30 +1160,27 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span> <span class="ow">and</span> <span class="n">_isin_checksum</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
-
 
 <div class="doc doc-object doc-function">
 
 
-
 <h2 id="validators.finance.sedol" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">sedol</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">finance</span><span class="o">.</span><span class="n">sedol</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
 
 <a href="#validators.finance.sedol" class="headerlink" title="Permanent link">&para;</a></h2>
 
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Return whether or not given value is a valid SEDOL.</p>
 <p>Checks if the value is a valid <a href="https://en.wikipedia.org/wiki/SEDOL">SEDOL</a>.</p>
 
 
-
-<p><strong>Examples:</strong></p>
+<p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">sedol</span><span class="p">(</span><span class="s1">&#39;2936921&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sedol</span><span class="p">(</span><span class="s1">&#39;29A6922&#39;</span><span class="p">)</span>
@@ -1201,72 +1188,70 @@
 </code></pre></div>
 
 
-
-  <p><strong>Parameters:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Type</th>
-        <th>Description</th>
-        <th>Default</th>
-      </tr>
-    </thead>
-    <tbody>
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td><code>value</code></td>
-          <td>
-                <code>str</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>SEDOL string to validate.</p>
-            </div>
-          </td>
-          <td>
-              <em>required</em>
-          </td>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
         </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>SEDOL string to validate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
-
-  <p><strong>Returns:</strong></p>
-  <table>
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
         <tr>
-          <td>
-                <code>Literal[True]</code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is a valid SEDOL string.</p>
-            </div>
-          </td>
+          <th>Type</th>
+          <th>Description</th>
         </tr>
-        <tr>
-          <td>
-                <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
-          </td>
-          <td>
-            <div class="doc-md-description">
-              <p>If <code>value</code> is an invalid SEDOL string.</p>
-            </div>
-          </td>
-        </tr>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Literal[True]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is a valid SEDOL string.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is an invalid SEDOL string.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
-          <details class="quote">
-            <summary>Source code in <code>src/validators/finance.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/finance.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
 <span class="normal">103</span>
@@ -1346,8 +1331,8 @@
 
     <span class="k">return</span> <span class="p">(</span><span class="n">check</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
 </code></pre></div></td></tr></table></div>
-          </details>
-  </div>
+            </details>
+    </div>
 
 </div>
 
@@ -1450,7 +1435,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "stable", "provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.3220b9d7.min.js"></script>
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
       
     
   </body>
