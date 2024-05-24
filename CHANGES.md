@@ -9,6 +9,26 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.28.2 (2024-05-24)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
+
+- fix: corrects a few typo by @yozachar in [#371](https://github.com/python-validators/validators/pull/371)
+- build(deps): bump jinja2 from 3.1.3 to 3.1.4 in /package by @dependabot in [#372](https://github.com/python-validators/validators/pull/372)
+- fix(ip_address): properly handle private is false by @grleblanc in [#374](https://github.com/python-validators/validators/pull/374)
+- chore(url): allow symbols and pictographs in url by @prousso in [#375](https://github.com/python-validators/validators/pull/375)
+- build(deps): bump requests from 2.31.0 to 2.32.0 in /package by @dependabot in [#376](https://github.com/python-validators/validators/pull/376)
+
+**Full Changelog**: [`0.28.1...0.28.2`](https://github.com/python-validators/validators/compare/0.28.1...0.28.2)
+
 ## 0.28.1 (2024-04-19)
 
 _**Breaking**_
