@@ -4,7 +4,7 @@
 
 | Version    | Supported          |
 | ---------- | ------------------ |
-| `>=0.28.1` | :white_check_mark: |
+| `>=0.28.2` | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
@@ -15,6 +15,4 @@ Please read [CVD](https://resources.sei.cmu.edu/asset_files/SpecialReport/2017_0
 - You can raise security concerns [here](https://github.com/python-validators/validators/discussions/categories/security).
 - None of us can promise any response time-frame, but we'll try.
 
-That said, use the package at your own risk. The source code is open, we encourage you to read.
-
-> Spammers with be banned.
+That said, use the package at your own risk. The source code is open, we encourage you to read. _Spammers will be banned._

@@ -55,26 +55,26 @@ Changelog = "https://github.com/python-validators/validators/blob/master/CHANGES
 
 [tool.pdm.dev-dependencies]
 docs-offline = [
-    "myst-parser>=2.0.0",
+    "myst-parser>=3.0.1",
     "pypandoc-binary>=1.13",
     "sphinx>=7.1.2",
-    "furo>=2024.1.29",
+    "furo>=2024.5.6",
 ]
 docs-online = [
-    "mkdocs>=1.5.3",
-    "mkdocs-git-revision-date-localized-plugin>=1.2.4",
-    "mkdocs-material>=9.5.18",
-    "mkdocstrings[python]>=0.24.3",
-    "mike>=2.0.0",
+    "mkdocs>=1.6.0",
+    "mkdocs-git-revision-date-localized-plugin>=1.2.5",
+    "mkdocs-material>=9.5.24",
+    "mkdocstrings[python]>=0.25.1",
+    "mike>=2.1.1",
 ]
 package = ["build>=1.2.1"]
-runner = ["tox>=4.14.2"]
+runner = ["tox>=4.15.0"]
 sast = ["bandit[toml]>=1.7.8"]
 tooling = [
-    "black>=24.4.0",
-    "ruff>=0.4.0",
-    "pyright>=1.1.359",
-    "pytest>=8.1.1",
+    "black>=24.4.2",
+    "ruff>=0.4.5",
+    "pyright>=1.1.364",
+    "pytest>=8.2.1",
     "pypandoc-binary>=1.13", # helps with type checking
 ]
 
