@@ -10,6 +10,7 @@ from .utils import validator
 
 def _iana_tld():
     """Load IANA TLDs as a Generator."""
+    # source: https://data.iana.org/TLD/tlds-alpha-by-domain.txt
     with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
         _ = next(tld_f)  # ignore the first line
         for line in tld_f:
