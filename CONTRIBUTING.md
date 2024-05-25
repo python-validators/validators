@@ -8,7 +8,7 @@ Hi, to start, you need the following installed on your system.
 4. (Optional/Recommended) NodeJS for type checking
 5. (Optional/Recommended) [mise](https://github.com/jdx/mise) to manage multiple versions of Python & NodeJS.
 
-First [fork this repository](https://github.com/python-validators/validators/fork). Clone it to your system. Install development dependencies.
+First [fork this repository](https://github.com/python-validators/validators/fork). Uncheck "fork only `master`", because for versioned docs you'll need `gh-pages` too. Clone it to your system. Install development dependencies.
 
 ```sh
 # clone repository
@@ -78,11 +78,11 @@ $ python -m http.server -d docs/_build/web
     $ git push upstream --tag
     ```
 
-4. To update versioned docs, you must track the `gh-pages` onto a local branch. `git checkout --track upstream/gh-pages`, once.
-5. Checkout to the tag you want to include in the versioned documentation `git checkout TAG_NAME`.
-6. Then using [`mike`](https://github.com/jimporter/mike) (which is already a dev dependency) run `mike deploy -p -u VERSION stable`.
-7. Or use `mike deploy -p -u dev master`, which will deploy docs in the CURRENT commit as the `latest` documentation.
-8. Run `./package/roll.sh` (or `./package/roll.ps1`) to generate both sdist and bdist.
+4. To prevew versioned docs, run `mike serve` (`mike` is already a dev dependency).
+5. To update it, checkout to the tag you want to include in the versioned documentation `git checkout TAG_NAME`.
+6. Then run `mike deploy -p -u VERSION stable` OR run `mike deploy -p -u dev master`,
+7. Which will deploy docs in the CURRENT commit as the `latest` documentation, onto `gh-pages` branch.
+8. Run `./package/roll.sh` (or `./package/roll.ps1`) to generate both `sdist` and `bdist`.
 9. Install [`twine`](https://pypi.org/project/twine) using [`pipx`](https://pipx.pypa.io) to upload package to PyPI.
 
     ```sh

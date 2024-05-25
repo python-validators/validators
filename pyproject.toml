@@ -88,7 +88,7 @@ include = ["validators*"]
 namespaces = false
 
 [tool.setuptools.package-data]
-validators = ["py.typed"]
+validators = ["py.typed", "_tld.txt"]
 
 [tool.setuptools.dynamic]
 version = { attr = "validators.__version__" }

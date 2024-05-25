@@ -9,6 +9,22 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.28.3 (2024-05-25)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+> No features were introduced in this version.
+
+_**Maintenance**_
+
+- hotfix: ensure `_tld.txt` is in `sdist` and `bdist` by @yozachar in [#379](https://github.com/python-validators/validators/pull/379)
+
+**Full Changelog**: [`0.28.2...0.28.3`](https://github.com/python-validators/validators/compare/0.28.2...0.28.3)
+
 ## 0.28.2 (2024-05-24)
 
 _**Breaking**_
@@ -26,6 +42,7 @@ _**Maintenance**_
 - fix(ip_address): properly handle private is false by @grleblanc in [#374](https://github.com/python-validators/validators/pull/374)
 - chore(url): allow symbols and pictographs in url by @prousso in [#375](https://github.com/python-validators/validators/pull/375)
 - build(deps): bump requests from 2.31.0 to 2.32.0 in /package by @dependabot in [#376](https://github.com/python-validators/validators/pull/376)
+- chore: fix typo; update dev deps; bump version by @yozachar in [#377](https://github.com/python-validators/validators/pull/377)
 
 **Full Changelog**: [`0.28.1...0.28.2`](https://github.com/python-validators/validators/compare/0.28.1...0.28.2)
 
