@@ -26,7 +26,11 @@ True
 - [Security](https://github.com/python-validators/validators/blob/master/SECURITY.md)
 - [Code](https://github.com/python-validators/validators/)
 
-<!-- Original docs URL will be restored, once properly versioned docs is ready. -->
+<!-- Original docs URL will be restored, once properly versioned docs are ready. -->
+
+---
+
+> **_Python 3.8 [reaches EOL in](https://endoflife.date/python) October 2024._**
 
 <!-- Links -->
 [sast-badge]: https://github.com/python-validators/validators/actions/workflows/sast.yaml/badge.svg
