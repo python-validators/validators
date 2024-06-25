@@ -5,7 +5,7 @@ from .between import between
 from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
 from .country import calling_code, country_code, currency
 from .cron import cron
-from .crypto_addresses.btc_address import btc_address
+from .crypto_addresses import btc_address, eth_address
 from .domain import domain
 from .email import email
 from .encoding import base58, base64
@@ -37,6 +37,7 @@ __all__ = (
     # ...
     "between",
     "btc_address",
+    "eth_address",
     # cards
     "amex",
     "card_number",

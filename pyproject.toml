@@ -35,7 +35,9 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dynamic = ["version"]
-dependencies = []
+dependencies = [
+    "eth-hash[pycryptodome]>=0.7.0",
+]
 
 [project.urls]
 Homepage = "https://python-validators.github.io/validators"
