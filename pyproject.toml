@@ -35,9 +35,7 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dynamic = ["version"]
-dependencies = [
-    "eth-hash[pycryptodome]>=0.7.0",
-]
+dependencies = []
 
 [project.urls]
 Homepage = "https://python-validators.github.io/validators"
@@ -55,6 +53,10 @@ Changelog = "https://github.com/python-validators/validators/blob/master/CHANGES
 #  Development Dependencies  #
 ##############################
 
+[project.optional-dependencies]
+crypto-eth-addresses = [
+    "eth-hash[pycryptodome]>=0.7.0",
+]
 [tool.pdm.dev-dependencies]
 docs-offline = [
     "myst-parser>=3.0.1",
@@ -178,6 +180,7 @@ deps =
     pyright
     pypandoc-binary
     pytest
+    .[crypto-eth-addresses]
 commands = pyright .
 
 [testenv:format]
@@ -195,5 +198,6 @@ commands = bandit -c pyproject.toml -r .
 description = unit tests
 deps =
     pytest
+    .[crypto-eth-addresses]
 commands = pytest .
 """
