@@ -70,7 +70,7 @@ nav:
   - Install and Use: install_and_use.md
   - API:
       - api/between.md
-      - api/btc_address.md
+      - api/crypto_addresses.md
       - api/card.md
       - api/country.md
       - api/cron.md
