@@ -9,6 +9,24 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.29.0 (2024-07-01)
+
+_**Breaking**_ ⚠️
+
+> patch: moves `btc_address` module to `crypto_addresses` module by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+
+_**Features**_
+
+> feat: adds `eth_address` validator by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+
+_**Maintenance**_
+
+- chore: adds a new dependency group for `eth_address` by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+- chore: adds a redundant dependency group `testing`, updates testing workflow by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+- chore: updates dev dependencies; bump version by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+
+**Full Changelog**: [`0.28.3...0.29.0`](https://github.com/python-validators/validators/compare/0.28.3...0.29.0)
+
 ## 0.28.3 (2024-05-25)
 
 _**Breaking**_
