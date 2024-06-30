@@ -85,6 +85,9 @@ tooling = [
 ####################
 #  Configurations  #
 ####################
+testing = [
+    "pytest>=8.2.2",
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]

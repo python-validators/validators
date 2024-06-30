@@ -50,6 +50,6 @@ jobs:
           cache: "pip"
       # testing
       - name: Install 'testing' dependencies
-        run: pip install pytest
+        run: pip install -r package/requirements.testing.txt
       - name: Testing
         run: pytest .

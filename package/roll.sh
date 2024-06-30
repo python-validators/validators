@@ -7,7 +7,9 @@ set -e
 # Using the wrong way see: https://stackoverflow.com/a/13864829
 if [ -z "$CI" ] || [ "$CI" = "false" ]; then
     # tooling
-    pdm export --group tooling,crypto-eth-addresses -f requirements -o package/requirements.tooling.txt
+    pdm export --group tooling -f requirements -o package/requirements.tooling.txt
+    # testing
+    pdm export --group testing,crypto-eth-addresses -f requirements -o package/requirements.testing.txt
     # mkdocs
     pdm export --group docs-online -f requirements -o package/requirements.mkdocs.txt
     # sphinx
