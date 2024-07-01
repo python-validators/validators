@@ -9,6 +9,22 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.29.0 (2024-07-01)
+
+_**Breaking**_ ⚠️
+
+- patch: moves `btc_address` to `crypto_addresses` by @msamsami in [#383](https://github.com/python-validators/validators/pull/383) on [`2f300b`](https://github.com/python-validators/validators/pull/383/commits/2f300bccf31e7d8914817cac2ca466fd2a0a4d08)
+
+_**Features**_
+
+- feat: add validator for eth addresses by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+
+_**Maintenance**_
+
+- chore: update dev deps; adds python EOL info by @yozachar in [#381](https://github.com/python-validators/validators/pull/381)
+
+**Full Changelog**: [`0.28.3...0.29.0`](https://github.com/python-validators/validators/compare/0.28.3...0.29.0)
+
 ## 0.28.3 (2024-05-25)
 
 _**Breaking**_

@@ -78,7 +78,7 @@ $ python -m http.server -d docs/_build/web
     $ git push upstream --tag
     ```
 
-4. To prevew versioned docs, run `mike serve` (`mike` is already a dev dependency).
+4. To preview versioned docs, run `mike serve` (`mike` is already a dev dependency).
 5. To update it, checkout to the tag you want to include in the versioned documentation `git checkout TAG_NAME`.
 6. Then run `mike deploy -p -u VERSION stable` OR run `mike deploy -p -u dev master`,
 7. Which will deploy docs in the CURRENT commit as the `latest` documentation, onto `gh-pages` branch.

@@ -5,7 +5,7 @@ from hashlib import sha256
 import re
 
 # local
-from .utils import validator
+from validators.utils import validator
 
 
 def _decode_base58(addr: str):

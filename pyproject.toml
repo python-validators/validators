@@ -47,7 +47,8 @@ Changelog = "https://github.com/python-validators/validators/blob/master/CHANGES
 #  Optional Dependencies  #
 ###########################
 
-# [project.optional-dependencies]
+[project.optional-dependencies]
+crypto-eth-addresses = ["eth-hash[pycryptodome]>=0.7.0"]
 
 ##############################
 #  Development Dependencies  #
@@ -65,15 +66,16 @@ docs-online = [
     "mkdocs-git-revision-date-localized-plugin>=1.2.6",
     "mkdocs-material>=9.5.27",
     "mkdocstrings[python]>=0.25.1",
-    "mike>=2.1.1",
+    "mike>=2.1.2",
 ]
 package = ["build>=1.2.1"]
 runner = ["tox>=4.15.1"]
 sast = ["bandit[toml]>=1.7.9"]
+testing = ["pytest>=8.2.2"]
 tooling = [
     "black>=24.4.2",
-    "ruff>=0.4.9",
-    "pyright>=1.1.367",
+    "ruff>=0.5.0",
+    "pyright>=1.1.369",
     "pytest>=8.2.2",
     "pypandoc-binary>=1.13", # helps with type checking
 ]
@@ -176,6 +178,7 @@ deps =
     pyright
     pypandoc-binary
     pytest
+    .[crypto-eth-addresses]
 commands = pyright .
 
 [testenv:format]
@@ -193,5 +196,6 @@ commands = bandit -c pyproject.toml -r .
 description = unit tests
 deps =
     pytest
+    .[crypto-eth-addresses]
 commands = pytest .
 """

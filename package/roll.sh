@@ -6,12 +6,14 @@ set -e
 # or set to empty string or not set at all.
 # Using the wrong way see: https://stackoverflow.com/a/13864829
 if [ -z "$CI" ] || [ "$CI" = "false" ]; then
+    # testing
+    pdm export --group testing,crypto-eth-addresses -f requirements -o package/requirements.testing.txt
     # tooling
-    pdm export --group tooling -f requirements -o package/requirements.tooling.txt
+    pdm export --group tooling,crypto-eth-addresses -f requirements -o package/requirements.tooling.txt
     # mkdocs
-    pdm export --group docs-online -f requirements -o package/requirements.mkdocs.txt
+    # pdm export --group docs-online -f requirements -o package/requirements.mkdocs.txt
     # sphinx
-    pdm export --group docs-offline -f requirements -o package/requirements.sphinx.txt
+    pdm export --group docs-offline,crypto-eth-addresses -f requirements -o package/requirements.sphinx.txt
     export CI=true
 fi
 
