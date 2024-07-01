@@ -22,9 +22,7 @@ jobs:
           python-version: "3.8"
       # tooling
       - name: Install 'tooling' dependencies
-        run: |
-          pip install .
-          pip install -r package/requirements.tooling.txt
+        run: pip install -r package/requirements.tooling.txt
       - name: Tooling
         run: |
           black .

@@ -13,17 +13,15 @@ Note to self: Breaking changes must increment either
 
 _**Breaking**_ ⚠️
 
-> patch: moves `btc_address` module to `crypto_addresses` module by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+- patch: moves `btc_address` to `crypto_addresses` by @msamsami in [#383](https://github.com/python-validators/validators/pull/383) on [`2f300b`](https://github.com/python-validators/validators/pull/383/commits/2f300bccf31e7d8914817cac2ca466fd2a0a4d08)
 
 _**Features**_
 
-> feat: adds `eth_address` validator by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+- feat: add validator for eth addresses by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
 
 _**Maintenance**_
 
-- chore: adds a new dependency group for `eth_address` by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
-- chore: adds a redundant dependency group `testing`, updates testing workflow by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
-- chore: updates dev dependencies; bump version by @msamsami in [#383](https://github.com/python-validators/validators/pull/383)
+- chore: update dev deps; adds python EOL info by @yozachar in [#381](https://github.com/python-validators/validators/pull/381)
 
 **Full Changelog**: [`0.28.3...0.29.0`](https://github.com/python-validators/validators/compare/0.28.3...0.29.0)
 

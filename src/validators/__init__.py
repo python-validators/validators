@@ -36,6 +36,7 @@ from .uuid import uuid
 __all__ = (
     # ...
     "between",
+    # crypto_addresses
     "btc_address",
     "eth_address",
     # cards

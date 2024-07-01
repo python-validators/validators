@@ -3,17 +3,21 @@
 # standard
 import re
 
-# external
-from eth_hash.auto import keccak
-
 # local
 from validators.utils import validator
+
+_keccak_flag = True
+try:
+    # external
+    from eth_hash.auto import keccak
+except ImportError:
+    _keccak_flag = False
 
 
 def _validate_eth_checksum_address(addr: str):
     """Validate ETH type checksum address."""
     addr = addr.replace("0x", "")
-    addr_hash = keccak.new(addr.lower().encode("ascii")).digest().hex()
+    addr_hash = keccak.new(addr.lower().encode("ascii")).digest().hex()  # type: ignore
 
     if len(addr) != 40:
         return False
@@ -46,6 +50,11 @@ def eth_address(value: str, /):
         (Literal[True]): If `value` is a valid ethereum address.
         (ValidationError): If `value` is an invalid ethereum address.
     """
+    if not _keccak_flag:
+        raise ImportError(
+            "Do `pip install validators[crypto-eth-addresses]` to perform `eth_address` validation."
+        )
+
     if not value:
         return False
 
