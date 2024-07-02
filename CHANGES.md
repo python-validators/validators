@@ -9,6 +9,22 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.30.0 (2024-07-02)
+
+_**Breaking**_ ⚠️
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: add validator for trx addresses by @msamsami in [#384](https://github.com/python-validators/validators/pull/384)
+
+_**Maintenance**_
+
+- maint: bump version by @msamsami in [#384](https://github.com/python-validators/validators/pull/384)
+
+**Full Changelog**: [`0.29.0...0.30.0`](https://github.com/python-validators/validators/compare/0.29.0...0.30.0)
+
 ## 0.29.0 (2024-07-01)
 
 _**Breaking**_ ⚠️
