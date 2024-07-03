@@ -9,9 +9,9 @@ Note to self: Breaking changes must increment either
 
 -->
 
-## 0.30.0 (2024-07-02)
+## 0.30.0 (2024-07-04)
 
-_**Breaking**_ ⚠️
+_**Breaking**_
 
 > No breaking changes were introduced in this version.
 
@@ -24,6 +24,8 @@ _**Maintenance**_
 - maint: bump version by @msamsami in [#384](https://github.com/python-validators/validators/pull/384)
 
 **Full Changelog**: [`0.29.0...0.30.0`](https://github.com/python-validators/validators/compare/0.29.0...0.30.0)
+
+---
 
 ## 0.29.0 (2024-07-01)
 
@@ -40,6 +42,8 @@ _**Maintenance**_
 - chore: update dev deps; adds python EOL info by @yozachar in [#381](https://github.com/python-validators/validators/pull/381)
 
 **Full Changelog**: [`0.28.3...0.29.0`](https://github.com/python-validators/validators/compare/0.28.3...0.29.0)
+
+---
 
 ## 0.28.3 (2024-05-25)
 
