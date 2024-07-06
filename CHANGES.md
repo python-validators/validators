@@ -9,6 +9,25 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.31.0 (2024-07-08)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: add validator for base16 encoding by @msamsami in [#386](https://github.com/python-validators/validators/pull/386)
+- feat: add validator for base32 encoding by @msamsami in [#386](https://github.com/python-validators/validators/pull/386)
+
+_**Maintenance**_
+
+- maint: bump version by @msamsami in [#386](https://github.com/python-validators/validators/pull/386)
+
+**Full Changelog**: [`0.29.0...0.30.0`](https://github.com/python-validators/validators/compare/0.30.0...0.31.0)
+
+---
+
 ## 0.30.0 (2024-07-04)
 
 _**Breaking**_

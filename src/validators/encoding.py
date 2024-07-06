@@ -8,6 +8,48 @@ from .utils import validator
 
 
 @validator
+def base16(value: str, /):
+    """Return whether or not given value is a valid base16 encoding.
+
+    Examples:
+        >>> base16('a3f4b2')
+        # Output: True
+        >>> base16('a3f4Z1')
+        # Output: ValidationError(func=base16, args={'value': 'a3f4Z1'})
+
+    Args:
+        value:
+            base16 string to validate.
+
+    Returns:
+        (Literal[True]): If `value` is a valid base16 encoding.
+        (ValidationError): If `value` is an invalid base16 encoding.
+    """
+    return re.match(r"^[0-9A-Fa-f]+$", value) if value else False
+
+
+@validator
+def base32(value: str, /):
+    """Return whether or not given value is a valid base32 encoding.
+
+    Examples:
+        >>> base32('MFZWIZLTOQ======')
+        # Output: True
+        >>> base32('MfZW3zLT9Q======')
+        # Output: ValidationError(func=base32, args={'value': 'MfZW3zLT9Q======'})
+
+    Args:
+        value:
+            base32 string to validate.
+
+    Returns:
+        (Literal[True]): If `value` is a valid base32 encoding.
+        (ValidationError): If `value` is an invalid base32 encoding.
+    """
+    return re.match(r"^[A-Z2-7]+=*$", value) if value else False
+
+
+@validator
 def base58(value: str, /):
     """Return whether or not given value is a valid base58 encoding.
 

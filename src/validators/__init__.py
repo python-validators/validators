@@ -8,7 +8,7 @@ from .cron import cron
 from .crypto_addresses import btc_address, eth_address, trx_address
 from .domain import domain
 from .email import email
-from .encoding import base58, base64
+from .encoding import base16, base32, base58, base64
 from .finance import cusip, isin, sedol
 from .hashes import md5, sha1, sha224, sha256, sha512
 from .hostname import hostname
@@ -60,6 +60,8 @@ __all__ = (
     # ...
     "email",
     # encodings
+    "base16",
+    "base32",
     "base58",
     "base64",
     # finance
@@ -105,4 +107,4 @@ __all__ = (
     "validator",
 )
 
-__version__ = "0.30.0"
+__version__ = "0.31.0"
