@@ -1,0 +1,1946 @@
+.\" Man page generated from reStructuredText.
+.
+.
+.nr rst2man-indent-level 0
+.
+.de1 rstReportMargin
+\\$1 \\n[an-margin]
+level \\n[rst2man-indent-level]
+level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
+-
+\\n[rst2man-indent0]
+\\n[rst2man-indent1]
+\\n[rst2man-indent2]
+..
+.de1 INDENT
+.\" .rstReportMargin pre:
+. RS \\$1
+. nr rst2man-indent\\n[rst2man-indent-level] \\n[an-margin]
+. nr rst2man-indent-level +1
+.\" .rstReportMargin post:
+..
+.de UNINDENT
+. RE
+.\" indent \\n[an-margin]
+.\" old: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.nr rst2man-indent-level -1
+.\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
+.in \\n[rst2man-indent\\n[rst2man-indent-level]]u
+..
+.TH "VALIDATORS" "1" "Jul 08, 2024" "0.31.0" "validators"
+.SH NAME
+validators \- Python Data Validation for Humans™
+.sp
+\fI\%PyCQA\fP \fI\%SAST\fP \fI\%Docs\fP \fI\%Version\fP \fI\%Downloads\fP
+.sp
+Python has all kinds of data validation tools, but every one of them
+seems to require defining a schema or form. I wanted to create a simple
+validation library where validating a simple value does not require
+defining a form or a schema.
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+>>> import validators
+>>>
+>>> validators.email(\(aqsomeone@example.com\(aq)
+True
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SH RESOURCES
+.INDENT 0.0
+.IP \(bu 2
+\fI\%Documentation\fP
+.IP \(bu 2
+\fI\%Bugtracker\fP
+.IP \(bu 2
+\fI\%Security\fP
+.IP \(bu 2
+\fI\%Code\fP
+.UNINDENT
+
+.sp
+.ce
+----
+
+.ce 0
+.sp
+.INDENT 0.0
+.INDENT 3.5
+\fBPython 3.8\fP \fI\%reaches EOL in\fP
+\fBOctober 2024.\fP
+.UNINDENT
+.UNINDENT
+.SS Install and Use
+.SS Installation
+.sp
+Execute the following command:
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+pip install validators
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.INDENT 3.5
+It\(aqs preferable to use \fBpip\fP within a virtual environment.
+.UNINDENT
+.UNINDENT
+.SS Usage
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+import validators
+print(validators.email(\(aqsomeone@example.com\(aq))
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.SS To raise validation error
+.INDENT 0.0
+.IP 1. 3
+Either set the environment variable \fBRAISE_VALIDATION_ERROR\fP to
+\fBTrue\fP
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ export RAISE_VALIDATION_ERROR=True
+$ python \-c \(dqfrom validators import url; print(url(\(aqhttps//bad_url\(aq))\(dq
+Traceback (most recent call last):
+File \(dq<string>\(dq, line 1, in <module>
+File \(dq/path/to/lib/validators/utils.py\(dq, line 87, in wrapper
+    raise ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
+validators.utils.ValidationError: ValidationError(func=url, args={\(aqvalue\(aq: \(aqhttps//bad_url\(aq})
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.IP 2. 3
+Or pass \fBr_ve=True\fP to each caller function:
+.INDENT 3.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+$ python \-c \(dqfrom validators.card import visa; print(visa(\(aqbad_visa_number\(aq, r_ve=True))\(dq
+Traceback (most recent call last):
+File \(dq<string>\(dq, line 1, in <module>
+File \(dq/path/to/lib/validators/utils.py\(dq, line 87, in wrapper
+    raise ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
+validators.utils.ValidationError: ValidationError(func=visa, args={\(aqvalue\(aq: \(aqbad_visa_number\(aq})
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS between
+.INDENT 0.0
+.TP
+.B validators.between.between(value:  PossibleValueTypes, /, *, min_val:  PossibleValueTypes  |  AbsMin  |  None  =  None, max_val:  PossibleValueTypes  |  AbsMax  |  None  =  None)
+Validate that a number is between minimum and/or maximum value.
+.sp
+This will work with any comparable type, such as floats, decimals and dates
+not just integers. This validator is originally based on [WTForms\-NumberRange\-Validator][1].
+.sp
+[1]: \fI\%https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L166\-L220\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> from datetime import datetime
+>>> between(5, min_val=2)
+# Output: True
+>>> between(13.2, min_val=13, max_val=14)
+# Output: True
+>>> between(500, max_val=400)
+# Output: ValidationError(func=between, args=...)
+>>> between(
+\&...     datetime(2000, 11, 11),
+\&...     min_val=datetime(1999, 11, 11)
+\&... )
+# Output: True
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Value which is to be compared.
+.IP \(bu 2
+\fBmin_val\fP \-\- The minimum required value of the number.
+If not provided, minimum value will not be checked.
+.IP \(bu 2
+\fBmax_val\fP \-\- The maximum value of the number.
+If not provided, maximum value will not be checked.
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is in between the given conditions.
+(ValidationError): If \fIvalue\fP is not in between the given conditions.
+.TP
+.B Return type
+(Literal[True])
+.TP
+.B Raises
+.INDENT 7.0
+.IP \(bu 2
+\fB(\fP\fBValueError\fP\fB)\fP \-\- If \fImin_val\fP is greater than \fImax_val\fP\&.
+.IP \(bu 2
+\fB(\fP\fBTypeError\fP\fB)\fP \-\- If there\(aqs a type mismatch during comparison.
+.UNINDENT
+.UNINDENT
+.sp
+\fBNOTE:\fP
+.INDENT 7.0
+.INDENT 3.5
+.INDENT 0.0
+.IP \(bu 2
+\fIPossibleValueTypes\fP = \fITypeVar(\(dqPossibleValueTypes\(dq, int, float, str, datetime)\fP
+.IP \(bu 2
+If neither \fImin_val\fP nor \fImax_val\fP is provided, result will always be \fITrue\fP\&.
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.UNINDENT
+.SS card
+.INDENT 0.0
+.TP
+.B validators.card.amex(value:  str, /)
+Return whether or not given value is a valid American Express card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> amex(\(aq378282246310005\(aq)
+# Output: True
+>>> amex(\(aq4242424242424242\(aq)
+# Output: ValidationError(func=amex, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- American Express card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid American Express card number.
+(ValidationError): If \fIvalue\fP is an invalid American Express card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.card_number(value:  str, /)
+Return whether or not given value is a valid generic card number.
+.sp
+This validator is based on [Luhn\(aqs algorithm][1].
+.sp
+[1]: \fI\%https://github.com/mmcloughlin/luhn\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> card_number(\(aq4242424242424242\(aq)
+# Output: True
+>>> card_number(\(aq4242424242424241\(aq)
+# Output: ValidationError(func=card_number, args={\(aqvalue\(aq: \(aq4242424242424241\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Generic card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid generic card number.
+(ValidationError): If \fIvalue\fP is an invalid generic card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.diners(value:  str, /)
+Return whether or not given value is a valid Diners Club card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> diners(\(aq3056930009020004\(aq)
+# Output: True
+>>> diners(\(aq4242424242424242\(aq)
+# Output: ValidationError(func=diners, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Diners Club card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid Diners Club card number.
+(ValidationError): If \fIvalue\fP is an invalid Diners Club card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.discover(value:  str, /)
+Return whether or not given value is a valid Discover card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> discover(\(aq6011111111111117\(aq)
+# Output: True
+>>> discover(\(aq4242424242424242\(aq)
+# Output: ValidationError(func=discover, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Discover card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid Discover card number.
+(ValidationError): If \fIvalue\fP is an invalid Discover card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.jcb(value:  str, /)
+Return whether or not given value is a valid JCB card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> jcb(\(aq3566002020360505\(aq)
+# Output: True
+>>> jcb(\(aq4242424242424242\(aq)
+# Output: ValidationError(func=jcb, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- JCB card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid JCB card number.
+(ValidationError): If \fIvalue\fP is an invalid JCB card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.mastercard(value:  str, /)
+Return whether or not given value is a valid Mastercard card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> mastercard(\(aq5555555555554444\(aq)
+# Output: True
+>>> mastercard(\(aq4242424242424242\(aq)
+# Output: ValidationError(func=mastercard, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Mastercard card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid Mastercard card number.
+(ValidationError): If \fIvalue\fP is an invalid Mastercard card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.unionpay(value:  str, /)
+Return whether or not given value is a valid UnionPay card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> unionpay(\(aq6200000000000005\(aq)
+# Output: True
+>>> unionpay(\(aq4242424242424242\(aq)
+# Output: ValidationError(func=unionpay, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- UnionPay card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid UnionPay card number.
+(ValidationError): If \fIvalue\fP is an invalid UnionPay card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.card.visa(value:  str, /)
+Return whether or not given value is a valid Visa card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> visa(\(aq4242424242424242\(aq)
+# Output: True
+>>> visa(\(aq2223003122003222\(aq)
+# Output: ValidationError(func=visa, args={\(aqvalue\(aq: \(aq2223003122003222\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Visa card number string to validate
+.TP
+.B Returns
+If \fIvalue\fP is a valid Visa card number.
+(ValidationError): If \fIvalue\fP is an invalid Visa card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS country
+.INDENT 0.0
+.TP
+.B validators.country.calling_code(value:  str, /)
+Validates given calling code.
+.sp
+This performs country\(aqs calling code validation.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> calling_code(\(aq+91\(aq)
+# Output: True
+>>> calling_code(\(aq\-31\(aq)
+# Output: ValidationError(func=calling_code, args={\(aqvalue\(aq: \(aq\-31\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Country\(aqs calling code string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid calling code.
+(ValidationError): If \fIvalue\fP is an invalid calling code.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.country.country_code(value:  str, /, *, iso_format:  str  =  \(aqauto\(aq, ignore_case:  bool  =  False)
+Validates given country code.
+.sp
+This performs a case\-sensitive [ISO 3166][1] country code validation.
+.sp
+[1]: \fI\%https://www.iso.org/iso\-3166\-country\-codes.html\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> country_code(\(aqGB\(aq, iso_format=\(aqalpha3\(aq)
+# Output: False
+>>> country_code(\(aqUSA\(aq)
+# Output: True
+>>> country_code(\(aq840\(aq, iso_format=\(aqnumeric\(aq)
+# Output: True
+>>> country_code(\(aqiN\(aq, iso_format=\(aqalpha2\(aq)
+# Output: False
+>>> country_code(\(aqZWE\(aq, iso_format=\(aqalpha3\(aq)
+# Output: True
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Country code string to validate.
+.IP \(bu 2
+\fBiso_format\fP \-\- ISO format to be used. Available options are:
+\fIauto\fP, \fIalpha2\fP, \fIalpha3\fP and \fInumeric\fP\&.
+.IP \(bu 2
+\fBignore_case\fP \-\- Enable/Disable case\-sensitive matching.
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid country code.
+(ValidationError): If \fIvalue\fP is an invalid country code.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.country.currency(value:  str, /, *, skip_symbols:  bool  =  True, ignore_case:  bool  =  False)
+Validates given currency code.
+.sp
+This performs [ISO 4217][1] currency code/symbol validation.
+.sp
+[1]: \fI\%https://www.iso.org/iso\-4217\-currency\-codes.html\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> currency(\(aqUSD\(aq)
+# Output: True
+>>> currency(\(aqZWX\(aq)
+# Output: ValidationError(func=currency, args={\(aqvalue\(aq: \(aqZWX\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Currency code/symbol string to validate.
+.IP \(bu 2
+\fBskip_symbols\fP \-\- Skip currency symbol validation.
+.IP \(bu 2
+\fBignore_case\fP \-\- Enable/Disable case\-sensitive matching.
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid currency code.
+(ValidationError): If \fIvalue\fP is an invalid currency code.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS cron
+.INDENT 0.0
+.TP
+.B validators.cron.cron(value:  str, /)
+Return whether or not given value is a valid cron string.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> cron(\(aq*/5 * * * *\(aq)
+# Output: True
+>>> cron(\(aq30\-20 * * * *\(aq)
+# Output: ValidationError(func=cron, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Cron string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid cron string.
+(ValidationError): If \fIvalue\fP is an invalid cron string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS crypto_addresses
+.INDENT 0.0
+.TP
+.B validators.crypto_addresses.btc_address(value:  str, /)
+Return whether or not given value is a valid bitcoin address.
+.sp
+Full validation is implemented for P2PKH and P2SH addresses.
+For segwit addresses a regexp is used to provide a reasonable
+estimate on whether the address is valid.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> btc_address(\(aq3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69\(aq)
+# Output: True
+>>> btc_address(\(aq1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2\(aq)
+# Output: ValidationError(func=btc_address, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Bitcoin address string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid bitcoin address.
+(ValidationError): If \fIvalue\fP is an invalid bitcoin address.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.crypto_addresses.eth_address(value:  str, /)
+Return whether or not given value is a valid ethereum address.
+.sp
+Full validation is implemented for ERC20 addresses.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> eth_address(\(aq0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598\(aq)
+# Output: True
+>>> eth_address(\(aq0x8Ba1f109551bD432803012645Ac136ddd64DBa72\(aq)
+# Output: ValidationError(func=eth_address, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Ethereum address string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid ethereum address.
+(ValidationError): If \fIvalue\fP is an invalid ethereum address.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.crypto_addresses.trx_address(value:  str, /)
+Return whether or not given value is a valid tron address.
+.sp
+Full validation is implemented for TRC20 tron addresses.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> trx_address(\(aqTLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38\(aq)
+# Output: True
+>>> trx_address(\(aqTR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd\(aq)
+# Output: ValidationError(func=trx_address, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Tron address string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid tron address.
+(ValidationError): If \fIvalue\fP is an invalid tron address.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS domain
+.INDENT 0.0
+.TP
+.B validators.domain.domain(value:  str, /, *, consider_tld:  bool  =  False, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+Return whether or not given value is a valid domain.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> domain(\(aqexample.com\(aq)
+# Output: True
+>>> domain(\(aqexample.com/\(aq)
+# Output: ValidationError(func=domain, ...)
+>>> # Supports IDN domains as well::
+>>> domain(\(aqxn\-\-\-\-gtbspbbmkef.xn\-\-p1ai\(aq)
+# Output: True
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Domain string to validate.
+.IP \(bu 2
+\fBconsider_tld\fP \-\- Restrict domain to TLDs allowed by IANA.
+.IP \(bu 2
+\fBrfc_1034\fP \-\- Allows optional trailing dot in the domain name.
+Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
+.IP \(bu 2
+\fBrfc_2782\fP \-\- Domain name is of type service record.
+Allows optional underscores in the domain name.
+Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid domain name.
+(ValidationError): If \fIvalue\fP is an invalid domain name.
+.TP
+.B Return type
+(Literal[True])
+.TP
+.B Raises
+\fB(\fP\fBUnicodeError\fP\fB)\fP \-\- If \fIvalue\fP cannot be encoded into \fIidna\fP or decoded into \fIutf\-8\fP\&.
+.UNINDENT
+.UNINDENT
+.SS email
+.INDENT 0.0
+.TP
+.B validators.email.email(value:  str, /, *, ipv6_address:  bool  =  False, ipv4_address:  bool  =  False, simple_host:  bool  =  False, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+Validate an email address.
+.sp
+This was inspired from [Django\(aqs email validator][1].
+Also ref: [RFC 1034][2], [RFC 5321][3] and [RFC 5322][4].
+.sp
+[1]: \fI\%https://github.com/django/django/blob/main/django/core/validators.py#L174\fP
+[2]: \fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP
+[3]: \fI\%https://www.rfc\-editor.org/rfc/rfc5321\fP
+[4]: \fI\%https://www.rfc\-editor.org/rfc/rfc5322\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> email(\(aqsomeone@example.com\(aq)
+# Output: True
+>>> email(\(aqbogus@@\(aq)
+# Output: ValidationError(email=email, args={\(aqvalue\(aq: \(aqbogus@@\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- eMail string to validate.
+.IP \(bu 2
+\fBipv6_address\fP \-\- When the domain part is an IPv6 address.
+.IP \(bu 2
+\fBipv4_address\fP \-\- When the domain part is an IPv4 address.
+.IP \(bu 2
+\fBsimple_host\fP \-\- When the domain part is a simple hostname.
+.IP \(bu 2
+\fBrfc_1034\fP \-\- Allow trailing dot in domain name.
+Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
+.IP \(bu 2
+\fBrfc_2782\fP \-\- Domain name is of type service record.
+Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid eMail.
+(ValidationError): If \fIvalue\fP is an invalid eMail.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS encoding
+.INDENT 0.0
+.TP
+.B validators.encoding.base16(value:  str, /)
+Return whether or not given value is a valid base16 encoding.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> base16(\(aqa3f4b2\(aq)
+# Output: True
+>>> base16(\(aqa3f4Z1\(aq)
+# Output: ValidationError(func=base16, args={\(aqvalue\(aq: \(aqa3f4Z1\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- base16 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid base16 encoding.
+(ValidationError): If \fIvalue\fP is an invalid base16 encoding.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.encoding.base32(value:  str, /)
+Return whether or not given value is a valid base32 encoding.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> base32(\(aqMFZWIZLTOQ======\(aq)
+# Output: True
+>>> base32(\(aqMfZW3zLT9Q======\(aq)
+# Output: ValidationError(func=base32, args={\(aqvalue\(aq: \(aqMfZW3zLT9Q======\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- base32 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid base32 encoding.
+(ValidationError): If \fIvalue\fP is an invalid base32 encoding.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.encoding.base58(value:  str, /)
+Return whether or not given value is a valid base58 encoding.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> base58(\(aq14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx\(aq)
+# Output: True
+>>> base58(\(aqcUSECm5YzcXJwP\(aq)
+# Output: ValidationError(func=base58, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- base58 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid base58 encoding.
+(ValidationError): If \fIvalue\fP is an invalid base58 encoding.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.encoding.base64(value:  str, /)
+Return whether or not given value is a valid base64 encoding.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> base64(\(aqY2hhcmFjdGVyIHNldA==\(aq)
+# Output: True
+>>> base64(\(aqcUSECm5YzcXJwP\(aq)
+# Output: ValidationError(func=base64, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- base64 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid base64 encoding.
+(ValidationError): If \fIvalue\fP is an invalid base64 encoding.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS finance
+.INDENT 0.0
+.TP
+.B validators.finance.cusip(value:  str)
+Return whether or not given value is a valid CUSIP.
+.sp
+Checks if the value is a valid [CUSIP][1].
+[1]: \fI\%https://en.wikipedia.org/wiki/CUSIP\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> cusip(\(aq037833DP2\(aq)
+True
+>>> cusip(\(aq037833DP3\(aq)
+ValidationFailure(func=cusip, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- CUSIP string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid CUSIP string.
+(ValidationError): If \fIvalue\fP is an invalid CUSIP string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.finance.isin(value:  str)
+Return whether or not given value is a valid ISIN.
+.sp
+Checks if the value is a valid [ISIN][1].
+[1]: \fI\%https://en.wikipedia.org/wiki/International_Securities_Identification_Number\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> isin(\(aq037833DP2\(aq)
+True
+>>> isin(\(aq037833DP3\(aq)
+ValidationFailure(func=isin, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- ISIN string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid ISIN string.
+(ValidationError): If \fIvalue\fP is an invalid ISIN string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.finance.sedol(value:  str)
+Return whether or not given value is a valid SEDOL.
+.sp
+Checks if the value is a valid [SEDOL][1].
+[1]: \fI\%https://en.wikipedia.org/wiki/SEDOL\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> sedol(\(aq2936921\(aq)
+True
+>>> sedol(\(aq29A6922\(aq)
+ValidationFailure(func=sedol, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- SEDOL string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid SEDOL string.
+(ValidationError): If \fIvalue\fP is an invalid SEDOL string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS hashes
+.INDENT 0.0
+.TP
+.B validators.hashes.md5(value:  str, /)
+Return whether or not given value is a valid MD5 hash.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> md5(\(aqd41d8cd98f00b204e9800998ecf8427e\(aq)
+# Output: True
+>>> md5(\(aq900zz11\(aq)
+# Output: ValidationError(func=md5, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- MD5 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid MD5 hash.
+(ValidationError): If \fIvalue\fP is an invalid MD5 hash.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.hashes.sha1(value:  str, /)
+Return whether or not given value is a valid SHA1 hash.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> sha1(\(aqda39a3ee5e6b4b0d3255bfef95601890afd80709\(aq)
+# Output: True
+>>> sha1(\(aq900zz11\(aq)
+# Output: ValidationError(func=sha1, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- SHA1 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid SHA1 hash.
+(ValidationError): If \fIvalue\fP is an invalid SHA1 hash.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.hashes.sha224(value:  str, /)
+Return whether or not given value is a valid SHA224 hash.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> sha224(\(aqd14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f\(aq)
+# Output: True
+>>> sha224(\(aq900zz11\(aq)
+# Output: ValidationError(func=sha224, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- SHA224 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid SHA224 hash.
+(ValidationError): If \fIvalue\fP is an invalid SHA224 hash.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.hashes.sha256(value:  str, /)
+Return whether or not given value is a valid SHA256 hash.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> sha256(
+\&...     \(aqe3b0c44298fc1c149afbf4c8996fb924\(aq
+\&...     \(aq27ae41e4649b934ca495991b7852b855\(aq
+\&... )
+# Output: True
+>>> sha256(\(aq900zz11\(aq)
+# Output: ValidationError(func=sha256, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- SHA256 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid SHA256 hash.
+(ValidationError): If \fIvalue\fP is an invalid SHA256 hash.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.hashes.sha512(value:  str, /)
+Return whether or not given value is a valid SHA512 hash.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> sha512(
+\&...     \(aqcf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce\(aq
+\&...     \(aq9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af9\(aq
+\&...     \(aq27da3e\(aq
+\&... )
+# Output: True
+>>> sha512(\(aq900zz11\(aq)
+# Output: ValidationError(func=sha512, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- SHA512 string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid SHA512 hash.
+(ValidationError): If \fIvalue\fP is an invalid SHA512 hash.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS hostname
+.INDENT 0.0
+.TP
+.B validators.hostname.hostname(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, maybe_simple:  bool  =  True, consider_tld:  bool  =  False, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+Return whether or not given value is a valid hostname.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> hostname(\(dqubuntu\-pc:443\(dq)
+# Output: True
+>>> hostname(\(dqthis\-pc\(dq)
+# Output: True
+>>> hostname(\(dqxn\-\-\-\-gtbspbbmkef.xn\-\-p1ai:65535\(dq)
+# Output: True
+>>> hostname(\(dq_example.com\(dq)
+# Output: True
+>>> hostname(\(dq123.5.77.88:31000\(dq)
+# Output: True
+>>> hostname(\(dq12.12.12.12\(dq)
+# Output: True
+>>> hostname(\(dq[::1]:22\(dq)
+# Output: True
+>>> hostname(\(dqdead:beef:0:0:0:0000:42:1\(dq)
+# Output: True
+>>> hostname(\(dq[0:0:0:0:0:ffff:1.2.3.4]:\-65538\(dq)
+# Output: ValidationError(func=hostname, ...)
+>>> hostname(\(dq[0:&:b:c:@:e:f::]:9999\(dq)
+# Output: ValidationError(func=hostname, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Hostname string to validate.
+.IP \(bu 2
+\fBskip_ipv6_addr\fP \-\- When hostname string cannot be an IPv6 address.
+.IP \(bu 2
+\fBskip_ipv4_addr\fP \-\- When hostname string cannot be an IPv4 address.
+.IP \(bu 2
+\fBmay_have_port\fP \-\- Hostname string may contain port number.
+.IP \(bu 2
+\fBmaybe_simple\fP \-\- Hostname string maybe only hyphens and alpha\-numerals.
+.IP \(bu 2
+\fBconsider_tld\fP \-\- Restrict domain to TLDs allowed by IANA.
+.IP \(bu 2
+\fBprivate\fP \-\- Embedded IP address is public if \fIFalse\fP, private/local if \fITrue\fP\&.
+.IP \(bu 2
+\fBrfc_1034\fP \-\- Allow trailing dot in domain/host name.
+Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
+.IP \(bu 2
+\fBrfc_2782\fP \-\- Domain/Host name is of type service record.
+Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid hostname.
+(ValidationError): If \fIvalue\fP is an invalid hostname.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS i18n
+.INDENT 0.0
+.TP
+.B validators.i18n.es_cif(value:  str, /)
+Validate a Spanish CIF.
+.sp
+Each company in Spain prior to 2008 had a distinct CIF and has been
+discontinued. For more information see [wikipedia.org/cif][1].
+.sp
+The new replacement is to use NIF for absolutely everything. The issue is
+that there are \(dqtypes\(dq of NIFs now: company, person [citizen or resident]
+all distinguished by the first character of the DOI. For this reason we
+will continue to call CIFs NIFs, that are used for companies.
+.sp
+This validator is based on [generadordni.es][2].
+.sp
+[1]: \fI\%https://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal\fP
+[2]: \fI\%https://generadordni.es/\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> es_cif(\(aqB25162520\(aq)
+# Output: True
+>>> es_cif(\(aqB25162529\(aq)
+# Output: ValidationError(func=es_cif, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- DOI string which is to be validated.
+.TP
+.B Returns
+If \fIvalue\fP is a valid DOI string.
+(ValidationError): If \fIvalue\fP is an invalid DOI string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.es_doi(value:  str, /)
+Validate a Spanish DOI.
+.sp
+A DOI in spain is all NIF / CIF / NIE / DNI \-\- a digital ID.
+For more information see [wikipedia.org/doi][1]. This validator
+is based on [generadordni.es][2].
+.sp
+[1]: \fI\%https://es.wikipedia.org/wiki/Identificador_de_objeto_digital\fP
+[2]: \fI\%https://generadordni.es/\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> es_doi(\(aqX0095892M\(aq)
+# Output: True
+>>> es_doi(\(aqX0095892X\(aq)
+# Output: ValidationError(func=es_doi, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- DOI string which is to be validated.
+.TP
+.B Returns
+If \fIvalue\fP is a valid DOI string.
+(ValidationError): If \fIvalue\fP is an invalid DOI string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.es_nie(value:  str, /)
+Validate a Spanish NIE.
+.sp
+The NIE is a tax identification number in Spain, known in Spanish
+as the NIE, or more formally the Número de identidad de extranjero.
+For more information see [wikipedia.org/nie][1]. This validator
+is based on [generadordni.es][2].
+.sp
+[1]: \fI\%https://es.wikipedia.org/wiki/N%C3%BAmero_de_identidad_de_extranjero\fP
+[2]: \fI\%https://generadordni.es/\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> es_nie(\(aqX0095892M\(aq)
+# Output: True
+>>> es_nie(\(aqX0095892X\(aq)
+# Output: ValidationError(func=es_nie, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- DOI string which is to be validated.
+.TP
+.B Returns
+If \fIvalue\fP is a valid DOI string.
+(ValidationError): If \fIvalue\fP is an invalid DOI string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.es_nif(value:  str, /)
+Validate a Spanish NIF.
+.sp
+Each entity, be it person or company in Spain has a distinct NIF. Since
+we\(aqve designated CIF to be a company NIF, this NIF is only for person.
+For more information see [wikipedia.org/nif][1]. This validator
+is based on [generadordni.es][2].
+.sp
+[1]: \fI\%https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal\fP
+[2]: \fI\%https://generadordni.es/\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> es_nif(\(aq26643189N\(aq)
+# Output: True
+>>> es_nif(\(aq26643189X\(aq)
+# Output: ValidationError(func=es_nif, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- DOI string which is to be validated.
+.TP
+.B Returns
+If \fIvalue\fP is a valid DOI string.
+(ValidationError): If \fIvalue\fP is an invalid DOI string.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.fi_business_id(value:  str, /)
+Validate a Finnish Business ID.
+.sp
+Each company in Finland has a distinct business id. For more
+information see [Finnish Trade Register][1]
+.sp
+[1]: \fI\%http://en.wikipedia.org/wiki/Finnish_Trade_Register\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> fi_business_id(\(aq0112038\-9\(aq)  # Fast Monkeys Ltd
+# Output: True
+>>> fi_business_id(\(aq1234567\-8\(aq)  # Bogus ID
+# Output: ValidationError(func=fi_business_id, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Business ID string to be validated.
+.TP
+.B Returns
+If \fIvalue\fP is a valid finnish business id.
+(ValidationError): If \fIvalue\fP is an invalid finnish business id.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.fi_ssn(value:  str, /, *, allow_temporal_ssn:  bool  =  True)
+Validate a Finnish Social Security Number.
+.sp
+This validator is based on [django\-localflavor\-fi][1].
+.sp
+[1]: \fI\%https://github.com/django/django\-localflavor\-fi/\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> fi_ssn(\(aq010101\-0101\(aq)
+# Output: True
+>>> fi_ssn(\(aq101010\-0102\(aq)
+# Output: ValidationError(func=fi_ssn, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- Social Security Number to be validated.
+.IP \(bu 2
+\fBallow_temporal_ssn\fP \-\- Whether to accept temporal SSN numbers. Temporal SSN numbers are the
+ones where the serial is in the range [900\-999]. By default temporal
+SSN numbers are valid.
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid finnish SSN.
+(ValidationError): If \fIvalue\fP is an invalid finnish SSN.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.fr_department(value:  str  |  int)
+Validate a french department number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> fr_department(20)  # can be an integer
+# Output: True
+>>> fr_department(\(dq20\(dq)
+# Output: True
+>>> fr_department(\(dq971\(dq)  # Guadeloupe
+# Output: True
+>>> fr_department(\(dq00\(dq)
+# Output: ValidationError(func=fr_department, args=...)
+>>> fr_department(\(aq2A\(aq)  # Corsica
+# Output: True
+>>> fr_department(\(aq2B\(aq)
+# Output: True
+>>> fr_department(\(aq2C\(aq)
+# Output: ValidationError(func=fr_department, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- French department number to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid french department number.
+(ValidationError): If \fIvalue\fP is an invalid french department number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.fr_ssn(value:  str)
+Validate a french Social Security Number.
+.sp
+Each french citizen has a distinct Social Security Number.
+For more information see [French Social Security Number][1] (sadly unavailable in english).
+.sp
+[1]: \fI\%https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> fr_ssn(\(aq1 84 12 76 451 089 46\(aq)
+# Output: True
+>>> fr_ssn(\(aq1 84 12 76 451 089\(aq)  # control key is optional
+# Output: True
+>>> fr_ssn(\(aq3 84 12 76 451 089 46\(aq)  # wrong gender number
+# Output: ValidationError(func=fr_ssn, args=...)
+>>> fr_ssn(\(aq1 84 12 76 451 089 47\(aq)  # wrong control key
+# Output: ValidationError(func=fr_ssn, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- French Social Security Number string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid french Social Security Number.
+(ValidationError): If \fIvalue\fP is an invalid french Social Security Number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.ind_aadhar(value:  str)
+Validate an indian aadhar card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ind_aadhar(\(aq3675 9834 6015\(aq)
+True
+>>> ind_aadhar(\(aq3675 ABVC 2133\(aq)
+ValidationFailure(func=aadhar, args={\(aqvalue\(aq: \(aq3675 ABVC 2133\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Aadhar card number string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid aadhar card number.
+(ValidationError): If \fIvalue\fP is an invalid aadhar card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.ind_pan(value:  str)
+Validate a pan card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ind_pan(\(aqABCDE9999K\(aq)
+True
+>>> ind_pan(\(aqABC5d7896B\(aq)
+ValidationFailure(func=pan, args={\(aqvalue\(aq: \(aqABC5d7896B\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- PAN card number string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid PAN card number.
+(ValidationError): If \fIvalue\fP is an invalid PAN card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS iban
+.INDENT 0.0
+.TP
+.B validators.iban.iban(value:  str, /)
+Return whether or not given value is a valid IBAN code.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> iban(\(aqDE29100500001061045672\(aq)
+# Output: True
+>>> iban(\(aq123456\(aq)
+# Output: ValidationError(func=iban, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- IBAN string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid IBAN code.
+(ValidationError): If \fIvalue\fP is an invalid IBAN code.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS ip_address
+.INDENT 0.0
+.TP
+.B validators.ip_address.ipv4(value:  str, /, *, cidr:  bool  =  True, strict:  bool  =  False, private:  bool  |  None  =  None, host_bit:  bool  =  True)
+Returns whether a given value is a valid IPv4 address.
+.sp
+From Python version 3.9.5 leading zeros are no longer tolerated
+and are treated as an error. The initial version of ipv4 validator
+was inspired from [WTForms IPAddress validator][1].
+.sp
+[1]: \fI\%https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ipv4(\(aq123.0.0.7\(aq)
+# Output: True
+>>> ipv4(\(aq1.1.1.1/8\(aq)
+# Output: True
+>>> ipv4(\(aq900.80.70.11\(aq)
+# Output: ValidationError(func=ipv4, args={\(aqvalue\(aq: \(aq900.80.70.11\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- IP address string to validate.
+.IP \(bu 2
+\fBcidr\fP \-\- IP address string may contain CIDR notation.
+.IP \(bu 2
+\fBstrict\fP \-\- IP address string is strictly in CIDR notation.
+.IP \(bu 2
+\fBprivate\fP \-\- IP address is public if \fIFalse\fP, private/local/loopback/broadcast if \fITrue\fP\&.
+.IP \(bu 2
+\fBhost_bit\fP \-\- If \fIFalse\fP and host bits (along with network bits) _are_ set in the supplied
+address, this function raises a validation error. ref [IPv4Network][2].
+[2]: \fI\%https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv4Network\fP
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid IPv4 address.
+(ValidationError): If \fIvalue\fP is an invalid IPv4 address.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.ip_address.ipv6(value:  str, /, *, cidr:  bool  =  True, strict:  bool  =  False, host_bit:  bool  =  True)
+Returns if a given value is a valid IPv6 address.
+.sp
+Including IPv4\-mapped IPv6 addresses. The initial version of ipv6 validator
+was inspired from [WTForms IPAddress validator][1].
+.sp
+[1]: \fI\%https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ipv6(\(aq::ffff:192.0.2.128\(aq)
+# Output: True
+>>> ipv6(\(aq::1/128\(aq)
+# Output: True
+>>> ipv6(\(aqabc.0.0.1\(aq)
+# Output: ValidationError(func=ipv6, args={\(aqvalue\(aq: \(aqabc.0.0.1\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- IP address string to validate.
+.IP \(bu 2
+\fBcidr\fP \-\- IP address string may contain CIDR annotation.
+.IP \(bu 2
+\fBstrict\fP \-\- IP address string is strictly in CIDR notation.
+.IP \(bu 2
+\fBhost_bit\fP \-\- If \fIFalse\fP and host bits (along with network bits) _are_ set in the supplied
+address, this function raises a validation error. ref [IPv6Network][2].
+[2]: \fI\%https://docs.python.org/3/library/ipaddress.html#ipaddress.IPv6Network\fP
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid IPv6 address.
+(ValidationError): If \fIvalue\fP is an invalid IPv6 address.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS length
+.INDENT 0.0
+.TP
+.B validators.length.length(value:  str, /, *, min_val:  int  |  None  =  None, max_val:  int  |  None  =  None)
+Return whether or not the length of given string is within a specified range.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> length(\(aqsomething\(aq, min_val=2)
+# Output: True
+>>> length(\(aqsomething\(aq, min_val=9, max_val=9)
+# Output: True
+>>> length(\(aqsomething\(aq, max_val=5)
+# Output: ValidationError(func=length, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- The string to validate.
+.IP \(bu 2
+\fBmin_val\fP \-\- The minimum required length of the string. If not provided,
+minimum length will not be checked.
+.IP \(bu 2
+\fBmax_val\fP \-\- The maximum length of the string. If not provided,
+maximum length will not be checked.
+.UNINDENT
+.TP
+.B Returns
+If \fIlen(value)\fP is in between the given conditions.
+(ValidationError): If \fIlen(value)\fP is not in between the given conditions.
+.TP
+.B Return type
+(Literal[True])
+.TP
+.B Raises
+\fB(\fP\fBValueError\fP\fB)\fP \-\- If either \fImin_val\fP or \fImax_val\fP is negative.
+.UNINDENT
+.UNINDENT
+.SS mac_address
+.INDENT 0.0
+.TP
+.B validators.mac_address.mac_address(value:  str, /)
+Return whether or not given value is a valid MAC address.
+.sp
+This validator is based on [WTForms MacAddress validator][1].
+.sp
+[1]: \fI\%https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L482\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> mac_address(\(aq01:23:45:67:ab:CD\(aq)
+# Output: True
+>>> mac_address(\(aq00:00:00:00:00\(aq)
+# Output: ValidationError(func=mac_address, args={\(aqvalue\(aq: \(aq00:00:00:00:00\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- MAC address string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid MAC address.
+(ValidationError): If \fIvalue\fP is an invalid MAC address.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS slug
+.INDENT 0.0
+.TP
+.B validators.slug.slug(value:  str, /)
+Validate whether or not given value is valid slug.
+.sp
+Valid slug can contain only lowercase alphanumeric characters and hyphens.
+It starts and ends with these lowercase alphanumeric characters.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> slug(\(aqmy\-slug\-2134\(aq)
+# Output: True
+>>> slug(\(aqmy.slug\(aq)
+# Output: ValidationError(func=slug, args={\(aqvalue\(aq: \(aqmy.slug\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Slug string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid slug.
+(ValidationError): If \fIvalue\fP is an invalid slug.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS url
+.INDENT 0.0
+.TP
+.B validators.url.url(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, simple_host:  bool  =  False, strict_query:  bool  =  True, consider_tld:  bool  =  False, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+Return whether or not given value is a valid URL.
+.sp
+This validator was originally inspired from [URL validator of dperini][1].
+The following diagram is from [urlly][2]:
+.INDENT 7.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+  foo://admin:hunter1@example.com:8042/over/there?name=ferret#nose
+  \e_/   \e___/ \e_____/ \e_________/ \e__/\e_________/ \e_________/ \e__/
+   |      |       |       |        |       |          |         |
+scheme username password hostname port    path      query    fragment
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+[1]: \fI\%https://gist.github.com/dperini/729294\fP
+[2]: \fI\%https://github.com/treeform/urlly\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> url(\(aqhttp://duck.com\(aq)
+# Output: True
+>>> url(\(aqftp://foobar.dk\(aq)
+# Output: True
+>>> url(\(aqhttp://10.0.0.1\(aq)
+# Output: True
+>>> url(\(aqhttp://example.com/\(dq>user@example.com\(aq)
+# Output: ValidationError(func=url, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+.INDENT 7.0
+.IP \(bu 2
+\fBvalue\fP \-\- URL string to validate.
+.IP \(bu 2
+\fBskip_ipv6_addr\fP \-\- When URL string cannot contain an IPv6 address.
+.IP \(bu 2
+\fBskip_ipv4_addr\fP \-\- When URL string cannot contain an IPv4 address.
+.IP \(bu 2
+\fBmay_have_port\fP \-\- URL string may contain port number.
+.IP \(bu 2
+\fBsimple_host\fP \-\- URL string maybe only hyphens and alpha\-numerals.
+.IP \(bu 2
+\fBstrict_query\fP \-\- Fail validation on query string parsing error.
+.IP \(bu 2
+\fBconsider_tld\fP \-\- Restrict domain to TLDs allowed by IANA.
+.IP \(bu 2
+\fBprivate\fP \-\- Embedded IP address is public if \fIFalse\fP, private/local if \fITrue\fP\&.
+.IP \(bu 2
+\fBrfc_1034\fP \-\- Allow trailing dot in domain/host name.
+Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
+.IP \(bu 2
+\fBrfc_2782\fP \-\- Domain/Host name is of type service record.
+Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
+.UNINDENT
+.TP
+.B Returns
+If \fIvalue\fP is a valid url.
+(ValidationError): If \fIvalue\fP is an invalid url.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SS utils
+.INDENT 0.0
+.TP
+.B validators.utils.ValidationError(function:  Callable[[\&...],  Any], arg_dict:  Dict[str,  Any], message:  str  =  \(aq\(aq)
+Exception class when validation failure occurs.
+.UNINDENT
+.INDENT 0.0
+.TP
+.B validators.utils.validator(func:  Callable[[\&...],  Any])
+A decorator that makes given function validator.
+.sp
+Whenever the given \fIfunc\fP returns \fIFalse\fP this
+decorator returns \fIValidationError\fP object.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> @validator
+\&... def even(value):
+\&...     return not (value % 2)
+>>> even(4)
+# Output: True
+>>> even(5)
+# Output: ValidationError(func=even, args={\(aqvalue\(aq: 5})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBfunc\fP \-\- Function which is to be decorated.
+.TP
+.B Returns
+A decorator which returns either \fIValidationError\fP
+or \fILiteral[True]\fP\&.
+.TP
+.B Return type
+(Callable[\&..., ValidationError | Literal[True]])
+.TP
+.B Raises
+\fB(\fP\fBValidationError\fP\fB)\fP \-\- If \fIr_ve\fP or \fIRAISE_VALIDATION_ERROR\fP is \fITrue\fP
+.UNINDENT
+.UNINDENT
+.SS uuid
+.INDENT 0.0
+.TP
+.B validators.uuid.uuid(value:  str  |  UUID, /)
+Return whether or not given value is a valid UUID\-v4 string.
+.sp
+This validator is based on [WTForms UUID validator][1].
+.sp
+[1]: \fI\%https://github.com/wtforms/wtforms/blob/master/src/wtforms/validators.py#L539\fP
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> uuid(\(aq2bc1c94f\-0deb\-43e9\-92a1\-4775189ec9f8\(aq)
+# Output: True
+>>> uuid(\(aq2bc1c94f 0deb\-43e9\-92a1\-4775189ec9f8\(aq)
+# Output: ValidationError(func=uuid, ...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- UUID string or object to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid UUID.
+(ValidationError): If \fIvalue\fP is an invalid UUID.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.SH AUTHOR
+Konsta Vesterinen
+.SH COPYRIGHT
+2013 - 2024, Konsta Vesterinen
+.\" Generated by docutils manpage writer.
+.

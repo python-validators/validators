@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        path.icon-fill {
+            fill: white;
+        }
+
+        @media (prefers-color-scheme: light) {
+            path.icon-fill {
+                fill: black;
+            }
+        }
+    </style>
+    <path
+        d="M26.6667 42.666L13.3333 29.3327L17.0933 25.546L26.6667 35.1194L46.9067 14.8793L50.6667 18.666M50.6667 2.66602H13.3333C10.3733 2.66602 8 5.03935 8 7.99935V42.4794C8 44.3194 8.93333 45.946 10.3467 46.906L32 61.3327L53.6267 46.906C55.04 45.946 56 44.3194 56 42.4794V7.99935C56 6.58486 55.4381 5.22831 54.4379 4.22811C53.4377 3.22792 52.0812 2.66602 50.6667 2.66602Z"
+        class="icon-fill" />
+</svg>
