@@ -95,6 +95,30 @@ def sha256(value: str, /):
 
 
 @validator
+def sha384(value: str, /):
+    """Return whether or not given value is a valid SHA384 hash.
+
+    Examples:
+        >>> sha384(
+        ...     'cb00753f45a35e8bb5a03d699ac65007272c32ab0eded163'
+        ...     '1a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7'
+        ... )
+        # Output: True
+        >>> sha384('900zz11')
+        # Output: ValidationError(func=sha384, args={'value': '900zz11'})
+
+    Args:
+        value:
+            SHA384 string to validate.
+
+    Returns:
+        (Literal[True]): If `value` is a valid SHA384 hash.
+        (ValidationError): If `value` is an invalid SHA384 hash.
+    """
+    return re.match(r"^[0-9a-f]{96}$", value, re.IGNORECASE) if value else False
+
+
+@validator
 def sha512(value: str, /):
     """Return whether or not given value is a valid SHA512 hash.
 

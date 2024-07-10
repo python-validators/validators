@@ -10,7 +10,7 @@ from .domain import domain
 from .email import email
 from .encoding import base16, base32, base58, base64
 from .finance import cusip, isin, sedol
-from .hashes import md5, sha1, sha224, sha256, sha512
+from .hashes import md5, sha1, sha224, sha256, sha384, sha512
 from .hostname import hostname
 from .i18n import (
     es_cif,
@@ -73,6 +73,7 @@ __all__ = (
     "sha1",
     "sha224",
     "sha256",
+    "sha384",
     "sha512",
     # ...
     "hostname",
@@ -107,4 +108,4 @@ __all__ = (
     "validator",
 )
 
-__version__ = "0.31.0"
+__version__ = "0.32.0"

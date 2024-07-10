@@ -4,7 +4,7 @@
 import pytest
 
 # local
-from validators import ValidationError, base58, base64, md5, sha1, sha224, sha256, sha512
+from validators import ValidationError, base58, base64, md5, sha1, sha224, sha256, sha384, sha512
 
 # ==> base58 <== #
 
@@ -158,7 +158,37 @@ def test_returns_failed_validation_on_invalid_sha256(value: str):
     assert isinstance(sha256(value), ValidationError)
 
 
-# ==> sha256 <== #
+# ==> sha384 <== #
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "cb00753f45a35e8bb5a03d699ac65007272c32ab0eded1631a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7",
+        "CB00753F45A35E8BB5A03D699AC65007272C32AB0EDED1631A8B605A43FF5BED8086072BA1E7CC2358BAECA134C825A7",
+        "bfd76c0ebbd006fee583410547c1887b0292be76d582d96c242d2a792723e3fd6fd061f9d5cfd13b8f961358e6adba4a",
+        "F21EF1F8DBF806106813C8504AF864D8D9BFDFA8D67FA9B7DFF1C5B61C2584394A05897C4F157CEEE0E8FBC29205BB8B",
+    ],
+)
+def test_returns_true_on_valid_sha384(value: str):
+    """Test returns true on valid sha384."""
+    assert sha384(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "zb00753f45a35e8bb5a03d699ac65007272c32ab0eded1631a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7",
+        "c753f45a35e8bb5a03d699ac65007272c32ab0eded1631a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7",
+        "cb00aaaa753f45a35e8bb5a03d699ac65007272c32ab0eded1631a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7",
+    ],
+)
+def test_returns_failed_validation_on_invalid_sha384(value: str):
+    """Test returns failed validation on invalid sha384."""
+    assert isinstance(sha384(value), ValidationError)
+
+
+# ==> sha512 <== #
 
 
 @pytest.mark.parametrize(
