@@ -9,6 +9,24 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.33.0 (2024-07-14)
+
+_**Breaking**_
+
+> No breaking changes were introduced in this version.
+
+_**Features**_
+
+- feat: add validator for bsc addresses by @msamsami in [#388](https://github.com/python-validators/validators/pull/388)
+
+_**Maintenance**_
+
+- maint: bump version by @msamsami in [#388](https://github.com/python-validators/validators/pull/388)
+
+**Full Changelog**: [`0.32.0...0.33.0`](https://github.com/python-validators/validators/compare/0.32.0...0.33.0)
+
+---
+
 ## 0.32.0 (2024-07-10)
 
 _**Breaking**_
