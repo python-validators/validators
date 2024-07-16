@@ -6,7 +6,7 @@ from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay
 from .country import calling_code, country_code, currency
 from .cron import cron
 from .crypto_addresses import bsc_address, btc_address, eth_address, trx_address
-from .domain import domain
+from .domain import domain, load_iana_tlds_to_memory
 from .email import email
 from .encoding import base16, base32, base58, base64
 from .finance import cusip, isin, sedol
@@ -58,6 +58,7 @@ __all__ = (
     "cron",
     # ...
     "domain",
+    "load_iana_tlds_to_memory",
     # ...
     "email",
     # encodings

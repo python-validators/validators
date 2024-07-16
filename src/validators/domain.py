@@ -3,18 +3,34 @@
 # standard
 from pathlib import Path
 import re
+from typing import Optional, Set
 
 # local
 from .utils import validator
 
 
-def _iana_tld():
-    """Load IANA TLDs as a Generator."""
-    # source: https://data.iana.org/TLD/tlds-alpha-by-domain.txt
-    with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
-        _ = next(tld_f)  # ignore the first line
-        for line in tld_f:
-            yield line.strip()
+class _TLDList:
+
+    preloaded: Optional[Set[str]] = None
+
+    @classmethod
+    def read_tlds_from_file(cls):
+        with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
+            _ = next(tld_f)  # ignore the first line
+            for line in tld_f:
+                yield line.strip()
+
+    @classmethod
+    def tlds(cls):
+        if cls.preloaded:
+            return cls.preloaded
+
+        return cls.read_tlds_from_file()
+
+
+def load_iana_tlds_to_memory():
+    """Loads the IANA TLD list into memory, for faster lookup with ``consider_tld=True``."""
+    _TLDList.preloaded = set(_TLDList.read_tlds_from_file())
 
 
 @validator
@@ -56,7 +72,7 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and value.rstrip(".").rsplit(".", 1)[-1].upper() not in _iana_tld():
+    if consider_tld and value.rstrip(".").rsplit(".", 1)[-1].upper() not in _TLDList.tlds():
         return False
 
     try:
