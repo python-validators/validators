@@ -1,36 +1,37 @@
 """Domain."""
 
 # standard
+import os
 from pathlib import Path
 import re
-from typing import Optional, Set
+from typing import Generator, Optional, Set, Union
 
 # local
 from .utils import validator
 
 
 class _TLDList:
+    """Read IANA TLDs, and optionally cache them."""
 
-    preloaded: Optional[Set[str]] = None
+    cache: Optional[Set[str]] = None
 
     @classmethod
-    def read_tlds_from_file(cls):
+    def read_tlds_from_file(cls) -> Generator[str, None, None]:
+        # Try the most common TLDs before opening the file
+        yield from ("COM", "ORG", "RU", "DE", "NET", "BR", "UK", "JP", "FR", "IT")
         with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
             _ = next(tld_f)  # ignore the first line
             for line in tld_f:
                 yield line.strip()
 
     @classmethod
-    def tlds(cls):
-        if cls.preloaded:
-            return cls.preloaded
+    def tlds(cls) -> Union[Set[str], Generator[str, None, None]]:
+        if not cls.cache and os.environ.get("PYVLD_LOAD_TLD_TO_MEMORY") == "True":
+            cls.cache = set(_TLDList.read_tlds_from_file())
+        if cls.cache:
+            return cls.cache
 
         return cls.read_tlds_from_file()
-
-
-def load_iana_tlds_to_memory():
-    """Loads the IANA TLD list into memory, for faster lookup with ``consider_tld=True``."""
-    _TLDList.preloaded = set(_TLDList.read_tlds_from_file())
 
 
 @validator
