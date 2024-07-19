@@ -1,20 +1,39 @@
 """Domain."""
 
 # standard
+from os import environ
 from pathlib import Path
 import re
+from typing import Optional, Set
 
 # local
 from .utils import validator
 
 
-def _iana_tld():
-    """Load IANA TLDs as a Generator."""
-    # source: https://data.iana.org/TLD/tlds-alpha-by-domain.txt
-    with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
-        _ = next(tld_f)  # ignore the first line
-        for line in tld_f:
-            yield line.strip()
+class _IanaTLD:
+    """Read IANA TLDs, and optionally cache them."""
+
+    _full_cache: Optional[Set[str]] = None
+    # source: https://www.statista.com/statistics/265677
+    _popular_cache = {"COM", "ORG", "RU", "DE", "NET", "BR", "UK", "JP", "FR", "IT"}
+
+    @classmethod
+    def _retrieve(cls):
+        with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
+            _ = next(tld_f)  # ignore the first line
+            for line in tld_f:
+                yield line.strip()
+
+    @classmethod
+    def check(cls, tld: str):
+        if tld in cls._popular_cache:
+            return True
+        if cls._full_cache is None:
+            if environ.get("PYVLD_CACHE_TLD") == "True":
+                cls._full_cache = set(cls._retrieve())
+            else:
+                return tld in cls._retrieve()
+        return tld in cls._full_cache
 
 
 @validator
@@ -56,7 +75,7 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and value.rstrip(".").rsplit(".", 1)[-1].upper() not in _iana_tld():
+    if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
         return False
 
     try:
