@@ -12,6 +12,11 @@ def _char_value(char: str):
     return char if char.isdigit() else str(10 + ord(char) - ord("A"))
 
 
+def _filter_whitespace(value: str):
+    """Remove all kind of unicode whitespace from the string."""
+    return "".join(filter(lambda x: not x.isspace(), value))
+
+
 def _mod_check(value: str):
     """Check if the value string passes the mod97-test."""
     # move country code and check numbers to end
@@ -37,8 +42,12 @@ def iban(value: str, /):
         (Literal[True]): If `value` is a valid IBAN code.
         (ValidationError): If `value` is an invalid IBAN code.
     """
+    filtered_value = _filter_whitespace(value)
     return (
-        (re.match(r"^[a-z]{2}[0-9]{2}[a-z0-9]{11,30}$", value, re.IGNORECASE) and _mod_check(value))
-        if value
+        (
+            re.match(r"^[a-z]{2}[0-9]{2}[a-z0-9]{11,30}$", filtered_value, re.IGNORECASE)
+            and _mod_check(filtered_value)
+        )
+        if filtered_value
         else False
     )
