@@ -1,37 +1,39 @@
 """Domain."""
 
 # standard
-import os
+from os import environ
 from pathlib import Path
 import re
-from typing import Generator, Optional, Set, Union
+from typing import Optional, Set
 
 # local
 from .utils import validator
 
 
-class _TLDList:
+class _IanaTLD:
     """Read IANA TLDs, and optionally cache them."""
 
-    cache: Optional[Set[str]] = None
+    _full_cache: Optional[Set[str]] = None
+    # source: https://www.statista.com/statistics/265677
+    _popular_cache = {"COM", "ORG", "RU", "DE", "NET", "BR", "UK", "JP", "FR", "IT"}
 
     @classmethod
-    def read_tlds_from_file(cls) -> Generator[str, None, None]:
-        # Try the most common TLDs before opening the file
-        yield from ("COM", "ORG", "RU", "DE", "NET", "BR", "UK", "JP", "FR", "IT")
+    def _retrieve(cls):
         with Path(__file__).parent.joinpath("_tld.txt").open() as tld_f:
             _ = next(tld_f)  # ignore the first line
             for line in tld_f:
                 yield line.strip()
 
     @classmethod
-    def tlds(cls) -> Union[Set[str], Generator[str, None, None]]:
-        if not cls.cache and os.environ.get("PYVLD_LOAD_TLD_TO_MEMORY") == "True":
-            cls.cache = set(_TLDList.read_tlds_from_file())
-        if cls.cache:
-            return cls.cache
-
-        return cls.read_tlds_from_file()
+    def check(cls, tld: str):
+        if tld in cls._popular_cache:
+            return True
+        if not cls._full_cache:
+            if environ.get("PYVLD_CACHE_TLD", "False") == "True":
+                cls._full_cache = set(cls._retrieve())
+            else:
+                return tld in cls._retrieve()
+        return tld in cls._full_cache
 
 
 @validator
@@ -73,7 +75,7 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and value.rstrip(".").rsplit(".", 1)[-1].upper() not in _TLDList.tlds():
+    if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
         return False
 
     try:
