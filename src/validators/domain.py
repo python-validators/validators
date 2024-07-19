@@ -29,7 +29,7 @@ class _IanaTLD:
         if tld in cls._popular_cache:
             return True
         if cls._full_cache is None:
-            if environ.get("PYVLD_CACHE_TLD", "False") == "True":
+            if environ.get("PYVLD_CACHE_TLD") == "True":
                 cls._full_cache = set(cls._retrieve())
             else:
                 return tld in cls._retrieve()
