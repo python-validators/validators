@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Jul 08, 2024" "0.31.0" "validators"
+.TH "VALIDATORS" "1" "Jun 17, 2024" "0.28.3" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -213,6 +213,39 @@ If \fIvalue\fP is in between the given conditions.
 If neither \fImin_val\fP nor \fImax_val\fP is provided, result will always be \fITrue\fP\&.
 .UNINDENT
 .UNINDENT
+.UNINDENT
+.UNINDENT
+.SS btc_address
+.INDENT 0.0
+.TP
+.B validators.btc_address.btc_address(value:  str, /)
+Return whether or not given value is a valid bitcoin address.
+.sp
+Full validation is implemented for P2PKH and P2SH addresses.
+For segwit addresses a regexp is used to provide a reasonable
+estimate on whether the address is valid.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> btc_address(\(aq3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69\(aq)
+# Output: True
+>>> btc_address(\(aq1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2\(aq)
+# Output: ValidationError(func=btc_address, args=...)
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Bitcoin address string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid bitcoin address.
+(ValidationError): If \fIvalue\fP is an invalid bitcoin address.
+.TP
+.B Return type
+(Literal[True])
 .UNINDENT
 .UNINDENT
 .SS card
@@ -589,99 +622,6 @@ If \fIvalue\fP is a valid cron string.
 (Literal[True])
 .UNINDENT
 .UNINDENT
-.SS crypto_addresses
-.INDENT 0.0
-.TP
-.B validators.crypto_addresses.btc_address(value:  str, /)
-Return whether or not given value is a valid bitcoin address.
-.sp
-Full validation is implemented for P2PKH and P2SH addresses.
-For segwit addresses a regexp is used to provide a reasonable
-estimate on whether the address is valid.
-.sp
-Examples
-.sp
-.nf
-.ft C
->>> btc_address(\(aq3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69\(aq)
-# Output: True
->>> btc_address(\(aq1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2\(aq)
-# Output: ValidationError(func=btc_address, args=...)
-.ft P
-.fi
-.INDENT 7.0
-.TP
-.B Parameters
-\fBvalue\fP \-\- Bitcoin address string to validate.
-.TP
-.B Returns
-If \fIvalue\fP is a valid bitcoin address.
-(ValidationError): If \fIvalue\fP is an invalid bitcoin address.
-.TP
-.B Return type
-(Literal[True])
-.UNINDENT
-.UNINDENT
-.INDENT 0.0
-.TP
-.B validators.crypto_addresses.eth_address(value:  str, /)
-Return whether or not given value is a valid ethereum address.
-.sp
-Full validation is implemented for ERC20 addresses.
-.sp
-Examples
-.sp
-.nf
-.ft C
->>> eth_address(\(aq0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598\(aq)
-# Output: True
->>> eth_address(\(aq0x8Ba1f109551bD432803012645Ac136ddd64DBa72\(aq)
-# Output: ValidationError(func=eth_address, args=...)
-.ft P
-.fi
-.INDENT 7.0
-.TP
-.B Parameters
-\fBvalue\fP \-\- Ethereum address string to validate.
-.TP
-.B Returns
-If \fIvalue\fP is a valid ethereum address.
-(ValidationError): If \fIvalue\fP is an invalid ethereum address.
-.TP
-.B Return type
-(Literal[True])
-.UNINDENT
-.UNINDENT
-.INDENT 0.0
-.TP
-.B validators.crypto_addresses.trx_address(value:  str, /)
-Return whether or not given value is a valid tron address.
-.sp
-Full validation is implemented for TRC20 tron addresses.
-.sp
-Examples
-.sp
-.nf
-.ft C
->>> trx_address(\(aqTLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38\(aq)
-# Output: True
->>> trx_address(\(aqTR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd\(aq)
-# Output: ValidationError(func=trx_address, args=...)
-.ft P
-.fi
-.INDENT 7.0
-.TP
-.B Parameters
-\fBvalue\fP \-\- Tron address string to validate.
-.TP
-.B Returns
-If \fIvalue\fP is a valid tron address.
-(ValidationError): If \fIvalue\fP is an invalid tron address.
-.TP
-.B Return type
-(Literal[True])
-.UNINDENT
-.UNINDENT
 .SS domain
 .INDENT 0.0
 .TP
@@ -782,62 +722,6 @@ If \fIvalue\fP is a valid eMail.
 .UNINDENT
 .UNINDENT
 .SS encoding
-.INDENT 0.0
-.TP
-.B validators.encoding.base16(value:  str, /)
-Return whether or not given value is a valid base16 encoding.
-.sp
-Examples
-.sp
-.nf
-.ft C
->>> base16(\(aqa3f4b2\(aq)
-# Output: True
->>> base16(\(aqa3f4Z1\(aq)
-# Output: ValidationError(func=base16, args={\(aqvalue\(aq: \(aqa3f4Z1\(aq})
-.ft P
-.fi
-.INDENT 7.0
-.TP
-.B Parameters
-\fBvalue\fP \-\- base16 string to validate.
-.TP
-.B Returns
-If \fIvalue\fP is a valid base16 encoding.
-(ValidationError): If \fIvalue\fP is an invalid base16 encoding.
-.TP
-.B Return type
-(Literal[True])
-.UNINDENT
-.UNINDENT
-.INDENT 0.0
-.TP
-.B validators.encoding.base32(value:  str, /)
-Return whether or not given value is a valid base32 encoding.
-.sp
-Examples
-.sp
-.nf
-.ft C
->>> base32(\(aqMFZWIZLTOQ======\(aq)
-# Output: True
->>> base32(\(aqMfZW3zLT9Q======\(aq)
-# Output: ValidationError(func=base32, args={\(aqvalue\(aq: \(aqMfZW3zLT9Q======\(aq})
-.ft P
-.fi
-.INDENT 7.0
-.TP
-.B Parameters
-\fBvalue\fP \-\- base32 string to validate.
-.TP
-.B Returns
-If \fIvalue\fP is a valid base32 encoding.
-(ValidationError): If \fIvalue\fP is an invalid base32 encoding.
-.TP
-.B Return type
-(Literal[True])
-.UNINDENT
-.UNINDENT
 .INDENT 0.0
 .TP
 .B validators.encoding.base58(value:  str, /)
