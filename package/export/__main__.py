@@ -73,7 +73,7 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n   :maxdepth: 2"
             + "\n   :caption: Quick Start:"
             + "\n   :glob:\n"
-            + "\n   install_and_use"
+            + "\n   install_config_use"
             + "\n\n.. toctree::"
             + "\n   :hidden:"
             + "\n   :maxdepth: 2"
@@ -82,9 +82,9 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
             + "\n   api/*\n"
         )
 
-    with open(source / "docs/install_and_use.rst", "wt") as iau_f:
+    with open(source / "docs/install_config_use.rst", "wt") as iau_f:
         iau_f.write(
-            convert_file(source_file=source / "docs/install_and_use.md", format="md", to="rst")
+            convert_file(source_file=source / "docs/install_config_use.md", format="md", to="rst")
             .replace("\r\n", "\n")  # remove carriage return in windows
             .replace("’", "'")
         )

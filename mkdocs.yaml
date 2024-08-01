@@ -66,8 +66,8 @@ extra:
 copyright: Copyright &copy; 2013 - 2024 Konsta Vesterinen
 
 nav:
-  - Home: index.md
-  - Install and Use: install_and_use.md
+  - Quick Start: index.md
+  - Install, Configure and Use: install_config_use.md
   - API:
       - api/between.md
       - api/crypto_addresses.md

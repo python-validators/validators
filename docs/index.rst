@@ -71,7 +71,7 @@ Resources
    :caption: Quick Start:
    :glob:
 
-   install_and_use
+   install_config_use
 
 .. toctree::
    :hidden:
