@@ -33,7 +33,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.8.6"
 dynamic = ["version"]
 dependencies = []
 
@@ -59,24 +59,24 @@ docs-offline = [
     "myst-parser>=3.0.1",
     "pypandoc-binary>=1.13",
     "sphinx>=7.1.2",
-    "furo>=2024.5.6",
+    "furo>=2024.7.18",
 ]
 docs-online = [
     "mkdocs>=1.6.0",
     "mkdocs-git-revision-date-localized-plugin>=1.2.6",
-    "mkdocs-material>=9.5.27",
-    "mkdocstrings[python]>=0.25.1",
+    "mkdocs-material>=9.5.30",
+    "mkdocstrings[python]>=0.25.2",
     "mike>=2.1.2",
 ]
 package = ["build>=1.2.1"]
-runner = ["tox>=4.15.1"]
+runner = ["tox>=4.16.0"]
 sast = ["bandit[toml]>=1.7.9"]
-testing = ["pytest>=8.2.2"]
+testing = ["pytest>=8.3.2"]
 tooling = [
     "black>=24.4.2",
-    "ruff>=0.5.0",
-    "pyright>=1.1.369",
-    "pytest>=8.2.2",
+    "ruff>=0.5.5",
+    "pyright>=1.1.374",
+    "pytest>=8.3.2",
     "pypandoc-binary>=1.13", # helps with type checking
 ]
 
