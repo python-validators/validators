@@ -39,7 +39,7 @@ def _path_regex():
     )
 
 
-def _validate_scheme(value: str):
+def _validate_scheme(value: str, extra_schemes: set[str] = set()):
     """Validate scheme."""
     # More schemes will be considered later.
     return (
@@ -49,7 +49,7 @@ def _validate_scheme(value: str):
             "ftp", "ftps", "git", "http", "https",
             "irc", "rtmp", "rtmps", "rtsp", "sftp",
             "ssh", "telnet",
-        }
+        } | extra_schemes
         # fmt: on
         if value
         else False
@@ -164,6 +164,7 @@ def url(
     private: Optional[bool] = None,  # only for ip-addresses
     rfc_1034: bool = False,
     rfc_2782: bool = False,
+    extra_schemes: set[str] = set()
 ):
     r"""Return whether or not given value is a valid URL.
 
@@ -228,7 +229,7 @@ def url(
         return False
 
     return (
-        _validate_scheme(scheme)
+        _validate_scheme(scheme, extra_schemes=extra_schemes)
         and _validate_netloc(
             netloc,
             skip_ipv6_addr,
