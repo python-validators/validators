@@ -1,0 +1,656 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="iban" href="iban.html" /><link rel="prev" title="hostname" href="hostname.html" />
+
+    <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
+        <title>i18n - validators 0.33.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">validators 0.33.0 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">validators 0.33.0 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Quick Start:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install_and_use.html">Install and Use</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="between.html">between</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card.html">card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="country.html">country</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cron.html">cron</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crypto_addresses.html">crypto_addresses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="domain.html">domain</a></li>
+<li class="toctree-l1"><a class="reference internal" href="email.html">email</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finance.html">finance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hashes.html">hashes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hostname.html">hostname</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">i18n</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iban.html">iban</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ip_address.html">ip_address</a></li>
+<li class="toctree-l1"><a class="reference internal" href="length.html">length</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mac_address.html">mac_address</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slug.html">slug</a></li>
+<li class="toctree-l1"><a class="reference internal" href="url.html">url</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uuid.html">uuid</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="../_sources/api/i18n.rst.txt" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div>
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-validators.i18n">
+<span id="i18n"></span><h1>i18n<a class="headerlink" href="#module-validators.i18n" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.es_cif">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">es_cif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.es_cif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Spanish CIF.</p>
+<p>Each company in Spain prior to 2008 had a distinct CIF and has been
+discontinued. For more information see [wikipedia.org/cif][1].</p>
+<p>The new replacement is to use NIF for absolutely everything. The issue is
+that there are “types” of NIFs now: company, person [citizen or resident]
+all distinguished by the first character of the DOI. For this reason we
+will continue to call CIFs NIFs, that are used for companies.</p>
+<p>This validator is based on [generadordni.es][2].</p>
+<p>[1]: <a class="reference external" href="https://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal">https://es.wikipedia.org/wiki/C%C3%B3digo_de_identificaci%C3%B3n_fiscal</a>
+[2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_cif</span><span class="p">(</span><span class="s1">&#39;B25162520&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">es_cif</span><span class="p">(</span><span class="s1">&#39;B25162529&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=es_cif, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – DOI string which is to be validated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid DOI string.
+(ValidationError): If <cite>value</cite> is an invalid DOI string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.es_doi">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">es_doi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.es_doi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Spanish DOI.</p>
+<p>A DOI in spain is all NIF / CIF / NIE / DNI – a digital ID.
+For more information see [wikipedia.org/doi][1]. This validator
+is based on [generadordni.es][2].</p>
+<p>[1]: <a class="reference external" href="https://es.wikipedia.org/wiki/Identificador_de_objeto_digital">https://es.wikipedia.org/wiki/Identificador_de_objeto_digital</a>
+[2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_doi</span><span class="p">(</span><span class="s1">&#39;X0095892M&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">es_doi</span><span class="p">(</span><span class="s1">&#39;X0095892X&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=es_doi, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – DOI string which is to be validated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid DOI string.
+(ValidationError): If <cite>value</cite> is an invalid DOI string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.es_nie">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">es_nie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.es_nie" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Spanish NIE.</p>
+<p>The NIE is a tax identification number in Spain, known in Spanish
+as the NIE, or more formally the Número de identidad de extranjero.
+For more information see [wikipedia.org/nie][1]. This validator
+is based on [generadordni.es][2].</p>
+<p>[1]: <a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_de_identidad_de_extranjero">https://es.wikipedia.org/wiki/N%C3%BAmero_de_identidad_de_extranjero</a>
+[2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_nie</span><span class="p">(</span><span class="s1">&#39;X0095892M&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">es_nie</span><span class="p">(</span><span class="s1">&#39;X0095892X&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=es_nie, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – DOI string which is to be validated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid DOI string.
+(ValidationError): If <cite>value</cite> is an invalid DOI string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.es_nif">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">es_nif</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.es_nif" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Spanish NIF.</p>
+<p>Each entity, be it person or company in Spain has a distinct NIF. Since
+we’ve designated CIF to be a company NIF, this NIF is only for person.
+For more information see [wikipedia.org/nif][1]. This validator
+is based on [generadordni.es][2].</p>
+<p>[1]: <a class="reference external" href="https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal">https://es.wikipedia.org/wiki/N%C3%BAmero_de_identificaci%C3%B3n_fiscal</a>
+[2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_nif</span><span class="p">(</span><span class="s1">&#39;26643189N&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">es_nif</span><span class="p">(</span><span class="s1">&#39;26643189X&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=es_nif, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – DOI string which is to be validated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid DOI string.
+(ValidationError): If <cite>value</cite> is an invalid DOI string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.fi_business_id">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">fi_business_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.fi_business_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Finnish Business ID.</p>
+<p>Each company in Finland has a distinct business id. For more
+information see [Finnish Trade Register][1]</p>
+<p>[1]: <a class="reference external" href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">http://en.wikipedia.org/wiki/Finnish_Trade_Register</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fi_business_id</span><span class="p">(</span><span class="s1">&#39;0112038-9&#39;</span><span class="p">)</span>  <span class="c1"># Fast Monkeys Ltd</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fi_business_id</span><span class="p">(</span><span class="s1">&#39;1234567-8&#39;</span><span class="p">)</span>  <span class="c1"># Bogus ID</span>
+<span class="go"># Output: ValidationError(func=fi_business_id, ...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Business ID string to be validated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid finnish business id.
+(ValidationError): If <cite>value</cite> is an invalid finnish business id.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.fi_ssn">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">fi_ssn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_temporal_ssn</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.fi_ssn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Finnish Social Security Number.</p>
+<p>This validator is based on [django-localflavor-fi][1].</p>
+<p>[1]: <a class="reference external" href="https://github.com/django/django-localflavor-fi/">https://github.com/django/django-localflavor-fi/</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fi_ssn</span><span class="p">(</span><span class="s1">&#39;010101-0101&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fi_ssn</span><span class="p">(</span><span class="s1">&#39;101010-0102&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=fi_ssn, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – Social Security Number to be validated.</p></li>
+<li><p><strong>allow_temporal_ssn</strong> – Whether to accept temporal SSN numbers. Temporal SSN numbers are the
+ones where the serial is in the range [900-999]. By default temporal
+SSN numbers are valid.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid finnish SSN.
+(ValidationError): If <cite>value</cite> is an invalid finnish SSN.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.fr_department">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">fr_department</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.fr_department" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a french department number.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># can be an integer</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;20&quot;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;971&quot;</span><span class="p">)</span>  <span class="c1"># Guadeloupe</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=fr_department, args=...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2A&#39;</span><span class="p">)</span>  <span class="c1"># Corsica</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2B&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2C&#39;</span><span class="p">)</span>
+<span class="go"># Output: ValidationError(func=fr_department, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – French department number to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid french department number.
+(ValidationError): If <cite>value</cite> is an invalid french department number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.fr_ssn">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">fr_ssn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.fr_ssn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a french Social Security Number.</p>
+<p>Each french citizen has a distinct Social Security Number.
+For more information see [French Social Security Number][1] (sadly unavailable in english).</p>
+<p>[1]: <a class="reference external" href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France">https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France</a></p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089 46&#39;</span><span class="p">)</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089&#39;</span><span class="p">)</span>  <span class="c1"># control key is optional</span>
+<span class="go"># Output: True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;3 84 12 76 451 089 46&#39;</span><span class="p">)</span>  <span class="c1"># wrong gender number</span>
+<span class="go"># Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089 47&#39;</span><span class="p">)</span>  <span class="c1"># wrong control key</span>
+<span class="go"># Output: ValidationError(func=fr_ssn, args=...)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – French Social Security Number string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid french Social Security Number.
+(ValidationError): If <cite>value</cite> is an invalid french Social Security Number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.ind_aadhar">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">ind_aadhar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.ind_aadhar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate an indian aadhar card number.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 9834 6015&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 ABVC 2133&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Aadhar card number string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid aadhar card number.
+(ValidationError): If <cite>value</cite> is an invalid aadhar card number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.ind_pan">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">ind_pan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.ind_pan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a pan card number.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABCDE9999K&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABC5d7896B&#39;</span><span class="p">)</span>
+<span class="go">ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – PAN card number string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid PAN card number.
+(ValidationError): If <cite>value</cite> is an invalid PAN card number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="iban.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">iban</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="hostname.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">hostname</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2013 - 2024, Konsta Vesterinen
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">i18n</a><ul>
+<li><a class="reference internal" href="#validators.i18n.es_cif"><code class="docutils literal notranslate"><span class="pre">es_cif()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.es_doi"><code class="docutils literal notranslate"><span class="pre">es_doi()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.es_nie"><code class="docutils literal notranslate"><span class="pre">es_nie()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.es_nif"><code class="docutils literal notranslate"><span class="pre">es_nif()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.fi_business_id"><code class="docutils literal notranslate"><span class="pre">fi_business_id()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.fi_ssn"><code class="docutils literal notranslate"><span class="pre">fi_ssn()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.fr_department"><code class="docutils literal notranslate"><span class="pre">fr_department()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.fr_ssn"><code class="docutils literal notranslate"><span class="pre">fr_ssn()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.ind_aadhar"><code class="docutils literal notranslate"><span class="pre">ind_aadhar()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.ind_pan"><code class="docutils literal notranslate"><span class="pre">ind_pan()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4db030e8"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
+    </body>
+</html>

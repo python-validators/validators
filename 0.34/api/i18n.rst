@@ -1,0 +1,14 @@
+i18n
+----
+
+.. module:: validators.i18n
+.. autofunction:: es_cif
+.. autofunction:: es_doi
+.. autofunction:: es_nie
+.. autofunction:: es_nif
+.. autofunction:: fi_business_id
+.. autofunction:: fi_ssn
+.. autofunction:: fr_department
+.. autofunction:: fr_ssn
+.. autofunction:: ind_aadhar
+.. autofunction:: ind_pan
