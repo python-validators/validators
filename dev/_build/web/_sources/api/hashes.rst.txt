@@ -6,4 +6,5 @@ hashes
 .. autofunction:: sha1
 .. autofunction:: sha224
 .. autofunction:: sha256
+.. autofunction:: sha384
 .. autofunction:: sha512

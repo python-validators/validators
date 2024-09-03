@@ -37,7 +37,12 @@ Resources
 
 .. raw:: html
 
-   <!-- Original docs URL will be restored, once properly versioned docs is ready. -->
+   <!-- Original docs URL will be restored, once properly versioned docs are ready. -->
+
+--------------
+
+   **Python 3.8** `reaches EOL in <https://endoflife.date/python>`__
+   **October 2024.**
 
 .. raw:: html
 
