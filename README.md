@@ -9,6 +9,12 @@ require defining a schema or form. I wanted to create a simple validation
 library where validating a simple value does not require defining a form or a
 schema.
 
+```shell
+pip install validators
+```
+
+Then,
+
 ```python
 >>> import validators
 >>> 
