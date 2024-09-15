@@ -16,6 +16,7 @@ class _IanaTLD:
     _full_cache: Optional[Set[str]] = None
     # source: https://www.statista.com/statistics/265677
     _popular_cache = {"COM", "ORG", "RU", "DE", "NET", "BR", "UK", "JP", "FR", "IT"}
+    _popular_cache.add("ONION")
 
     @classmethod
     def _retrieve(cls):

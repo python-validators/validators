@@ -46,6 +46,7 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
         ("_example.com", True, False, True),
         ("example_.com", True, False, True),
         ("somerandomexample.xn--fiqs8s", True, False, False),
+        ("somerandomexample.onion", True, False, False),
     ],
 )
 def test_returns_true_on_valid_top_level_domain(
