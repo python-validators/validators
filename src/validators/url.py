@@ -144,8 +144,9 @@ def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool
             optional_segments &= True
     if fragment:
         # See RFC3986 Section 3.5 Fragment for allowed characters
+        # Adding "#", see https://github.com/python-validators/validators/issues/403
         optional_segments &= bool(
-            re.fullmatch(r"[0-9a-z?/:@\-._~%!$&'()*+,;=]*", fragment, re.IGNORECASE)
+            re.fullmatch(r"[0-9a-z?/:@\-._~%!$&'()*+,;=#]*", fragment, re.IGNORECASE)
         )
     return optional_segments
 
