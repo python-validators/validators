@@ -7,6 +7,10 @@
 def inn(value: str, /):
     """Return whether or not given value is a valid russian individual tax number.
 
+    This validator is algorithm [1].
+
+    [1]: https://ru.wikipedia.org/wiki/Идентификационный_номер_налогоплательщика
+
     Examples:
         >>> inn('7736050003')
         # Output: True
