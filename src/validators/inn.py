@@ -1,9 +1,9 @@
 """Inn."""
 
-# from .utils import validator
+from .utils import validator
 
 
-# @validator
+@validator
 def inn(value: str):
     """Description"""
     if not value:
