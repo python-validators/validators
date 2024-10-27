@@ -18,6 +18,8 @@ def inn(value: str):
             return (control_number % 10) == digits[-1] if control_number > 9 else control_number == digits[-1]
         # company
         elif len(digits) == 12:
+            weight_coefs1 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 6, 0, 0]
+            weight_coefs2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 0, 0, 0]
             pass
         # error inn
         else:
