@@ -1,9 +1,9 @@
 """Inn."""
 
-# from .utils import validator
+from .utils import validator
 
 
-# @validator
+@validator
 def inn(value: str, /):
     """Return whether or not given value is a valid russian individual tax number.
 
