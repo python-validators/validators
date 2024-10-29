@@ -32,7 +32,6 @@ from .slug import slug
 from .url import url
 from .utils import ValidationError, validator
 from .uuid import uuid
-from .inn import inn
 
 __all__ = (
     # ...
@@ -105,11 +104,9 @@ __all__ = (
     "url",
     # ...
     "uuid",
-    # ...
-    "inn",
     # utils
     "ValidationError",
     "validator",
 )
 
-__version__ = "0.35.0"
+__version__ = "0.34.0"
