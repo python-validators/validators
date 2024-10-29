@@ -1,6 +1,6 @@
 """Inn."""
 
-from .utils import validator
+from src.validators.utils import validator
 
 
 @validator
