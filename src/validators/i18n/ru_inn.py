@@ -4,7 +4,7 @@ from src.validators.utils import validator
 
 
 @validator
-def inn(value: str, /):
+def ru_inn(value: str, /):
     """Return whether or not given value is a valid russian individual tax number.
 
     This validator is algorithm [1].
