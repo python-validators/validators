@@ -48,6 +48,9 @@ def test_returns_true_on_valid_email(value: str):
         ('"test@test"@example.com',),
         # Quoted-string format (CR not allowed)
         ('"\\\012"@here.com',),
+        # Non-quoted space/semicolon not allowed
+        ("stephen smith@example.com",),
+        ("stephen;smith@example.com",),
     ],
 )
 def test_returns_failed_validation_on_invalid_email(value: str):
