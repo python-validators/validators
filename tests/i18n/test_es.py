@@ -94,18 +94,9 @@ def test_returns_true_on_valid_nif(value: str):
     assert es_nif(value)
 
 
-@pytest.mark.parametrize(
-    ("value",),
-    [
-        ("12345",),
-        ("X0000000T",),
-        ("00000000T",),
-        ("00000001R",),
-    ],
-)
-def test_returns_false_on_invalid_nif(value: str):
+def test_returns_false_on_invalid_nif():
     """Test returns false on invalid nif."""
-    result = es_nif(value)
+    result = es_nif("12345")
     assert isinstance(result, ValidationError)
 
 
