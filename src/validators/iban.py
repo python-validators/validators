@@ -25,9 +25,9 @@ def iban(value: str, /):
 
     Examples:
         >>> iban('DE29100500001061045672')
-        # Output: True
+        True
         >>> iban('123456')
-        # Output: ValidationError(func=iban, ...)
+        ValidationError(func=iban, args={'value': '123456'})
 
     Args:
         value:

@@ -245,9 +245,9 @@ def calling_code(value: str, /):
 
     Examples:
         >>> calling_code('+91')
-        # Output: True
+        True
         >>> calling_code('-31')
-        # Output: ValidationError(func=calling_code, args={'value': '-31'})
+        ValidationError(func=calling_code, args={'value': '-31'})
 
     Args:
         value:
@@ -273,15 +273,15 @@ def country_code(value: str, /, *, iso_format: str = "auto", ignore_case: bool =
 
     Examples:
         >>> country_code('GB', iso_format='alpha3')
-        # Output: False
+        ValidationError(func=country_code, args={'value': 'GB', 'iso_format': 'alpha3'})
         >>> country_code('USA')
-        # Output: True
+        True
         >>> country_code('840', iso_format='numeric')
-        # Output: True
+        True
         >>> country_code('iN', iso_format='alpha2')
-        # Output: False
+        ValidationError(func=country_code, args={'value': 'iN', 'iso_format': 'alpha2'})
         >>> country_code('ZWE', iso_format='alpha3')
-        # Output: True
+        True
 
     Args:
         value:
@@ -327,9 +327,9 @@ def currency(value: str, /, *, skip_symbols: bool = True, ignore_case: bool = Fa
 
     Examples:
         >>> currency('USD')
-        # Output: True
+        True
         >>> currency('ZWX')
-        # Output: ValidationError(func=currency, args={'value': 'ZWX'})
+        ValidationError(func=currency, args={'value': 'ZWX'})
 
     Args:
         value:

@@ -14,11 +14,11 @@ def length(value: str, /, *, min_val: Union[int, None] = None, max_val: Union[in
 
     Examples:
         >>> length('something', min_val=2)
-        # Output: True
+        True
         >>> length('something', min_val=9, max_val=9)
-        # Output: True
+        True
         >>> length('something', max_val=5)
-        # Output: ValidationError(func=length, ...)
+        ValidationError(func=length, args={'value': 'something', 'max_val': 5})
 
     Args:
         value:

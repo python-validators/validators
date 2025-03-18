@@ -30,19 +30,19 @@ def fr_department(value: typing.Union[str, int]):
 
     Examples:
         >>> fr_department(20)  # can be an integer
-        # Output: True
+        ValidationError(func=fr_department, args={'value': 20})
         >>> fr_department("20")
-        # Output: True
+        ValidationError(func=fr_department, args={'value': '20'})
         >>> fr_department("971")  # Guadeloupe
-        # Output: True
+        True
         >>> fr_department("00")
-        # Output: ValidationError(func=fr_department, args=...)
+        ValidationError(func=fr_department, args={'value': '00'})
         >>> fr_department('2A')  # Corsica
-        # Output: True
+        True
         >>> fr_department('2B')
-        # Output: True
+        True
         >>> fr_department('2C')
-        # Output: ValidationError(func=fr_department, args=...)
+        ValidationError(func=fr_department, args={'value': '2C'})
 
     Args:
         value:
@@ -75,13 +75,13 @@ def fr_ssn(value: str):
 
     Examples:
         >>> fr_ssn('1 84 12 76 451 089 46')
-        # Output: True
+        True
         >>> fr_ssn('1 84 12 76 451 089')  # control key is optional
-        # Output: True
+        True
         >>> fr_ssn('3 84 12 76 451 089 46')  # wrong gender number
-        # Output: ValidationError(func=fr_ssn, args=...)
+        ValidationError(func=fr_ssn, args={'value': '3 84 12 76 451 089 46'})
         >>> fr_ssn('1 84 12 76 451 089 47')  # wrong control key
-        # Output: ValidationError(func=fr_ssn, args=...)
+        ValidationError(func=fr_ssn, args={'value': '1 84 12 76 451 089 47'})
 
     Args:
         value:

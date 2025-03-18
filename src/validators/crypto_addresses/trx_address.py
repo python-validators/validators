@@ -42,9 +42,9 @@ def trx_address(value: str, /):
 
     Examples:
         >>> trx_address('TLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38')
-        # Output: True
+        True
         >>> trx_address('TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd')
-        # Output: ValidationError(func=trx_address, args=...)
+        ValidationError(func=trx_address, args={'value': 'TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd'})
 
     Args:
         value:

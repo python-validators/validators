@@ -29,16 +29,16 @@ def between(
     Examples:
         >>> from datetime import datetime
         >>> between(5, min_val=2)
-        # Output: True
+        True
         >>> between(13.2, min_val=13, max_val=14)
-        # Output: True
+        True
         >>> between(500, max_val=400)
-        # Output: ValidationError(func=between, args=...)
+        ValidationError(func=between, args={'value': 500, 'max_val': 400})
         >>> between(
         ...     datetime(2000, 11, 11),
         ...     min_val=datetime(1999, 11, 11)
         ... )
-        # Output: True
+        True
 
     Args:
         value:

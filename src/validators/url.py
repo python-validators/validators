@@ -192,13 +192,13 @@ def url(
 
     Examples:
         >>> url('http://duck.com')
-        # Output: True
+        True
         >>> url('ftp://foobar.dk')
-        # Output: True
+        True
         >>> url('http://10.0.0.1')
-        # Output: True
+        True
         >>> url('http://example.com/">user@example.com')
-        # Output: ValidationError(func=url, ...)
+        ValidationError(func=url, args={'value': 'http://example.com/">user@example.com'})
 
     Args:
         value:

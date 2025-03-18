@@ -33,9 +33,9 @@ def btc_address(value: str, /):
 
     Examples:
         >>> btc_address('3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69')
-        # Output: True
+        True
         >>> btc_address('1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2')
-        # Output: ValidationError(func=btc_address, args=...)
+        ValidationError(func=btc_address, args={'value': '1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2'})
 
     Args:
         value:

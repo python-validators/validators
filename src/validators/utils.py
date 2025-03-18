@@ -53,9 +53,9 @@ def validator(func: Callable[..., Any]):
         ... def even(value):
         ...     return not (value % 2)
         >>> even(4)
-        # Output: True
+        True
         >>> even(5)
-        # Output: ValidationError(func=even, args={'value': 5})
+        ValidationError(func=even, args={'value': 5})
 
     Args:
         func:

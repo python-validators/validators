@@ -58,11 +58,11 @@ def ipv4(
 
     Examples:
         >>> ipv4('123.0.0.7')
-        # Output: True
+        True
         >>> ipv4('1.1.1.1/8')
-        # Output: True
+        True
         >>> ipv4('900.80.70.11')
-        # Output: ValidationError(func=ipv4, args={'value': '900.80.70.11'})
+        ValidationError(func=ipv4, args={'value': '900.80.70.11'})
 
     Args:
         value:
@@ -105,11 +105,11 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
 
     Examples:
         >>> ipv6('::ffff:192.0.2.128')
-        # Output: True
+        True
         >>> ipv6('::1/128')
-        # Output: True
+        True
         >>> ipv6('abc.0.0.1')
-        # Output: ValidationError(func=ipv6, args={'value': 'abc.0.0.1'})
+        ValidationError(func=ipv6, args={'value': 'abc.0.0.1'})
 
     Args:
         value:

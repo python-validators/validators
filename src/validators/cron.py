@@ -44,9 +44,9 @@ def cron(value: str, /):
 
     Examples:
         >>> cron('*/5 * * * *')
-        # Output: True
+        True
         >>> cron('30-20 * * * *')
-        # Output: ValidationError(func=cron, ...)
+        ValidationError(func=cron, args={'value': '30-20 * * * *'})
 
     Args:
         value:

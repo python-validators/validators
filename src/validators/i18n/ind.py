@@ -15,7 +15,7 @@ def ind_aadhar(value: str):
         >>> ind_aadhar('3675 9834 6015')
         True
         >>> ind_aadhar('3675 ABVC 2133')
-        ValidationFailure(func=aadhar, args={'value': '3675 ABVC 2133'})
+        ValidationError(func=ind_aadhar, args={'value': '3675 ABVC 2133'})
 
     Args:
         value: Aadhar card number string to validate.
@@ -35,7 +35,7 @@ def ind_pan(value: str):
         >>> ind_pan('ABCDE9999K')
         True
         >>> ind_pan('ABC5d7896B')
-        ValidationFailure(func=pan, args={'value': 'ABC5d7896B'})
+        ValidationError(func=ind_pan, args={'value': 'ABC5d7896B'})
 
     Args:
         value: PAN card number string to validate.
