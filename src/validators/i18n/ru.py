@@ -1,32 +1,34 @@
-"""Inn."""
+"""Russia INN."""
 
-from src.validators.utils import validator
+from validators.utils import validator
 
 
 @validator
-def ru_inn(value: str, /):
-    """Return whether or not given value is a valid russian individual tax number.
+def ru_inn(value: str):
+    """Validate a Russian INN (Taxpayer Identification Number).
 
-    This validator is algorithm [1].
-
-    [1]: https://ru.wikipedia.org/wiki/Идентификационный_номер_налогоплательщика
+    The INN can be either 10 digits (for companies) or 12 digits (for individuals).
+    The function checks both the length and the control digits according to Russian tax rules.
 
     Examples:
-        >>> inn('7736050003')
-        # Output: True
-        >>> inn('781100086042')
-        # Output: True
+        >>> ru_inn('500100732259')  # Valid 12-digit INN
+        True
+        >>> ru_inn('7830002293')    # Valid 10-digit INN
+        True
+        >>> ru_inn('1234567890')    # Invalid INN
+        ValidationFailure(func=ru_inn, args={'value': '1234567890'})
 
     Args:
-        value:
-            Individual tax number string to validate
+        value: Russian INN string to validate. Can contain only digits.
 
     Returns:
-        (Literal[True]): If `value` is a valid russian individual tax number.
-        (ValidationError): If `value` is an invalid russian individual tax number.
+        (Literal[True]): If `value` is a valid Russian INN.
+        (ValidationError): If `value` is an invalid Russian INN.
 
-    Returns:
-
+    Note:
+        The validation follows the official algorithm:
+        - For 10-digit INN: checks 10th control digit
+        - For 12-digit INN: checks both 11th and 12th control digits
     """
     if not value:
         return False

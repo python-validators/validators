@@ -4,8 +4,8 @@
 import pytest
 
 # local
-from src.validators import ValidationError
-from src.validators.i18n import ru_inn
+from validators import ValidationError
+from validators.i18n.ru import ru_inn
 
 
 @pytest.mark.parametrize(
