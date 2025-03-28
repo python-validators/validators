@@ -47,10 +47,20 @@ def uri(value: str, /):
     # url
     if any(
         # fmt: off
-        value.startswith(item) for item in {
-            "ftp", "ftps", "git", "http", "https",
-            "irc", "rtmp", "rtmps", "rtsp", "sftp",
-            "ssh", "telnet",
+        value.startswith(item)
+        for item in {
+            "ftp",
+            "ftps",
+            "git",
+            "http",
+            "https",
+            "irc",
+            "rtmp",
+            "rtmps",
+            "rtsp",
+            "sftp",
+            "ssh",
+            "telnet",
         }
         # fmt: on
     ):

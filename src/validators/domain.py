@@ -80,7 +80,6 @@ def domain(
         return False
 
     try:
-
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
 
