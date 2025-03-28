@@ -3,7 +3,7 @@
 # standard
 from functools import lru_cache
 import re
-from typing import Optional
+from typing import Callable, Optional
 from urllib.parse import parse_qs, unquote, urlsplit
 
 # local
@@ -174,6 +174,7 @@ def url(
     private: Optional[bool] = None,  # only for ip-addresses
     rfc_1034: bool = False,
     rfc_2782: bool = False,
+    validate_scheme: Callable[[str], bool] = _validate_scheme,
 ):
     r"""Return whether or not given value is a valid URL.
 
@@ -222,6 +223,8 @@ def url(
         rfc_2782:
             Domain/Host name is of type service record.
             Ref: [RFC 2782](https://www.rfc-editor.org/rfc/rfc2782).
+        validate_scheme:
+            Function that validates URL scheme.
 
     Returns:
         (Literal[True]): If `value` is a valid url.
@@ -238,7 +241,7 @@ def url(
         return False
 
     return (
-        _validate_scheme(scheme)
+        validate_scheme(scheme)
         and _validate_netloc(
             netloc,
             skip_ipv6_addr,
