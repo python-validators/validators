@@ -24,7 +24,7 @@ from validators.i18n.ru import ru_inn
     ],
 )
 def test_returns_true_on_valid_ru_inn(value: str):
-    """Test returns true on valid russian individual tax number"""
+    """Test returns true on valid russian individual tax number."""
     assert ru_inn(value)
 
 
@@ -44,5 +44,5 @@ def test_returns_true_on_valid_ru_inn(value: str):
     ],
 )
 def test_returns_false_on_valid_ru_inn(value: str):
-    """Test returns true on valid russian individual tax number"""
+    """Test returns true on valid russian individual tax number."""
     assert isinstance(ru_inn(value), ValidationError)

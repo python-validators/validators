@@ -24,9 +24,7 @@ def _ssn_pattern(ssn_check_marks: str):
         (\d{{2}}))
         [ABCDEFYXWVU+-]
         (?P<serial>(\d{{3}}))
-        (?P<checksum>[{check_marks}])$""".format(
-            check_marks=ssn_check_marks
-        ),
+        (?P<checksum>[{check_marks}])$""".format(check_marks=ssn_check_marks),
         re.VERBOSE,
     )
 

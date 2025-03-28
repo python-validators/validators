@@ -66,7 +66,8 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
     with open(source / "docs/index.rst", "wt") as idx_f:
         idx_f.write(
             convert_file(source_file=source / "docs/index.md", format="md", to="rst").replace(
-                "\r\n", "\n"  # remove carriage return in windows
+                "\r\n",
+                "\n",  # remove carriage return in windows
             )
             + "\n\n.. toctree::"
             + "\n   :hidden:"

@@ -18,5 +18,5 @@ __all__ = (
     "fr_ssn",
     "ind_aadhar",
     "ind_pan",
-    "ru_inn"
+    "ru_inn",
 )

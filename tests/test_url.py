@@ -156,7 +156,7 @@ def test_returns_true_on_valid_private_url(value: str, private: Optional[bool]):
         ":// should fail",
         "http://foo.bar/foo(bar)baz quux",
         "http://-error-.invalid/",
-        "http://www.\uFFFD.ch",
+        "http://www.\ufffd.ch",
         "http://-a.b.co",
         "http://a.b-.co",
         "http://1.1.1.1.1",

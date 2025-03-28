@@ -46,9 +46,18 @@ def _validate_scheme(value: str):
         value
         # fmt: off
         in {
-            "ftp", "ftps", "git", "http", "https",
-            "irc", "rtmp", "rtmps", "rtsp", "sftp",
-            "ssh", "telnet",
+            "ftp",
+            "ftps",
+            "git",
+            "http",
+            "https",
+            "irc",
+            "rtmp",
+            "rtmps",
+            "rtsp",
+            "sftp",
+            "ssh",
+            "telnet",
         }
         # fmt: on
         if value
