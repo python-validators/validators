@@ -126,8 +126,11 @@ pythonPlatform = "All"
 typeCheckingMode = "strict"
 
 [tool.pytest.ini_options]
+minversion = "6.0"
 pythonpath = ["src"]
+testpaths = "tests"
 addopts = ["--doctest-modules"]
+
 
 [tool.ruff]
 lint.select = [
