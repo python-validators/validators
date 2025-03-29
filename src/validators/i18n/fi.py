@@ -40,9 +40,9 @@ def fi_business_id(value: str, /):
 
     Examples:
         >>> fi_business_id('0112038-9')  # Fast Monkeys Ltd
-        # Output: True
+        True
         >>> fi_business_id('1234567-8')  # Bogus ID
-        # Output: ValidationError(func=fi_business_id, ...)
+        ValidationError(func=fi_business_id, args={'value': '1234567-8'})
 
     Args:
         value:
@@ -73,9 +73,9 @@ def fi_ssn(value: str, /, *, allow_temporal_ssn: bool = True):
 
     Examples:
         >>> fi_ssn('010101-0101')
-        # Output: True
+        True
         >>> fi_ssn('101010-0102')
-        # Output: ValidationError(func=fi_ssn, args=...)
+        ValidationError(func=fi_ssn, args={'value': '101010-0102'})
 
     Args:
         value:

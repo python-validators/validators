@@ -15,9 +15,9 @@ def bsc_address(value: str, /):
 
     Examples:
         >>> bsc_address('0x4e5acf9684652BEa56F2f01b7101a225Ee33d23f')
-        # Output: True
+        True
         >>> bsc_address('0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z')
-        # Output: ValidationError(func=bsc_address, args=...)
+        ValidationError(func=bsc_address, args={'value': '0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z'})
 
     Args:
         value:
@@ -26,7 +26,7 @@ def bsc_address(value: str, /):
     Returns:
         (Literal[True]): If `value` is a valid bsc address.
         (ValidationError): If `value` is an invalid bsc address.
-    """
+    """  # noqa: E501
     if not value:
         return False
 

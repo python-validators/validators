@@ -64,25 +64,25 @@ def hostname(
 
     Examples:
         >>> hostname("ubuntu-pc:443")
-        # Output: True
+        True
         >>> hostname("this-pc")
-        # Output: True
+        True
         >>> hostname("xn----gtbspbbmkef.xn--p1ai:65535")
-        # Output: True
+        True
         >>> hostname("_example.com")
-        # Output: True
+        ValidationError(func=hostname, args={'value': '_example.com'})
         >>> hostname("123.5.77.88:31000")
-        # Output: True
+        True
         >>> hostname("12.12.12.12")
-        # Output: True
+        True
         >>> hostname("[::1]:22")
-        # Output: True
+        True
         >>> hostname("dead:beef:0:0:0:0000:42:1")
-        # Output: True
+        True
         >>> hostname("[0:0:0:0:0:ffff:1.2.3.4]:-65538")
-        # Output: ValidationError(func=hostname, ...)
+        ValidationError(func=hostname, args={'value': '[0:0:0:0:0:ffff:1.2.3.4]:-65538'})
         >>> hostname("[0:&:b:c:@:e:f::]:9999")
-        # Output: ValidationError(func=hostname, ...)
+        ValidationError(func=hostname, args={'value': '[0:&:b:c:@:e:f::]:9999'})
 
     Args:
         value:

@@ -19,9 +19,9 @@ def uuid(value: Union[str, UUID], /):
 
     Examples:
         >>> uuid('2bc1c94f-0deb-43e9-92a1-4775189ec9f8')
-        # Output: True
+        True
         >>> uuid('2bc1c94f 0deb-43e9-92a1-4775189ec9f8')
-        # Output: ValidationError(func=uuid, ...)
+        ValidationError(func=uuid, args={'value': '2bc1c94f 0deb-43e9-92a1-4775189ec9f8'})
 
     Args:
         value:
