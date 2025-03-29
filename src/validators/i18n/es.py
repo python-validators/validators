@@ -7,9 +7,9 @@ from typing import Dict, Set
 from validators.utils import validator
 
 
-def _nif_nie_validation(value: str, number_by_letter: Dict[str, str], special_cases: Set[str]):
+def _nif_nie_validation(value: str, number_by_letter: Dict[str, str]):
     """Validate if the doi is a NIF or a NIE."""
-    if value in special_cases or len(value) != 9:
+    if len(value) != 9:
         return False
     value = value.upper()
     table = "TRWAGMYFPDXBNJZSQVHLCKE"
@@ -104,8 +104,7 @@ def es_nif(value: str, /):
         (ValidationError): If `value` is an invalid DOI string.
     """
     number_by_letter = {"L": "0", "M": "0", "K": "0"}
-    special_cases = {"X0000000T", "00000000T", "00000001R"}
-    return _nif_nie_validation(value, number_by_letter, special_cases)
+    return _nif_nie_validation(value, number_by_letter)
 
 
 @validator
@@ -137,7 +136,7 @@ def es_nie(value: str, /):
     number_by_letter = {"X": "0", "Y": "1", "Z": "2"}
     # NIE must must start with X Y or Z
     if value and value[0] in number_by_letter:
-        return _nif_nie_validation(value, number_by_letter, {"X0000000T"})
+        return _nif_nie_validation(value, number_by_letter)
     return False
 
 
