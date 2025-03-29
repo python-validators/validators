@@ -127,6 +127,7 @@ typeCheckingMode = "strict"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+addopts = ["--doctest-modules"]
 
 [tool.ruff]
 lint.select = [
