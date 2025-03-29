@@ -7,7 +7,15 @@ import pytest
 from validators import ValidationError, iban
 
 
-@pytest.mark.parametrize("value", ["GB82WEST12345698765432", "NO9386011117947"])
+@pytest.mark.parametrize(
+    "value",
+    [
+        "GB82WEST12345698765432",
+        "NO9386011117947",
+        "GB 82WE ST12 3456 9876 5432",
+        "NO 9386 0111 1794 7",
+    ],
+)
 def test_returns_true_on_valid_iban(value: str):
     """Test returns true on valid iban."""
     assert iban(value)
