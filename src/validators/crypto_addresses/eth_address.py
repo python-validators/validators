@@ -49,7 +49,7 @@ def eth_address(value: str, /):
     Returns:
         (Literal[True]): If `value` is a valid ethereum address.
         (ValidationError): If `value` is an invalid ethereum address.
-    """ # noqa: E501F
+    """  # noqa: E501
     if not _keccak_flag:
         raise ImportError(
             "Do `pip install validators[crypto-eth-addresses]` to perform `eth_address` validation."
