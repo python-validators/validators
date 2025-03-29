@@ -26,7 +26,7 @@ def bsc_address(value: str, /):
     Returns:
         (Literal[True]): If `value` is a valid bsc address.
         (ValidationError): If `value` is an invalid bsc address.
-    """
+    """  # noqa: E501F
     if not value:
         return False
 
