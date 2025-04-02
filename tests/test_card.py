@@ -14,6 +14,7 @@ from validators import (
     mastercard,
     unionpay,
     visa,
+    mir
 )
 
 visa_cards = ["4242424242424242", "4000002760003184"]
@@ -23,6 +24,7 @@ unionpay_cards = ["6200000000000005"]
 diners_cards = ["3056930009020004", "36227206271667"]
 jcb_cards = ["3566002020360505"]
 discover_cards = ["6011111111111117", "6011000990139424"]
+mir_cards = ["2200123456789012", "2204987654321098"]
 
 
 @pytest.mark.parametrize(
@@ -33,14 +35,15 @@ discover_cards = ["6011111111111117", "6011000990139424"]
     + unionpay_cards
     + diners_cards
     + jcb_cards
-    + discover_cards,
+    + discover_cards
+    + mir_cards,
 )
 def test_returns_true_on_valid_card_number(value: str):
     """Test returns true on valid card number."""
     assert card_number(value)
 
 
-@pytest.mark.parametrize("value", ["4242424242424240", "4000002760003180", "400000276000318X"])
+@pytest.mark.parametrize("value", ["4242424242424240", "4000002760003180", "400000276000318X", "220012345678901X"])
 def test_returns_failed_on_valid_card_number(value: str):
     """Test returns failed on valid card number."""
     assert isinstance(card_number(value), ValidationError)
@@ -69,7 +72,7 @@ def test_returns_true_on_valid_mastercard(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards,
+    visa_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards + mir_cards,
 )
 def test_returns_failed_on_valid_mastercard(value: str):
     """Test returns failed on valid mastercard."""
@@ -84,7 +87,7 @@ def test_returns_true_on_valid_amex(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards,
+    visa_cards + mastercard_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards + mir_cards,
 )
 def test_returns_failed_on_valid_amex(value: str):
     """Test returns failed on valid amex."""
@@ -99,7 +102,7 @@ def test_returns_true_on_valid_unionpay(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + diners_cards + jcb_cards + discover_cards,
+    visa_cards + mastercard_cards + amex_cards + diners_cards + jcb_cards + discover_cards + mir_cards,
 )
 def test_returns_failed_on_valid_unionpay(value: str):
     """Test returns failed on valid unionpay."""
@@ -114,7 +117,7 @@ def test_returns_true_on_valid_diners(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + jcb_cards + discover_cards,
+    visa_cards + mastercard_cards + amex_cards + unionpay_cards + jcb_cards + discover_cards + mir_cards,
 )
 def test_returns_failed_on_valid_diners(value: str):
     """Test returns failed on valid diners."""
@@ -129,7 +132,7 @@ def test_returns_true_on_valid_jcb(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + discover_cards,
+    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + discover_cards + mir_cards,
 )
 def test_returns_failed_on_valid_jcb(value: str):
     """Test returns failed on valid jcb."""
@@ -144,8 +147,23 @@ def test_returns_true_on_valid_discover(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards,
+    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + mir_cards,
 )
 def test_returns_failed_on_valid_discover(value: str):
     """Test returns failed on valid discover."""
     assert isinstance(discover(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", mir_cards)
+def test_returns_true_on_valid_mir(value: str):
+    """Test returns true on valid Mir card."""
+    assert mir(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards,
+)
+def test_returns_failed_on_valid_mir(value: str):
+    """Test returns failed on invalid Mir card (other payment systems)."""
+    assert isinstance(mir(value), ValidationError)
