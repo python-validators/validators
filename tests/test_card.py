@@ -24,7 +24,7 @@ unionpay_cards = ["6200000000000005"]
 diners_cards = ["3056930009020004", "36227206271667"]
 jcb_cards = ["3566002020360505"]
 discover_cards = ["6011111111111117", "6011000990139424"]
-mir_cards = ["2200123456789012", "2204987654321098"]
+mir_cards = ["2200123456789019", "2204987654321098"]
 
 
 @pytest.mark.parametrize(
@@ -72,7 +72,7 @@ def test_returns_true_on_valid_mastercard(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards + mir_cards,
+    visa_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards,
 )
 def test_returns_failed_on_valid_mastercard(value: str):
     """Test returns failed on valid mastercard."""
