@@ -1,4 +1,4 @@
-"""Russia INN."""
+"""Russia."""
 
 from validators.utils import validator
 
