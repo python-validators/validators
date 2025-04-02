@@ -199,7 +199,7 @@ def mir(value: str, /):
     """Return whether or not given value is a valid Mir card number.
 
     Examples:
-        >>> mir('2200123456789012')
+        >>> mir('2200123456789019')
         # Output: True
         >>> mir('4242424242424242')
         # Output: ValidationError(func=mir, args={'value': '4242424242424242'})
