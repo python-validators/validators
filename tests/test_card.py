@@ -12,9 +12,9 @@ from validators import (
     discover,
     jcb,
     mastercard,
+    mir,
     unionpay,
     visa,
-    mir
 )
 
 visa_cards = ["4242424242424242", "4000002760003184"]
