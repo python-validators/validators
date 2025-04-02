@@ -192,3 +192,25 @@ def discover(value: str, /):
     """
     pattern = re.compile(r"^(60|64|65)")
     return card_number(value) and len(value) == 16 and pattern.match(value)
+
+
+@validator
+def mir(value: str, /):
+    """Return whether or not given value is a valid Mir card number.
+
+    Examples:
+        >>> mir('2200123456789012')
+        # Output: True
+        >>> mir('4242424242424242')
+        # Output: ValidationError(func=mir, args={'value': '4242424242424242'})
+
+    Args:
+        value:
+            Mir card number string to validate.
+
+    Returns:
+        (Literal[True]): If `value` is a valid Mir card number.
+        (ValidationError): If `value` is an invalid Mir card number.
+    """
+    pattern = re.compile(r"^(220[0-4])")
+    return card_number(value) and len(value) == 16 and pattern.match(value)
