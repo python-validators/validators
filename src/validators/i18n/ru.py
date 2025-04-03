@@ -1,4 +1,4 @@
-"""Russia INN."""
+"""Russia."""
 
 from validators.utils import validator
 
@@ -50,7 +50,6 @@ def ru_inn(value: str):
             control_number1 = sum([d * w for d, w in zip(digits, weight_coefs1)]) % 11
             weight_coefs2 = [3, 7, 2, 4, 10, 3, 5, 9, 4, 6, 8, 0]
             control_number2 = sum([d * w for d, w in zip(digits, weight_coefs2)]) % 11
-            print(control_number1, control_number2, value)
             return (
                 (control_number1 % 10) == digits[-2]
                 if control_number1 > 9
