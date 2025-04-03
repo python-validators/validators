@@ -2,7 +2,7 @@
 
 # local
 from .between import between
-from .card import amex, card_number, diners, discover, jcb, mastercard, unionpay, visa
+from .card import amex, card_number, diners, discover, jcb, mastercard, mir, unionpay, visa
 from .country import calling_code, country_code, currency
 from .cron import cron
 from .crypto_addresses import bsc_address, btc_address, eth_address, trx_address
@@ -49,8 +49,9 @@ __all__ = (
     "discover",
     "jcb",
     "mastercard",
-    "visa",
     "unionpay",
+    "visa",
+    "mir",
     # country
     "calling_code",
     "country_code",
