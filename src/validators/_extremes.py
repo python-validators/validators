@@ -12,13 +12,13 @@ class AbsMax:
     Inspired by https://pypi.python.org/pypi/Extremes.
 
     Examples:
-        >>> from sys import maxint
-        >>> AbsMax > AbsMin
-        # Output: True
-        >>> AbsMax > maxint
-        # Output: True
-        >>> AbsMax > 99999999999999999
-        # Output: True
+        >>> from sys import maxsize
+        >>> AbsMax() > AbsMin()
+        True
+        >>> AbsMax() > maxsize
+        True
+        >>> AbsMax() > 99999999999999999
+        True
     """
 
     def __ge__(self, other: Any):
@@ -33,13 +33,13 @@ class AbsMin:
     Inspired by https://pypi.python.org/pypi/Extremes.
 
     Examples:
-        >>> from sys import maxint
-        >>> AbsMin < -maxint
-        # Output: True
-        >>> AbsMin < None
-        # Output: True
-        >>> AbsMin < ''
-        # Output: True
+        >>> from sys import maxsize
+        >>> AbsMin() < -maxsize
+        True
+        >>> AbsMin() < None
+        True
+        >>> AbsMin() < ''
+        True
     """
 
     def __le__(self, other: Any):

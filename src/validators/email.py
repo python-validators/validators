@@ -31,9 +31,9 @@ def email(
 
     Examples:
         >>> email('someone@example.com')
-        # Output: True
+        True
         >>> email('bogus@@')
-        # Output: ValidationError(email=email, args={'value': 'bogus@@'})
+        ValidationError(func=email, args={'value': 'bogus@@'})
 
     Args:
         value:

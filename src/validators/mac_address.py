@@ -17,9 +17,9 @@ def mac_address(value: str, /):
 
     Examples:
         >>> mac_address('01:23:45:67:ab:CD')
-        # Output: True
+        True
         >>> mac_address('00:00:00:00:00')
-        # Output: ValidationError(func=mac_address, args={'value': '00:00:00:00:00'})
+        ValidationError(func=mac_address, args={'value': '00:00:00:00:00'})
 
     Args:
         value:

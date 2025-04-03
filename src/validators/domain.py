@@ -45,12 +45,12 @@ def domain(
 
     Examples:
         >>> domain('example.com')
-        # Output: True
+        True
         >>> domain('example.com/')
-        # Output: ValidationError(func=domain, ...)
+        ValidationError(func=domain, args={'value': 'example.com/'})
         >>> # Supports IDN domains as well::
         >>> domain('xn----gtbspbbmkef.xn--p1ai')
-        # Output: True
+        True
 
     Args:
         value:
