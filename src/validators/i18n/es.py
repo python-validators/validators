@@ -1,7 +1,7 @@
 """Spain."""
 
 # standard
-from typing import Dict, Set
+from typing import Dict
 
 # local
 from validators.utils import validator

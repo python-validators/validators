@@ -23,7 +23,7 @@ from .i18n import (
     fr_ssn,
     ind_aadhar,
     ind_pan,
-    ru_inn
+    ru_inn,
 )
 from .iban import iban
 from .ip_address import ipv4, ipv6
