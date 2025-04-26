@@ -68,7 +68,7 @@ def uri(value: str, /):
 
     # email
     if value.startswith("mailto:"):
-        return email(value[len("mailto:"):])
+        return email(value[len("mailto:") :])
 
     # file
     if value.startswith("file:"):
