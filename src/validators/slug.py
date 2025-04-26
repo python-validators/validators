@@ -16,9 +16,9 @@ def slug(value: str, /):
 
     Examples:
         >>> slug('my-slug-2134')
-        # Output: True
+        True
         >>> slug('my.slug')
-        # Output: ValidationError(func=slug, args={'value': 'my.slug'})
+        ValidationError(func=slug, args={'value': 'my.slug'})
 
     Args:
         value: Slug string to validate.

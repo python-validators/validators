@@ -13,9 +13,9 @@ def base16(value: str, /):
 
     Examples:
         >>> base16('a3f4b2')
-        # Output: True
+        True
         >>> base16('a3f4Z1')
-        # Output: ValidationError(func=base16, args={'value': 'a3f4Z1'})
+        ValidationError(func=base16, args={'value': 'a3f4Z1'})
 
     Args:
         value:
@@ -34,9 +34,9 @@ def base32(value: str, /):
 
     Examples:
         >>> base32('MFZWIZLTOQ======')
-        # Output: True
+        True
         >>> base32('MfZW3zLT9Q======')
-        # Output: ValidationError(func=base32, args={'value': 'MfZW3zLT9Q======'})
+        ValidationError(func=base32, args={'value': 'MfZW3zLT9Q======'})
 
     Args:
         value:
@@ -55,9 +55,9 @@ def base58(value: str, /):
 
     Examples:
         >>> base58('14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx')
-        # Output: True
+        True
         >>> base58('cUSECm5YzcXJwP')
-        # Output: ValidationError(func=base58, args={'value': 'cUSECm5YzcXJwP'})
+        True
 
     Args:
         value:
@@ -76,9 +76,9 @@ def base64(value: str, /):
 
     Examples:
         >>> base64('Y2hhcmFjdGVyIHNldA==')
-        # Output: True
+        True
         >>> base64('cUSECm5YzcXJwP')
-        # Output: ValidationError(func=base64, args={'value': 'cUSECm5YzcXJwP'})
+        ValidationError(func=base64, args={'value': 'cUSECm5YzcXJwP'})
 
     Args:
         value:

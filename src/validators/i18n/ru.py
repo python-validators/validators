@@ -16,7 +16,7 @@ def ru_inn(value: str):
         >>> ru_inn('7830002293')    # Valid 10-digit INN
         True
         >>> ru_inn('1234567890')    # Invalid INN
-        ValidationFailure(func=ru_inn, args={'value': '1234567890'})
+        ValidationError(func=ru_inn, args={'value': '1234567890'})
 
     Args:
         value: Russian INN string to validate. Can contain only digits.

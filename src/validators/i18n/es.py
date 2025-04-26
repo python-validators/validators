@@ -39,9 +39,9 @@ def es_cif(value: str, /):
 
     Examples:
         >>> es_cif('B25162520')
-        # Output: True
+        True
         >>> es_cif('B25162529')
-        # Output: ValidationError(func=es_cif, args=...)
+        ValidationError(func=es_cif, args={'value': 'B25162529'})
 
     Args:
         value:
@@ -91,9 +91,9 @@ def es_nif(value: str, /):
 
     Examples:
         >>> es_nif('26643189N')
-        # Output: True
+        True
         >>> es_nif('26643189X')
-        # Output: ValidationError(func=es_nif, args=...)
+        ValidationError(func=es_nif, args={'value': '26643189X'})
 
     Args:
         value:
@@ -122,9 +122,9 @@ def es_nie(value: str, /):
 
     Examples:
         >>> es_nie('X0095892M')
-        # Output: True
+        True
         >>> es_nie('X0095892X')
-        # Output: ValidationError(func=es_nie, args=...)
+        ValidationError(func=es_nie, args={'value': 'X0095892X'})
 
     Args:
         value:
@@ -154,9 +154,9 @@ def es_doi(value: str, /):
 
     Examples:
         >>> es_doi('X0095892M')
-        # Output: True
+        True
         >>> es_doi('X0095892X')
-        # Output: ValidationError(func=es_doi, args=...)
+        ValidationError(func=es_doi, args={'value': 'X0095892X'})
 
     Args:
         value:

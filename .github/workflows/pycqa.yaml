@@ -48,6 +48,8 @@ jobs:
           cache: "pip"
       # testing
       - name: Install 'testing' dependencies
-        run: pip install -r package/requirements.testing.txt
+        run: |
+          pip install -r package/requirements.testing.txt
+          pip install .
       - name: Testing
         run: pytest .

@@ -62,7 +62,7 @@ def cusip(value: str):
         >>> cusip('037833DP2')
         True
         >>> cusip('037833DP3')
-        ValidationFailure(func=cusip, ...)
+        ValidationError(func=cusip, args={'value': '037833DP3'})
 
     Args:
         value: CUSIP string to validate.
@@ -83,9 +83,9 @@ def isin(value: str):
 
     Examples:
         >>> isin('037833DP2')
-        True
+        ValidationError(func=isin, args={'value': '037833DP2'})
         >>> isin('037833DP3')
-        ValidationFailure(func=isin, ...)
+        ValidationError(func=isin, args={'value': '037833DP3'})
 
     Args:
         value: ISIN string to validate.
@@ -108,7 +108,7 @@ def sedol(value: str):
         >>> sedol('2936921')
         True
         >>> sedol('29A6922')
-        ValidationFailure(func=sedol, ...)
+        ValidationError(func=sedol, args={'value': '29A6922'})
 
     Args:
         value: SEDOL string to validate.

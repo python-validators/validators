@@ -38,9 +38,9 @@ def eth_address(value: str, /):
 
     Examples:
         >>> eth_address('0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598')
-        # Output: True
+        True
         >>> eth_address('0x8Ba1f109551bD432803012645Ac136ddd64DBa72')
-        # Output: ValidationError(func=eth_address, args=...)
+        ValidationError(func=eth_address, args={'value': '0x8Ba1f109551bD432803012645Ac136ddd64DBa72'})
 
     Args:
         value:
@@ -49,7 +49,7 @@ def eth_address(value: str, /):
     Returns:
         (Literal[True]): If `value` is a valid ethereum address.
         (ValidationError): If `value` is an invalid ethereum address.
-    """
+    """  # noqa: E501
     if not _keccak_flag:
         raise ImportError(
             "Do `pip install validators[crypto-eth-addresses]` to perform `eth_address` validation."

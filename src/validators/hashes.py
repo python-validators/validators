@@ -13,9 +13,9 @@ def md5(value: str, /):
 
     Examples:
         >>> md5('d41d8cd98f00b204e9800998ecf8427e')
-        # Output: True
+        True
         >>> md5('900zz11')
-        # Output: ValidationError(func=md5, args={'value': '900zz11'})
+        ValidationError(func=md5, args={'value': '900zz11'})
 
     Args:
         value:
@@ -34,9 +34,9 @@ def sha1(value: str, /):
 
     Examples:
         >>> sha1('da39a3ee5e6b4b0d3255bfef95601890afd80709')
-        # Output: True
+        True
         >>> sha1('900zz11')
-        # Output: ValidationError(func=sha1, args={'value': '900zz11'})
+        ValidationError(func=sha1, args={'value': '900zz11'})
 
     Args:
         value:
@@ -55,9 +55,9 @@ def sha224(value: str, /):
 
     Examples:
         >>> sha224('d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f')
-        # Output: True
+        True
         >>> sha224('900zz11')
-        # Output: ValidationError(func=sha224, args={'value': '900zz11'})
+        ValidationError(func=sha224, args={'value': '900zz11'})
 
     Args:
         value:
@@ -79,9 +79,9 @@ def sha256(value: str, /):
         ...     'e3b0c44298fc1c149afbf4c8996fb924'
         ...     '27ae41e4649b934ca495991b7852b855'
         ... )
-        # Output: True
+        True
         >>> sha256('900zz11')
-        # Output: ValidationError(func=sha256, args={'value': '900zz11'})
+        ValidationError(func=sha256, args={'value': '900zz11'})
 
     Args:
         value:
@@ -103,9 +103,9 @@ def sha384(value: str, /):
         ...     'cb00753f45a35e8bb5a03d699ac65007272c32ab0eded163'
         ...     '1a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7'
         ... )
-        # Output: True
+        True
         >>> sha384('900zz11')
-        # Output: ValidationError(func=sha384, args={'value': '900zz11'})
+        ValidationError(func=sha384, args={'value': '900zz11'})
 
     Args:
         value:
@@ -128,9 +128,9 @@ def sha512(value: str, /):
         ...     '9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af9'
         ...     '27da3e'
         ... )
-        # Output: True
+        True
         >>> sha512('900zz11')
-        # Output: ValidationError(func=sha512, args={'value': '900zz11'})
+        ValidationError(func=sha512, args={'value': '900zz11'})
 
     Args:
         value:

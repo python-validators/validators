@@ -27,9 +27,9 @@ def uri(value: str, /):
 
     Examples:
         >>> uri('mailto:example@domain.com')
-        # Output: True
+        True
         >>> uri('file:path.txt')
-        # Output: ValidationError(func=uri, ...)
+        ValidationError(func=uri, args={'value': 'file:path.txt'})
 
     Args:
         value:
