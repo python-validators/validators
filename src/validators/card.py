@@ -200,9 +200,9 @@ def mir(value: str, /):
 
     Examples:
         >>> mir('2200123456789019')
-        # Output: True
+        True
         >>> mir('4242424242424242')
-        # Output: ValidationError(func=mir, args={'value': '4242424242424242'})
+        ValidationError(func=mir, args={'value': '4242424242424242'})
 
     Args:
         value:

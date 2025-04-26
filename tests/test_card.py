@@ -43,7 +43,15 @@ def test_returns_true_on_valid_card_number(value: str):
     assert card_number(value)
 
 
-@pytest.mark.parametrize("value", ["4242424242424240", "4000002760003180", "400000276000318X", "220012345678901X"])
+@pytest.mark.parametrize(
+    "value",
+    [
+        "4242424242424240",
+        "4000002760003180",
+        "400000276000318X",
+        "220012345678901X",
+    ],
+)
 def test_returns_failed_on_valid_card_number(value: str):
     """Test returns failed on valid card number."""
     assert isinstance(card_number(value), ValidationError)
@@ -87,7 +95,13 @@ def test_returns_true_on_valid_amex(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards + mir_cards,
+    visa_cards
+    + mastercard_cards
+    + unionpay_cards
+    + diners_cards
+    + jcb_cards
+    + discover_cards
+    + mir_cards,
 )
 def test_returns_failed_on_valid_amex(value: str):
     """Test returns failed on valid amex."""
@@ -102,7 +116,13 @@ def test_returns_true_on_valid_unionpay(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + diners_cards + jcb_cards + discover_cards + mir_cards,
+    visa_cards
+    + mastercard_cards
+    + amex_cards
+    + diners_cards
+    + jcb_cards
+    + discover_cards
+    + mir_cards,
 )
 def test_returns_failed_on_valid_unionpay(value: str):
     """Test returns failed on valid unionpay."""
@@ -117,7 +137,13 @@ def test_returns_true_on_valid_diners(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + jcb_cards + discover_cards + mir_cards,
+    visa_cards
+    + mastercard_cards
+    + amex_cards
+    + unionpay_cards
+    + jcb_cards
+    + discover_cards
+    + mir_cards,
 )
 def test_returns_failed_on_valid_diners(value: str):
     """Test returns failed on valid diners."""
@@ -132,7 +158,13 @@ def test_returns_true_on_valid_jcb(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + discover_cards + mir_cards,
+    visa_cards
+    + mastercard_cards
+    + amex_cards
+    + unionpay_cards
+    + diners_cards
+    + discover_cards
+    + mir_cards,
 )
 def test_returns_failed_on_valid_jcb(value: str):
     """Test returns failed on valid jcb."""
@@ -147,7 +179,13 @@ def test_returns_true_on_valid_discover(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + mir_cards,
+    visa_cards
+    + mastercard_cards
+    + amex_cards
+    + unionpay_cards
+    + diners_cards
+    + jcb_cards
+    + mir_cards,
 )
 def test_returns_failed_on_valid_discover(value: str):
     """Test returns failed on valid discover."""
@@ -162,7 +200,13 @@ def test_returns_true_on_valid_mir(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + mastercard_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards,
+    visa_cards
+    + mastercard_cards
+    + amex_cards
+    + unionpay_cards
+    + diners_cards
+    + jcb_cards
+    + discover_cards,
 )
 def test_returns_failed_on_valid_mir(value: str):
     """Test returns failed on invalid Mir card (other payment systems)."""
