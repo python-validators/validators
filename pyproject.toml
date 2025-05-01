@@ -73,7 +73,6 @@ runner = ["tox>=4.18.0"]
 sast = ["bandit[toml]>=1.7.9"]
 testing = ["pytest>=8.3.2"]
 tooling = [
-    "black>=24.8.0",
     "ruff>=0.6.3",
     "pyright>=1.1.378",
     "pytest>=8.3.2",
@@ -106,10 +105,6 @@ exclude_dirs = [
     "site",
     "tests",
 ]
-
-[tool.black]
-line-length = 100
-target-version = ["py38", "py39", "py310", "py311", "py312"]
 
 [tool.pyright]
 extraPaths = ["src"]
@@ -188,8 +183,8 @@ commands = pyright .
 [testenv:format]
 description = code formatter
 deps =
-    black
-commands = black .
+    ruff
+commands = ruff format .
 
 [testenv:sast]
 deps =
