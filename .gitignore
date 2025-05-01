@@ -172,6 +172,7 @@ cython_debug/
 # rtx/mise
 .rtx.toml
 .mise.toml
+mise.toml
 
 # ruff
 .ruff_cache

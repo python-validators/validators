@@ -9,9 +9,15 @@ require defining a schema or form. I wanted to create a simple validation
 library where validating a simple value does not require defining a form or a
 schema.
 
+```shell
+pip install validators
+```
+
+Then,
+
 ```python
 >>> import validators
->>> 
+>>>
 >>> validators.email('someone@example.com')
 True
 ```
@@ -30,7 +36,7 @@ True
 
 ---
 
-> **_Python 3.8 [reaches EOL in](https://endoflife.date/python) October 2024._**
+> **_Python 3.9 [reaches EOL in](https://endoflife.date/python) October 2025._**
 
 <!-- Links -->
 [sast-badge]: https://github.com/python-validators/validators/actions/workflows/sast.yaml/badge.svg

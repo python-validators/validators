@@ -6,5 +6,6 @@
 ::: validators.card.discover
 ::: validators.card.jcb
 ::: validators.card.mastercard
+::: validators.card.mir
 ::: validators.card.unionpay
 ::: validators.card.visa

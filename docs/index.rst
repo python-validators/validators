@@ -12,10 +12,16 @@ seems to require defining a schema or form. I wanted to create a simple
 validation library where validating a simple value does not require
 defining a form or a schema.
 
+.. code:: shell
+
+   pip install validators
+
+Then,
+
 .. code:: python
 
    >>> import validators
-   >>> 
+   >>>
    >>> validators.email('someone@example.com')
    True
 
@@ -41,8 +47,8 @@ Resources
 
 --------------
 
-   **Python 3.8** `reaches EOL in <https://endoflife.date/python>`__
-   **October 2024.**
+   **Python 3.9** `reaches EOL in <https://endoflife.date/python>`__
+   **October 2025.**
 
 .. raw:: html
 
