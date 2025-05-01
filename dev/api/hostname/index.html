@@ -879,25 +879,25 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;ubuntu-pc:443&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;this-pc&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;xn----gtbspbbmkef.xn--p1ai:65535&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;_example.com&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">ValidationError(func=hostname, args={&#39;value&#39;: &#39;_example.com&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;123.5.77.88:31000&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;12.12.12.12&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;[::1]:22&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;dead:beef:0:0:0:0000:42:1&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;[0:0:0:0:0:ffff:1.2.3.4]:-65538&quot;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=hostname, ...)</span>
+<span class="go">ValidationError(func=hostname, args={&#39;value&#39;: &#39;[0:0:0:0:0:ffff:1.2.3.4]:-65538&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">hostname</span><span class="p">(</span><span class="s2">&quot;[0:&amp;:b:c:@:e:f::]:9999&quot;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=hostname, ...)</span>
+<span class="go">ValidationError(func=hostname, args={&#39;value&#39;: &#39;[0:&amp;:b:c:@:e:f::]:9999&#39;})</span>
 </code></pre></div>
 
 
@@ -1176,25 +1176,25 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;ubuntu-pc:443&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;this-pc&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;xn----gtbspbbmkef.xn--p1ai:65535&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;_example.com&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        ValidationError(func=hostname, args={&#39;value&#39;: &#39;_example.com&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;123.5.77.88:31000&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;12.12.12.12&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;[::1]:22&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;dead:beef:0:0:0:0000:42:1&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;[0:0:0:0:0:ffff:1.2.3.4]:-65538&quot;)</span>
-<span class="sd">        # Output: ValidationError(func=hostname, ...)</span>
+<span class="sd">        ValidationError(func=hostname, args={&#39;value&#39;: &#39;[0:0:0:0:0:ffff:1.2.3.4]:-65538&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; hostname(&quot;[0:&amp;:b:c:@:e:f::]:9999&quot;)</span>
-<span class="sd">        # Output: ValidationError(func=hostname, ...)</span>
+<span class="sd">        ValidationError(func=hostname, args={&#39;value&#39;: &#39;[0:&amp;:b:c:@:e:f::]:9999&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1294,7 +1294,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

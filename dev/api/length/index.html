@@ -879,11 +879,11 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">length</span><span class="p">(</span><span class="s1">&#39;something&#39;</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=length, ...)</span>
+<span class="go">ValidationError(func=length, args={&#39;value&#39;: &#39;something&#39;, &#39;max_val&#39;: 5})</span>
 </code></pre></div>
 
 
@@ -1043,11 +1043,11 @@ maximum length will not be checked.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; length(&#39;something&#39;, min_val=2)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; length(&#39;something&#39;, min_val=9, max_val=9)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; length(&#39;something&#39;, max_val=5)</span>
-<span class="sd">        # Output: ValidationError(func=length, ...)</span>
+<span class="sd">        ValidationError(func=length, args={&#39;value&#39;: &#39;something&#39;, &#39;max_val&#39;: 5})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1127,7 +1127,7 @@ maximum length will not be checked.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

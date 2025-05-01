@@ -480,6 +480,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#validators.card.mir" class="md-nav__link">
+    <span class="md-ellipsis">
+      mir
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#validators.card.unionpay" class="md-nav__link">
     <span class="md-ellipsis">
       unionpay
@@ -951,6 +960,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#validators.card.mir" class="md-nav__link">
+    <span class="md-ellipsis">
+      mir
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#validators.card.unionpay" class="md-nav__link">
     <span class="md-ellipsis">
       unionpay
@@ -1005,9 +1023,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">amex</span><span class="p">(</span><span class="s1">&#39;378282246310005&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">amex</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=amex, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=amex, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </code></pre></div>
 
 
@@ -1099,9 +1117,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; amex(&#39;378282246310005&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; amex(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=amex, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="sd">        ValidationError(func=amex, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1136,9 +1154,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">card_number</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">card_number</span><span class="p">(</span><span class="s1">&#39;4242424242424241&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=card_number, args={&#39;value&#39;: &#39;4242424242424241&#39;})</span>
+<span class="go">ValidationError(func=card_number, args={&#39;value&#39;: &#39;4242424242424241&#39;})</span>
 </code></pre></div>
 
 
@@ -1245,9 +1263,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; card_number(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; card_number(&#39;4242424242424241&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=card_number, args={&#39;value&#39;: &#39;4242424242424241&#39;})</span>
+<span class="sd">        ValidationError(func=card_number, args={&#39;value&#39;: &#39;4242424242424241&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1288,9 +1306,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">diners</span><span class="p">(</span><span class="s1">&#39;3056930009020004&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diners</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=diners, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=diners, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </code></pre></div>
 
 
@@ -1382,9 +1400,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; diners(&#39;3056930009020004&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; diners(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=diners, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="sd">        ValidationError(func=diners, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1418,9 +1436,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">discover</span><span class="p">(</span><span class="s1">&#39;6011111111111117&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">discover</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=discover, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=discover, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </code></pre></div>
 
 
@@ -1512,9 +1530,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; discover(&#39;6011111111111117&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; discover(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=discover, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="sd">        ValidationError(func=discover, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1548,9 +1566,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">jcb</span><span class="p">(</span><span class="s1">&#39;3566002020360505&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">jcb</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=jcb, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=jcb, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </code></pre></div>
 
 
@@ -1642,9 +1660,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; jcb(&#39;3566002020360505&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; jcb(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=jcb, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="sd">        ValidationError(func=jcb, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1678,9 +1696,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">mastercard</span><span class="p">(</span><span class="s1">&#39;5555555555554444&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mastercard</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=mastercard, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=mastercard, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </code></pre></div>
 
 
@@ -1772,9 +1790,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; mastercard(&#39;5555555555554444&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; mastercard(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=mastercard, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="sd">        ValidationError(func=mastercard, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1785,6 +1803,136 @@
 <span class="sd">        (ValidationError): If `value` is an invalid Mastercard card number.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(51|52|53|54|55|22|23|24|25|26|27)&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">card_number</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">16</span> <span class="ow">and</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="validators.card.mir" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">card</span><span class="o">.</span><span class="n">mir</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#validators.card.mir" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Return whether or not given value is a valid Mir card number.</p>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">mir</span><span class="p">(</span><span class="s1">&#39;2200123456789019&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mir</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
+<span class="go">ValidationError(func=mir, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+</code></pre></div>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Mir card number string to validate.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Literal[True]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is a valid Mir card number.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is an invalid Mir card number.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+            <details class="quote">
+              <summary>Source code in <code>src/validators/card.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">mir</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return whether or not given value is a valid Mir card number.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; mir(&#39;2200123456789019&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; mir(&#39;4242424242424242&#39;)</span>
+<span class="sd">        ValidationError(func=mir, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value:</span>
+<span class="sd">            Mir card number string to validate.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (Literal[True]): If `value` is a valid Mir card number.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid Mir card number.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^(220[0-4])&quot;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">card_number</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">16</span> <span class="ow">and</span> <span class="n">pattern</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1808,9 +1956,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">unionpay</span><span class="p">(</span><span class="s1">&#39;6200000000000005&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">unionpay</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=unionpay, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=unionpay, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </code></pre></div>
 
 
@@ -1902,9 +2050,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; unionpay(&#39;6200000000000005&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; unionpay(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=unionpay, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="sd">        ValidationError(func=unionpay, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1938,9 +2086,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">visa</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">visa</span><span class="p">(</span><span class="s1">&#39;2223003122003222&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=visa, args={&#39;value&#39;: &#39;2223003122003222&#39;})</span>
+<span class="go">ValidationError(func=visa, args={&#39;value&#39;: &#39;2223003122003222&#39;})</span>
 </code></pre></div>
 
 
@@ -2032,9 +2180,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; visa(&#39;4242424242424242&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; visa(&#39;2223003122003222&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=visa, args={&#39;value&#39;: &#39;2223003122003222&#39;})</span>
+<span class="sd">        ValidationError(func=visa, args={&#39;value&#39;: &#39;2223003122003222&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -2071,7 +2219,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
   </span>
 
     
@@ -2101,7 +2249,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

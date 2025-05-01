@@ -933,9 +933,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">base16</span><span class="p">(</span><span class="s1">&#39;a3f4b2&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base16</span><span class="p">(</span><span class="s1">&#39;a3f4Z1&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=base16, args={&#39;value&#39;: &#39;a3f4Z1&#39;})</span>
+<span class="go">ValidationError(func=base16, args={&#39;value&#39;: &#39;a3f4Z1&#39;})</span>
 </code></pre></div>
 
 
@@ -1026,9 +1026,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; base16(&#39;a3f4b2&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; base16(&#39;a3f4Z1&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=base16, args={&#39;value&#39;: &#39;a3f4Z1&#39;})</span>
+<span class="sd">        ValidationError(func=base16, args={&#39;value&#39;: &#39;a3f4Z1&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1061,9 +1061,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">base32</span><span class="p">(</span><span class="s1">&#39;MFZWIZLTOQ======&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base32</span><span class="p">(</span><span class="s1">&#39;MfZW3zLT9Q======&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=base32, args={&#39;value&#39;: &#39;MfZW3zLT9Q======&#39;})</span>
+<span class="go">ValidationError(func=base32, args={&#39;value&#39;: &#39;MfZW3zLT9Q======&#39;})</span>
 </code></pre></div>
 
 
@@ -1154,9 +1154,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; base32(&#39;MFZWIZLTOQ======&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; base32(&#39;MfZW3zLT9Q======&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=base32, args={&#39;value&#39;: &#39;MfZW3zLT9Q======&#39;})</span>
+<span class="sd">        ValidationError(func=base32, args={&#39;value&#39;: &#39;MfZW3zLT9Q======&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1189,9 +1189,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">base58</span><span class="p">(</span><span class="s1">&#39;14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base58</span><span class="p">(</span><span class="s1">&#39;cUSECm5YzcXJwP&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=base58, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
+<span class="go">True</span>
 </code></pre></div>
 
 
@@ -1282,9 +1282,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; base58(&#39;14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; base58(&#39;cUSECm5YzcXJwP&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=base58, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
+<span class="sd">        True</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1317,9 +1317,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">base64</span><span class="p">(</span><span class="s1">&#39;Y2hhcmFjdGVyIHNldA==&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">base64</span><span class="p">(</span><span class="s1">&#39;cUSECm5YzcXJwP&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=base64, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
+<span class="go">ValidationError(func=base64, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
 </code></pre></div>
 
 
@@ -1414,9 +1414,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; base64(&#39;Y2hhcmFjdGVyIHNldA==&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; base64(&#39;cUSECm5YzcXJwP&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=base64, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
+<span class="sd">        ValidationError(func=base64, args={&#39;value&#39;: &#39;cUSECm5YzcXJwP&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1486,7 +1486,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

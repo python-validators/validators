@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="iban" href="iban.html" /><link rel="prev" title="hostname" href="hostname.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
-        <title>i18n - validators 0.33.0 documentation</title>
+        <title>i18n - validators 0.34.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.33.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.34.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.33.0 documentation</span>
+  <span class="sidebar-brand-text">validators 0.34.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -281,9 +281,9 @@ will continue to call CIFs NIFs, that are used for companies.</p>
 [2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_cif</span><span class="p">(</span><span class="s1">&#39;B25162520&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_cif</span><span class="p">(</span><span class="s1">&#39;B25162529&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_cif, args=...)</span>
+<span class="go">ValidationError(func=es_cif, args={&#39;value&#39;: &#39;B25162529&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -311,9 +311,9 @@ is based on [generadordni.es][2].</p>
 [2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_doi</span><span class="p">(</span><span class="s1">&#39;X0095892M&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_doi</span><span class="p">(</span><span class="s1">&#39;X0095892X&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_doi, args=...)</span>
+<span class="go">ValidationError(func=es_doi, args={&#39;value&#39;: &#39;X0095892X&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -342,9 +342,9 @@ is based on [generadordni.es][2].</p>
 [2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_nie</span><span class="p">(</span><span class="s1">&#39;X0095892M&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_nie</span><span class="p">(</span><span class="s1">&#39;X0095892X&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_nie, args=...)</span>
+<span class="go">ValidationError(func=es_nie, args={&#39;value&#39;: &#39;X0095892X&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -373,9 +373,9 @@ is based on [generadordni.es][2].</p>
 [2]: <a class="reference external" href="https://generadordni.es/">https://generadordni.es/</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">es_nif</span><span class="p">(</span><span class="s1">&#39;26643189N&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_nif</span><span class="p">(</span><span class="s1">&#39;26643189X&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_nif, args=...)</span>
+<span class="go">ValidationError(func=es_nif, args={&#39;value&#39;: &#39;26643189X&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -401,9 +401,9 @@ information see [Finnish Trade Register][1]</p>
 <p>[1]: <a class="reference external" href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">http://en.wikipedia.org/wiki/Finnish_Trade_Register</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fi_business_id</span><span class="p">(</span><span class="s1">&#39;0112038-9&#39;</span><span class="p">)</span>  <span class="c1"># Fast Monkeys Ltd</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fi_business_id</span><span class="p">(</span><span class="s1">&#39;1234567-8&#39;</span><span class="p">)</span>  <span class="c1"># Bogus ID</span>
-<span class="go"># Output: ValidationError(func=fi_business_id, ...)</span>
+<span class="go">ValidationError(func=fi_business_id, args={&#39;value&#39;: &#39;1234567-8&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -428,9 +428,9 @@ information see [Finnish Trade Register][1]</p>
 <p>[1]: <a class="reference external" href="https://github.com/django/django-localflavor-fi/">https://github.com/django/django-localflavor-fi/</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fi_ssn</span><span class="p">(</span><span class="s1">&#39;010101-0101&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fi_ssn</span><span class="p">(</span><span class="s1">&#39;101010-0102&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=fi_ssn, args=...)</span>
+<span class="go">ValidationError(func=fi_ssn, args={&#39;value&#39;: &#39;101010-0102&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -458,19 +458,19 @@ SSN numbers are valid.</p></li>
 <dd><p>Validate a french department number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># can be an integer</span>
-<span class="go"># Output: True</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: 20})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;20&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: &#39;20&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;971&quot;</span><span class="p">)</span>  <span class="c1"># Guadeloupe</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=fr_department, args=...)</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: &#39;00&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2A&#39;</span><span class="p">)</span>  <span class="c1"># Corsica</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2B&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2C&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=fr_department, args=...)</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: &#39;2C&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -496,13 +496,13 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 <p>[1]: <a class="reference external" href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France">https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s%C3%A9curit%C3%A9_sociale_en_France</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089 46&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089&#39;</span><span class="p">)</span>  <span class="c1"># control key is optional</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;3 84 12 76 451 089 46&#39;</span><span class="p">)</span>  <span class="c1"># wrong gender number</span>
-<span class="go"># Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="go">ValidationError(func=fr_ssn, args={&#39;value&#39;: &#39;3 84 12 76 451 089 46&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089 47&#39;</span><span class="p">)</span>  <span class="c1"># wrong control key</span>
-<span class="go"># Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="go">ValidationError(func=fr_ssn, args={&#39;value&#39;: &#39;1 84 12 76 451 089 47&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -527,7 +527,7 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 9834 6015&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 ABVC 2133&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+<span class="go">ValidationError(func=ind_aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -552,7 +552,7 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABCDE9999K&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABC5d7896B&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+<span class="go">ValidationError(func=ind_pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -567,6 +567,41 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 <dd class="field-odd"><p>(Literal[True])</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="validators.i18n.ru_inn">
+<span class="sig-prename descclassname"><span class="pre">validators.i18n.</span></span><span class="sig-name descname"><span class="pre">ru_inn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.i18n.ru_inn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate a Russian INN (Taxpayer Identification Number).</p>
+<p>The INN can be either 10 digits (for companies) or 12 digits (for individuals).
+The function checks both the length and the control digits according to Russian tax rules.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ru_inn</span><span class="p">(</span><span class="s1">&#39;500100732259&#39;</span><span class="p">)</span>  <span class="c1"># Valid 12-digit INN</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ru_inn</span><span class="p">(</span><span class="s1">&#39;7830002293&#39;</span><span class="p">)</span>    <span class="c1"># Valid 10-digit INN</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ru_inn</span><span class="p">(</span><span class="s1">&#39;1234567890&#39;</span><span class="p">)</span>    <span class="c1"># Invalid INN</span>
+<span class="go">ValidationError(func=ru_inn, args={&#39;value&#39;: &#39;1234567890&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Russian INN string to validate. Can contain only digits.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid Russian INN.
+(ValidationError): If <cite>value</cite> is an invalid Russian INN.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The validation follows the official algorithm:
+- For 10-digit INN: checks 10th control digit
+- For 12-digit INN: checks both 11th and 12th control digits</p>
+</div>
 </dd></dl>
 
 </section>
@@ -600,7 +635,7 @@ For more information see [French Social Security Number][1] (sadly unavailable i
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2013 - 2024, Konsta Vesterinen
+                Copyright &#169; 2013 - 2025, Konsta Vesterinen
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -637,6 +672,7 @@ For more information see [French Social Security Number][1] (sadly unavailable i
 <li><a class="reference internal" href="#validators.i18n.fr_ssn"><code class="docutils literal notranslate"><span class="pre">fr_ssn()</span></code></a></li>
 <li><a class="reference internal" href="#validators.i18n.ind_aadhar"><code class="docutils literal notranslate"><span class="pre">ind_aadhar()</span></code></a></li>
 <li><a class="reference internal" href="#validators.i18n.ind_pan"><code class="docutils literal notranslate"><span class="pre">ind_pan()</span></code></a></li>
+<li><a class="reference internal" href="#validators.i18n.ru_inn"><code class="docutils literal notranslate"><span class="pre">ru_inn()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -648,7 +684,7 @@ For more information see [French Social Security Number][1] (sadly unavailable i
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4db030e8"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c3ebc126"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>

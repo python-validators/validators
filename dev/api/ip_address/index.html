@@ -900,11 +900,11 @@ was inspired from <a href="https://github.com/wtforms/wtforms/blob/master/src/wt
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ipv4</span><span class="p">(</span><span class="s1">&#39;123.0.0.7&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ipv4</span><span class="p">(</span><span class="s1">&#39;1.1.1.1/8&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ipv4</span><span class="p">(</span><span class="s1">&#39;900.80.70.11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=ipv4, args={&#39;value&#39;: &#39;900.80.70.11&#39;})</span>
+<span class="go">ValidationError(func=ipv4, args={&#39;value&#39;: &#39;900.80.70.11&#39;})</span>
 </code></pre></div>
 
 
@@ -1101,11 +1101,11 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; ipv4(&#39;123.0.0.7&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; ipv4(&#39;1.1.1.1/8&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; ipv4(&#39;900.80.70.11&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=ipv4, args={&#39;value&#39;: &#39;900.80.70.11&#39;})</span>
+<span class="sd">        ValidationError(func=ipv4, args={&#39;value&#39;: &#39;900.80.70.11&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1159,11 +1159,11 @@ was inspired from <a href="https://github.com/wtforms/wtforms/blob/master/src/wt
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ipv6</span><span class="p">(</span><span class="s1">&#39;::ffff:192.0.2.128&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ipv6</span><span class="p">(</span><span class="s1">&#39;::1/128&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ipv6</span><span class="p">(</span><span class="s1">&#39;abc.0.0.1&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=ipv6, args={&#39;value&#39;: &#39;abc.0.0.1&#39;})</span>
+<span class="go">ValidationError(func=ipv6, args={&#39;value&#39;: &#39;abc.0.0.1&#39;})</span>
 </code></pre></div>
 
 
@@ -1326,11 +1326,11 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; ipv6(&#39;::ffff:192.0.2.128&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; ipv6(&#39;::1/128&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; ipv6(&#39;abc.0.0.1&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=ipv6, args={&#39;value&#39;: &#39;abc.0.0.1&#39;})</span>
+<span class="sd">        ValidationError(func=ipv6, args={&#39;value&#39;: &#39;abc.0.0.1&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1413,7 +1413,7 @@ address, this function raises a validation error. ref <a href="https://docs.pyth
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

@@ -12,3 +12,4 @@ i18n
 .. autofunction:: fr_ssn
 .. autofunction:: ind_aadhar
 .. autofunction:: ind_pan
+.. autofunction:: ru_inn

@@ -8,5 +8,6 @@ card
 .. autofunction:: discover
 .. autofunction:: jcb
 .. autofunction:: mastercard
+.. autofunction:: mir
 .. autofunction:: unionpay
 .. autofunction:: visa

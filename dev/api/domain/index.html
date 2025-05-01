@@ -879,12 +879,12 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example.com&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;example.com/&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=domain, ...)</span>
+<span class="go">ValidationError(func=domain, args={&#39;value&#39;: &#39;example.com/&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Supports IDN domains as well::</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">domain</span><span class="p">(</span><span class="s1">&#39;xn----gtbspbbmkef.xn--p1ai&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 </code></pre></div>
 
 
@@ -1019,8 +1019,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/validators/domain.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 39</span>
-<span class="normal"> 40</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 40</span>
 <span class="normal"> 41</span>
 <span class="normal"> 42</span>
 <span class="normal"> 43</span>
@@ -1089,12 +1088,12 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; domain(&#39;example.com&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; domain(&#39;example.com/&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=domain, ...)</span>
+<span class="sd">        ValidationError(func=domain, args={&#39;value&#39;: &#39;example.com/&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; # Supports IDN domains as well::</span>
 <span class="sd">        &gt;&gt;&gt; domain(&#39;xn----gtbspbbmkef.xn--p1ai&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1124,7 +1123,6 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
         <span class="k">return</span> <span class="kc">False</span>
 
     <span class="k">try</span><span class="p">:</span>
-
         <span class="n">service_record</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;_&quot;</span> <span class="k">if</span> <span class="n">rfc_2782</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
         <span class="n">trailing_dot</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;\.?$&quot;</span> <span class="k">if</span> <span class="n">rfc_1034</span> <span class="k">else</span> <span class="sa">r</span><span class="s2">&quot;$&quot;</span>
 
@@ -1199,7 +1197,7 @@ Ref: <a href="https://www.rfc-editor.org/rfc/rfc2782">RFC 2782</a>.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

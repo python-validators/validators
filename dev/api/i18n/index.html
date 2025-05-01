@@ -704,6 +704,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#validators.i18n.ru_inn" class="md-nav__link">
+    <span class="md-ellipsis">
+      ru_inn
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1004,6 +1013,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#validators.i18n.ru_inn" class="md-nav__link">
+    <span class="md-ellipsis">
+      ru_inn
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1048,9 +1066,9 @@ will continue to call CIFs NIFs, that are used for companies.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">es_cif</span><span class="p">(</span><span class="s1">&#39;B25162520&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_cif</span><span class="p">(</span><span class="s1">&#39;B25162529&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_cif, args=...)</span>
+<span class="go">ValidationError(func=es_cif, args={&#39;value&#39;: &#39;B25162529&#39;})</span>
 </code></pre></div>
 
 
@@ -1190,9 +1208,9 @@ will continue to call CIFs NIFs, that are used for companies.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; es_cif(&#39;B25162520&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; es_cif(&#39;B25162529&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=es_cif, args=...)</span>
+<span class="sd">        ValidationError(func=es_cif, args={&#39;value&#39;: &#39;B25162529&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1251,9 +1269,9 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">es_doi</span><span class="p">(</span><span class="s1">&#39;X0095892M&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_doi</span><span class="p">(</span><span class="s1">&#39;X0095892X&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_doi, args=...)</span>
+<span class="go">ValidationError(func=es_doi, args={&#39;value&#39;: &#39;X0095892X&#39;})</span>
 </code></pre></div>
 
 
@@ -1320,7 +1338,8 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/validators/i18n/es.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">144</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
+<span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
 <span class="normal">147</span>
@@ -1344,8 +1363,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
-<span class="normal">168</span>
-<span class="normal">169</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_doi</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish DOI.</span>
 
@@ -1358,9 +1376,9 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; es_doi(&#39;X0095892M&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; es_doi(&#39;X0095892X&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=es_doi, args=...)</span>
+<span class="sd">        ValidationError(func=es_doi, args={&#39;value&#39;: &#39;X0095892X&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1397,9 +1415,9 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">es_nie</span><span class="p">(</span><span class="s1">&#39;X0095892M&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_nie</span><span class="p">(</span><span class="s1">&#39;X0095892X&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_nie, args=...)</span>
+<span class="go">ValidationError(func=es_nie, args={&#39;value&#39;: &#39;X0095892X&#39;})</span>
 </code></pre></div>
 
 
@@ -1466,7 +1484,8 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/validators/i18n/es.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">111</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
+<span class="normal">111</span>
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
@@ -1495,8 +1514,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="normal">137</span>
 <span class="normal">138</span>
 <span class="normal">139</span>
-<span class="normal">140</span>
-<span class="normal">141</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_nie</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish NIE.</span>
 
@@ -1510,9 +1528,9 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; es_nie(&#39;X0095892M&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; es_nie(&#39;X0095892X&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=es_nie, args=...)</span>
+<span class="sd">        ValidationError(func=es_nie, args={&#39;value&#39;: &#39;X0095892X&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1525,7 +1543,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
     <span class="n">number_by_letter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="s2">&quot;2&quot;</span><span class="p">}</span>
     <span class="c1"># NIE must must start with X Y or Z</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">and</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">number_by_letter</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_nif_nie_validation</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">number_by_letter</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;X0000000T&quot;</span><span class="p">})</span>
+        <span class="k">return</span> <span class="n">_nif_nie_validation</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">number_by_letter</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1553,9 +1571,9 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">es_nif</span><span class="p">(</span><span class="s1">&#39;26643189N&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">es_nif</span><span class="p">(</span><span class="s1">&#39;26643189X&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=es_nif, args=...)</span>
+<span class="go">ValidationError(func=es_nif, args={&#39;value&#39;: &#39;26643189X&#39;})</span>
 </code></pre></div>
 
 
@@ -1649,8 +1667,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">es_nif</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Spanish NIF.</span>
 
@@ -1664,9 +1681,9 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; es_nif(&#39;26643189N&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; es_nif(&#39;26643189X&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=es_nif, args=...)</span>
+<span class="sd">        ValidationError(func=es_nif, args={&#39;value&#39;: &#39;26643189X&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1677,8 +1694,7 @@ is based on <a href="https://generadordni.es/">generadordni.es</a>.</p>
 <span class="sd">        (ValidationError): If `value` is an invalid DOI string.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">number_by_letter</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="s2">&quot;0&quot;</span><span class="p">}</span>
-    <span class="n">special_cases</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;X0000000T&quot;</span><span class="p">,</span> <span class="s2">&quot;00000000T&quot;</span><span class="p">,</span> <span class="s2">&quot;00000001R&quot;</span><span class="p">}</span>
-    <span class="k">return</span> <span class="n">_nif_nie_validation</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">number_by_letter</span><span class="p">,</span> <span class="n">special_cases</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_nif_nie_validation</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">number_by_letter</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -1703,9 +1719,9 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">fi_business_id</span><span class="p">(</span><span class="s1">&#39;0112038-9&#39;</span><span class="p">)</span>  <span class="c1"># Fast Monkeys Ltd</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fi_business_id</span><span class="p">(</span><span class="s1">&#39;1234567-8&#39;</span><span class="p">)</span>  <span class="c1"># Bogus ID</span>
-<span class="go"># Output: ValidationError(func=fi_business_id, ...)</span>
+<span class="go">ValidationError(func=fi_business_id, args={&#39;value&#39;: &#39;1234567-8&#39;})</span>
 </code></pre></div>
 
 
@@ -1772,7 +1788,9 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 
             <details class="quote">
               <summary>Source code in <code>src/validators/i18n/fi.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
 <span class="normal">35</span>
 <span class="normal">36</span>
 <span class="normal">37</span>
@@ -1801,9 +1819,7 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">fi_business_id</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Finnish Business ID.</span>
 
@@ -1814,9 +1830,9 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; fi_business_id(&#39;0112038-9&#39;)  # Fast Monkeys Ltd</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fi_business_id(&#39;1234567-8&#39;)  # Bogus ID</span>
-<span class="sd">        # Output: ValidationError(func=fi_business_id, ...)</span>
+<span class="sd">        ValidationError(func=fi_business_id, args={&#39;value&#39;: &#39;1234567-8&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1858,9 +1874,9 @@ information see <a href="http://en.wikipedia.org/wiki/Finnish_Trade_Register">Fi
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">fi_ssn</span><span class="p">(</span><span class="s1">&#39;010101-0101&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fi_ssn</span><span class="p">(</span><span class="s1">&#39;101010-0102&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=fi_ssn, args=...)</span>
+<span class="go">ValidationError(func=fi_ssn, args={&#39;value&#39;: &#39;101010-0102&#39;})</span>
 </code></pre></div>
 
 
@@ -1943,7 +1959,9 @@ SSN numbers are valid.</p>
 
             <details class="quote">
               <summary>Source code in <code>src/validators/i18n/fi.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 68</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
 <span class="normal"> 69</span>
 <span class="normal"> 70</span>
 <span class="normal"> 71</span>
@@ -1978,9 +1996,7 @@ SSN numbers are valid.</p>
 <span class="normal">100</span>
 <span class="normal">101</span>
 <span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="normal">103</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
 <span class="k">def</span> <span class="nf">fi_ssn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">allow_temporal_ssn</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Finnish Social Security Number.</span>
 
@@ -1990,9 +2006,9 @@ SSN numbers are valid.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; fi_ssn(&#39;010101-0101&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fi_ssn(&#39;101010-0102&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=fi_ssn, args=...)</span>
+<span class="sd">        ValidationError(func=fi_ssn, args={&#39;value&#39;: &#39;101010-0102&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -2040,19 +2056,19 @@ SSN numbers are valid.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>  <span class="c1"># can be an integer</span>
-<span class="go"># Output: True</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: 20})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;20&quot;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: &#39;20&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;971&quot;</span><span class="p">)</span>  <span class="c1"># Guadeloupe</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s2">&quot;00&quot;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=fr_department, args=...)</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: &#39;00&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2A&#39;</span><span class="p">)</span>  <span class="c1"># Corsica</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2B&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_department</span><span class="p">(</span><span class="s1">&#39;2C&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=fr_department, args=...)</span>
+<span class="go">ValidationError(func=fr_department, args={&#39;value&#39;: &#39;2C&#39;})</span>
 </code></pre></div>
 
 
@@ -2162,19 +2178,19 @@ SSN numbers are valid.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(20)  # can be an integer</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        ValidationError(func=fr_department, args={&#39;value&#39;: 20})</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(&quot;20&quot;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        ValidationError(func=fr_department, args={&#39;value&#39;: &#39;20&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(&quot;971&quot;)  # Guadeloupe</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(&quot;00&quot;)</span>
-<span class="sd">        # Output: ValidationError(func=fr_department, args=...)</span>
+<span class="sd">        ValidationError(func=fr_department, args={&#39;value&#39;: &#39;00&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(&#39;2A&#39;)  # Corsica</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(&#39;2B&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fr_department(&#39;2C&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=fr_department, args=...)</span>
+<span class="sd">        ValidationError(func=fr_department, args={&#39;value&#39;: &#39;2C&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -2218,13 +2234,13 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089 46&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089&#39;</span><span class="p">)</span>  <span class="c1"># control key is optional</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;3 84 12 76 451 089 46&#39;</span><span class="p">)</span>  <span class="c1"># wrong gender number</span>
-<span class="go"># Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="go">ValidationError(func=fr_ssn, args={&#39;value&#39;: &#39;3 84 12 76 451 089 46&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fr_ssn</span><span class="p">(</span><span class="s1">&#39;1 84 12 76 451 089 47&#39;</span><span class="p">)</span>  <span class="c1"># wrong control key</span>
-<span class="go"># Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="go">ValidationError(func=fr_ssn, args={&#39;value&#39;: &#39;1 84 12 76 451 089 47&#39;})</span>
 </code></pre></div>
 
 
@@ -2354,13 +2370,13 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; fr_ssn(&#39;1 84 12 76 451 089 46&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fr_ssn(&#39;1 84 12 76 451 089&#39;)  # control key is optional</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; fr_ssn(&#39;3 84 12 76 451 089 46&#39;)  # wrong gender number</span>
-<span class="sd">        # Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="sd">        ValidationError(func=fr_ssn, args={&#39;value&#39;: &#39;3 84 12 76 451 089 46&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; fr_ssn(&#39;1 84 12 76 451 089 47&#39;)  # wrong control key</span>
-<span class="sd">        # Output: ValidationError(func=fr_ssn, args=...)</span>
+<span class="sd">        ValidationError(func=fr_ssn, args={&#39;value&#39;: &#39;1 84 12 76 451 089 47&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -2420,7 +2436,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 9834 6015&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ind_aadhar</span><span class="p">(</span><span class="s1">&#39;3675 ABVC 2133&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+<span class="go">ValidationError(func=ind_aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
 </code></pre></div>
 
 
@@ -2512,7 +2528,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 <span class="sd">        &gt;&gt;&gt; ind_aadhar(&#39;3675 9834 6015&#39;)</span>
 <span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; ind_aadhar(&#39;3675 ABVC 2133&#39;)</span>
-<span class="sd">        ValidationFailure(func=aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
+<span class="sd">        ValidationError(func=ind_aadhar, args={&#39;value&#39;: &#39;3675 ABVC 2133&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value: Aadhar card number string to validate.</span>
@@ -2546,7 +2562,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABCDE9999K&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">ind_pan</span><span class="p">(</span><span class="s1">&#39;ABC5d7896B&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+<span class="go">ValidationError(func=ind_pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
 </code></pre></div>
 
 
@@ -2638,7 +2654,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 <span class="sd">        &gt;&gt;&gt; ind_pan(&#39;ABCDE9999K&#39;)</span>
 <span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; ind_pan(&#39;ABC5d7896B&#39;)</span>
-<span class="sd">        ValidationFailure(func=pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
+<span class="sd">        ValidationError(func=ind_pan, args={&#39;value&#39;: &#39;ABC5d7896B&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value: PAN card number string to validate.</span>
@@ -2648,6 +2664,223 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
 <span class="sd">        (ValidationError): If `value` is an invalid PAN card number.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;[A-Z]</span><span class="si">{5}</span><span class="s2">\d</span><span class="si">{4}</span><span class="s2">[A-Z]</span><span class="si">{1}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="validators.i18n.ru_inn" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">validators</span><span class="o">.</span><span class="n">i18n</span><span class="o">.</span><span class="n">ru_inn</span><span class="p">(</span><span class="n">value</span><span class="p">)</span></code>
+
+<a href="#validators.i18n.ru_inn" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+      <p>Validate a Russian INN (Taxpayer Identification Number).</p>
+<p>The INN can be either 10 digits (for companies) or 12 digits (for individuals).
+The function checks both the length and the control digits according to Russian tax rules.</p>
+
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">ru_inn</span><span class="p">(</span><span class="s1">&#39;500100732259&#39;</span><span class="p">)</span>  <span class="c1"># Valid 12-digit INN</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ru_inn</span><span class="p">(</span><span class="s1">&#39;7830002293&#39;</span><span class="p">)</span>    <span class="c1"># Valid 10-digit INN</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ru_inn</span><span class="p">(</span><span class="s1">&#39;1234567890&#39;</span><span class="p">)</span>    <span class="c1"># Invalid INN</span>
+<span class="go">ValidationError(func=ru_inn, args={&#39;value&#39;: &#39;1234567890&#39;})</span>
+</code></pre></div>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code>value</code></td>
+            <td>
+                  <code>str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Russian INN string to validate. Can contain only digits.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code>Literal[True]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is a valid Russian INN.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="validators.utils.ValidationError" href="../utils/#validators.utils.ValidationError">ValidationError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>value</code> is an invalid Russian INN.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<details class="note" open>
+  <summary>Note</summary>
+  <p>The validation follows the official algorithm:
+- For 10-digit INN: checks 10th control digit
+- For 12-digit INN: checks both 11th and 12th control digits</p>
+</details>
+            <details class="quote">
+              <summary>Source code in <code>src/validators/i18n/ru.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@validator</span>
+<span class="k">def</span> <span class="nf">ru_inn</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate a Russian INN (Taxpayer Identification Number).</span>
+
+<span class="sd">    The INN can be either 10 digits (for companies) or 12 digits (for individuals).</span>
+<span class="sd">    The function checks both the length and the control digits according to Russian tax rules.</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; ru_inn(&#39;500100732259&#39;)  # Valid 12-digit INN</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; ru_inn(&#39;7830002293&#39;)    # Valid 10-digit INN</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; ru_inn(&#39;1234567890&#39;)    # Invalid INN</span>
+<span class="sd">        ValidationError(func=ru_inn, args={&#39;value&#39;: &#39;1234567890&#39;})</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        value: Russian INN string to validate. Can contain only digits.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        (Literal[True]): If `value` is a valid Russian INN.</span>
+<span class="sd">        (ValidationError): If `value` is an invalid Russian INN.</span>
+
+<span class="sd">    Note:</span>
+<span class="sd">        The validation follows the official algorithm:</span>
+<span class="sd">        - For 10-digit INN: checks 10th control digit</span>
+<span class="sd">        - For 12-digit INN: checks both 11th and 12th control digits</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">digits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+        <span class="c1"># company</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="n">weight_coefs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">control_number</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">d</span> <span class="o">*</span> <span class="n">w</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span> <span class="n">weight_coefs</span><span class="p">)])</span> <span class="o">%</span> <span class="mi">11</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">control_number</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">digits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">control_number</span> <span class="o">&gt;</span> <span class="mi">9</span>
+                <span class="k">else</span> <span class="n">control_number</span> <span class="o">==</span> <span class="n">digits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="c1"># person</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span><span class="p">:</span>
+            <span class="n">weight_coefs1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">control_number1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">d</span> <span class="o">*</span> <span class="n">w</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span> <span class="n">weight_coefs1</span><span class="p">)])</span> <span class="o">%</span> <span class="mi">11</span>
+            <span class="n">weight_coefs2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">control_number2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="n">d</span> <span class="o">*</span> <span class="n">w</span> <span class="k">for</span> <span class="n">d</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span> <span class="n">weight_coefs2</span><span class="p">)])</span> <span class="o">%</span> <span class="mi">11</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">control_number1</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">digits</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">control_number1</span> <span class="o">&gt;</span> <span class="mi">9</span>
+                <span class="k">else</span> <span class="n">control_number1</span> <span class="o">==</span> <span class="n">digits</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="ow">and</span> <span class="p">(</span><span class="n">control_number2</span> <span class="o">%</span> <span class="mi">10</span><span class="p">)</span> <span class="o">==</span> <span class="n">digits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">control_number2</span> <span class="o">&gt;</span> <span class="mi">9</span>
+                <span class="k">else</span> <span class="n">control_number2</span> <span class="o">==</span> <span class="n">digits</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
 </code></pre></div></td></tr></table></div>
             </details>
     </div>
@@ -2673,7 +2906,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 3, 2024</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">May 1, 2025</span>
   </span>
 
     
@@ -2703,7 +2936,7 @@ For more information see <a href="https://fr.wikipedia.org/wiki/Num%C3%A9ro_de_s
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

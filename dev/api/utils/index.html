@@ -1022,7 +1022,7 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Repr Validation Failure.&quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="sa">f</span><span class="s2">&quot;ValidationError(func=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, &quot;</span>
-            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;args=</span><span class="si">{</span><span class="p">({</span><span class="n">k</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;func&#39;</span><span class="p">})</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;args=</span><span class="si">{</span><span class="w"> </span><span class="p">({</span><span class="n">k</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;func&#39;</span><span class="p">})</span><span class="w"> </span><span class="si">}</span><span class="s2">)&quot;</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -1129,7 +1129,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Repr Validation Failure.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="p">(</span>
         <span class="sa">f</span><span class="s2">&quot;ValidationError(func=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">, &quot;</span>
-        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;args=</span><span class="si">{</span><span class="p">({</span><span class="n">k</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;func&#39;</span><span class="p">})</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;args=</span><span class="si">{</span><span class="w"> </span><span class="p">({</span><span class="n">k</span><span class="p">:</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">v</span><span class="p">)</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="s1">&#39;func&#39;</span><span class="p">})</span><span class="w"> </span><span class="si">}</span><span class="s2">)&quot;</span>
     <span class="p">)</span>
 </code></pre></div></td></tr></table></div>
             </details>
@@ -1192,9 +1192,9 @@ decorator returns <code>ValidationError</code> object.</p>
 <span class="gp">... </span><span class="k">def</span> <span class="nf">even</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">return</span> <span class="ow">not</span> <span class="p">(</span><span class="n">value</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">even</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">even</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=even, args={&#39;value&#39;: 5})</span>
+<span class="go">ValidationError(func=even, args={&#39;value&#39;: 5})</span>
 </code></pre></div>
 
 
@@ -1343,9 +1343,9 @@ or <code>Literal[True]</code>.</p>
 <span class="sd">        ... def even(value):</span>
 <span class="sd">        ...     return not (value % 2)</span>
 <span class="sd">        &gt;&gt;&gt; even(4)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; even(5)</span>
-<span class="sd">        # Output: ValidationError(func=even, args={&#39;value&#39;: 5})</span>
+<span class="sd">        ValidationError(func=even, args={&#39;value&#39;: 5})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        func:</span>
@@ -1445,7 +1445,7 @@ or <code>Literal[True]</code>.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

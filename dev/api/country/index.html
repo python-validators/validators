@@ -916,9 +916,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">calling_code</span><span class="p">(</span><span class="s1">&#39;+91&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">calling_code</span><span class="p">(</span><span class="s1">&#39;-31&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=calling_code, args={&#39;value&#39;: &#39;-31&#39;})</span>
+<span class="go">ValidationError(func=calling_code, args={&#39;value&#39;: &#39;-31&#39;})</span>
 </code></pre></div>
 
 
@@ -1016,9 +1016,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; calling_code(&#39;+91&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; calling_code(&#39;-31&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=calling_code, args={&#39;value&#39;: &#39;-31&#39;})</span>
+<span class="sd">        ValidationError(func=calling_code, args={&#39;value&#39;: &#39;-31&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1055,15 +1055,15 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;GB&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;alpha3&#39;</span><span class="p">)</span>
-<span class="go"># Output: False</span>
+<span class="go">ValidationError(func=country_code, args={&#39;value&#39;: &#39;GB&#39;, &#39;iso_format&#39;: &#39;alpha3&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;USA&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;840&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;numeric&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;iN&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;alpha2&#39;</span><span class="p">)</span>
-<span class="go"># Output: False</span>
+<span class="go">ValidationError(func=country_code, args={&#39;value&#39;: &#39;iN&#39;, &#39;iso_format&#39;: &#39;alpha2&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">country_code</span><span class="p">(</span><span class="s1">&#39;ZWE&#39;</span><span class="p">,</span> <span class="n">iso_format</span><span class="o">=</span><span class="s1">&#39;alpha3&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 </code></pre></div>
 
 
@@ -1220,15 +1220,15 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; country_code(&#39;GB&#39;, iso_format=&#39;alpha3&#39;)</span>
-<span class="sd">        # Output: False</span>
+<span class="sd">        ValidationError(func=country_code, args={&#39;value&#39;: &#39;GB&#39;, &#39;iso_format&#39;: &#39;alpha3&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; country_code(&#39;USA&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; country_code(&#39;840&#39;, iso_format=&#39;numeric&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; country_code(&#39;iN&#39;, iso_format=&#39;alpha2&#39;)</span>
-<span class="sd">        # Output: False</span>
+<span class="sd">        ValidationError(func=country_code, args={&#39;value&#39;: &#39;iN&#39;, &#39;iso_format&#39;: &#39;alpha2&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; country_code(&#39;ZWE&#39;, iso_format=&#39;alpha3&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1285,9 +1285,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">currency</span><span class="p">(</span><span class="s1">&#39;USD&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">currency</span><span class="p">(</span><span class="s1">&#39;ZWX&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=currency, args={&#39;value&#39;: &#39;ZWX&#39;})</span>
+<span class="go">ValidationError(func=currency, args={&#39;value&#39;: &#39;ZWX&#39;})</span>
 </code></pre></div>
 
 
@@ -1427,9 +1427,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; currency(&#39;USD&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; currency(&#39;ZWX&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=currency, args={&#39;value&#39;: &#39;ZWX&#39;})</span>
+<span class="sd">        ValidationError(func=currency, args={&#39;value&#39;: &#39;ZWX&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1508,7 +1508,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="country" href="country.html" /><link rel="prev" title="between" href="between.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
-        <title>card - validators 0.33.0 documentation</title>
+        <title>card - validators 0.34.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.33.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.34.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.33.0 documentation</span>
+  <span class="sidebar-brand-text">validators 0.34.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -272,9 +272,9 @@
 <dd><p>Return whether or not given value is a valid American Express card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">amex</span><span class="p">(</span><span class="s1">&#39;378282246310005&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">amex</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=amex, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=amex, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -299,9 +299,9 @@
 <p>[1]: <a class="reference external" href="https://github.com/mmcloughlin/luhn">https://github.com/mmcloughlin/luhn</a></p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">card_number</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">card_number</span><span class="p">(</span><span class="s1">&#39;4242424242424241&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=card_number, args={&#39;value&#39;: &#39;4242424242424241&#39;})</span>
+<span class="go">ValidationError(func=card_number, args={&#39;value&#39;: &#39;4242424242424241&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -324,9 +324,9 @@
 <dd><p>Return whether or not given value is a valid Diners Club card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">diners</span><span class="p">(</span><span class="s1">&#39;3056930009020004&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">diners</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=diners, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=diners, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -349,9 +349,9 @@
 <dd><p>Return whether or not given value is a valid Discover card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">discover</span><span class="p">(</span><span class="s1">&#39;6011111111111117&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">discover</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=discover, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=discover, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -374,9 +374,9 @@
 <dd><p>Return whether or not given value is a valid JCB card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">jcb</span><span class="p">(</span><span class="s1">&#39;3566002020360505&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">jcb</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=jcb, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=jcb, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -399,9 +399,9 @@
 <dd><p>Return whether or not given value is a valid Mastercard card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mastercard</span><span class="p">(</span><span class="s1">&#39;5555555555554444&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">mastercard</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=mastercard, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=mastercard, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -419,14 +419,39 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="validators.card.mir">
+<span class="sig-prename descclassname"><span class="pre">validators.card.</span></span><span class="sig-name descname"><span class="pre">mir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.card.mir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether or not given value is a valid Mir card number.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mir</span><span class="p">(</span><span class="s1">&#39;2200123456789019&#39;</span><span class="p">)</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mir</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
+<span class="go">ValidationError(func=mir, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> – Mir card number string to validate.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If <cite>value</cite> is a valid Mir card number.
+(ValidationError): If <cite>value</cite> is an invalid Mir card number.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(Literal[True])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="validators.card.unionpay">
 <span class="sig-prename descclassname"><span class="pre">validators.card.</span></span><span class="sig-name descname"><span class="pre">unionpay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">/</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#validators.card.unionpay" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return whether or not given value is a valid UnionPay card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">unionpay</span><span class="p">(</span><span class="s1">&#39;6200000000000005&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">unionpay</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=unionpay, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
+<span class="go">ValidationError(func=unionpay, args={&#39;value&#39;: &#39;4242424242424242&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -449,9 +474,9 @@
 <dd><p>Return whether or not given value is a valid Visa card number.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">visa</span><span class="p">(</span><span class="s1">&#39;4242424242424242&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">visa</span><span class="p">(</span><span class="s1">&#39;2223003122003222&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=visa, args={&#39;value&#39;: &#39;2223003122003222&#39;})</span>
+<span class="go">ValidationError(func=visa, args={&#39;value&#39;: &#39;2223003122003222&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -499,7 +524,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2013 - 2024, Konsta Vesterinen
+                Copyright &#169; 2013 - 2025, Konsta Vesterinen
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -532,6 +557,7 @@
 <li><a class="reference internal" href="#validators.card.discover"><code class="docutils literal notranslate"><span class="pre">discover()</span></code></a></li>
 <li><a class="reference internal" href="#validators.card.jcb"><code class="docutils literal notranslate"><span class="pre">jcb()</span></code></a></li>
 <li><a class="reference internal" href="#validators.card.mastercard"><code class="docutils literal notranslate"><span class="pre">mastercard()</span></code></a></li>
+<li><a class="reference internal" href="#validators.card.mir"><code class="docutils literal notranslate"><span class="pre">mir()</span></code></a></li>
 <li><a class="reference internal" href="#validators.card.unionpay"><code class="docutils literal notranslate"><span class="pre">unionpay()</span></code></a></li>
 <li><a class="reference internal" href="#validators.card.visa"><code class="docutils literal notranslate"><span class="pre">visa()</span></code></a></li>
 </ul>
@@ -545,7 +571,7 @@
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4db030e8"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c3ebc126"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>

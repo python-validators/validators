@@ -918,7 +918,7 @@
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">cusip</span><span class="p">(</span><span class="s1">&#39;037833DP2&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cusip</span><span class="p">(</span><span class="s1">&#39;037833DP3&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=cusip, ...)</span>
+<span class="go">ValidationError(func=cusip, args={&#39;value&#39;: &#39;037833DP3&#39;})</span>
 </code></pre></div>
 
 
@@ -1016,7 +1016,7 @@
 <span class="sd">        &gt;&gt;&gt; cusip(&#39;037833DP2&#39;)</span>
 <span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; cusip(&#39;037833DP3&#39;)</span>
-<span class="sd">        ValidationFailure(func=cusip, ...)</span>
+<span class="sd">        ValidationError(func=cusip, args={&#39;value&#39;: &#39;037833DP3&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value: CUSIP string to validate.</span>
@@ -1049,9 +1049,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">isin</span><span class="p">(</span><span class="s1">&#39;037833DP2&#39;</span><span class="p">)</span>
-<span class="go">True</span>
+<span class="go">ValidationError(func=isin, args={&#39;value&#39;: &#39;037833DP2&#39;})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">isin</span><span class="p">(</span><span class="s1">&#39;037833DP3&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=isin, ...)</span>
+<span class="go">ValidationError(func=isin, args={&#39;value&#39;: &#39;037833DP3&#39;})</span>
 </code></pre></div>
 
 
@@ -1147,9 +1147,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; isin(&#39;037833DP2&#39;)</span>
-<span class="sd">        True</span>
+<span class="sd">        ValidationError(func=isin, args={&#39;value&#39;: &#39;037833DP2&#39;})</span>
 <span class="sd">        &gt;&gt;&gt; isin(&#39;037833DP3&#39;)</span>
-<span class="sd">        ValidationFailure(func=isin, ...)</span>
+<span class="sd">        ValidationError(func=isin, args={&#39;value&#39;: &#39;037833DP3&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value: ISIN string to validate.</span>
@@ -1184,7 +1184,7 @@
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">sedol</span><span class="p">(</span><span class="s1">&#39;2936921&#39;</span><span class="p">)</span>
 <span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sedol</span><span class="p">(</span><span class="s1">&#39;29A6922&#39;</span><span class="p">)</span>
-<span class="go">ValidationFailure(func=sedol, ...)</span>
+<span class="go">ValidationError(func=sedol, args={&#39;value&#39;: &#39;29A6922&#39;})</span>
 </code></pre></div>
 
 
@@ -1301,7 +1301,7 @@
 <span class="sd">        &gt;&gt;&gt; sedol(&#39;2936921&#39;)</span>
 <span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; sedol(&#39;29A6922&#39;)</span>
-<span class="sd">        ValidationFailure(func=sedol, ...)</span>
+<span class="sd">        ValidationError(func=sedol, args={&#39;value&#39;: &#39;29A6922&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value: SEDOL string to validate.</span>
@@ -1385,7 +1385,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

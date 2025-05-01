@@ -27,7 +27,7 @@ level margin: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .\" new: \\n[rst2man-indent\\n[rst2man-indent-level]]
 .in \\n[rst2man-indent\\n[rst2man-indent-level]]u
 ..
-.TH "VALIDATORS" "1" "Sep 03, 2024" "0.33.0" "validators"
+.TH "VALIDATORS" "1" "May 01, 2025" "0.35.0" "validators"
 .SH NAME
 validators \- Python Data Validation for Humans™
 .sp
@@ -37,6 +37,18 @@ Python has all kinds of data validation tools, but every one of them
 seems to require defining a schema or form. I wanted to create a simple
 validation library where validating a simple value does not require
 defining a form or a schema.
+.INDENT 0.0
+.INDENT 3.5
+.sp
+.nf
+.ft C
+pip install validators
+.ft P
+.fi
+.UNINDENT
+.UNINDENT
+.sp
+Then,
 .INDENT 0.0
 .INDENT 3.5
 .sp
@@ -70,8 +82,8 @@ True
 .sp
 .INDENT 0.0
 .INDENT 3.5
-\fBPython 3.8\fP \fI\%reaches EOL in\fP
-\fBOctober 2024.\fP
+\fBPython 3.9\fP \fI\%reaches EOL in\fP
+\fBOctober 2025.\fP
 .UNINDENT
 .UNINDENT
 .SS Install and Use
@@ -161,16 +173,16 @@ Examples
 .ft C
 >>> from datetime import datetime
 >>> between(5, min_val=2)
-# Output: True
+True
 >>> between(13.2, min_val=13, max_val=14)
-# Output: True
+True
 >>> between(500, max_val=400)
-# Output: ValidationError(func=between, args=...)
+ValidationError(func=between, args={\(aqvalue\(aq: 500, \(aqmax_val\(aq: 400})
 >>> between(
 \&...     datetime(2000, 11, 11),
 \&...     min_val=datetime(1999, 11, 11)
 \&... )
-# Output: True
+True
 .ft P
 .fi
 .INDENT 7.0
@@ -226,9 +238,9 @@ Examples
 .nf
 .ft C
 >>> amex(\(aq378282246310005\(aq)
-# Output: True
+True
 >>> amex(\(aq4242424242424242\(aq)
-# Output: ValidationError(func=amex, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+ValidationError(func=amex, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -258,9 +270,9 @@ Examples
 .nf
 .ft C
 >>> card_number(\(aq4242424242424242\(aq)
-# Output: True
+True
 >>> card_number(\(aq4242424242424241\(aq)
-# Output: ValidationError(func=card_number, args={\(aqvalue\(aq: \(aq4242424242424241\(aq})
+ValidationError(func=card_number, args={\(aqvalue\(aq: \(aq4242424242424241\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -286,9 +298,9 @@ Examples
 .nf
 .ft C
 >>> diners(\(aq3056930009020004\(aq)
-# Output: True
+True
 >>> diners(\(aq4242424242424242\(aq)
-# Output: ValidationError(func=diners, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+ValidationError(func=diners, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -314,9 +326,9 @@ Examples
 .nf
 .ft C
 >>> discover(\(aq6011111111111117\(aq)
-# Output: True
+True
 >>> discover(\(aq4242424242424242\(aq)
-# Output: ValidationError(func=discover, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+ValidationError(func=discover, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -342,9 +354,9 @@ Examples
 .nf
 .ft C
 >>> jcb(\(aq3566002020360505\(aq)
-# Output: True
+True
 >>> jcb(\(aq4242424242424242\(aq)
-# Output: ValidationError(func=jcb, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+ValidationError(func=jcb, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -370,9 +382,9 @@ Examples
 .nf
 .ft C
 >>> mastercard(\(aq5555555555554444\(aq)
-# Output: True
+True
 >>> mastercard(\(aq4242424242424242\(aq)
-# Output: ValidationError(func=mastercard, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+ValidationError(func=mastercard, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -390,6 +402,34 @@ If \fIvalue\fP is a valid Mastercard card number.
 .UNINDENT
 .INDENT 0.0
 .TP
+.B validators.card.mir(value:  str, /)
+Return whether or not given value is a valid Mir card number.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> mir(\(aq2200123456789019\(aq)
+True
+>>> mir(\(aq4242424242424242\(aq)
+ValidationError(func=mir, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Mir card number string to validate.
+.TP
+.B Returns
+If \fIvalue\fP is a valid Mir card number.
+(ValidationError): If \fIvalue\fP is an invalid Mir card number.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.UNINDENT
+.INDENT 0.0
+.TP
 .B validators.card.unionpay(value:  str, /)
 Return whether or not given value is a valid UnionPay card number.
 .sp
@@ -398,9 +438,9 @@ Examples
 .nf
 .ft C
 >>> unionpay(\(aq6200000000000005\(aq)
-# Output: True
+True
 >>> unionpay(\(aq4242424242424242\(aq)
-# Output: ValidationError(func=unionpay, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
+ValidationError(func=unionpay, args={\(aqvalue\(aq: \(aq4242424242424242\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -426,9 +466,9 @@ Examples
 .nf
 .ft C
 >>> visa(\(aq4242424242424242\(aq)
-# Output: True
+True
 >>> visa(\(aq2223003122003222\(aq)
-# Output: ValidationError(func=visa, args={\(aqvalue\(aq: \(aq2223003122003222\(aq})
+ValidationError(func=visa, args={\(aqvalue\(aq: \(aq2223003122003222\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -457,9 +497,9 @@ Examples
 .nf
 .ft C
 >>> calling_code(\(aq+91\(aq)
-# Output: True
+True
 >>> calling_code(\(aq\-31\(aq)
-# Output: ValidationError(func=calling_code, args={\(aqvalue\(aq: \(aq\-31\(aq})
+ValidationError(func=calling_code, args={\(aqvalue\(aq: \(aq\-31\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -489,15 +529,15 @@ Examples
 .nf
 .ft C
 >>> country_code(\(aqGB\(aq, iso_format=\(aqalpha3\(aq)
-# Output: False
+ValidationError(func=country_code, args={\(aqvalue\(aq: \(aqGB\(aq, \(aqiso_format\(aq: \(aqalpha3\(aq})
 >>> country_code(\(aqUSA\(aq)
-# Output: True
+True
 >>> country_code(\(aq840\(aq, iso_format=\(aqnumeric\(aq)
-# Output: True
+True
 >>> country_code(\(aqiN\(aq, iso_format=\(aqalpha2\(aq)
-# Output: False
+ValidationError(func=country_code, args={\(aqvalue\(aq: \(aqiN\(aq, \(aqiso_format\(aq: \(aqalpha2\(aq})
 >>> country_code(\(aqZWE\(aq, iso_format=\(aqalpha3\(aq)
-# Output: True
+True
 .ft P
 .fi
 .INDENT 7.0
@@ -535,9 +575,9 @@ Examples
 .nf
 .ft C
 >>> currency(\(aqUSD\(aq)
-# Output: True
+True
 >>> currency(\(aqZWX\(aq)
-# Output: ValidationError(func=currency, args={\(aqvalue\(aq: \(aqZWX\(aq})
+ValidationError(func=currency, args={\(aqvalue\(aq: \(aqZWX\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -571,9 +611,9 @@ Examples
 .nf
 .ft C
 >>> cron(\(aq*/5 * * * *\(aq)
-# Output: True
+True
 >>> cron(\(aq30\-20 * * * *\(aq)
-# Output: ValidationError(func=cron, ...)
+ValidationError(func=cron, args={\(aqvalue\(aq: \(aq30\-20 * * * *\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -602,9 +642,9 @@ Examples
 .nf
 .ft C
 >>> bsc_address(\(aq0x4e5acf9684652BEa56F2f01b7101a225Ee33d23f\(aq)
-# Output: True
+True
 >>> bsc_address(\(aq0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z\(aq)
-# Output: ValidationError(func=bsc_address, args=...)
+ValidationError(func=bsc_address, args={\(aqvalue\(aq: \(aq0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -634,9 +674,9 @@ Examples
 .nf
 .ft C
 >>> btc_address(\(aq3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69\(aq)
-# Output: True
+True
 >>> btc_address(\(aq1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2\(aq)
-# Output: ValidationError(func=btc_address, args=...)
+ValidationError(func=btc_address, args={\(aqvalue\(aq: \(aq1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -664,9 +704,9 @@ Examples
 .nf
 .ft C
 >>> eth_address(\(aq0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598\(aq)
-# Output: True
+True
 >>> eth_address(\(aq0x8Ba1f109551bD432803012645Ac136ddd64DBa72\(aq)
-# Output: ValidationError(func=eth_address, args=...)
+ValidationError(func=eth_address, args={\(aqvalue\(aq: \(aq0x8Ba1f109551bD432803012645Ac136ddd64DBa72\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -694,9 +734,9 @@ Examples
 .nf
 .ft C
 >>> trx_address(\(aqTLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38\(aq)
-# Output: True
+True
 >>> trx_address(\(aqTR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd\(aq)
-# Output: ValidationError(func=trx_address, args=...)
+ValidationError(func=trx_address, args={\(aqvalue\(aq: \(aqTR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -723,12 +763,12 @@ Examples
 .nf
 .ft C
 >>> domain(\(aqexample.com\(aq)
-# Output: True
+True
 >>> domain(\(aqexample.com/\(aq)
-# Output: ValidationError(func=domain, ...)
+ValidationError(func=domain, args={\(aqvalue\(aq: \(aqexample.com/\(aq})
 >>> # Supports IDN domains as well::
 >>> domain(\(aqxn\-\-\-\-gtbspbbmkef.xn\-\-p1ai\(aq)
-# Output: True
+True
 .ft P
 .fi
 .INDENT 7.0
@@ -778,9 +818,9 @@ Examples
 .nf
 .ft C
 >>> email(\(aqsomeone@example.com\(aq)
-# Output: True
+True
 >>> email(\(aqbogus@@\(aq)
-# Output: ValidationError(email=email, args={\(aqvalue\(aq: \(aqbogus@@\(aq})
+ValidationError(func=email, args={\(aqvalue\(aq: \(aqbogus@@\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -822,9 +862,9 @@ Examples
 .nf
 .ft C
 >>> base16(\(aqa3f4b2\(aq)
-# Output: True
+True
 >>> base16(\(aqa3f4Z1\(aq)
-# Output: ValidationError(func=base16, args={\(aqvalue\(aq: \(aqa3f4Z1\(aq})
+ValidationError(func=base16, args={\(aqvalue\(aq: \(aqa3f4Z1\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -850,9 +890,9 @@ Examples
 .nf
 .ft C
 >>> base32(\(aqMFZWIZLTOQ======\(aq)
-# Output: True
+True
 >>> base32(\(aqMfZW3zLT9Q======\(aq)
-# Output: ValidationError(func=base32, args={\(aqvalue\(aq: \(aqMfZW3zLT9Q======\(aq})
+ValidationError(func=base32, args={\(aqvalue\(aq: \(aqMfZW3zLT9Q======\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -878,9 +918,9 @@ Examples
 .nf
 .ft C
 >>> base58(\(aq14pq6y9H2DLGahPsM4s7ugsNSD2uxpHsJx\(aq)
-# Output: True
+True
 >>> base58(\(aqcUSECm5YzcXJwP\(aq)
-# Output: ValidationError(func=base58, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
+True
 .ft P
 .fi
 .INDENT 7.0
@@ -906,9 +946,9 @@ Examples
 .nf
 .ft C
 >>> base64(\(aqY2hhcmFjdGVyIHNldA==\(aq)
-# Output: True
+True
 >>> base64(\(aqcUSECm5YzcXJwP\(aq)
-# Output: ValidationError(func=base64, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
+ValidationError(func=base64, args={\(aqvalue\(aq: \(aqcUSECm5YzcXJwP\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -940,7 +980,7 @@ Examples
 >>> cusip(\(aq037833DP2\(aq)
 True
 >>> cusip(\(aq037833DP3\(aq)
-ValidationFailure(func=cusip, ...)
+ValidationError(func=cusip, args={\(aqvalue\(aq: \(aq037833DP3\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -969,9 +1009,9 @@ Examples
 .nf
 .ft C
 >>> isin(\(aq037833DP2\(aq)
-True
+ValidationError(func=isin, args={\(aqvalue\(aq: \(aq037833DP2\(aq})
 >>> isin(\(aq037833DP3\(aq)
-ValidationFailure(func=isin, ...)
+ValidationError(func=isin, args={\(aqvalue\(aq: \(aq037833DP3\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1002,7 +1042,7 @@ Examples
 >>> sedol(\(aq2936921\(aq)
 True
 >>> sedol(\(aq29A6922\(aq)
-ValidationFailure(func=sedol, ...)
+ValidationError(func=sedol, args={\(aqvalue\(aq: \(aq29A6922\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1029,9 +1069,9 @@ Examples
 .nf
 .ft C
 >>> md5(\(aqd41d8cd98f00b204e9800998ecf8427e\(aq)
-# Output: True
+True
 >>> md5(\(aq900zz11\(aq)
-# Output: ValidationError(func=md5, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+ValidationError(func=md5, args={\(aqvalue\(aq: \(aq900zz11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1057,9 +1097,9 @@ Examples
 .nf
 .ft C
 >>> sha1(\(aqda39a3ee5e6b4b0d3255bfef95601890afd80709\(aq)
-# Output: True
+True
 >>> sha1(\(aq900zz11\(aq)
-# Output: ValidationError(func=sha1, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+ValidationError(func=sha1, args={\(aqvalue\(aq: \(aq900zz11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1085,9 +1125,9 @@ Examples
 .nf
 .ft C
 >>> sha224(\(aqd14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f\(aq)
-# Output: True
+True
 >>> sha224(\(aq900zz11\(aq)
-# Output: ValidationError(func=sha224, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+ValidationError(func=sha224, args={\(aqvalue\(aq: \(aq900zz11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1116,9 +1156,9 @@ Examples
 \&...     \(aqe3b0c44298fc1c149afbf4c8996fb924\(aq
 \&...     \(aq27ae41e4649b934ca495991b7852b855\(aq
 \&... )
-# Output: True
+True
 >>> sha256(\(aq900zz11\(aq)
-# Output: ValidationError(func=sha256, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+ValidationError(func=sha256, args={\(aqvalue\(aq: \(aq900zz11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1147,9 +1187,9 @@ Examples
 \&...     \(aqcb00753f45a35e8bb5a03d699ac65007272c32ab0eded163\(aq
 \&...     \(aq1a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7\(aq
 \&... )
-# Output: True
+True
 >>> sha384(\(aq900zz11\(aq)
-# Output: ValidationError(func=sha384, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+ValidationError(func=sha384, args={\(aqvalue\(aq: \(aq900zz11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1179,9 +1219,9 @@ Examples
 \&...     \(aq9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af9\(aq
 \&...     \(aq27da3e\(aq
 \&... )
-# Output: True
+True
 >>> sha512(\(aq900zz11\(aq)
-# Output: ValidationError(func=sha512, args={\(aqvalue\(aq: \(aq900zz11\(aq})
+ValidationError(func=sha512, args={\(aqvalue\(aq: \(aq900zz11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1208,25 +1248,25 @@ Examples
 .nf
 .ft C
 >>> hostname(\(dqubuntu\-pc:443\(dq)
-# Output: True
+True
 >>> hostname(\(dqthis\-pc\(dq)
-# Output: True
+True
 >>> hostname(\(dqxn\-\-\-\-gtbspbbmkef.xn\-\-p1ai:65535\(dq)
-# Output: True
+True
 >>> hostname(\(dq_example.com\(dq)
-# Output: True
+ValidationError(func=hostname, args={\(aqvalue\(aq: \(aq_example.com\(aq})
 >>> hostname(\(dq123.5.77.88:31000\(dq)
-# Output: True
+True
 >>> hostname(\(dq12.12.12.12\(dq)
-# Output: True
+True
 >>> hostname(\(dq[::1]:22\(dq)
-# Output: True
+True
 >>> hostname(\(dqdead:beef:0:0:0:0000:42:1\(dq)
-# Output: True
+True
 >>> hostname(\(dq[0:0:0:0:0:ffff:1.2.3.4]:\-65538\(dq)
-# Output: ValidationError(func=hostname, ...)
+ValidationError(func=hostname, args={\(aqvalue\(aq: \(aq[0:0:0:0:0:ffff:1.2.3.4]:\-65538\(aq})
 >>> hostname(\(dq[0:&:b:c:@:e:f::]:9999\(dq)
-# Output: ValidationError(func=hostname, ...)
+ValidationError(func=hostname, args={\(aqvalue\(aq: \(aq[0:&:b:c:@:e:f::]:9999\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1287,9 +1327,9 @@ Examples
 .nf
 .ft C
 >>> es_cif(\(aqB25162520\(aq)
-# Output: True
+True
 >>> es_cif(\(aqB25162529\(aq)
-# Output: ValidationError(func=es_cif, args=...)
+ValidationError(func=es_cif, args={\(aqvalue\(aq: \(aqB25162529\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1322,9 +1362,9 @@ Examples
 .nf
 .ft C
 >>> es_doi(\(aqX0095892M\(aq)
-# Output: True
+True
 >>> es_doi(\(aqX0095892X\(aq)
-# Output: ValidationError(func=es_doi, args=...)
+ValidationError(func=es_doi, args={\(aqvalue\(aq: \(aqX0095892X\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1358,9 +1398,9 @@ Examples
 .nf
 .ft C
 >>> es_nie(\(aqX0095892M\(aq)
-# Output: True
+True
 >>> es_nie(\(aqX0095892X\(aq)
-# Output: ValidationError(func=es_nie, args=...)
+ValidationError(func=es_nie, args={\(aqvalue\(aq: \(aqX0095892X\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1394,9 +1434,9 @@ Examples
 .nf
 .ft C
 >>> es_nif(\(aq26643189N\(aq)
-# Output: True
+True
 >>> es_nif(\(aq26643189X\(aq)
-# Output: ValidationError(func=es_nif, args=...)
+ValidationError(func=es_nif, args={\(aqvalue\(aq: \(aq26643189X\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1427,9 +1467,9 @@ Examples
 .nf
 .ft C
 >>> fi_business_id(\(aq0112038\-9\(aq)  # Fast Monkeys Ltd
-# Output: True
+True
 >>> fi_business_id(\(aq1234567\-8\(aq)  # Bogus ID
-# Output: ValidationError(func=fi_business_id, ...)
+ValidationError(func=fi_business_id, args={\(aqvalue\(aq: \(aq1234567\-8\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1459,9 +1499,9 @@ Examples
 .nf
 .ft C
 >>> fi_ssn(\(aq010101\-0101\(aq)
-# Output: True
+True
 >>> fi_ssn(\(aq101010\-0102\(aq)
-# Output: ValidationError(func=fi_ssn, args=...)
+ValidationError(func=fi_ssn, args={\(aqvalue\(aq: \(aq101010\-0102\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1494,19 +1534,19 @@ Examples
 .nf
 .ft C
 >>> fr_department(20)  # can be an integer
-# Output: True
+ValidationError(func=fr_department, args={\(aqvalue\(aq: 20})
 >>> fr_department(\(dq20\(dq)
-# Output: True
+ValidationError(func=fr_department, args={\(aqvalue\(aq: \(aq20\(aq})
 >>> fr_department(\(dq971\(dq)  # Guadeloupe
-# Output: True
+True
 >>> fr_department(\(dq00\(dq)
-# Output: ValidationError(func=fr_department, args=...)
+ValidationError(func=fr_department, args={\(aqvalue\(aq: \(aq00\(aq})
 >>> fr_department(\(aq2A\(aq)  # Corsica
-# Output: True
+True
 >>> fr_department(\(aq2B\(aq)
-# Output: True
+True
 >>> fr_department(\(aq2C\(aq)
-# Output: ValidationError(func=fr_department, args=...)
+ValidationError(func=fr_department, args={\(aqvalue\(aq: \(aq2C\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1537,13 +1577,13 @@ Examples
 .nf
 .ft C
 >>> fr_ssn(\(aq1 84 12 76 451 089 46\(aq)
-# Output: True
+True
 >>> fr_ssn(\(aq1 84 12 76 451 089\(aq)  # control key is optional
-# Output: True
+True
 >>> fr_ssn(\(aq3 84 12 76 451 089 46\(aq)  # wrong gender number
-# Output: ValidationError(func=fr_ssn, args=...)
+ValidationError(func=fr_ssn, args={\(aqvalue\(aq: \(aq3 84 12 76 451 089 46\(aq})
 >>> fr_ssn(\(aq1 84 12 76 451 089 47\(aq)  # wrong control key
-# Output: ValidationError(func=fr_ssn, args=...)
+ValidationError(func=fr_ssn, args={\(aqvalue\(aq: \(aq1 84 12 76 451 089 47\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1571,7 +1611,7 @@ Examples
 >>> ind_aadhar(\(aq3675 9834 6015\(aq)
 True
 >>> ind_aadhar(\(aq3675 ABVC 2133\(aq)
-ValidationFailure(func=aadhar, args={\(aqvalue\(aq: \(aq3675 ABVC 2133\(aq})
+ValidationError(func=ind_aadhar, args={\(aqvalue\(aq: \(aq3675 ABVC 2133\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1599,7 +1639,7 @@ Examples
 >>> ind_pan(\(aqABCDE9999K\(aq)
 True
 >>> ind_pan(\(aqABC5d7896B\(aq)
-ValidationFailure(func=pan, args={\(aqvalue\(aq: \(aqABC5d7896B\(aq})
+ValidationError(func=ind_pan, args={\(aqvalue\(aq: \(aqABC5d7896B\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1615,6 +1655,48 @@ If \fIvalue\fP is a valid PAN card number.
 (Literal[True])
 .UNINDENT
 .UNINDENT
+.INDENT 0.0
+.TP
+.B validators.i18n.ru_inn(value:  str)
+Validate a Russian INN (Taxpayer Identification Number).
+.sp
+The INN can be either 10 digits (for companies) or 12 digits (for individuals).
+The function checks both the length and the control digits according to Russian tax rules.
+.sp
+Examples
+.sp
+.nf
+.ft C
+>>> ru_inn(\(aq500100732259\(aq)  # Valid 12\-digit INN
+True
+>>> ru_inn(\(aq7830002293\(aq)    # Valid 10\-digit INN
+True
+>>> ru_inn(\(aq1234567890\(aq)    # Invalid INN
+ValidationError(func=ru_inn, args={\(aqvalue\(aq: \(aq1234567890\(aq})
+.ft P
+.fi
+.INDENT 7.0
+.TP
+.B Parameters
+\fBvalue\fP \-\- Russian INN string to validate. Can contain only digits.
+.TP
+.B Returns
+If \fIvalue\fP is a valid Russian INN.
+(ValidationError): If \fIvalue\fP is an invalid Russian INN.
+.TP
+.B Return type
+(Literal[True])
+.UNINDENT
+.sp
+\fBNOTE:\fP
+.INDENT 7.0
+.INDENT 3.5
+The validation follows the official algorithm:
+\- For 10\-digit INN: checks 10th control digit
+\- For 12\-digit INN: checks both 11th and 12th control digits
+.UNINDENT
+.UNINDENT
+.UNINDENT
 .SS iban
 .INDENT 0.0
 .TP
@@ -1626,9 +1708,9 @@ Examples
 .nf
 .ft C
 >>> iban(\(aqDE29100500001061045672\(aq)
-# Output: True
+True
 >>> iban(\(aq123456\(aq)
-# Output: ValidationError(func=iban, ...)
+ValidationError(func=iban, args={\(aqvalue\(aq: \(aq123456\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1661,11 +1743,11 @@ Examples
 .nf
 .ft C
 >>> ipv4(\(aq123.0.0.7\(aq)
-# Output: True
+True
 >>> ipv4(\(aq1.1.1.1/8\(aq)
-# Output: True
+True
 >>> ipv4(\(aq900.80.70.11\(aq)
-# Output: ValidationError(func=ipv4, args={\(aqvalue\(aq: \(aq900.80.70.11\(aq})
+ValidationError(func=ipv4, args={\(aqvalue\(aq: \(aq900.80.70.11\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1709,11 +1791,11 @@ Examples
 .nf
 .ft C
 >>> ipv6(\(aq::ffff:192.0.2.128\(aq)
-# Output: True
+True
 >>> ipv6(\(aq::1/128\(aq)
-# Output: True
+True
 >>> ipv6(\(aqabc.0.0.1\(aq)
-# Output: ValidationError(func=ipv6, args={\(aqvalue\(aq: \(aqabc.0.0.1\(aq})
+ValidationError(func=ipv6, args={\(aqvalue\(aq: \(aqabc.0.0.1\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1751,11 +1833,11 @@ Examples
 .nf
 .ft C
 >>> length(\(aqsomething\(aq, min_val=2)
-# Output: True
+True
 >>> length(\(aqsomething\(aq, min_val=9, max_val=9)
-# Output: True
+True
 >>> length(\(aqsomething\(aq, max_val=5)
-# Output: ValidationError(func=length, ...)
+ValidationError(func=length, args={\(aqvalue\(aq: \(aqsomething\(aq, \(aqmax_val\(aq: 5})
 .ft P
 .fi
 .INDENT 7.0
@@ -1798,9 +1880,9 @@ Examples
 .nf
 .ft C
 >>> mac_address(\(aq01:23:45:67:ab:CD\(aq)
-# Output: True
+True
 >>> mac_address(\(aq00:00:00:00:00\(aq)
-# Output: ValidationError(func=mac_address, args={\(aqvalue\(aq: \(aq00:00:00:00:00\(aq})
+ValidationError(func=mac_address, args={\(aqvalue\(aq: \(aq00:00:00:00:00\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1830,9 +1912,9 @@ Examples
 .nf
 .ft C
 >>> slug(\(aqmy\-slug\-2134\(aq)
-# Output: True
+True
 >>> slug(\(aqmy.slug\(aq)
-# Output: ValidationError(func=slug, args={\(aqvalue\(aq: \(aqmy.slug\(aq})
+ValidationError(func=slug, args={\(aqvalue\(aq: \(aqmy.slug\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1851,7 +1933,7 @@ If \fIvalue\fP is a valid slug.
 .SS url
 .INDENT 0.0
 .TP
-.B validators.url.url(value:  str, /, *, skip_ipv6_addr:  bool  =  False, skip_ipv4_addr:  bool  =  False, may_have_port:  bool  =  True, simple_host:  bool  =  False, strict_query:  bool  =  True, consider_tld:  bool  =  False, private:  bool  |  None  =  None, rfc_1034:  bool  =  False, rfc_2782:  bool  =  False)
+.B validators.url.url(value: str, /, *, skip_ipv6_addr: bool = False, skip_ipv4_addr: bool = False, may_have_port: bool = True, simple_host: bool = False, strict_query: bool = True, consider_tld: bool = False, private: bool | None = None, rfc_1034: bool = False, rfc_2782: bool = False, validate_scheme: ~typing.Callable[[str], bool] = <function _validate_scheme>)
 Return whether or not given value is a valid URL.
 .sp
 This validator was originally inspired from [URL validator of dperini][1].
@@ -1878,13 +1960,13 @@ Examples
 .nf
 .ft C
 >>> url(\(aqhttp://duck.com\(aq)
-# Output: True
+True
 >>> url(\(aqftp://foobar.dk\(aq)
-# Output: True
+True
 >>> url(\(aqhttp://10.0.0.1\(aq)
-# Output: True
+True
 >>> url(\(aqhttp://example.com/\(dq>user@example.com\(aq)
-# Output: ValidationError(func=url, ...)
+ValidationError(func=url, args={\(aqvalue\(aq: \(aqhttp://example.com/\(dq>user@example.com\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -1913,6 +1995,8 @@ Ref: [RFC 1034](\fI\%https://www.rfc\-editor.org/rfc/rfc1034\fP).
 .IP \(bu 2
 \fBrfc_2782\fP \-\- Domain/Host name is of type service record.
 Ref: [RFC 2782](\fI\%https://www.rfc\-editor.org/rfc/rfc2782\fP).
+.IP \(bu 2
+\fBvalidate_scheme\fP \-\- Function that validates URL scheme.
 .UNINDENT
 .TP
 .B Returns
@@ -1945,9 +2029,9 @@ Examples
 \&... def even(value):
 \&...     return not (value % 2)
 >>> even(4)
-# Output: True
+True
 >>> even(5)
-# Output: ValidationError(func=even, args={\(aqvalue\(aq: 5})
+ValidationError(func=even, args={\(aqvalue\(aq: 5})
 .ft P
 .fi
 .INDENT 7.0
@@ -1981,9 +2065,9 @@ Examples
 .nf
 .ft C
 >>> uuid(\(aq2bc1c94f\-0deb\-43e9\-92a1\-4775189ec9f8\(aq)
-# Output: True
+True
 >>> uuid(\(aq2bc1c94f 0deb\-43e9\-92a1\-4775189ec9f8\(aq)
-# Output: ValidationError(func=uuid, ...)
+ValidationError(func=uuid, args={\(aqvalue\(aq: \(aq2bc1c94f 0deb\-43e9\-92a1\-4775189ec9f8\(aq})
 .ft P
 .fi
 .INDENT 7.0
@@ -2002,6 +2086,6 @@ If \fIvalue\fP is a valid UUID.
 .SH AUTHOR
 Konsta Vesterinen
 .SH COPYRIGHT
-2013 - 2024, Konsta Vesterinen
+2013 - 2025, Konsta Vesterinen
 .\" Generated by docutils manpage writer.
 .

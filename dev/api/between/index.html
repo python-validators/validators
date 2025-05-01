@@ -882,16 +882,16 @@ not just integers. This validator is originally based on <a href="https://github
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">between</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">between</span><span class="p">(</span><span class="mf">13.2</span><span class="p">,</span> <span class="n">min_val</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">between</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">max_val</span><span class="o">=</span><span class="mi">400</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=between, args=...)</span>
+<span class="go">ValidationError(func=between, args={&#39;value&#39;: 500, &#39;max_val&#39;: 400})</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">between</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
 <span class="gp">... </span>    <span class="n">min_val</span><span class="o">=</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1999</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 </code></pre></div>
 
 
@@ -1112,16 +1112,16 @@ If not provided, maximum value will not be checked.</p>
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; from datetime import datetime</span>
 <span class="sd">        &gt;&gt;&gt; between(5, min_val=2)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; between(13.2, min_val=13, max_val=14)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; between(500, max_val=400)</span>
-<span class="sd">        # Output: ValidationError(func=between, args=...)</span>
+<span class="sd">        ValidationError(func=between, args={&#39;value&#39;: 500, &#39;max_val&#39;: 400})</span>
 <span class="sd">        &gt;&gt;&gt; between(</span>
 <span class="sd">        ...     datetime(2000, 11, 11),</span>
 <span class="sd">        ...     min_val=datetime(1999, 11, 11)</span>
 <span class="sd">        ... )</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1215,7 +1215,7 @@ If not provided, maximum value will not be checked.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

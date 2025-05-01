@@ -1080,9 +1080,9 @@
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">bsc_address</span><span class="p">(</span><span class="s1">&#39;0x4e5acf9684652BEa56F2f01b7101a225Ee33d23f&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bsc_address</span><span class="p">(</span><span class="s1">&#39;0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=bsc_address, args=...)</span>
+<span class="go">ValidationError(func=bsc_address, args={&#39;value&#39;: &#39;0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z&#39;})</span>
 </code></pre></div>
 
 
@@ -1183,9 +1183,9 @@
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; bsc_address(&#39;0x4e5acf9684652BEa56F2f01b7101a225Ee33d23f&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; bsc_address(&#39;0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=bsc_address, args=...)</span>
+<span class="sd">        ValidationError(func=bsc_address, args={&#39;value&#39;: &#39;0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1194,7 +1194,7 @@
 <span class="sd">    Returns:</span>
 <span class="sd">        (Literal[True]): If `value` is a valid bsc address.</span>
 <span class="sd">        (ValidationError): If `value` is an invalid bsc address.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">False</span>
 
@@ -1261,9 +1261,9 @@ estimate on whether the address is valid.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">btc_address</span><span class="p">(</span><span class="s1">&#39;3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">btc_address</span><span class="p">(</span><span class="s1">&#39;1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=btc_address, args=...)</span>
+<span class="go">ValidationError(func=btc_address, args={&#39;value&#39;: &#39;1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;})</span>
 </code></pre></div>
 
 
@@ -1370,9 +1370,9 @@ estimate on whether the address is valid.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; btc_address(&#39;3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; btc_address(&#39;1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=btc_address, args=...)</span>
+<span class="sd">        ValidationError(func=btc_address, args={&#39;value&#39;: &#39;1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1448,9 +1448,9 @@ estimate on whether the address is valid.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">eth_address</span><span class="p">(</span><span class="s1">&#39;0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eth_address</span><span class="p">(</span><span class="s1">&#39;0x8Ba1f109551bD432803012645Ac136ddd64DBa72&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=eth_address, args=...)</span>
+<span class="go">ValidationError(func=eth_address, args={&#39;value&#39;: &#39;0x8Ba1f109551bD432803012645Ac136ddd64DBa72&#39;})</span>
 </code></pre></div>
 
 
@@ -1555,9 +1555,9 @@ estimate on whether the address is valid.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; eth_address(&#39;0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; eth_address(&#39;0x8Ba1f109551bD432803012645Ac136ddd64DBa72&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=eth_address, args=...)</span>
+<span class="sd">        ValidationError(func=eth_address, args={&#39;value&#39;: &#39;0x8Ba1f109551bD432803012645Ac136ddd64DBa72&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1566,7 +1566,7 @@ estimate on whether the address is valid.</p>
 <span class="sd">    Returns:</span>
 <span class="sd">        (Literal[True]): If `value` is a valid ethereum address.</span>
 <span class="sd">        (ValidationError): If `value` is an invalid ethereum address.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>  <span class="c1"># noqa: E501</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">_keccak_flag</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span>
             <span class="s2">&quot;Do `pip install validators[crypto-eth-addresses]` to perform `eth_address` validation.&quot;</span>
@@ -1635,9 +1635,9 @@ estimate on whether the address is valid.</p>
 
 <p><span class="doc-section-title">Examples:</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">trx_address</span><span class="p">(</span><span class="s1">&#39;TLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trx_address</span><span class="p">(</span><span class="s1">&#39;TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=trx_address, args=...)</span>
+<span class="go">ValidationError(func=trx_address, args={&#39;value&#39;: &#39;TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd&#39;})</span>
 </code></pre></div>
 
 
@@ -1737,9 +1737,9 @@ estimate on whether the address is valid.</p>
 
 <span class="sd">    Examples:</span>
 <span class="sd">        &gt;&gt;&gt; trx_address(&#39;TLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38&#39;)</span>
-<span class="sd">        # Output: True</span>
+<span class="sd">        True</span>
 <span class="sd">        &gt;&gt;&gt; trx_address(&#39;TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd&#39;)</span>
-<span class="sd">        # Output: ValidationError(func=trx_address, args=...)</span>
+<span class="sd">        ValidationError(func=trx_address, args={&#39;value&#39;: &#39;TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd&#39;})</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        value:</span>
@@ -1818,7 +1818,7 @@ estimate on whether the address is valid.</p>
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2013 - 2024 Konsta Vesterinen
+      Copyright &copy; 2013 - 2025 Konsta Vesterinen
     </div>
   
   

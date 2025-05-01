@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="hostname" href="hostname.html" /><link rel="prev" title="finance" href="finance.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
-        <title>hashes - validators 0.33.0 documentation</title>
+        <title>hashes - validators 0.34.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.33.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.34.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.33.0 documentation</span>
+  <span class="sidebar-brand-text">validators 0.34.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -272,9 +272,9 @@
 <dd><p>Return whether or not given value is a valid MD5 hash.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">md5</span><span class="p">(</span><span class="s1">&#39;d41d8cd98f00b204e9800998ecf8427e&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">md5</span><span class="p">(</span><span class="s1">&#39;900zz11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=md5, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
+<span class="go">ValidationError(func=md5, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -297,9 +297,9 @@
 <dd><p>Return whether or not given value is a valid SHA1 hash.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sha1</span><span class="p">(</span><span class="s1">&#39;da39a3ee5e6b4b0d3255bfef95601890afd80709&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sha1</span><span class="p">(</span><span class="s1">&#39;900zz11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=sha1, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
+<span class="go">ValidationError(func=sha1, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -322,9 +322,9 @@
 <dd><p>Return whether or not given value is a valid SHA224 hash.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sha224</span><span class="p">(</span><span class="s1">&#39;d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sha224</span><span class="p">(</span><span class="s1">&#39;900zz11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=sha224, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
+<span class="go">ValidationError(func=sha224, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -350,9 +350,9 @@
 <span class="gp">... </span>    <span class="s1">&#39;e3b0c44298fc1c149afbf4c8996fb924&#39;</span>
 <span class="gp">... </span>    <span class="s1">&#39;27ae41e4649b934ca495991b7852b855&#39;</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sha256</span><span class="p">(</span><span class="s1">&#39;900zz11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=sha256, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
+<span class="go">ValidationError(func=sha256, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -378,9 +378,9 @@
 <span class="gp">... </span>    <span class="s1">&#39;cb00753f45a35e8bb5a03d699ac65007272c32ab0eded163&#39;</span>
 <span class="gp">... </span>    <span class="s1">&#39;1a8b605a43ff5bed8086072ba1e7cc2358baeca134c825a7&#39;</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sha384</span><span class="p">(</span><span class="s1">&#39;900zz11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=sha384, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
+<span class="go">ValidationError(func=sha384, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -407,9 +407,9 @@
 <span class="gp">... </span>    <span class="s1">&#39;9ce47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af9&#39;</span>
 <span class="gp">... </span>    <span class="s1">&#39;27da3e&#39;</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">sha512</span><span class="p">(</span><span class="s1">&#39;900zz11&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=sha512, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
+<span class="go">ValidationError(func=sha512, args={&#39;value&#39;: &#39;900zz11&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -457,7 +457,7 @@
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2013 - 2024, Konsta Vesterinen
+                Copyright &#169; 2013 - 2025, Konsta Vesterinen
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -501,7 +501,7 @@
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4db030e8"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c3ebc126"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>

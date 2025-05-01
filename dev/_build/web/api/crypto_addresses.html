@@ -6,7 +6,7 @@
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="domain" href="domain.html" /><link rel="prev" title="cron" href="cron.html" />
 
     <link rel="shortcut icon" href="../_static/favicon.svg"/><!-- Generated with Sphinx 7.1.2 and Furo 2024.08.06 -->
-        <title>crypto_addresses - validators 0.33.0 documentation</title>
+        <title>crypto_addresses - validators 0.34.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=354aac6f" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=302659d7" />
@@ -166,7 +166,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="../index.html"><div class="brand">validators 0.33.0 documentation</div></a>
+      <a href="../index.html"><div class="brand">validators 0.34.0 documentation</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -190,7 +190,7 @@
       <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
   
   
-  <span class="sidebar-brand-text">validators 0.33.0 documentation</span>
+  <span class="sidebar-brand-text">validators 0.34.0 documentation</span>
   
 </a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
@@ -273,9 +273,9 @@
 <p>Full validation is implemented for BSC addresses.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bsc_address</span><span class="p">(</span><span class="s1">&#39;0x4e5acf9684652BEa56F2f01b7101a225Ee33d23f&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">bsc_address</span><span class="p">(</span><span class="s1">&#39;0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=bsc_address, args=...)</span>
+<span class="go">ValidationError(func=bsc_address, args={&#39;value&#39;: &#39;0x4g5acf9684652BEa56F2f01b7101a225Eh33d23z&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -301,9 +301,9 @@ For segwit addresses a regexp is used to provide a reasonable
 estimate on whether the address is valid.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">btc_address</span><span class="p">(</span><span class="s1">&#39;3Cwgr2g7vsi1bXDUkpEnVoRLA9w4FZfC69&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">btc_address</span><span class="p">(</span><span class="s1">&#39;1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=btc_address, args=...)</span>
+<span class="go">ValidationError(func=btc_address, args={&#39;value&#39;: &#39;1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -327,9 +327,9 @@ estimate on whether the address is valid.</p>
 <p>Full validation is implemented for ERC20 addresses.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">eth_address</span><span class="p">(</span><span class="s1">&#39;0x9cc14ba4f9f68ca159ea4ebf2c292a808aaeb598&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eth_address</span><span class="p">(</span><span class="s1">&#39;0x8Ba1f109551bD432803012645Ac136ddd64DBa72&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=eth_address, args=...)</span>
+<span class="go">ValidationError(func=eth_address, args={&#39;value&#39;: &#39;0x8Ba1f109551bD432803012645Ac136ddd64DBa72&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -353,9 +353,9 @@ estimate on whether the address is valid.</p>
 <p>Full validation is implemented for TRC20 tron addresses.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">trx_address</span><span class="p">(</span><span class="s1">&#39;TLjfbTbpZYDQ4EoA4N5CLNgGjfbF8ZWz38&#39;</span><span class="p">)</span>
-<span class="go"># Output: True</span>
+<span class="go">True</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">trx_address</span><span class="p">(</span><span class="s1">&#39;TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd&#39;</span><span class="p">)</span>
-<span class="go"># Output: ValidationError(func=trx_address, args=...)</span>
+<span class="go">ValidationError(func=trx_address, args={&#39;value&#39;: &#39;TR2G7Rm4vFqF8EpY4U5xdLdQ7XgJ2U8Vd&#39;})</span>
 </pre></div>
 </div>
 <dl class="field-list simple">
@@ -403,7 +403,7 @@ estimate on whether the address is valid.</p>
         <div class="bottom-of-page">
           <div class="left-details">
             <div class="copyright">
-                Copyright &#169; 2013 - 2024, Konsta Vesterinen
+                Copyright &#169; 2013 - 2025, Konsta Vesterinen
             </div>
             Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
             
@@ -445,7 +445,7 @@ estimate on whether the address is valid.</p>
       
     </aside>
   </div>
-</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4db030e8"></script>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=c3ebc126"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/scripts/furo.js?v=5fa4622c"></script>
