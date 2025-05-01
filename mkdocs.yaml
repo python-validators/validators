@@ -63,7 +63,7 @@ extra:
     provider: mike
     default: stable
 
-copyright: Copyright &copy; 2013 - 2024 Konsta Vesterinen
+copyright: Copyright &copy; 2013 - 2025 Konsta Vesterinen
 
 nav:
   - Home: index.md

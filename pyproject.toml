@@ -33,7 +33,7 @@ classifiers = [
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.9"
 dynamic = ["version"]
 dependencies = []
 
@@ -116,7 +116,7 @@ exclude = [
     ".venv.dev/",
     "site/",
 ]
-pythonVersion = "3.8"
+pythonVersion = "3.9"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
 
@@ -144,7 +144,7 @@ lint.select = [
     "D",
 ]
 line-length = 100
-target-version = "py38"
+target-version = "py39"
 extend-exclude = ["**/__pycache__", ".pytest_cache", "site"]
 
 [tool.ruff.lint.isort]
@@ -163,7 +163,7 @@ legacy_tox_ini = """
 [tox]
 requires =
     tox>=4
-env_list = lint, type, format, sast, py{38,39,310,311,312}
+env_list = lint, type, format, sast, py{39,310,311,312,313}
 
 [testenv:lint]
 description = ruff linter
