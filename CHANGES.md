@@ -9,6 +9,35 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## 0.35.0 (2025-05-01)
+
+_**Breaking**_ ⚠️
+
+* Drops support for Python `v3.8`.
+
+_**Features**_
+
+* Validator russian individual tax number by @TheDrunkenBear in [#408](https://github.com/python-validators/validators/pull/408)
+* feat: allow custom URL scheme validation by @e3krisztian in [#409](https://github.com/python-validators/validators/pull/409)
+* Refactor API: remove print from `ru_inn`, update description, and expose via `__init__` by @TheDrunkenBear in [#419](https://github.com/python-validators/validators/pull/419)
+* Add Mir card validation support by @TheDrunkenBear in [#420](https://github.com/python-validators/validators/pull/420)
+
+_**Maintenance**_
+
+* Update README.md by @mattseymour in [#400](https://github.com/python-validators/validators/pull/400)
+* fix(domain): accept .onion as a valid TLD by @davidt99 in [#402](https://github.com/python-validators/validators/pull/402)
+* fix(url): add hashtag to allowed fragment characters by @davidt99 in [#405](https://github.com/python-validators/validators/pull/405)
+* chore(deps): bump jinja2 from 3.1.4 to 3.1.6 in /package by @dependabot in [#414](https://github.com/python-validators/validators/pull/414)
+* Fix email regex issue 140 by @cwisdo in [#411](https://github.com/python-validators/validators/pull/411)
+* fix(uri): replace `lstrip("mailto:")` with manual prefix removal by @max-moser in [#418](https://github.com/python-validators/validators/pull/418)
+* running `doctest` failes by @d-chris in [#417](https://github.com/python-validators/validators/pull/417)
+* Fix: Allow Special DOI Cases Used in Public Administration Tests by @MaurizioPilia in [#415](https://github.com/python-validators/validators/pull/415)
+* chore: formatting; sync dependencies by @yozachar in [#422](https://github.com/python-validators/validators/pull/422)
+* chore: prepare for new release by @yozachar in [#424](https://github.com/python-validators/validators/pull/424)
+* chore: updates changelog by @yozachar in [#425](https://github.com/python-validators/validators/pull/425)
+
+**Full Changelog**: [`0.34.0...0.35.0`](https://github.com/python-validators/validators/compare/0.34.0...0.35.0)
+
 ## 0.34.0 (2024-09-03)
 
 _**Breaking**_
