@@ -22,7 +22,7 @@ class ValidationError(Exception):
         """Repr Validation Failure."""
         return (
             f"ValidationError(func={self.func.__name__}, "
-            + f"args={({k: v for (k, v) in self.__dict__.items() if k != 'func'})})"
+            + f"args={ ({k: v for (k, v) in self.__dict__.items() if k != 'func'}) })"
         )
 
     def __str__(self):

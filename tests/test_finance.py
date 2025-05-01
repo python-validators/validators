@@ -30,7 +30,7 @@ def test_returns_true_on_valid_isin(value: str):
     assert isin(value)
 
 
-@pytest.mark.parametrize("value", ["010378331005" "XCVF", "00^^^1234", "A000009"])
+@pytest.mark.parametrize("value", ["010378331005", "XCVF", "00^^^1234", "A000009"])
 def test_returns_failed_validation_on_invalid_isin(value: str):
     """Test returns failed validation on invalid isin."""
     assert isinstance(isin(value), ValidationError)

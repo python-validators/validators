@@ -25,7 +25,7 @@ jobs:
         run: pip install -r package/requirements.tooling.txt
       - name: Tooling
         run: |
-          black .
+          ruff format .
           ruff check .
           pyright .
   testing:
