@@ -83,7 +83,7 @@ def domain(
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
 
-        return not re.search(r"\s|__+", value) and re.match(
+        return not re.search(r"\s|__+", value) and bool(re.match(
             # First character of the domain
             rf"^(?:[a-z0-9{service_record}]"
             # Sub-domain
@@ -96,6 +96,6 @@ def domain(
             + rf"[a-z]{trailing_dot}",
             value.encode("idna").decode("utf-8"),
             re.IGNORECASE,
-        )
+        ))
     except UnicodeError as err:
         raise UnicodeError(f"Unable to encode/decode {value}") from err
