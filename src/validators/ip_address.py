@@ -88,8 +88,8 @@ def ipv4(
         if cidr:
             if strict and value.count("/") != 1:
                 raise ValueError("IPv4 address was expected in CIDR notation")
-            return IPv4Network(value, strict=not host_bit) and _check_private_ip(value, private)
-        return IPv4Address(value) and _check_private_ip(value, private)
+            return bool(IPv4Network(value, strict=not host_bit)) and _check_private_ip(value, private)
+        return bool(IPv4Address(value)) and _check_private_ip(value, private)
     except (ValueError, AddressValueError, NetmaskValueError):
         return False
 
@@ -133,7 +133,7 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
         if cidr:
             if strict and value.count("/") != 1:
                 raise ValueError("IPv6 address was expected in CIDR notation")
-            return IPv6Network(value, strict=not host_bit)
+            return bool(IPv6Network(value, strict=not host_bit))
         return IPv6Address(value)
     except (ValueError, AddressValueError, NetmaskValueError):
         return False
