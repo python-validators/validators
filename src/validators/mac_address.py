@@ -29,4 +29,8 @@ def mac_address(value: str, /):
         (Literal[True]): If `value` is a valid MAC address.
         (ValidationError): If `value` is an invalid MAC address.
     """
+    # Check for mixed separators: MAC addresses cannot use both ':' and '-' simultaneously
+    if ":" in value and "-" in value:
+        return False
+
     return re.match(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", value) if value else False
