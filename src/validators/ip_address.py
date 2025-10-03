@@ -88,7 +88,9 @@ def ipv4(
         if cidr:
             if strict and value.count("/") != 1:
                 raise ValueError("IPv4 address was expected in CIDR notation")
-            return IPv4Network(value, strict=not host_bit) and _check_private_ip(value, private)
+            # Extract IP part for private check when using CIDR notation
+            ip_part = value.split('/')[0] if '/' in value else value
+            return IPv4Network(value, strict=not host_bit) and _check_private_ip(ip_part, private)
         return IPv4Address(value) and _check_private_ip(value, private)
     except (ValueError, AddressValueError, NetmaskValueError):
         return False

@@ -23,7 +23,7 @@ class AbsMax:
 
     def __ge__(self, other: Any):
         """GreaterThanOrEqual."""
-        return other is not AbsMax
+        return not isinstance(other, AbsMax)
 
 
 @total_ordering
@@ -44,4 +44,4 @@ class AbsMin:
 
     def __le__(self, other: Any):
         """LessThanOrEqual."""
-        return other is not AbsMin
+        return not isinstance(other, AbsMin)
