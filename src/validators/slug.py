@@ -6,6 +6,8 @@ import re
 # local
 from .utils import validator
 
+_SLUG_REGEXP = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
+
 
 @validator
 def slug(value: str, /):
@@ -27,4 +29,4 @@ def slug(value: str, /):
         (Literal[True]): If `value` is a valid slug.
         (ValidationError): If `value` is an invalid slug.
     """
-    return re.match(r"^[a-z0-9]+(?:-[a-z0-9]+)*$", value) if value else False
+    return _SLUG_REGEXP.match(value) is not None
