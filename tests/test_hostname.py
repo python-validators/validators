@@ -40,6 +40,16 @@ def test_returns_true_on_valid_hostname(value: str, rfc_1034: bool, rfc_2782: bo
 @pytest.mark.parametrize(
     ("value", "rfc_1034", "rfc_2782"),
     [
+        # bad (hostname exceeding 253 chars)
+        (
+            "kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXc."
+            "kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXc."
+            "kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXc."
+            "kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXc."
+            "kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXcab",
+            False,
+            False,
+        ),
         # bad (simple hostname w/ optional ports)
         ("ubuntu-pc:443080", False, False),
         ("this-pc-is-sh*t", False, False),

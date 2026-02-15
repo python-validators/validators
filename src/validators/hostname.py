@@ -114,12 +114,17 @@ def hostname(
         return False
 
     if may_have_port and (host_seg := _port_validator(value)):
+        if len(host_seg) > 253:
+            return False
         return (
             (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
             or domain(host_seg, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
             or (False if skip_ipv4_addr else ipv4(host_seg, cidr=False, private=private))
             or (False if skip_ipv6_addr else ipv6(host_seg, cidr=False))
         )
+
+    if len(value) > 253:
+        return False
 
     return (
         (_simple_hostname_regex().match(value) if maybe_simple else False)
