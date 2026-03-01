@@ -113,6 +113,20 @@ def hostname(
     if not value:
         return False
 
+    # Determine the host part (strip port if present) for length validation
+    host_part = value
+    if may_have_port:
+        if (seg := _port_validator(value)):
+            host_part = seg
+
+    # Strip IPv6 brackets for length check
+    host_part = host_part.lstrip("[").rstrip("]")
+
+    # RFC 1123: total hostname length must not exceed 253 characters
+    # (excluding optional trailing dot)
+    if len(host_part.rstrip(".")) > 253:
+        return False
+
     if may_have_port and (host_seg := _port_validator(value)):
         return (
             (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
