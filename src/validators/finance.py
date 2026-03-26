@@ -23,6 +23,10 @@ def _cusip_checksum(cusip: str):
         else:
             return False
 
+        # Check digit (position 8) must be strictly numeric per CUSIP spec
+        if idx == 8 and not (c >= "0" and c <= "9"):
+            return False
+
         if idx & 1:
             val += val
 
@@ -31,24 +35,33 @@ def _cusip_checksum(cusip: str):
     return (check % 10) == 0
 
 
-def _isin_checksum(value: str):
-    check, val = 0, None
+def _isin_checksum(value: str) -> bool:
+    """Validate ISIN checksum per ISO 6166 using the Luhn algorithm.
 
-    for idx in range(12):
-        c = value[idx]
-        if c >= "0" and c <= "9" and idx > 1:
-            val = ord(c) - ord("0")
-        elif c >= "A" and c <= "Z":
-            val = 10 + ord(c) - ord("A")
-        elif c >= "a" and c <= "z":
-            val = 10 + ord(c) - ord("a")
+    Each character is expanded to its numeric value (A=10, B=11, …, Z=35),
+    then the Luhn check is applied to the resulting digit string.
+    """
+    # Expand each character to digit(s)
+    digits = ""
+    for c in value:
+        if c.isdigit():
+            digits += c
+        elif c.isupper():
+            digits += str(ord(c) - ord("A") + 10)
         else:
-            return False
+            return False  # lowercase or invalid char
 
-        if idx & 1:
-            val += val
-
-    return (check % 10) == 0
+    # Luhn check over the expanded digit string
+    total, alt = 0, False
+    for d in reversed(digits):
+        n = int(d)
+        if alt:
+            n *= 2
+            if n > 9:
+                n -= 9
+        total += n
+        alt = not alt
+    return total % 10 == 0
 
 
 @validator

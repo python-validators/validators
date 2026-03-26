@@ -1,7 +1,6 @@
 """URL."""
 
 # standard
-from functools import lru_cache
 import re
 from typing import Callable, Optional
 from urllib.parse import parse_qs, unquote, urlsplit
@@ -11,33 +10,29 @@ from .hostname import hostname
 from .utils import validator
 
 
-@lru_cache
-def _username_regex():
-    return re.compile(
-        # extended latin
-        r"(^[\u0100-\u017F\u0180-\u024F]"
-        # dot-atom
-        + r"|[-!#$%&'*+/=?^_`{}|~0-9a-z]+(\.[-!#$%&'*+/=?^_`{}|~0-9a-z]+)*$"
-        # non-quoted-string
-        + r"|^([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\011.])*$)",
-        re.IGNORECASE,
-    )
+# Perf: module-level compiled regex (replaces @lru_cache zero-arg functions).
+# Eliminates per-call cache-lookup overhead (~100 ns/call).
+_RE_USERNAME = re.compile(
+    # extended latin
+    r"(^[\u0100-\u017F\u0180-\u024F]"
+    # dot-atom
+    + r"|[-!#$%&'*+/=?^_`{}|~0-9a-z]+(\.[-!#$%&'*+/=?^_`{}|~0-9a-z]+)*$"
+    # non-quoted-string
+    + r"|^([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\011.])*$)",
+    re.IGNORECASE,
+)
 
-
-@lru_cache
-def _path_regex():
-    return re.compile(
-        # allowed symbols
-        r"^[\/a-z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%"
-        # symbols / pictographs
-        + r"\U0001F300-\U0001F5FF"
-        # emoticons / emoji
-        + r"\U0001F600-\U0001F64F"
-        # multilingual unicode ranges
-        + r"\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$",
-        re.IGNORECASE,
-    )
-
+_RE_PATH = re.compile(
+    # allowed symbols
+    r"^[\/a-z0-9\-\.\_\~\!\$\&\'\(\)\*\+\,\;\=\:\@\%"
+    # symbols / pictographs
+    + r"\U0001F300-\U0001F5FF"
+    # emoticons / emoji
+    + r"\U0001F600-\U0001F64F"
+    # multilingual unicode ranges
+    + r"\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$",
+    re.IGNORECASE,
+)
 
 def _validate_scheme(value: str):
     """Validate scheme."""
@@ -77,11 +72,11 @@ def _validate_auth_segment(value: str):
     if (colon_count := value.count(":")) > 1:
         # everything before @ is then considered as a username
         # this is a bad practice, but syntactically valid URL
-        return _username_regex().match(unquote(value))
+        return _RE_USERNAME.match(unquote(value))
     if colon_count < 1:
-        return _username_regex().match(value)
+        return _RE_USERNAME.match(value)
     username, password = value.rsplit(":", 1)
-    return _username_regex().match(username) and all(
+    return _RE_USERNAME.match(username) and all(
         char_to_avoid not in password for char_to_avoid in ("/", "?", "#", "@")
     )
 
@@ -138,7 +133,7 @@ def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool
     """Validate path query and fragments."""
     optional_segments = True
     if path:
-        optional_segments &= bool(_path_regex().match(path))
+        optional_segments &= bool(_RE_PATH.match(path))
     try:
         if (
             query

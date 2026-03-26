@@ -6,6 +6,14 @@ import re
 # local
 from .utils import validator
 
+# Perf: compile regex at module level — avoids recompilation on every call
+_RE_BASE16 = re.compile(r"^[0-9A-Fa-f]+$")
+_RE_BASE32 = re.compile(r"^[A-Z2-7]+=*$")
+_RE_BASE58 = re.compile(r"^[1-9A-HJ-NP-Za-km-z]+$")
+_RE_BASE64 = re.compile(
+    r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"
+)
+
 
 @validator
 def base16(value: str, /):
@@ -25,7 +33,7 @@ def base16(value: str, /):
         (Literal[True]): If `value` is a valid base16 encoding.
         (ValidationError): If `value` is an invalid base16 encoding.
     """
-    return re.match(r"^[0-9A-Fa-f]+$", value) if value else False
+    return _RE_BASE16.match(value) if value else False
 
 
 @validator
@@ -46,7 +54,7 @@ def base32(value: str, /):
         (Literal[True]): If `value` is a valid base32 encoding.
         (ValidationError): If `value` is an invalid base32 encoding.
     """
-    return re.match(r"^[A-Z2-7]+=*$", value) if value else False
+    return _RE_BASE32.match(value) if value else False
 
 
 @validator
@@ -67,7 +75,7 @@ def base58(value: str, /):
         (Literal[True]): If `value` is a valid base58 encoding.
         (ValidationError): If `value` is an invalid base58 encoding.
     """
-    return re.match(r"^[1-9A-HJ-NP-Za-km-z]+$", value) if value else False
+    return _RE_BASE58.match(value) if value else False
 
 
 @validator
@@ -88,8 +96,4 @@ def base64(value: str, /):
         (Literal[True]): If `value` is a valid base64 encoding.
         (ValidationError): If `value` is an invalid base64 encoding.
     """
-    return (
-        re.match(r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$", value)
-        if value
-        else False
-    )
+    return _RE_BASE64.match(value) if value else False
