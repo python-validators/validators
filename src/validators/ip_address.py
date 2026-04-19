@@ -10,28 +10,26 @@ from ipaddress import (
     NetmaskValueError,
 )
 import re
-from typing import Optional
+from typing import Optional, Union
 
 # local
 from .utils import validator
 
 
-def _check_private_ip(value: str, is_private: Optional[bool]):
+def _check_private_ip(
+    addr: Union[IPv4Address, IPv6Address, IPv4Network, IPv6Network], is_private: Optional[bool]
+):
+    """Check if the given IP address is private or public."""
     if is_private is None:
         return True
+
     if (
-        any(
-            value.startswith(l_bit)
-            for l_bit in {
-                "10.",  # private
-                "192.168.",  # private
-                "169.254.",  # link-local
-                "127.",  # localhost
-                "0.0.0.0",  # loopback #nosec
-            }
-        )
-        or re.match(r"^172\.(?:1[6-9]|2\d|3[0-1])\.", value)  # private
-        or re.match(r"^(?:22[4-9]|23[0-9]|24[0-9]|25[0-5])\.", value)  # broadcast
+        addr.is_private
+        or addr.is_loopback
+        or addr.is_link_local
+        or addr.is_multicast
+        or addr.is_reserved
+        or addr.is_unspecified
     ):
         return is_private
 
@@ -88,14 +86,24 @@ def ipv4(
         if cidr:
             if strict and value.count("/") != 1:
                 raise ValueError("IPv4 address was expected in CIDR notation")
-            return IPv4Network(value, strict=not host_bit) and _check_private_ip(value, private)
-        return IPv4Address(value) and _check_private_ip(value, private)
+            addr = IPv4Network(value, strict=not host_bit)
+            return addr and _check_private_ip(addr, private)
+        addr = IPv4Address(value)
+        return addr and _check_private_ip(addr, private)
     except (ValueError, AddressValueError, NetmaskValueError):
         return False
 
 
 @validator
-def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bool = True):
+def ipv6(
+    value: str,
+    /,
+    *,
+    cidr: bool = True,
+    strict: bool = False,
+    private: Optional[bool] = None,
+    host_bit: bool = True,
+):
     """Returns if a given value is a valid IPv6 address.
 
     Including IPv4-mapped IPv6 addresses. The initial version of ipv6 validator
@@ -118,6 +126,8 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
             IP address string may contain CIDR annotation.
         strict:
             IP address string is strictly in CIDR notation.
+        private:
+            IP address is public if `False`, private/local/loopback/multicast if `True`.
         host_bit:
             If `False` and host bits (along with network bits) _are_ set in the supplied
             address, this function raises a validation error. ref [IPv6Network][2].
@@ -133,7 +143,9 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
         if cidr:
             if strict and value.count("/") != 1:
                 raise ValueError("IPv6 address was expected in CIDR notation")
-            return IPv6Network(value, strict=not host_bit)
-        return IPv6Address(value)
+            addr = IPv6Network(value, strict=not host_bit)
+            return addr and _check_private_ip(addr, private)
+        addr = IPv6Address(value)
+        return addr and _check_private_ip(addr, private)
     except (ValueError, AddressValueError, NetmaskValueError):
         return False
