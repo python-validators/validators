@@ -37,8 +37,9 @@ def iban(value: str, /):
         (Literal[True]): If `value` is a valid IBAN code.
         (ValidationError): If `value` is an invalid IBAN code.
     """
+    if not value:
+        return False
+    value = value.upper()
     return (
-        (re.match(r"^[a-z]{2}[0-9]{2}[a-z0-9]{11,30}$", value, re.IGNORECASE) and _mod_check(value))
-        if value
-        else False
+        re.match(r"^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$", value) and _mod_check(value)
     )
