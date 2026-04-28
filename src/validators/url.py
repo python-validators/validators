@@ -11,6 +11,11 @@ from .hostname import hostname
 from .utils import validator
 
 
+def _validate_percent_encoding(value: str):
+    """Validate percent-encoding in a URL component."""
+    return not bool(re.search(r"%(?![0-9A-Fa-f]{2})", value))
+
+
 @lru_cache
 def _username_regex():
     return re.compile(
@@ -138,25 +143,22 @@ def _validate_optionals(path: str, query: str, fragment: str, strict_query: bool
     """Validate path query and fragments."""
     optional_segments = True
     if path:
-        optional_segments &= bool(_path_regex().match(path))
-    try:
-        if (
-            query
-            # ref: https://github.com/python/cpython/issues/117109
-            and parse_qs(query, strict_parsing=strict_query, separator="&")
-            and parse_qs(query, strict_parsing=strict_query, separator=";")
-        ):
-            optional_segments &= True
-    except TypeError:
-        # for Python < v3.9.2 (official v3.10)
-        if query and parse_qs(query, strict_parsing=strict_query):
-            optional_segments &= True
+        optional_segments &= bool(_path_regex().match(path)) and _validate_percent_encoding(path)
+    if query:
+        optional_segments &= _validate_percent_encoding(query)
+        if optional_segments:
+            try:
+                optional_segments &= bool(parse_qs(query, strict_parsing=strict_query, separator="&")) and bool(
+                    parse_qs(query, strict_parsing=strict_query, separator=";")
+                )
+            except TypeError:
+                optional_segments &= bool(parse_qs(query, strict_parsing=strict_query))
     if fragment:
         # See RFC3986 Section 3.5 Fragment for allowed characters
         # Adding "#", see https://github.com/python-validators/validators/issues/403
         optional_segments &= bool(
             re.fullmatch(r"[0-9a-z?/:@\-._~%!$&'()*+,;=#]*", fragment, re.IGNORECASE)
-        )
+        ) and _validate_percent_encoding(fragment)
     return optional_segments
 
 
