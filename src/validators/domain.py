@@ -76,12 +76,21 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
-        return False
-
     try:
+        ascii_domain = value.encode("idna").decode("utf-8")
+        domain_without_trailing_dot = ascii_domain.rstrip(".")
+
+        if not domain_without_trailing_dot or len(domain_without_trailing_dot) > 253:
+            return False
+
+        if consider_tld and not _IanaTLD.check(
+            domain_without_trailing_dot.rsplit(".", 1)[-1].upper()
+        ):
+            return False
+
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
+        tld = r"(?:[a-z]{2,63}|xn--[a-z0-9](?:[a-z0-9-]{0,57}[a-z0-9])?)"
 
         return not re.search(r"\s|__+", value) and re.match(
             # First character of the domain
@@ -90,11 +99,9 @@ def domain(
             + rf"(?:[a-z0-9-{service_record}]{{0,61}}"
             # Hostname
             + rf"[a-z0-9{service_record}])?\.)"
-            # First 61 characters of the gTLD
-            + r"+[a-z0-9][a-z0-9-_]{0,61}"
-            # Last character of the gTLD
-            + rf"[a-z]{trailing_dot}",
-            value.encode("idna").decode("utf-8"),
+            # Top-level domain
+            + rf"+{tld}{trailing_dot}",
+            ascii_domain,
             re.IGNORECASE,
         )
     except UnicodeError as err:
