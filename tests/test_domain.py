@@ -77,6 +77,9 @@ def test_returns_true_on_valid_top_level_domain(
         ("123.123", False, False),
         ("123.123.123.", True, False),
         ("123.123.123.123", False, False),
+        ("example.c_m", False, False),
+        ("example.c-m", False, False),
+        (("a." * 200) + "com", False, False),
     ],
 )
 def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool, rfc_2782: bool):

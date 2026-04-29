@@ -60,6 +60,9 @@ def test_returns_true_on_valid_hostname(value: str, rfc_1034: bool, rfc_2782: bo
         ("[dead:beef:0:-:0:-:42:1]:5731", False, False),
         ("[0:0:0:0:0:ffff:1.2.3.4]:-65538", False, False),
         ("[0:&:b:c:@:e:f:::9999", False, False),
+        ("example.c_m", False, False),
+        ("example.c-m", False, False),
+        (("a." * 200) + "com", False, False),
     ],
 )
 def test_returns_failed_validation_on_invalid_hostname(value: str, rfc_1034: bool, rfc_2782: bool):
