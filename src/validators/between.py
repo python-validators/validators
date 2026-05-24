@@ -59,7 +59,7 @@ def between(
         (TypeError): If there's a type mismatch during comparison.
 
     Note:
-        - `PossibleValueTypes` = `TypeVar("PossibleValueTypes", int, float, str, datetime)`
+        - `PossibleValueTypes` = `TypeVar("PossibleValueTypes", int, float, str, datetime, None)`
         - If neither `min_val` nor `max_val` is provided, result will always be `True`.
     """
     if value is None:
