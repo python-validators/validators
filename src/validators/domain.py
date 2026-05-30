@@ -83,6 +83,11 @@ def domain(
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
 
+        encoded = value.encode("idna").decode("utf-8")
+        if len(encoded.rstrip(".")) > 253:
+            # ref: RFC 1035, presentation form is limited to 253 characters
+            return False
+
         return not re.search(r"\s|__+", value) and re.match(
             # First character of the domain
             rf"^(?:[a-z0-9{service_record}]"
@@ -94,7 +99,7 @@ def domain(
             + r"+[a-z0-9][a-z0-9-_]{0,61}"
             # Last character of the gTLD
             + rf"[a-z]{trailing_dot}",
-            value.encode("idna").decode("utf-8"),
+            encoded,
             re.IGNORECASE,
         )
     except UnicodeError as err:
