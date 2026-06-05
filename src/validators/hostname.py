@@ -113,16 +113,25 @@ def hostname(
     if not value:
         return False
 
+    def _matches_simple_hostname(host: str):
+        if not maybe_simple:
+            return False
+        # A trailing dot (RFC 1034) is also valid on a simple, single-label
+        # hostname, not only on the dotted names handled by `domain()`.
+        if rfc_1034 and host.endswith("."):
+            host = host[:-1]
+        return _simple_hostname_regex().match(host)
+
     if may_have_port and (host_seg := _port_validator(value)):
         return (
-            (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
+            _matches_simple_hostname(host_seg)
             or domain(host_seg, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
             or (False if skip_ipv4_addr else ipv4(host_seg, cidr=False, private=private))
             or (False if skip_ipv6_addr else ipv6(host_seg, cidr=False))
         )
 
     return (
-        (_simple_hostname_regex().match(value) if maybe_simple else False)
+        _matches_simple_hostname(value)
         or domain(value, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
         or (False if skip_ipv4_addr else ipv4(value, cidr=False, private=private))
         or (False if skip_ipv6_addr else ipv6(value, cidr=False))
