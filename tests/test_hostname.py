@@ -15,6 +15,9 @@ from validators import ValidationError, hostname
         ("this-pc", False, False),
         ("lab-01a-notebook:404", False, False),
         ("4-oh-4", False, False),
+        # simple, single-label hostname w/ trailing dot (RFC 1034); see #442
+        ("this-pc.", True, False),
+        ("ie.", True, False),
         # hostname w/ optional ports
         ("example.com:4444", False, False),
         ("kräuter.com.", True, False),
@@ -45,6 +48,8 @@ def test_returns_true_on_valid_hostname(value: str, rfc_1034: bool, rfc_2782: bo
         ("this-pc-is-sh*t", False, False),
         ("lab-01a-note._com_.com:404", False, False),
         ("4-oh-4:@.com", False, False),
+        # trailing dot is only allowed with rfc_1034; see #442
+        ("this-pc.", False, False),
         # bad (hostname w/ optional ports)
         ("example.com:-4444", False, False),
         ("xn----gtbspbbmkef.xn--p1ai:65538", False, False),
