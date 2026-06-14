@@ -23,6 +23,10 @@ from validators import ValidationError, cron
         "*/15 0,6,12,18 * * *",
         "0 12 * * 0",
         "*/61 * * * *",
+        "1-5,10-20 * * * *",
+        "1-5,30 * * * *",
+        "10,20-30 * * * *",
+        "1-5,10-20,30-40 * * * *",
         # "5-10/2 * * * *", # this is valid, but not supported yet
     ],
 )
