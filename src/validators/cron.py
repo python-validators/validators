@@ -8,6 +8,16 @@ def _validate_cron_component(component: str, min_val: int, max_val: int):
     if component == "*":
         return True
 
+    # A comma-separated list must be split first, so each element can itself be
+    # a range (e.g. "1-5"), a step (e.g. "*/2") or a single value. Evaluating
+    # the "-" or "/" branches before this one caused valid expressions such as
+    # "1-5,10-20" to be rejected.
+    if "," in component:
+        for item in component.split(","):
+            if not _validate_cron_component(item, min_val, max_val):
+                return False
+        return True
+
     if component.isdecimal():
         return min_val <= int(component) <= max_val
 
@@ -25,15 +35,6 @@ def _validate_cron_component(component: str, min_val: int, max_val: int):
             return False
         start, end = int(parts[0]), int(parts[1])
         return min_val <= start <= max_val and min_val <= end <= max_val and start <= end
-
-    if "," in component:
-        for item in component.split(","):
-            if not _validate_cron_component(item, min_val, max_val):
-                return False
-        return True
-        # return all(
-        #   _validate_cron_component(item, min_val, max_val) for item in component.split(",")
-        # ) # throws type error. why?
 
     return False
 
