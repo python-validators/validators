@@ -17,10 +17,11 @@ except ImportError:
 def _validate_eth_checksum_address(addr: str):
     """Validate ETH type checksum address."""
     addr = addr.replace("0x", "")
-    addr_hash = keccak.new(addr.lower().encode("ascii")).digest().hex()  # type: ignore
 
-    if len(addr) != 40:
+    if not re.fullmatch(r"[0-9a-fA-F]{40}", addr):
         return False
+
+    addr_hash = keccak.new(addr.lower().encode("ascii")).digest().hex()  # type: ignore
 
     for i in range(0, 40):
         if (int(addr_hash[i], 16) > 7 and addr[i].upper() != addr[i]) or (

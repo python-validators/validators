@@ -50,7 +50,7 @@ def btc_address(value: str, /):
 
     return (
         # segwit pattern
-        re.compile(r"^(bc|tc)[0-3][02-9ac-hj-np-z]{14,74}$").match(value)
+        re.compile(r"^(bc|tb)[0-3][02-9ac-hj-np-z]{14,74}$").match(value)
         if value[:2] in ("bc", "tb")
         else _validate_old_btc_address(value)
     )
