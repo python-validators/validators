@@ -44,4 +44,4 @@ def ind_pan(value: str):
         (Literal[True]): If `value` is a valid PAN card number.
         (ValidationError): If `value` is an invalid PAN card number.
     """
-    return re.match(r"[A-Z]{5}\d{4}[A-Z]{1}", value)
+    return re.match(r"^[A-Z]{5}\d{4}[A-Z]{1}$", value)
