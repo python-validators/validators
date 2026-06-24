@@ -72,7 +72,7 @@ def cron(value: str, /):
         return False
     if not _validate_cron_component(months, 1, 12):
         return False
-    if not _validate_cron_component(weekdays, 0, 6):
+    if not _validate_cron_component(weekdays, 0, 7):
         return False
 
     return True
