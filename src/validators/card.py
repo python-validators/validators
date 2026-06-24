@@ -80,7 +80,7 @@ def mastercard(value: str, /):
         (Literal[True]): If `value` is a valid Mastercard card number.
         (ValidationError): If `value` is an invalid Mastercard card number.
     """
-    pattern = re.compile(r"^(51|52|53|54|55|22|23|24|25|26|27)")
+    pattern = re.compile(r"^(5[1-5]|222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)")
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
