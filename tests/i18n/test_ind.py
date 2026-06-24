@@ -26,7 +26,9 @@ def test_returns_true_on_valid_ind_pan(value: str):
     assert ind_pan(value)
 
 
-@pytest.mark.parametrize("value", ["ABC5d7896B", "417598346012", "AaaPL1234C"])
+@pytest.mark.parametrize(
+    "value", ["ABC5d7896B", "417598346012", "AaaPL1234C", "ABCDE9999KEXTRA"]
+)
 def test_returns_failed_validation_on_invalid_ind_pan(value: str):
     """Test returns failed validation on invalid ind pan."""
     assert isinstance(ind_pan(value), ValidationError)
