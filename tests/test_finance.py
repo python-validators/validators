@@ -24,13 +24,13 @@ def test_returns_failed_validation_on_invalid_cusip(value: str):
 # ==> ISIN <== #
 
 
-@pytest.mark.parametrize("value", ["US0004026250", "JP000K0VF054", "US0378331005"])
+@pytest.mark.parametrize("value", ["US0004026250", "JP000K0VF055", "US0378331005"])
 def test_returns_true_on_valid_isin(value: str):
     """Test returns true on valid isin."""
     assert isin(value)
 
 
-@pytest.mark.parametrize("value", ["010378331005", "XCVF", "00^^^1234", "A000009"])
+@pytest.mark.parametrize("value", ["010378331005", "XCVF", "00^^^1234", "A000009", "US0378331004"])
 def test_returns_failed_validation_on_invalid_isin(value: str):
     """Test returns failed validation on invalid isin."""
     assert isinstance(isin(value), ValidationError)
