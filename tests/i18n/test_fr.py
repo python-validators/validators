@@ -34,6 +34,7 @@ def test_returns_true_on_valid_ssn(value: str):
         (None,),
         ("",),
         ("3 84 12 76 451 089 46",),  # wrong gender number
+        (", 84 12 76 451 089",),  # comma is not a valid gender (regex char-class bug)
         ("1 84 12 76 451 089 47",),  # wrong control key
         ("1 84 00 76 451 089",),  # invalid month
         ("1 84 13 76 451 089",),  # invalid month
