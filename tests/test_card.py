@@ -80,7 +80,13 @@ def test_returns_true_on_valid_mastercard(value: str):
 
 @pytest.mark.parametrize(
     "value",
-    visa_cards + amex_cards + unionpay_cards + diners_cards + jcb_cards + discover_cards,
+    visa_cards
+    + amex_cards
+    + unionpay_cards
+    + diners_cards
+    + jcb_cards
+    + discover_cards
+    + mir_cards,
 )
 def test_returns_failed_on_valid_mastercard(value: str):
     """Test returns failed on valid mastercard."""
