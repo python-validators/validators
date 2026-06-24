@@ -17,6 +17,9 @@ from validators import ValidationError, btc_address
         # Bech32/segwit type
         "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq",
         "bc1qc7slrfxkknqcq2jevvvkdgvrt8080852dfjewde450xdlk4ugp7szw5tk9",
+        # Bech32/segwit testnet (tb prefix)
+        "tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx",
+        "tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3qccfmv3",
     ],
 )
 def test_returns_true_on_valid_btc_address(value: str):
