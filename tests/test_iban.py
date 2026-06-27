@@ -13,6 +13,12 @@ def test_returns_true_on_valid_iban(value: str):
     assert iban(value)
 
 
+@pytest.mark.parametrize("value", ["gb82west12345698765432", "No9386011117947"])
+def test_returns_true_on_valid_lowercase_iban(value: str):
+    """Lowercase/mixed-case IBANs are accepted (the format regex is case-insensitive)."""
+    assert iban(value)
+
+
 @pytest.mark.parametrize("value", ["GB81WEST12345698765432", "NO9186011117947"])
 def test_returns_failed_validation_on_invalid_iban(value: str):
     """Test returns failed validation on invalid iban."""

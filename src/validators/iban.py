@@ -8,8 +8,8 @@ from .utils import validator
 
 
 def _char_value(char: str):
-    """A=10, B=11, ..., Z=35."""
-    return char if char.isdigit() else str(10 + ord(char) - ord("A"))
+    """A=10, B=11, ..., Z=35 (case-insensitive)."""
+    return char if char.isdigit() else str(10 + ord(char.upper()) - ord("A"))
 
 
 def _mod_check(value: str):
