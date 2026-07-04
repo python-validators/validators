@@ -84,6 +84,18 @@ def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool,
     assert isinstance(domain(value, rfc_1034=rfc_1034, rfc_2782=rfc_2782), ValidationError)
 
 
+def test_returns_failed_validation_on_too_long_domain():
+    """A domain over 253 characters is invalid regardless of label lengths."""
+    label = "a" * 49
+    too_long = ".".join([label] * 5) + ".aaaaa"  # 255 characters, each label <= 63
+    assert len(too_long) > 253
+    assert isinstance(domain(too_long), ValidationError)
+
+    at_limit = ".".join([label] * 5) + ".aaa"  # exactly 253 characters
+    assert len(at_limit) == 253
+    assert domain(at_limit)
+
+
 @pytest.mark.parametrize(
     ("value", "consider_tld", "rfc_1034", "rfc_2782"),
     [

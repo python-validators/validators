@@ -76,6 +76,11 @@ def domain(
     if not value:
         return False
 
+    # The textual representation of a domain name is limited to 253 characters
+    # (RFC 1035), regardless of the individual label lengths.
+    if len(value.rstrip(".")) > 253:
+        return False
+
     if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
         return False
 
