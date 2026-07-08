@@ -32,21 +32,32 @@ def _cusip_checksum(cusip: str):
 
 
 def _isin_checksum(value: str):
-    check, val = 0, None
-
+    # Expand the ISIN to digits: each letter maps to two digits (A=10, ..., Z=35)
+    # while digits are kept as-is. The country code (first two characters) must be
+    # letters and the check digit (last character) must be numeric.
+    digits = ""
     for idx in range(12):
         c = value[idx]
-        if c >= "0" and c <= "9" and idx > 1:
-            val = ord(c) - ord("0")
+        if c >= "0" and c <= "9":
+            if idx < 2:
+                return False
+            digits += c
         elif c >= "A" and c <= "Z":
-            val = 10 + ord(c) - ord("A")
-        elif c >= "a" and c <= "z":
-            val = 10 + ord(c) - ord("a")
+            if idx == 11:
+                return False
+            digits += str(10 + ord(c) - ord("A"))
         else:
             return False
 
+    # Luhn checksum: doubling every second digit from the right.
+    check = 0
+    for idx, digit in enumerate(reversed(digits)):
+        val = int(digit)
         if idx & 1:
-            val += val
+            val *= 2
+            if val > 9:
+                val -= 9
+        check += val
 
     return (check % 10) == 0
 
@@ -82,10 +93,12 @@ def isin(value: str):
     [1]: https://en.wikipedia.org/wiki/International_Securities_Identification_Number
 
     Examples:
+        >>> isin('US0378331005')
+        True
+        >>> isin('US0378331004')
+        ValidationError(func=isin, args={'value': 'US0378331004'})
         >>> isin('037833DP2')
         ValidationError(func=isin, args={'value': '037833DP2'})
-        >>> isin('037833DP3')
-        ValidationError(func=isin, args={'value': '037833DP3'})
 
     Args:
         value: ISIN string to validate.
