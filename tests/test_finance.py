@@ -44,6 +44,8 @@ def test_returns_true_on_valid_isin(value: str):
         "US0378331006",
         "JP000K0VF054",
         "AAAAAAAAAAAA",
+        # letter check digit can Luhn-pass; ISO 6166 requires a digit
+        "AA000000000G",
     ],
 )
 def test_returns_failed_validation_on_invalid_isin(value: str):

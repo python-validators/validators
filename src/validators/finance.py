@@ -33,6 +33,9 @@ def _cusip_checksum(cusip: str):
 
 def _isin_checksum(value: str):
     # Expand letters to two digits (A=10 .. Z=35), then apply Luhn from the right.
+    # ISO 6166: check digit (last char) must be decimal 0-9.
+    if len(value) != 12 or not value[-1].isdigit():
+        return False
     digits = []
     for idx, c in enumerate(value):
         if "0" <= c <= "9":
