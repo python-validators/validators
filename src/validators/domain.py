@@ -51,6 +51,11 @@ def domain(
         >>> # Supports IDN domains as well::
         >>> domain('xn----gtbspbbmkef.xn--p1ai')
         True
+        >>> # Bare TLDs are valid single-label domain names (RFC 1034 §2.3.1):
+        >>> domain('ie')
+        True
+        >>> domain('ie.', rfc_1034=True)
+        True
 
     Args:
         value:
@@ -82,8 +87,13 @@ def domain(
     try:
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
+        encoded = value.encode("idna").decode("utf-8")
 
-        return not re.search(r"\s|__+", value) and re.match(
+        if re.search(r"\s|__+", value):
+            return False
+
+        # Multi-label domain (e.g. example.com, defo.ie, yugoslavia.yu)
+        if re.match(
             # First character of the domain
             rf"^(?:[a-z0-9{service_record}]"
             # Sub-domain
@@ -94,8 +104,18 @@ def domain(
             + r"+[a-z0-9][a-z0-9-_]{0,61}"
             # Last character of the gTLD
             + rf"[a-z]{trailing_dot}",
-            value.encode("idna").decode("utf-8"),
+            encoded,
             re.IGNORECASE,
+        ):
+            return True
+
+        # Single-label domain / bare TLD (e.g. ie, com, yu).
+        # RFC 1034 §2.3.1 permits a single label of 1-63 characters.
+        # We require at least 2 alpha chars so pure-digit strings ("123")
+        # are still rejected, matching the behaviour of the multi-label path.
+        return bool(
+            re.match(rf"^[a-z]{{2,63}}{trailing_dot}", encoded, re.IGNORECASE)
         )
+
     except UnicodeError as err:
         raise UnicodeError(f"Unable to encode/decode {value}") from err
