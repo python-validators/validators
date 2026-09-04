@@ -29,6 +29,20 @@ def _simple_hostname_regex():
     return re.compile(r"^(?!-)[a-z0-9](?:[a-z0-9-]{0,59}[a-z0-9])?(?<!-)$", re.IGNORECASE)
 
 
+def _simple_hostname_match(value: str, rfc_1034: bool):
+    """Match value against the simple hostname regex.
+
+    rfc_1034 promises an optional trailing dot is allowed, but the simple
+    regex above has no notion of one, so a bare single-label name like
+    "yu" would pass without the dot and fail with it. Strip a lone
+    trailing dot first when that flag is set, same as domain() already
+    does for its own regex, so the two paths agree.
+    """
+    if rfc_1034 and value.endswith(".") and len(value) > 1:
+        value = value[:-1]
+    return _simple_hostname_regex().match(value)
+
+
 def _port_validator(value: str):
     """Returns host segment if port is valid."""
     if value.count("]:") == 1:
@@ -115,14 +129,14 @@ def hostname(
 
     if may_have_port and (host_seg := _port_validator(value)):
         return (
-            (_simple_hostname_regex().match(host_seg) if maybe_simple else False)
+            (_simple_hostname_match(host_seg, rfc_1034) if maybe_simple else False)
             or domain(host_seg, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
             or (False if skip_ipv4_addr else ipv4(host_seg, cidr=False, private=private))
             or (False if skip_ipv6_addr else ipv6(host_seg, cidr=False))
         )
 
     return (
-        (_simple_hostname_regex().match(value) if maybe_simple else False)
+        (_simple_hostname_match(value, rfc_1034) if maybe_simple else False)
         or domain(value, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
         or (False if skip_ipv4_addr else ipv4(value, cidr=False, private=private))
         or (False if skip_ipv6_addr else ipv6(value, cidr=False))
