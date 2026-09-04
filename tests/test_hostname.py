@@ -30,6 +30,9 @@ from validators import ValidationError, hostname
         ("[dead:beef:0:0:0:0000:42:1]:5731", False, False),
         ("[0:0:0:0:0:ffff:1.2.3.4]:80", False, False),
         ("[0:a:b:c:d:e:f::]:53", False, False),
+        # bare single-label name with the RFC 1034 trailing dot, GH-442
+        ("yu.", True, False),
+        ("yu.:443", True, False),
     ],
 )
 def test_returns_true_on_valid_hostname(value: str, rfc_1034: bool, rfc_2782: bool):
@@ -60,6 +63,10 @@ def test_returns_true_on_valid_hostname(value: str, rfc_1034: bool, rfc_2782: bo
         ("[dead:beef:0:-:0:-:42:1]:5731", False, False),
         ("[0:0:0:0:0:ffff:1.2.3.4]:-65538", False, False),
         ("[0:&:b:c:@:e:f:::9999", False, False),
+        # bad (trailing dot only allowed when rfc_1034 is requested)
+        ("yu.", False, False),
+        # bad (a lone dot has no label to strip down to)
+        (".", True, False),
     ],
 )
 def test_returns_failed_validation_on_invalid_hostname(value: str, rfc_1034: bool, rfc_2782: bool):
