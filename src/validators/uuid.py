@@ -35,9 +35,9 @@ def uuid(value: Union[str, UUID], /):
         return False
     if isinstance(value, UUID):
         return True
-    try:
-        return UUID(value) or re.match(
-            r"^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$", value
-        )
-    except ValueError:
-        return False
+    # Deliberately not delegating to the stdlib UUID() constructor here:
+    # it accepts far more than this validator documents or tests, e.g.
+    # `urn:uuid:...`-prefixed and `{braced}` forms, and any UUID version
+    # (not just v4). A regex keeps acceptance limited to the plain
+    # (optionally dashed) hex form shown in the docstring and tests.
+    return bool(re.match(r"^[0-9a-fA-F]{8}-?([0-9a-fA-F]{4}-?){3}[0-9a-fA-F]{12}$", value))
