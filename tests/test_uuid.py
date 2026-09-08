@@ -32,6 +32,13 @@ def test_returns_true_on_valid_uuid(value: Union[str, UUID]):
         ("2bc1c94f-0deb-43e9-92a1-4775189ec9f",),
         ("gbc1c94f-0deb-43e9-92a1-4775189ec9f8",),
         ("2bc1c94f 0deb-43e9-92a1-4775189ec9f8",),
+        # Regression: the previous implementation delegated to the stdlib
+        # UUID() constructor, which is far more permissive than this
+        # validator's own docstring/regex -- it also accepts urn:-prefixed
+        # and {braced} forms, neither of which were ever documented,
+        # tested, or intended to pass here.
+        ("urn:uuid:2bc1c94f-0deb-43e9-92a1-4775189ec9f8",),
+        ("{2bc1c94f-0deb-43e9-92a1-4775189ec9f8}",),
     ],
 )
 def test_returns_failed_validation_on_invalid_uuid(value: Union[str, UUID]):
