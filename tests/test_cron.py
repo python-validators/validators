@@ -23,7 +23,9 @@ from validators import ValidationError, cron
         "*/15 0,6,12,18 * * *",
         "0 12 * * 0",
         "*/61 * * * *",
-        # "5-10/2 * * * *", # this is valid, but not supported yet
+        "5-10/2 * * * *",
+        "1-30/2 * * * *",
+        "15,45 6-18/3 * * *",
     ],
 )
 def test_returns_true_on_valid_cron(value: str):
