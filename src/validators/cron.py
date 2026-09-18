@@ -4,38 +4,34 @@
 from .utils import validator
 
 
-def _validate_cron_component(component: str, min_val: int, max_val: int):
-    if component == "*":
+def _validate_cron_item(item: str, min_val: int, max_val: int):
+    # An item may carry a step, e.g. "*/5", "1-30/2" or "5/10".
+    if "/" in item:
+        base, _, step = item.partition("/")
+        if not step.isdecimal() or int(step) < 1:
+            return False
+    else:
+        base = item
+
+    if base == "*":
         return True
 
-    if component.isdecimal():
-        return min_val <= int(component) <= max_val
-
-    if "/" in component:
-        parts = component.split("/")
-        if len(parts) != 2 or not parts[1].isdecimal() or int(parts[1]) < 1:
-            return False
-        if parts[0] == "*":
-            return True
-        return parts[0].isdecimal() and min_val <= int(parts[0]) <= max_val
-
-    if "-" in component:
-        parts = component.split("-")
+    if "-" in base:
+        parts = base.split("-")
         if len(parts) != 2 or not parts[0].isdecimal() or not parts[1].isdecimal():
             return False
         start, end = int(parts[0]), int(parts[1])
         return min_val <= start <= max_val and min_val <= end <= max_val and start <= end
 
-    if "," in component:
-        for item in component.split(","):
-            if not _validate_cron_component(item, min_val, max_val):
-                return False
-        return True
-        # return all(
-        #   _validate_cron_component(item, min_val, max_val) for item in component.split(",")
-        # ) # throws type error. why?
+    if base.isdecimal():
+        return min_val <= int(base) <= max_val
 
     return False
+
+
+def _validate_cron_component(component: str, min_val: int, max_val: int):
+    # A field is a comma-separated list of items, each optionally stepped.
+    return all(_validate_cron_item(item, min_val, max_val) for item in component.split(","))
 
 
 @validator
