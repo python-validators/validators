@@ -219,3 +219,16 @@ def test_returns_failed_validation_on_invalid_url(value: str):
 def test_returns_failed_validation_on_invalid_private_url(value: str, private: Optional[bool]):
     """Test returns failed validation on invalid private url."""
     assert isinstance(url(value, private=private), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "file:///var/www",
+        "file:///C:/Windows",
+        "file://localhost/var/www",
+    ],
+)
+def test_returns_string_for_valid_file_url(value: str):
+    """Test returns true on valid file url. Ref: RFC 8089."""
+    assert url(value)

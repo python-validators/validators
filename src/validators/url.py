@@ -46,6 +46,7 @@ def _validate_scheme(value: str):
         value
         # fmt: off
         in {
+            "file",
             "ftp",
             "ftps",
             "git",
@@ -240,18 +241,25 @@ def url(
     except ValueError:
         return False
 
+    # RFC 8089: a "file" URL's authority is commonly empty or "localhost",
+    # neither of which is a hostname `_validate_netloc` would accept.
+    is_local_file = scheme == "file" and netloc in ("", "localhost")
+
     return (
         validate_scheme(scheme)
-        and _validate_netloc(
-            netloc,
-            skip_ipv6_addr,
-            skip_ipv4_addr,
-            may_have_port,
-            simple_host,
-            consider_tld,
-            private,
-            rfc_1034,
-            rfc_2782,
+        and (
+            is_local_file
+            or _validate_netloc(
+                netloc,
+                skip_ipv6_addr,
+                skip_ipv4_addr,
+                may_have_port,
+                simple_host,
+                consider_tld,
+                private,
+                rfc_1034,
+                rfc_2782,
+            )
         )
         and _validate_optionals(path, query, fragment, strict_query)
     )
