@@ -90,8 +90,9 @@ def domain(
             + rf"(?:[a-z0-9-{service_record}]{{0,61}}"
             # Hostname
             + rf"[a-z0-9{service_record}])?\.)"
-            # First 61 characters of the gTLD
-            + r"+[a-z0-9][a-z0-9-_]{0,61}"
+            # First 61 characters of the gTLD. An underscore belongs
+            # in a service label, not here.
+            + r"+[a-z0-9][a-z0-9-]{0,61}"
             # Last character of the gTLD
             + rf"[a-z]{trailing_dot}",
             value.encode("idna").decode("utf-8"),
