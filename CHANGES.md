@@ -9,6 +9,12 @@ Note to self: Breaking changes must increment either
 
 -->
 
+## Unreleased
+
+_**Fixes**_
+
+* Reject an underscore in the last domain label. ([#484](https://github.com/python-validators/validators/issues/484))
+
 ## 0.35.0 (2025-05-01)
 
 _**Breaking**_ ⚠️
