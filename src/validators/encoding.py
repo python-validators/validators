@@ -25,7 +25,7 @@ def base16(value: str, /):
         (Literal[True]): If `value` is a valid base16 encoding.
         (ValidationError): If `value` is an invalid base16 encoding.
     """
-    return re.match(r"^[0-9A-Fa-f]+$", value) if value else False
+    return re.fullmatch(r"^[0-9A-Fa-f]+$", value) if value else False
 
 
 @validator
@@ -46,7 +46,7 @@ def base32(value: str, /):
         (Literal[True]): If `value` is a valid base32 encoding.
         (ValidationError): If `value` is an invalid base32 encoding.
     """
-    return re.match(r"^[A-Z2-7]+=*$", value) if value else False
+    return re.fullmatch(r"^[A-Z2-7]+=*$", value) if value else False
 
 
 @validator
@@ -67,7 +67,7 @@ def base58(value: str, /):
         (Literal[True]): If `value` is a valid base58 encoding.
         (ValidationError): If `value` is an invalid base58 encoding.
     """
-    return re.match(r"^[1-9A-HJ-NP-Za-km-z]+$", value) if value else False
+    return re.fullmatch(r"^[1-9A-HJ-NP-Za-km-z]+$", value) if value else False
 
 
 @validator
@@ -89,7 +89,7 @@ def base64(value: str, /):
         (ValidationError): If `value` is an invalid base64 encoding.
     """
     return (
-        re.match(r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$", value)
+        re.fullmatch(r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$", value)
         if value
         else False
     )

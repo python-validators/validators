@@ -1,5 +1,8 @@
 """Test Hashes."""
 
+# standard
+from typing import Callable
+
 # external
 import pytest
 
@@ -229,3 +232,15 @@ def test_returns_true_on_valid_sha512(value: str):
 def test_returns_failed_validation_on_invalid_sha512(value: str):
     """Test returns failed validation on invalid sha512."""
     assert isinstance(sha512(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "validate, size",
+    [(md5, 32), (sha1, 40), (sha224, 56), (sha256, 64), (sha384, 96), (sha512, 128)],
+)
+@pytest.mark.parametrize("suffix", ["\n", "\r\n", " ", "\nextra"])
+def test_hash_rejects_trailing_characters(
+    validate: Callable[[str], object], size: int, suffix: str
+):
+    """Reject characters outside the fixed-length digest."""
+    assert isinstance(validate("a" * size + suffix), ValidationError)

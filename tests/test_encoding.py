@@ -1,5 +1,8 @@
 """Test Encodings."""
 
+# standard
+from typing import Callable
+
 # external
 import pytest
 
@@ -115,3 +118,15 @@ def test_returns_true_on_valid_base64(value: str):
 def test_returns_failed_validation_on_invalid_base64(value: str):
     """Test returns failed validation on invalid base64."""
     assert isinstance(base64(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "validate, value",
+    [(base16, "a3f4b2"), (base32, "MFZWIZLTOQ======"), (base58, "18KToMF5"), (base64, "SGVsbG8=")],
+)
+@pytest.mark.parametrize("suffix", ["\n", "\r\n", " ", "\nextra"])
+def test_encoding_rejects_trailing_characters(
+    validate: Callable[[str], object], value: str, suffix: str
+):
+    """Reject characters outside the encoded value."""
+    assert isinstance(validate(value + suffix), ValidationError)
