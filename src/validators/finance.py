@@ -71,7 +71,7 @@ def cusip(value: str):
         (Literal[True]): If `value` is a valid CUSIP string.
         (ValidationError): If `value` is an invalid CUSIP string.
     """
-    return len(value) == 9 and _cusip_checksum(value)
+    return len(value) == 9 and value[-1] in "0123456789" and _cusip_checksum(value)
 
 
 @validator
@@ -117,7 +117,7 @@ def sedol(value: str):
         (Literal[True]): If `value` is a valid SEDOL string.
         (ValidationError): If `value` is an invalid SEDOL string.
     """
-    if len(value) != 7:
+    if len(value) != 7 or value[-1] not in "0123456789":
         return False
 
     weights = [1, 3, 1, 7, 3, 9, 1]
