@@ -48,6 +48,8 @@ _**Maintenance**_
 * chore: use native pyproject config for tox and pytest by @nandgator in [#490](https://github.com/python-validators/validators/pull/490)
 * test: cover RFC length limits for domain() and hostname() by @nandgator in [#493](https://github.com/python-validators/validators/pull/493)
 * chore!: adopt uv and PEP 735 dependency groups by @nandgator in [#495](https://github.com/python-validators/validators/pull/495)
+* ci: update GitHub Actions to their latest versions by @nandgator in [#496](https://github.com/python-validators/validators/pull/496)
+* docs: explain why the documentation is hosted on the maintainer's fork by @nandgator in [#497](https://github.com/python-validators/validators/pull/497)
 
 **Full Changelog**: [`0.35.0...0.36.0`](https://github.com/python-validators/validators/compare/0.35.0...0.36.0)
 
