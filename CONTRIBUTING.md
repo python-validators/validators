@@ -51,8 +51,8 @@ $ uv run python package/export TYPE # where TYPE is any of `doc`, `man` or `web`
 You can preview the generated documentation:
 
 ```sh
-# To preview mkdocs
-$ uv run mkdocs serve
+# To preview the online documentation
+$ uv run --group docs-online zensical serve
 # To preview man pages
 $ man docs/_build/man/validators.1
 # To preview sphinx webpages

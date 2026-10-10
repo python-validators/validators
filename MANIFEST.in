@@ -3,7 +3,7 @@
 
 # include
 include CHANGES.md
-include mkdocs.yaml
+include mkdocs.yml
 
 
 # global-include
