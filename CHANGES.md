@@ -50,6 +50,7 @@ _**Maintenance**_
 * chore!: adopt uv and PEP 735 dependency groups by @nandgator in [#495](https://github.com/python-validators/validators/pull/495)
 * ci: update GitHub Actions to their latest versions by @nandgator in [#496](https://github.com/python-validators/validators/pull/496)
 * docs: explain why the documentation is hosted on the maintainer's fork by @nandgator in [#497](https://github.com/python-validators/validators/pull/497)
+* docs: hide badges from the man page; upgrade docs tooling to latest stable by @nandgator in [#498](https://github.com/python-validators/validators/pull/498)
 
 **Full Changelog**: [`0.35.0...0.36.0`](https://github.com/python-validators/validators/compare/0.35.0...0.36.0)
 
