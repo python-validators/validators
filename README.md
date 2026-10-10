@@ -36,7 +36,7 @@ True
 
 ---
 
-> **_Python 3.9 [reaches EOL in](https://endoflife.date/python) October 2025._**
+> **_Python 3.11 [reaches EOL in](https://endoflife.date/python) October 2027._**
 
 <!-- Links -->
 [sast-badge]: https://github.com/python-validators/validators/actions/workflows/sast.yaml/badge.svg
