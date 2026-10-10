@@ -47,8 +47,8 @@ Resources
 
 --------------
 
-   **Python 3.9** `reaches EOL in <https://endoflife.date/python>`__
-   **October 2025.**
+   **Python 3.11** `reaches EOL in <https://endoflife.date/python>`__
+   **October 2027.**
 
 .. raw:: html
 

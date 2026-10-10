@@ -16,10 +16,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       # set up specific python version
-      - name: Set up Python v3.10
+      - name: Set up Python v3.11
         uses: actions/setup-python@v6
         with:
-          python-version: "3.10"
+          python-version: "3.11"
       # tooling
       - name: Install 'tooling' dependencies
         run: pip install -r package/requirements.tooling.txt
@@ -33,7 +33,7 @@ jobs:
       fail-fast: true
       matrix:
         os: [ubuntu-latest]
-        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
     runs-on: ${{ matrix.os }}
     steps:
       # checkout repository again!

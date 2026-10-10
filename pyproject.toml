@@ -25,15 +25,14 @@ classifiers = [
     "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11"
 dynamic = ["version"]
 dependencies = []
 
@@ -116,7 +115,7 @@ exclude = [
     ".venv.dev/",
     "site/",
 ]
-pythonVersion = "3.9"
+pythonVersion = "3.11"
 pythonPlatform = "All"
 typeCheckingMode = "strict"
 
@@ -144,7 +143,7 @@ lint.select = [
     "D",
 ]
 line-length = 100
-target-version = "py39"
+target-version = "py311"
 extend-exclude = ["**/__pycache__", ".pytest_cache", "site"]
 
 [tool.ruff.lint.isort]
@@ -163,7 +162,7 @@ legacy_tox_ini = """
 [tox]
 requires =
     tox>=4
-env_list = lint, type, format, sast, py{39,310,311,312,313}
+env_list = lint, type, format, sast, py{311,312,313,314}
 
 [testenv:lint]
 description = ruff linter
