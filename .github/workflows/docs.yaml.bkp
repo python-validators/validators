@@ -14,7 +14,7 @@ jobs:
     steps:
       # checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # set up uv and a specific python version
       - name: Set up uv with Python v3.12
         uses: astral-sh/setup-uv@v10.3.0
@@ -27,10 +27,10 @@ jobs:
         run: uv run --no-sync python package/export doc
       # set up Pages
       - name: Set up Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
       # upload static page
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ${{ env.BUILD_PATH }}/site
   deploy:
@@ -47,4 +47,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
