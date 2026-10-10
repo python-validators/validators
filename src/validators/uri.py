@@ -28,7 +28,8 @@ def _ipfs_url(value: str):
 def _telnet_url(value: str):
     """Validate a telnet URL per RFC 4248.
 
-    Ref: https://www.rfc-editor.org/rfc/rfc4248"
+    Ref: https://www.rfc-editor.org/rfc/rfc4248
+
     Examples:
     >>> _telnet_url('telnet://example.com')
     True
@@ -45,6 +46,10 @@ def _telnet_url(value: str):
         (Literal[True]): If `value` is a Telnet URI.
         (ValidationError): If `value` is an invalid URI.
     """
+    # urlsplit silently strips tabs and newlines, so reject them up front
+    if any(char.isspace() or not char.isprintable() for char in value):
+        return False
+
     try:
         scheme, netloc, path, query, fragment = urlsplit(value)
     except ValueError:

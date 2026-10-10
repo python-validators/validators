@@ -32,6 +32,10 @@ def test_valid_telnet_uri(value: str):
         "telnet://example.com/path",
         "telnet://example.com?query=1",
         "telnet://example.com#frag",
+        # urlsplit would silently strip these control characters
+        "telnet://example.com\n",
+        "telnet://exa\nmple.com",
+        "telnet://example.com\t",
     ],
 )
 def test_invalid_telnet_uri(value: str):
