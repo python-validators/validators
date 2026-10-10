@@ -1,7 +1,9 @@
 validators - Python Data Validation for Humans™
 ===============================================
 
-|PyCQA| |SAST| |Docs| |Version| |Downloads|
+.. only:: html
+
+   |PyCQA| |SAST| |Docs| |Version| |Downloads|
 
 .. raw:: html
 
@@ -36,10 +38,10 @@ Resources
 
    <!-- Original documentation URL :  https://python-validators.github.io/validators/ -->
 
--  `Documentation <https://nandgator.github.io/pyvalidators>`__
--  `Bugtracker <https://github.com/python-validators/validators/issues>`__
--  `Security <https://github.com/python-validators/validators/blob/master/SECURITY.md>`__
--  `Code <https://github.com/python-validators/validators/>`__
+- `Documentation <https://nandgator.github.io/pyvalidators>`__
+- `Bugtracker <https://github.com/python-validators/validators/issues>`__
+- `Security <https://github.com/python-validators/validators/blob/master/SECURITY.md>`__
+- `Code <https://github.com/python-validators/validators/>`__
 
 ..
 

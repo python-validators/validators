@@ -4,6 +4,7 @@
 from ast import ImportFrom, parse
 from os.path import getsize
 from pathlib import Path
+from re import MULTILINE, sub
 from shutil import copy
 from subprocess import Popen  # nosec
 
@@ -53,6 +54,21 @@ def _gen_md_docs(source: Path, refs_path: Path):
     return mkdocs_build.returncode
 
 
+def _hide_badges_from_man(rst: str):
+    """Show the badge row (e.g. `|PyCQA| |SAST|`) only in html output.
+
+    The man builder renders every image as `[image: ...]` followed by its link target,
+    which is noise in a man page.
+    """
+    return sub(
+        r"^(\|[^|\n]+\|(?: \|[^|\n]+\|)*)$",
+        lambda match: f".. only:: html\n\n   {match.group(1)}",
+        rst,
+        count=1,
+        flags=MULTILINE,
+    )
+
+
 def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_man: bool = False):
     """Generate reStructuredText docs."""
     # external
@@ -64,9 +80,11 @@ def _gen_rst_docs(source: Path, refs_path: Path, only_web: bool = False, only_ma
 
     with open(source / "docs/index.rst", "wt") as idx_f:
         idx_f.write(
-            convert_file(source_file=source / "docs/index.md", format="md", to="rst").replace(
-                "\r\n",
-                "\n",  # remove carriage return in windows
+            _hide_badges_from_man(
+                convert_file(source_file=source / "docs/index.md", format="md", to="rst").replace(
+                    "\r\n",
+                    "\n",  # remove carriage return in windows
+                )
             )
             + "\n\n.. toctree::"
             + "\n   :hidden:"
