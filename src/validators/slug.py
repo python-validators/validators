@@ -29,4 +29,4 @@ def slug(value: str, /):
         (Literal[True]): If `value` is a valid slug.
         (ValidationError): If `value` is an invalid slug.
     """
-    return _SLUG_REGEXP.match(value) is not None
+    return _SLUG_REGEXP.fullmatch(value) is not None

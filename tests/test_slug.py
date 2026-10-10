@@ -56,6 +56,9 @@ def test_returns_true_on_valid_slug(value: str):
 @pytest.mark.parametrize(
     "value",
     [
+        # trailing newline must not be accepted ($ matches before a final \n)
+        "hello-world\n",
+        "\n",
         # with empty_string
         "",
         # with upper case
