@@ -9,11 +9,46 @@ Note to self: Breaking changes must increment either
 
 -->
 
-## Unreleased
+## 0.36.0 (2026-10-10)
 
-_**Fixes**_
+_**Breaking**_ ⚠️
 
-* Reject an underscore in the last domain label. ([#484](https://github.com/python-validators/validators/issues/484))
+* Drops support for Python `v3.9` and `v3.10`. Python `v3.11` or newer is required. ([#488](https://github.com/python-validators/validators/pull/488))
+* Stricter validation: the following inputs, previously accepted by mistake, are now rejected.
+    * `isin()` now verifies the check digit, which was previously ignored. Lowercase ISINs are still accepted. ([#464](https://github.com/python-validators/validators/pull/464))
+    * `cusip()` and `sedol()` require a numeric check digit. ([#487](https://github.com/python-validators/validators/pull/487))
+    * `md5()`, `sha1()`, `sha224()`, `sha256()`, `sha384()`, `sha512()`, `base16()`, `base32()`, `base58()` and `base64()` reject trailing characters, such as a trailing newline. ([#486](https://github.com/python-validators/validators/pull/486))
+    * `ind_pan()` requires a full-string match. ([#478](https://github.com/python-validators/validators/pull/478))
+    * `fr_ssn()` no longer accepts a comma as the gender or Corsica department character. ([#469](https://github.com/python-validators/validators/pull/469), merged as [#491](https://github.com/python-validators/validators/pull/491))
+    * `domain()` rejects an underscore in the last label ([#485](https://github.com/python-validators/validators/pull/485)) and names longer than 253 octets once IDNA-encoded, as defined by RFC 1035. ([#461](https://github.com/python-validators/validators/pull/461))
+    * `mastercard()` accepts only the 2221-2720 range of the 2-series BINs. ([#467](https://github.com/python-validators/validators/pull/467))
+    * `eth_address()` rejects non-hexadecimal characters. ([#466](https://github.com/python-validators/validators/pull/466))
+    * `mac_address()` rejects mixed separators. ([#432](https://github.com/python-validators/validators/pull/432))
+    * `slug()` rejects a trailing newline, and telnet URIs reject control characters. ([#492](https://github.com/python-validators/validators/pull/492))
+
+_**Features**_
+
+* feat(uri): add telnet URI validation per RFC 4248 by @tofetpuzo in [#446](https://github.com/python-validators/validators/pull/446)
+* Accept `file://` URLs per RFC 8089 by @itzzdev09 in [#483](https://github.com/python-validators/validators/pull/483)
+* cron: accept a step over a range (e.g. `1-5/2`) and in list items by @itzzdev09 in [#482](https://github.com/python-validators/validators/pull/482)
+* Accept lowercase IBANs in `iban()` by @sayantanmandal1 in [#471](https://github.com/python-validators/validators/pull/471)
+* fix(cron): accept day-of-week `7` as a Sunday alias by @binggao1230 in [#470](https://github.com/python-validators/validators/pull/470)
+* Accept a trailing dot on simple hostnames with `rfc_1034` by @assinscreedFC in [#462](https://github.com/python-validators/validators/pull/462)
+* fix(crypto_addresses): accept testnet (`tb`) segwit addresses by @Jordan-Bourillot in [#466](https://github.com/python-validators/validators/pull/466)
+
+_**Maintenance**_
+
+* chore(deps): bump requests from 2.32.3 to 2.32.4 in /package by @dependabot in [#430](https://github.com/python-validators/validators/pull/430)
+* fix: reject MAC addresses with mixed separators by @iCasture in [#432](https://github.com/python-validators/validators/pull/432)
+* feat: Optimize slug. Extend tests. by @welder87 in [#439](https://github.com/python-validators/validators/pull/439)
+* chore: update codebase to reflect new username by @nandgator in [#447](https://github.com/python-validators/validators/pull/447)
+* docs: correct PossibleValueTypes note in between to include None by @SAY-5 in [#460](https://github.com/python-validators/validators/pull/460)
+* chore!: drop Python 3.9 and 3.10, bump vulnerable dev dependencies by @nandgator in [#488](https://github.com/python-validators/validators/pull/488)
+* fix: restore certifi and jinja2 pins downgraded by stale lock by @nandgator in [#489](https://github.com/python-validators/validators/pull/489)
+* chore: use native pyproject config for tox and pytest by @nandgator in [#490](https://github.com/python-validators/validators/pull/490)
+* test: cover RFC length limits for domain() and hostname() by @nandgator in [#493](https://github.com/python-validators/validators/pull/493)
+
+**Full Changelog**: [`0.35.0...0.36.0`](https://github.com/python-validators/validators/compare/0.35.0...0.36.0)
 
 ## 0.35.0 (2025-05-01)
 
