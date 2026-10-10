@@ -48,10 +48,10 @@ def _gen_md_docs(source: Path, refs_path: Path):
     for module_name, aliases in _parse_package(source / "src/validators/__init__.py"):
         for alias in aliases:
             _write_ref_content(refs_path / f"{module_name}.md", module_name, alias.name)
-    # build mkdocs as subprocess
-    mkdocs_build = Popen(("mkdocs", "build"))  # nosec
-    mkdocs_build.communicate()
-    return mkdocs_build.returncode
+    # build zensical as subprocess
+    zensical_build = Popen(("zensical", "build"))  # nosec
+    zensical_build.communicate()
+    return zensical_build.returncode
 
 
 def _hide_badges_from_man(rst: str):

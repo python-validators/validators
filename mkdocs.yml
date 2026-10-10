@@ -50,8 +50,6 @@ plugins:
             show_root_heading: true
           inventories:
             - https://docs.python-requests.org/en/master/objects.inv
-  - git-revision-date-localized
-  - mike
 
 extra:
   social:
