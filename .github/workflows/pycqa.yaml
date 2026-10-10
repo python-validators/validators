@@ -12,7 +12,7 @@ jobs:
     steps:
       # checkout repository
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       # set up uv and a specific python version
       - name: Set up uv with Python v3.11
         uses: astral-sh/setup-uv@v10.3.0
@@ -38,7 +38,7 @@ jobs:
       # checkout repository again!
       # ref: https://github.com/actions/checkout/issues/19
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       # set up uv and a specific python version
       - name: Set up uv with Python v${{ matrix.python-version }}
         uses: astral-sh/setup-uv@v10.3.0
