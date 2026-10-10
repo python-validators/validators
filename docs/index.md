@@ -32,6 +32,8 @@ True
 - [Security](https://github.com/python-validators/validators/blob/master/SECURITY.md)
 - [Code](https://github.com/python-validators/validators/)
 
+> The documentation is published through GitHub Pages on the maintainer's [fork](https://github.com/nandgator/pyvalidators), because the maintainer has only contributor access to this repository and cannot enable Pages for it.
+
 <!-- Original docs URL will be restored, once properly versioned docs are ready. -->
 
 ---
