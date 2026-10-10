@@ -136,6 +136,9 @@ def _name_of_length(length: int):
         "a" * 63 + ".com",
         # a label may start with a digit (RFC 1123)
         "1host.example.com",
+        # the limit is in octets of the encoded name, not characters: 189 characters
+        # here, but 225 octets once IDNA-encoded
+        ".".join(["ü" * 30] * 6) + ".com",
     ],
 )
 def test_returns_true_on_domain_within_rfc_length_limits(value: str):
@@ -152,6 +155,10 @@ def test_returns_true_on_domain_within_rfc_length_limits(value: str):
         ".".join(["kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXc"] * 4)
         + ".kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXcab",
         "a" * 64 + ".com",
+        # fewer than 253 characters (220), but 262 octets once IDNA-encoded
+        ".".join(["ü" * 30] * 7) + ".com",
+        # the example from #407 (261 characters)
+        "www." + ".".join(["abcdefghijklmnop"] * 15) + ".fr",
         # a label must not start or end with a hyphen
         "-host.example.com",
         "host-.example.com",
