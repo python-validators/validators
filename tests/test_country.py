@@ -56,7 +56,8 @@ def test_returns_failed_validation_on_invalid_country_code(value: str, iso_forma
 
 
 @pytest.mark.parametrize(
-    ("value", "skip_symbols", "ignore_case"), [("$", False, False), ("uSd", True, True)]
+    ("value", "skip_symbols", "ignore_case"),
+    [("$", False, False), ("⃀", False, False), ("৳", False, False), ("uSd", True, True)],
 )
 def test_returns_true_on_valid_currency(value: str, skip_symbols: bool, ignore_case: bool):
     """Test returns true on valid currency."""
@@ -65,7 +66,14 @@ def test_returns_true_on_valid_currency(value: str, skip_symbols: bool, ignore_c
 
 @pytest.mark.parametrize(
     ("value", "skip_symbols", "ignore_case"),
-    [("$", True, False), ("uSd", True, False), ("Bucks", True, True)],
+    [
+        ("$", True, False),
+        ("⃀", True, False),
+        ("৳", True, False),
+        ("⃀৳", False, False),
+        ("uSd", True, False),
+        ("Bucks", True, True),
+    ],
 )
 def test_returns_failed_validation_invalid_currency(
     value: str, skip_symbols: bool, ignore_case: bool
