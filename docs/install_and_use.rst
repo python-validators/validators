@@ -20,7 +20,8 @@ Usage
 .. code:: python
 
    import validators
-   print(validators.email('someone@example.com'))
+
+   print(validators.email("someone@example.com"))
 
 To raise validation error
 ~~~~~~~~~~~~~~~~~~~~~~~~~
