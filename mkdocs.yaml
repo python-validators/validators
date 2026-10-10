@@ -48,7 +48,7 @@ plugins:
         python:
           options:
             show_root_heading: true
-          import:
+          inventories:
             - https://docs.python-requests.org/en/master/objects.inv
   - git-revision-date-localized
   - mike
