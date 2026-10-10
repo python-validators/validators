@@ -56,3 +56,13 @@ def test_returns_true_on_valid_email(value: str):
 def test_returns_failed_validation_on_invalid_email(value: str):
     """Test returns failed validation on invalid email."""
     assert isinstance(email(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "local_part", ["person", "person.name", "\u0141\u00f3ka\u015b\u0107", '"person"']
+)
+def test_rejects_newline_after_local_part(local_part: str):
+    """Test the whole local part, including its final character."""
+    # 2026-10-11: A newline before the at-sign is not part of a valid local part.
+    assert email(f"{local_part}@example.com") is True
+    assert isinstance(email(f"{local_part}\n@example.com"), ValidationError)

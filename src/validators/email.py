@@ -83,7 +83,7 @@ def email(
                 rfc_2782=rfc_2782,
             )
         )
-        if re.match(
+        if re.fullmatch(  # 2026-10-11: Validate the complete local part.
             # extended latin
             r"(^[\u0100-\u017F\u0180-\u024F\u00A0-\u00FF]"
             # dot-atom
