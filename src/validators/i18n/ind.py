@@ -24,7 +24,7 @@ def ind_aadhar(value: str):
         (Literal[True]): If `value` is a valid aadhar card number.
         (ValidationError): If `value` is an invalid aadhar card number.
     """
-    return re.match(r"^[2-9]{1}\d{3}\s\d{4}\s\d{4}$", value)
+    return re.fullmatch(r"^[2-9]{1}\d{3}\s\d{4}\s\d{4}$", value)
 
 
 @validator

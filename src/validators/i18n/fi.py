@@ -54,7 +54,7 @@ def fi_business_id(value: str, /):
     """
     if not value:
         return False
-    if not re.match(_business_id_pattern(), value):
+    if not re.fullmatch(_business_id_pattern(), value):
         return False
     factors = [7, 9, 10, 5, 8, 4, 2]
     numbers = map(int, value[:7])
@@ -92,7 +92,7 @@ def fi_ssn(value: str, /, *, allow_temporal_ssn: bool = True):
     if not value:
         return False
     ssn_check_marks = "0123456789ABCDEFHJKLMNPRSTUVWXY"
-    if not (result := re.match(_ssn_pattern(ssn_check_marks), value)):
+    if not (result := re.fullmatch(_ssn_pattern(ssn_check_marks), value)):
         return False
     gd = result.groupdict()
     checksum = int(gd["date"] + gd["serial"])

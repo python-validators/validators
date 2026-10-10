@@ -33,4 +33,4 @@ def mac_address(value: str, /):
     if ":" in value and "-" in value:
         return False
 
-    return re.match(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", value) if value else False
+    return re.fullmatch(r"^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$", value) if value else False
