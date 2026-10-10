@@ -3,8 +3,8 @@
 Hi, to start, you need the following installed on your system.
 
 1. [Git](https://git-scm.com)
-2. [Python](https://www.python.org) v3.8 or later
-3. [PDM](https://pdm-project.org) for easy dependency management
+2. [Python](https://www.python.org) v3.11 or later
+3. [uv](https://docs.astral.sh/uv/) for dependency management
 4. (Optional/Recommended) [`NodeJS`](https://nodejs.org/en) for type checking
 5. (Optional/Recommended) [`mise`](https://github.com/jdx/mise) to manage multiple versions of Python, NodeJS and other such tools.
 
@@ -16,17 +16,17 @@ $ git clone "https://github.com/YOUR-USERNAME/validators.git"
 # change directory 
 $ cd validators
 # install development dependencies
-$ pdm install
+$ uv sync --group testing --group tooling --group runner --extra crypto-eth-addresses
 ```
 
-Activate the virtual environment and run `tox` to verify test cases.
+Run `tox` to verify test cases. (`uv run` uses the project's virtual environment, so you don't need to activate it.)
 
 ```sh
-# activate virtual environment
-$ . ./.venv/bin/activate # replace `/bin/` with `/Scripts/` if you're on Windows.
 # run tox for linting, type checking, formatting etc.
-$ tox
+$ uv run tox
 ```
+
+Development dependencies are declared as [dependency groups](https://packaging.python.org/en/latest/specifications/dependency-groups/) in `pyproject.toml` (`testing`, `tooling`, `runner`, `docs-offline`, `docs-online`, `package` and `sast`) and are locked in `uv.lock`. Run `uv lock --upgrade` to update them, and commit `uv.lock`.
 
 Create a git branch and make changes to the source code. If needed, test your changes by running `pytest`. Execute `tox` to format, lint and type-check your code before committing. Commit, push and create a pull request. If you're in doubt, feel free to start a discussion [here](https://github.com/python-validators/validators/discussions).
 
@@ -38,9 +38,10 @@ If you're adding/removing a module, you must update the `nav` key in `mkdocs.yml
 Then export documentation as follows:
 
 ```sh
-$ . ./.venv/bin/activate
+# install documentation dependencies
+$ uv sync --group docs-offline --group docs-online --extra crypto-eth-addresses
 # generate documentation
-$ python package/export TYPE # where TYPE is any of `doc`, `man` or `web`.
+$ uv run python package/export TYPE # where TYPE is any of `doc`, `man` or `web`.
 
 # doc - generates docs found here: https://nandgator.github.io/pyvalidators
 # man - generates sphinx based manpages
@@ -50,9 +51,8 @@ $ python package/export TYPE # where TYPE is any of `doc`, `man` or `web`.
 You can preview the generated documentation:
 
 ```sh
-$ . ./.venv/bin/activate
 # To preview mkdocs
-$ mkdocs serve
+$ uv run mkdocs serve
 # To preview man pages
 $ man docs/_build/man/validators.1
 # To preview sphinx webpages
@@ -82,7 +82,7 @@ $ python -m http.server -d docs/_build/web
 
 ### Versioned documentation
 
-1. To preview versioned docs, run `mike serve` (`mike` is a dev dependency).
+1. To preview versioned docs, run `uv run mike serve` (`mike` is in the `docs-online` dependency group).
 2. Then (look at <https://nandgator.github.io/pyvalidators/stable/>)
     - to publish stable docs run `mike deploy -p -u VERSION stable` after checking out to a stable tag name like `0.28.3` (note: document `VERSION = 0.29 if tag_name == 0.29.1`).
     - to publish bleeding-edge docs run `mike deploy -p -u dev master` after checking out to the `master` branch.
@@ -90,7 +90,7 @@ $ python -m http.server -d docs/_build/web
 
 ### Packaging and releasing
 
-1. Run `./package/roll.sh` (or `./package/roll.ps1`) to generate both `sdist` and `bdist`.
+1. Run `./package/roll.sh` (or `./package/roll.ps1`) to generate the man page and both `sdist` and `bdist` (it needs [uv](https://docs.astral.sh/uv/) and uses the locked `docs-offline` dependencies).
 2. Install [`twine`](https://pypi.org/project/twine) using [`pipx`](https://pipx.pypa.io) to upload package to PyPI.
 
     ```sh

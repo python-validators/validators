@@ -12,30 +12,20 @@ jobs:
       contents: read
     env:
       BUILD_PATH: .
-      PIP_DISABLE_PIP_VERSION_CHECK: 1
     steps:
       # checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
-      # set up specific python version
-      - name: Set up Python v3.8
-        uses: actions/setup-python@v5
+      # set up uv and a specific python version
+      - name: Set up uv with Python v3.11
+        uses: astral-sh/setup-uv@v10.3.0
         with:
-          python-version: "3.8"
-      # install dependencies
-      - name: Install dependencies
-        run: |
-          python -m venv .venv
-          ./.venv/bin/python -m pip install --upgrade pip
-          ./.venv/bin/pip install .
-          ./.venv/bin/pip install -r package/requirements.sphinx.txt
-          ./.venv/bin/pip install build
-      # build package
+          python-version: "3.11"
+      # build package (generates the man page, then runs `uv build`)
       - name: Build package
         run: |
-          . ./.venv/bin/activate
-          python package/export pkg
-          deactivate
+          uv run --locked --no-editable --group docs-offline --extra crypto-eth-addresses \
+            python package/export pkg
       # upload package as artifact
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
