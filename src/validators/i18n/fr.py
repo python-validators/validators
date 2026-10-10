@@ -93,7 +93,7 @@ def fr_ssn(value: str):
     """
     if not value:
         return False
-    matched = re.match(_ssn_pattern(), value)
+    matched = re.fullmatch(_ssn_pattern(), value)
     if not matched:
         return False
     groups = list(matched.groups())
