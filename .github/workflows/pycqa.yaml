@@ -9,25 +9,24 @@ on:
 jobs:
   tooling:
     runs-on: ubuntu-latest
-    env:
-      PIP_DISABLE_PIP_VERSION_CHECK: 1
     steps:
       # checkout repository
       - name: Checkout repository
         uses: actions/checkout@v6
-      # set up specific python version
-      - name: Set up Python v3.11
-        uses: actions/setup-python@v6
+      # set up uv and a specific python version
+      - name: Set up uv with Python v3.11
+        uses: astral-sh/setup-uv@v10.3.0
         with:
           python-version: "3.11"
+          enable-cache: true
       # tooling
       - name: Install 'tooling' dependencies
-        run: pip install -r package/requirements.tooling.txt
+        run: uv sync --locked --group tooling --extra crypto-eth-addresses
       - name: Tooling
         run: |
-          ruff format .
-          ruff check .
-          pyright .
+          uv run --no-sync ruff format .
+          uv run --no-sync ruff check .
+          uv run --no-sync pyright .
   testing:
     strategy:
       fail-fast: true
@@ -40,16 +39,14 @@ jobs:
       # ref: https://github.com/actions/checkout/issues/19
       - name: Checkout repository
         uses: actions/checkout@v4
-      # set up specific python version
-      - name: Set up Python v${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+      # set up uv and a specific python version
+      - name: Set up uv with Python v${{ matrix.python-version }}
+        uses: astral-sh/setup-uv@v10.3.0
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
+          enable-cache: true
       # testing
       - name: Install 'testing' dependencies
-        run: |
-          pip install -r package/requirements.testing.txt
-          pip install .
+        run: uv sync --locked --no-editable --group testing --extra crypto-eth-addresses
       - name: Testing
-        run: pytest .
+        run: uv run --no-sync pytest .

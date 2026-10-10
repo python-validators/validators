@@ -2,7 +2,6 @@
 
 # standard
 from ast import ImportFrom, parse
-from os import getenv
 from os.path import getsize
 from pathlib import Path
 from shutil import copy
@@ -144,10 +143,7 @@ def _generate_documentation(
 def package(source: Path):
     """Package the source code."""
     _generate_documentation(source, only_rst_man=True)
-    if getenv("CI", "false") == "true":
-        process = Popen(("./.venv/bin/python", "-m", "build"), shell=False)  # nosec
-    else:
-        process = Popen(("pdm", "build"), shell=False)  # nosec
+    process = Popen(("uv", "build"), shell=False)  # nosec
     process.communicate()
     return process.returncode
 

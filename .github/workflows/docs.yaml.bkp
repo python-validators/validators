@@ -11,23 +11,20 @@ jobs:
       contents: read
     env:
       BUILD_PATH: .
-      PIP_DISABLE_PIP_VERSION_CHECK: 1
     steps:
       # checkout repository
       - name: Checkout repository
         uses: actions/checkout@v4
-      # set up specific python version
-      - name: Set up Python v3.12
-        uses: actions/setup-python@v5
+      # set up uv and a specific python version
+      - name: Set up uv with Python v3.12
+        uses: astral-sh/setup-uv@v10.3.0
         with:
           python-version: "3.12"
       # building
       - name: Install 'documentation' dependencies
-        run: |
-          pip install .
-          pip install -r package/requirements.mkdocs.txt
+        run: uv sync --locked --no-editable --group docs-online --extra crypto-eth-addresses
       - name: Build documentation
-        run: python package/export doc
+        run: uv run --no-sync python package/export doc
       # set up Pages
       - name: Set up Pages
         uses: actions/configure-pages@v4

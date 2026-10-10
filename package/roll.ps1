@@ -2,21 +2,6 @@
 
 $ErrorActionPreference = "Stop"
 
-# Check if CI environment variable is set to "false"
-if ($null -eq $env:CI || "false" -eq $env:CI) {
-    # testing
-    pdm export --group testing,crypto-eth-addresses -f requirements -o package/requirements.testing.txt
-    # tooling
-    pdm export --group tooling,crypto-eth-addresses -f requirements -o package/requirements.tooling.txt
-    # mkdocs
-    # pdm export --group docs-online -f requirements -o package/requirements.mkdocs.txt
-    # sphinx
-    pdm export --group docs-offline,crypto-eth-addresses -f requirements -o package/requirements.sphinx.txt
-    
-    # create environment variable
-    $env:CI = "true";
-}
-
 # Cleanup directories
 $venv_dir = "./.venv.dev"
 $directories = @($venv_dir, "./build", "./dist")
@@ -26,35 +11,15 @@ foreach ($dir in $directories) {
     }
 }
 
-# Create venv
-python -m venv $venv_dir
-
-
-$bin_path = "Scripts"
-if ($IsLinux || $IsMacOS) {
-    $bin_path = "bin"
+# Generate the man page, then build `sdist` and `bdist`.
+# Runs in a throwaway environment containing the package (non-editable), its
+# optional extras and the locked `docs-offline` dependencies. `uv build` is called
+# by the export script.
+$env:UV_PROJECT_ENVIRONMENT = $venv_dir
+try {
+    uv run --locked --no-editable --group docs-offline --extra crypto-eth-addresses python package/export pkg
+    if ($LASTEXITCODE -ne 0) { throw "package/export pkg failed" }
 }
-
-# Upgrade pip
-& $venv_dir\$bin_path\python -m pip install --upgrade pip
-
-# Install the current package
-& $venv_dir\$bin_path\pip install .
-
-# Install sphinx requirements
-& $venv_dir\$bin_path\pip install -r package/requirements.sphinx.txt
-
-# Install build tool
-& $venv_dir\$bin_path\pip install build
-
-# Activate virtual environment
-. $venv_dir\$bin_path\Activate.ps1
-
-# Run export script
-python package/export pkg
-
-# Deactivate virtual environment
-deactivate
-
-# delete environment variable
-$env:CI = "";
+finally {
+    Remove-Item Env:UV_PROJECT_ENVIRONMENT -ErrorAction SilentlyContinue
+}
