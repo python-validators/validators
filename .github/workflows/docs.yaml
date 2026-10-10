@@ -1,0 +1,49 @@
+# Documentation
+#
+# Versioned documentation is published to the `gh-pages` branch with `mike`,
+# which only adds or updates the versions it is given; older ones are kept.
+# GitHub Pages is served from that branch on the maintainer's fork
+# (see README), so this workflow is limited to that repository.
+name: docs
+on:
+  workflow_dispatch:
+    inputs:
+      release:
+        description: "Publish the version in `__version__` as 'stable' instead of 'dev'"
+        type: boolean
+        default: false
+  push:
+    branches: ["master"]
+jobs:
+  deploy:
+    if: github.repository == 'nandgator/pyvalidators'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # checkout repository, including the `gh-pages` branch
+      - name: Checkout repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # set up uv and a specific python version
+      - name: Set up uv with Python v3.12
+        uses: astral-sh/setup-uv@v10.3.0
+        with:
+          python-version: "3.12"
+      - name: Install 'documentation' dependencies
+        run: uv sync --locked --no-editable --group docs-online --extra crypto-eth-addresses
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      # publishing
+      - name: Deploy 'dev' documentation
+        if: ${{ !inputs.release }}
+        run: uv run --no-sync mike deploy --push --update-aliases dev master
+      - name: Deploy release documentation
+        if: ${{ inputs.release }}
+        run: |
+          version=$(uv run --no-sync python -c "from validators import __version__ as v; print('.'.join(v.split('.')[:2]))")
+          uv run --no-sync mike deploy --push --update-aliases "$version" stable
+          uv run --no-sync mike set-default --push stable
