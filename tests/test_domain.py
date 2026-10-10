@@ -110,3 +110,53 @@ def test_returns_failed_validation_invalid_top_level_domain(
         domain(value, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782),
         ValidationError,
     )
+
+
+def _name_of_length(length: int):
+    """Build a dotted name of exactly `length` characters, ending with `.com`."""
+    labels: list[str] = []
+    remaining = length - len(".com")
+    while remaining > 0:
+        size = min(61, remaining)
+        if remaining - size == 1:  # avoid leaving a lone "." behind
+            size -= 1
+        labels.append("a" * size)
+        remaining -= size + 1
+    name = ".".join(labels) + ".com"
+    assert len(name) == length
+    return name
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        # total length: at most 253 characters (RFC 1035)
+        _name_of_length(253),
+        # label length: at most 63 characters (RFC 1035)
+        "a" * 63 + ".com",
+        # a label may start with a digit (RFC 1123)
+        "1host.example.com",
+    ],
+)
+def test_returns_true_on_domain_within_rfc_length_limits(value: str):
+    """Test returns true on domain within RFC length limits."""
+    assert domain(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        _name_of_length(254),
+        _name_of_length(255),
+        # many short, dot-separated labels that exceed 253 characters; see #413
+        ".".join(["kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXc"] * 4)
+        + ".kld8MXQh6YalMqKRbfs895gMjW5T4p2EwToPoCSThPHHbXgmXcab",
+        "a" * 64 + ".com",
+        # a label must not start or end with a hyphen
+        "-host.example.com",
+        "host-.example.com",
+    ],
+)
+def test_returns_failed_validation_on_domain_beyond_rfc_limits(value: str):
+    """Test returns failed validation on domain beyond RFC limits."""
+    assert isinstance(domain(value), ValidationError)
