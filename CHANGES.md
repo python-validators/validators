@@ -51,6 +51,9 @@ _**Maintenance**_
 * ci: update GitHub Actions to their latest versions by @nandgator in [#496](https://github.com/python-validators/validators/pull/496)
 * docs: explain why the documentation is hosted on the maintainer's fork by @nandgator in [#497](https://github.com/python-validators/validators/pull/497)
 * docs: hide badges from the man page; upgrade docs tooling to latest stable by @nandgator in [#498](https://github.com/python-validators/validators/pull/498)
+* ci: deploy versioned documentation with mike from the fork by @nandgator in [#500](https://github.com/python-validators/validators/pull/500)
+* docs!: build and version the online documentation with Zensical by @nandgator in [#502](https://github.com/python-validators/validators/pull/502)
+* ci: publish to PyPI with trusted publishing by @nandgator in [#504](https://github.com/python-validators/validators/pull/504)
 
 **Full Changelog**: [`0.35.0...0.36.0`](https://github.com/python-validators/validators/compare/0.35.0...0.36.0)
 
