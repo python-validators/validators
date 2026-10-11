@@ -1,0 +1,59 @@
+# Publish to PyPI
+#
+# Uses PyPI trusted publishing (OIDC), so no token is stored here. Requires a trusted
+# publisher on PyPI for this repository, workflow `package.yaml` and environment `pypi`.
+# The man page is generated as part of the build, so the sdist matches `package/roll.sh`.
+name: package
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+jobs:
+  build:
+    if: github.repository == 'python-validators/validators'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      # checkout repository (for a release, the tagged commit)
+      - name: Checkout repository
+        uses: actions/checkout@v7
+      # set up uv and a specific python version
+      - name: Set up uv with Python v3.11
+        uses: astral-sh/setup-uv@v10.3.0
+        with:
+          python-version: "3.11"
+      # build package: generates the man page, then runs `uv build`
+      # (`SOURCE_DATE_EPOCH` makes the wheel reproducible)
+      - name: Build package
+        run: |
+          SOURCE_DATE_EPOCH="$(git log -1 --format=%ct)"
+          export SOURCE_DATE_EPOCH
+          uv run --locked --no-editable --group docs-offline --extra crypto-eth-addresses \
+            python package/export pkg
+      - name: Show checksums
+        run: sha256sum dist/*
+      # upload package as artifact
+      - name: Upload artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist
+          path: dist/
+          if-no-files-found: error
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/validators
+    permissions:
+      id-token: write
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: dist
+          path: dist/
+      # publish package
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
