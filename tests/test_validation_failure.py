@@ -1,7 +1,45 @@
 """Test validation Failure."""
 
+# standard
+from typing import Any, Callable
+
+# third-party
+import pytest
+
 # local
-from validators import between
+from validators import ValidationError, between, slug, uuid
+
+
+@pytest.mark.parametrize("function,value", [(slug, "invalid_"), (uuid, "not-a-uuid")])
+def test_false_raise_validation_error_flag(
+    function: Callable[..., Any], value: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A false flag returns validation errors instead of raising them."""
+    monkeypatch.delenv("RAISE_VALIDATION_ERROR", raising=False)
+    result = function(value, r_ve=False)
+    assert isinstance(result, ValidationError)
+    assert not result
+
+
+@pytest.mark.parametrize("function,value", [(slug, "invalid_"), (uuid, "not-a-uuid")])
+def test_environment_still_enables_raise_validation_error(
+    function: Callable[..., Any], value: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """The environment option enables raising even when the call flag is false."""
+    monkeypatch.setenv("RAISE_VALIDATION_ERROR", "True")
+    with pytest.raises(ValidationError):
+        function(value, r_ve=False)
+
+
+@pytest.mark.parametrize("function,value", [(slug, "invalid_"), (uuid, "not-a-uuid")])
+def test_true_raise_validation_error_flag(
+    function: Callable[..., Any], value: str, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """A true call flag continues to raise validation errors."""
+    monkeypatch.delenv("RAISE_VALIDATION_ERROR", raising=False)
+    with pytest.raises(ValidationError):
+        function(value, r_ve=True)
+
 
 failed_obj_repr = "ValidationError(func=between"
 
