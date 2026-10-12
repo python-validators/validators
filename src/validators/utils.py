@@ -20,8 +20,9 @@ class ValidationError(Exception):
 
     def __repr__(self):
         """Repr Validation Failure."""
+        func_name = getattr(self.func, "__name__", type(self.func).__name__)
         return (
-            f"ValidationError(func={self.func.__name__}, "
+            f"ValidationError(func={func_name}, "
             + f"args={ ({k: v for (k, v) in self.__dict__.items() if k != 'func'}) })"
         )
 
@@ -36,9 +37,14 @@ class ValidationError(Exception):
 
 def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any):
     """Return function's positional and key value arguments as an ordered dictionary."""
+    try:
+        arg_names = getfullargspec(func)[0]
+    except (TypeError, ValueError):
+        # Some builtins have no inspectable signature. Retain the raw call
+        # instead of letting error reporting raise another exception.
+        return {"args": args, "kwargs": kwargs}
     return dict(
-        list(zip(dict.fromkeys(chain(getfullargspec(func)[0], kwargs.keys())), args))
-        + list(kwargs.items())
+        list(zip(dict.fromkeys(chain(arg_names, kwargs.keys())), args)) + list(kwargs.items())
     )
 
 
