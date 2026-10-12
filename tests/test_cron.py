@@ -57,3 +57,17 @@ def test_returns_true_on_valid_cron(value: str):
 def test_returns_failed_validation_on_invalid_cron(value: str):
     """Test returns failed validation on invalid cron string."""
     assert isinstance(cron(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "\u0665 * * * *",
+        "*/\u0665 * * * *",
+        "1-\u0665 * * * *",
+        "* \u0661\u0662 * * *",
+    ],
+)
+def test_returns_failed_validation_on_non_ascii_digits_in_cron(value: str):
+    """Test returns failed validation when a script other than ASCII supplies the digits."""
+    assert isinstance(cron(value), ValidationError)

@@ -4,11 +4,16 @@
 from .utils import validator
 
 
+def _is_number(text: str):
+    # str.isdecimal() also accepts digits of other scripts, e.g. "\u0663".
+    return text.isascii() and text.isdecimal()
+
+
 def _validate_cron_item(item: str, min_val: int, max_val: int):
     # An item may carry a step, e.g. "*/5", "1-30/2" or "5/10".
     if "/" in item:
         base, _, step = item.partition("/")
-        if not step.isdecimal() or int(step) < 1:
+        if not _is_number(step) or int(step) < 1:
             return False
     else:
         base = item
@@ -18,12 +23,12 @@ def _validate_cron_item(item: str, min_val: int, max_val: int):
 
     if "-" in base:
         parts = base.split("-")
-        if len(parts) != 2 or not parts[0].isdecimal() or not parts[1].isdecimal():
+        if len(parts) != 2 or not _is_number(parts[0]) or not _is_number(parts[1]):
             return False
         start, end = int(parts[0]), int(parts[1])
         return min_val <= start <= max_val and min_val <= end <= max_val and start <= end
 
-    if base.isdecimal():
+    if _is_number(base):
         return min_val <= int(base) <= max_val
 
     return False
