@@ -79,3 +79,26 @@ def test_returns_failed_validation_on_invalid_ssn(value: str):
 def test_returns_failed_validation_on_temporal_ssn_when_not_allowed():
     """Test returns failed validation on temporal-ssn when not allowed."""
     assert isinstance(fi_ssn("010190-900P", allow_temporal_ssn=False), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("birth_date", "century", "valid"),
+    [
+        ("310299", "-", False),
+        ("310499", "-", False),
+        ("290201", "A", False),
+        ("290200", "+", False),
+        ("290200", "-", False),
+        ("290200", "Y", False),
+        ("290200", "A", True),
+        ("290200", "F", True),
+        ("290204", "-", True),
+        ("290204", "U", True),
+    ],
+)
+def test_ssn_validates_birth_date_in_its_century(birth_date: str, century: str, valid: bool):
+    """Reject impossible birth dates even when the control character is correct."""
+    serial = "010"
+    checksum = "0123456789ABCDEFHJKLMNPRSTUVWXY"[int(birth_date + serial) % 31]
+    value = birth_date + century + serial + checksum
+    assert bool(fi_ssn(value)) is valid

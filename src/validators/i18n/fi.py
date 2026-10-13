@@ -1,6 +1,7 @@
 """Finland."""
 
 # standard
+from datetime import date
 from functools import lru_cache
 import re
 
@@ -22,7 +23,7 @@ def _ssn_pattern(ssn_check_marks: str):
         (?P<date>(0[1-9]|[1-2]\d|3[01])
         (0[1-9]|1[012])
         (\d{{2}}))
-        [ABCDEFYXWVU+-]
+        (?P<century>[ABCDEFYXWVU+-])
         (?P<serial>(\d{{3}}))
         (?P<checksum>[{check_marks}])$""".format(check_marks=ssn_check_marks),
         re.VERBOSE,
@@ -95,6 +96,9 @@ def fi_ssn(value: str, /, *, allow_temporal_ssn: bool = True):
     if not (result := re.fullmatch(_ssn_pattern(ssn_check_marks), value)):
         return False
     gd = result.groupdict()
+    century = 1800 if gd["century"] == "+" else 2000 if gd["century"] in "ABCDEF" else 1900
+    birth_date = gd["date"]
+    date(century + int(birth_date[4:]), int(birth_date[2:4]), int(birth_date[:2]))
     checksum = int(gd["date"] + gd["serial"])
     return (
         int(gd["serial"]) >= 2
