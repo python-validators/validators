@@ -34,13 +34,13 @@ def _port_validator(value: str):
     if value.count("]:") == 1:
         # with ipv6
         host_seg, port_seg = value.rsplit(":", 1)
-        if _port_regex().match(f":{port_seg}"):
+        if _port_regex().fullmatch(f":{port_seg}"):
             return host_seg.lstrip("[").rstrip("]")
 
     if value.count(":") == 1:
         # with ipv4 or simple hostname
         host_seg, port_seg = value.rsplit(":", 1)
-        if _port_regex().match(f":{port_seg}"):
+        if _port_regex().fullmatch(f":{port_seg}"):
             return host_seg
 
     return None
@@ -120,7 +120,7 @@ def hostname(
         # hostname, not only on the dotted names handled by `domain()`.
         if rfc_1034 and host.endswith("."):
             host = host[:-1]
-        return _simple_hostname_regex().match(host)
+        return _simple_hostname_regex().fullmatch(host)
 
     if may_have_port and (host_seg := _port_validator(value)):
         return (
