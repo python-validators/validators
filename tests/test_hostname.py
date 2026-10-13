@@ -109,3 +109,19 @@ def test_returns_true_on_hostname_within_rfc_length_limits(value: str):
 def test_returns_failed_validation_on_hostname_beyond_rfc_limits(value: str):
     """Test returns failed validation on hostname beyond RFC limits."""
     assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "ubuntu-pc\n",
+        "ubuntu-pc:443\n",
+        "example.com:443\n",
+        "127.0.0.1:22\n",
+        "[::1]:22\n",
+        "[dead:beef:0:0:0:0000:42:1]:5731\n",
+    ],
+)
+def test_rejects_trailing_newline_in_hostnames_and_ports(value: str):
+    """Test rejects trailing newline in hostnames and ports."""
+    assert isinstance(hostname(value), ValidationError)
