@@ -21,6 +21,7 @@ from validators import ValidationError, email
         ("łemłail@here.com",),
         ("email@localdomain.org",),
         ('"\\\011"@here.com',),
+        ('"test@test"@example.com',),
     ],
 )
 def test_returns_true_on_valid_email(value: str):
@@ -45,7 +46,6 @@ def test_returns_true_on_valid_email(value: str):
         ("example@inv-.alid-.com",),
         ("example@inv-.-alid.com",),
         ("john56789.john56789.john56789.john56789.john56789.john56789.john5@example.com",),
-        ('"test@test"@example.com',),
         # Quoted-string format (CR not allowed)
         ('"\\\012"@here.com',),
         # Non-quoted space/semicolon not allowed
@@ -66,3 +66,27 @@ def test_rejects_newline_after_local_part(local_part: str):
     # 2026-10-11: A newline before the at-sign is not part of a valid local part.
     assert email(f"{local_part}@example.com") is True
     assert isinstance(email(f"{local_part}\n@example.com"), ValidationError)
+
+
+@pytest.mark.parametrize("local_part", ['"@"', '"first@last"', '"first@@last"'])
+def test_accepts_at_signs_inside_quoted_local_part(local_part: str):
+    """Treat quoted at-signs as local-part content rather than separators."""
+    assert email(f"{local_part}@example.com") is True
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "first@last@example.com",
+        "first@@example.com",
+        '"first@last@example.com',
+        'first@last"@example.com',
+        '"first"@last@example.com',
+        '"first@last"@@example.com',
+        '"first@last"@',
+        '"first@last"@-example.com',
+    ],
+)
+def test_rejects_invalid_addresses_containing_multiple_at_signs(value: str):
+    """Continue validating the complete local part and domain after splitting."""
+    assert isinstance(email(value), ValidationError)
