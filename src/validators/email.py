@@ -55,9 +55,10 @@ def email(
         (Literal[True]): If `value` is a valid eMail.
         (ValidationError): If `value` is an invalid eMail.
     """
-    if not value or value.count("@") != 1:
+    if not value or "@" not in value:
         return False
 
+    # Quoted local parts may contain at-signs; the final one separates the domain.
     username_part, domain_part = value.rsplit("@", 1)
 
     if len(username_part) > 64 or len(domain_part) > 253:
