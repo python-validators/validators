@@ -232,3 +232,28 @@ def test_returns_failed_validation_on_invalid_private_url(value: str, private: O
 def test_returns_string_for_valid_file_url(value: str):
     """Test returns true on valid file url. Ref: RFC 8089."""
     assert url(value)
+
+
+@pytest.mark.parametrize("control", [chr(code) for code in range(32)] + ["\x7f"])
+@pytest.mark.parametrize(
+    "template",
+    [
+        "{control}https://example.com/",
+        "https://user{control}@example.com/",
+        "https://example.com/a{control}b",
+        "https://example.com/?q=a{control}b",
+        "https://example.com/#a{control}b",
+    ],
+)
+def test_url_rejects_raw_ascii_controls(control: str, template: str):
+    """Reject raw control characters before URL parsing can discard them."""
+    assert isinstance(url(template.format(control=control)), ValidationError)
+
+
+@pytest.mark.parametrize("encoded", ["%00", "%09", "%0A", "%1F", "%7F"])
+@pytest.mark.parametrize(
+    "template", ["https://example.com/a{encoded}b", "https://example.com/?q=a{encoded}b"]
+)
+def test_url_accepts_percent_encoded_controls(encoded: str, template: str):
+    """Keep escaped data valid while rejecting literal control characters."""
+    assert url(template.format(encoded=encoded)) is True
