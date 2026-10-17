@@ -17,7 +17,7 @@ def _nif_nie_validation(value: str, number_by_letter: Dict[str, str]):
     # letter to the corresponding digit
     numbers = number_by_letter.get(value[0], value[0]) + value[1:8]
     # doi[8] is control
-    return numbers.isdigit() and value[8] == table[int(numbers) % 23]
+    return numbers.isascii() and numbers.isdigit() and value[8] == table[int(numbers) % 23]
 
 
 @validator
@@ -58,7 +58,7 @@ def es_cif(value: str, /):
     first_chr = value[0]
     doi_body = value[1:8]
     control = value[8]
-    if not doi_body.isdigit():
+    if not doi_body.isascii() or not doi_body.isdigit():
         return False
     res = (
         10
