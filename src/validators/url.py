@@ -231,7 +231,7 @@ def url(
         (Literal[True]): If `value` is a valid url.
         (ValidationError): If `value` is an invalid url.
     """
-    if not value or re.search(r"\s", value):
+    if not value or re.search(r"[\s\x00-\x1f\x7f]", value):
         # url must not contain any white
         # spaces, they must be encoded
         return False
