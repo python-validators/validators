@@ -38,6 +38,12 @@ def test_returns_failed_validation_on_invalid_base16(value: str):
     assert isinstance(base16(value), ValidationError)
 
 
+@pytest.mark.parametrize("value", ["0", "a", "ABC", "012345678", "abcdef01234567890"])
+def test_base16_rejects_incomplete_bytes(value: str):
+    """Reject a dangling half-byte even when every character is hexadecimal."""
+    assert isinstance(base16(value), ValidationError)
+
+
 # ==> base32 <== #
 
 
