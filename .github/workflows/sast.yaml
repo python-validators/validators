@@ -4,9 +4,9 @@ name: sast
 on:
   workflow_dispatch:
   push:
-    branches: ["master"]
+    branches: ["master", "release"]
   pull_request:
-    branches: ["master"]
+    branches: ["master", "release"]
 
 jobs:
   sast:
