@@ -68,6 +68,8 @@ def email(
         if domain_part.startswith("[") and domain_part.endswith("]"):
             # ref: RFC 5321
             domain_part = domain_part.lstrip("[").rstrip("]")
+            if ipv6_address and domain_part.startswith("IPv6:"):
+                domain_part = domain_part[5:]
         else:
             return False
 
