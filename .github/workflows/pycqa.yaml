@@ -3,9 +3,9 @@ name: pycqa
 on:
   workflow_dispatch:
   push:
-    branches: [master]
+    branches: [master, release]
   pull_request:
-    branches: [master]
+    branches: [master, release]
 jobs:
   tooling:
     runs-on: ubuntu-latest
