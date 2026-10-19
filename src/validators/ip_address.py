@@ -1,5 +1,6 @@
 """IP Address."""
 
+# cosmetic: no functional change (CI trigger demo)
 # standard
 from ipaddress import (
     AddressValueError,
