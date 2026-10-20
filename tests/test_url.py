@@ -273,3 +273,29 @@ def test_returns_failed_validation_on_idna_mapped_lookalike_url(value: str):
 def test_returns_failed_validation_on_ipv4_lookalike_url(value: str, private: Optional[bool]):
     """Test returns failed validation on hosts that only look like an IPv4 address."""
     assert isinstance(url(value, private=private), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "https://example.com/path",
+        "https://xn--e1afmkfd.xn--p1ai/",
+        "https://пример.рф/",
+        "http://例子.中国:8080/index.html",
+    ],
+)
+def test_returns_true_on_valid_top_level_domain_url(value: str):
+    """Test returns true on url with a TLD allowed by IANA."""
+    assert url(value, consider_tld=True)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "https://example.flat/",
+        "https://пример.рфы/",
+    ],
+)
+def test_returns_failed_validation_on_invalid_top_level_domain_url(value: str):
+    """Test returns failed validation on url with a TLD not allowed by IANA."""
+    assert isinstance(url(value, consider_tld=True), ValidationError)

@@ -94,9 +94,6 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
-        return False
-
     try:
         if _relies_on_idna_mapping(value):
             return False
@@ -112,6 +109,11 @@ def domain(
         encoded = value.encode("idna").decode("utf-8")
         if len(encoded.rstrip(".")) > 253:
             # ref: RFC 1035, presentation form is limited to 253 characters
+            return False
+
+        # IANA lists IDN TLDs in their ASCII (punycode) form,
+        # so look up the encoded TLD, not the raw one.
+        if consider_tld and not _IanaTLD.check(encoded.rstrip(".").rsplit(".", 1)[-1].upper()):
             return False
 
         return not re.search(r"\s|__+", value) and re.match(
