@@ -76,7 +76,16 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
+    tld = value.rstrip(".").rsplit(".", 1)[-1].upper()
+    try:
+        # IANA stores internationalized TLDs in their IDNA-encoded form
+        # (e.g. "XN--P1AI"), so the lookup must use the encoded TLD too
+        tld = tld.encode("idna").decode("utf-8").upper()
+    except UnicodeError:
+        # An unencodable TLD cannot be in the IANA list; keep the raw
+        # value and let the lookup below reject it
+        pass
+    if consider_tld and not _IanaTLD.check(tld):
         return False
 
     try:

@@ -47,6 +47,10 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
         ("example_.com", True, False, True),
         ("somerandomexample.xn--fiqs8s", True, False, False),
         ("somerandomexample.onion", True, False, False),
+        # internationalized TLDs are matched via their IDNA-encoded form
+        # ref: https://github.com/python-validators/validators/issues/522
+        ("пример.рф", True, False, False),
+        ("пример.рф.", True, True, False),
     ],
 )
 def test_returns_true_on_valid_top_level_domain(
@@ -100,6 +104,8 @@ def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool,
         ("_example.#13", True, False, True),
         ("example_.fo-ul", True, False, True),
         ("somerandomexample.xn-n-fiqs8s", True, False, False),
+        # non-IANA IDN TLDs must still be rejected after encoding
+        ("пример.испытание", True, False, False),
     ],
 )
 def test_returns_failed_validation_invalid_top_level_domain(
