@@ -145,3 +145,29 @@ def test_returns_failed_validation_on_idna_mapped_lookalike_hostname(value: str)
 def test_returns_failed_validation_on_ipv4_lookalike_hostname(value: str):
     """Test returns failed validation on dotted names whose last label is non-ASCII digits."""
     assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "example.com:443",
+        "xn--e1afmkfd.xn--p1ai",
+        "пример.рф",
+        "пример.рф:8080",
+    ],
+)
+def test_returns_true_on_valid_top_level_domain_hostname(value: str):
+    """Test returns true on hostname with a TLD allowed by IANA."""
+    assert hostname(value, consider_tld=True)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "example.flat:443",
+        "пример.рфы",
+    ],
+)
+def test_returns_failed_validation_on_invalid_top_level_domain_hostname(value: str):
+    """Test returns failed validation on hostname with a TLD not allowed by IANA."""
+    assert isinstance(hostname(value, consider_tld=True), ValidationError)
