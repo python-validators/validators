@@ -46,3 +46,22 @@ def test_returns_true_on_valid_ru_inn(value: str):
 def test_returns_false_on_valid_ru_inn(value: str):
     """Test returns true on valid russian individual tax number."""
     assert isinstance(ru_inn(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "500100732266",  # First check digit is wrong; the second matches.
+        "100000001103",  # First remainder is 10; the second check digit is wrong.
+        "100000000781",  # Second remainder is 10; its check digit must be zero.
+    ],
+)
+def test_individual_inn_requires_both_check_digits(value: str):
+    """Reject an individual INN when either check digit is wrong."""
+    assert isinstance(ru_inn(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["500100732259", "100000001102", "100000000780"])
+def test_individual_inn_check_digit_remainders(value: str):
+    """Accept both ordinary remainders and remainder 10 mapped to zero."""
+    assert ru_inn(value) is True
