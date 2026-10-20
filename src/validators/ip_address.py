@@ -118,7 +118,7 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
 
     Args:
         value:
-            IP address string to validate.
+            IP address string to validate. It may be enclosed in brackets.
         cidr:
             IP address string may contain CIDR annotation.
         strict:
@@ -134,6 +134,8 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
     """
     if not value:
         return False
+    if value.startswith("[") and value.endswith("]"):
+        value = value[1:-1]
     try:
         if cidr:
             if strict and value.count("/") != 1:
