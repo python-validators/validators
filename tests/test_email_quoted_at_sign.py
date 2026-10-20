@@ -9,7 +9,8 @@ import validators
 @pytest.mark.parametrize(
     ("email",),
     [
-        ('"user@name"@example.com', ),
+        ('"user@name"@example.com',),
+        ('"test@test"@example.com',),
     ],
 )
 def test_email_accepts_at_sign_inside_quoted_local_part(email: str):
