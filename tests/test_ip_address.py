@@ -204,3 +204,32 @@ def test_returns_true_on_valid_public_ipv4_address(address: str, private: bool):
 def test_returns_failed_validation_on_invalid_public_ipv4_address(address: str, private: bool):
     """Test returns failed validation on private ipv4 address."""
     assert isinstance(ipv4(address, private=private), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "zone_id",
+    [
+        "\x00",
+        "\t",
+        "\n",
+        "\r",
+        "\x7f",
+        "\x85",  # next line, a C1 control
+        " ",
+        "eth0 ",
+        "a b",
+        "\u3000",  # ideographic space
+        "\u2028",  # line separator
+    ],
+)
+@pytest.mark.parametrize("cidr", [False, True])
+def test_returns_failed_validation_on_zone_id_with_control_or_space(zone_id: str, cidr: bool):
+    """Test returns failed validation on a zone ID with a control or whitespace character."""
+    assert isinstance(ipv6(f"fe80::1%{zone_id}", cidr=cidr), ValidationError)
+
+
+@pytest.mark.parametrize("zone_id", ["1", "eth0", "eth0.100", "br-lan", "en0", "25eth0"])
+@pytest.mark.parametrize("cidr", [False, True])
+def test_returns_true_on_zone_id(zone_id: str, cidr: bool):
+    """Test returns true on numeric and interface-name zone IDs."""
+    assert ipv6(f"fe80::1%{zone_id}", cidr=cidr)

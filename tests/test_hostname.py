@@ -171,3 +171,14 @@ def test_returns_true_on_valid_top_level_domain_hostname(value: str):
 def test_returns_failed_validation_on_invalid_top_level_domain_hostname(value: str):
     """Test returns failed validation on hostname with a TLD not allowed by IANA."""
     assert isinstance(hostname(value, consider_tld=True), ValidationError)
+
+
+def test_returns_true_on_bracketed_ipv6_with_zone_id():
+    """Test returns true on a bracketed link-local IPv6 address with a zone ID."""
+    assert hostname("[fe80::1%eth0]:22")
+
+
+@pytest.mark.parametrize("value", ["[fe80::1%eth0 ]:22", "[fe80::1%\n]:22", "fe80::1%a b"])
+def test_returns_failed_validation_on_zone_id_with_control_or_space(value: str):
+    """Test returns failed validation on a zone ID with a control or whitespace character."""
+    assert isinstance(hostname(value), ValidationError)

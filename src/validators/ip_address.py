@@ -11,6 +11,7 @@ from ipaddress import (
 )
 import re
 from typing import Optional
+from unicodedata import category
 
 # local
 from .utils import validator
@@ -128,6 +129,10 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
         (ValidationError): If `value` is an invalid IPv6 address.
     """
     if not value:
+        return False
+    # ref: RFC 9844 (6), RFC 4007 sets no character set for a zone ID, so reject
+    # the control and whitespace characters that break later string processing
+    if any(char.isspace() or category(char) == "Cc" for char in value.partition("%")[2]):
         return False
     try:
         if cidr:
