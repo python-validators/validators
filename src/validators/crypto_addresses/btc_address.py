@@ -9,16 +9,20 @@ from validators.utils import validator
 
 
 def _decode_base58(addr: str):
-    """Decode base58."""
+    """Decode base58, preserving each leading one as a zero byte."""
     alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
-    return sum((58**enm) * alphabet.index(idx) for enm, idx in enumerate(addr[::-1]))
+    decoded = sum((58**enm) * alphabet.index(idx) for enm, idx in enumerate(addr[::-1]))
+    zero_bytes = len(addr) - len(addr.lstrip("1"))
+    return b"\0" * zero_bytes + decoded.to_bytes((decoded.bit_length() + 7) // 8, "big")
 
 
 def _validate_old_btc_address(addr: str):
     """Validate P2PKH and P2SH type address."""
     if len(addr) not in range(25, 35):
         return False
-    decoded_bytes = _decode_base58(addr).to_bytes(25, "big")
+    decoded_bytes = _decode_base58(addr)
+    if len(decoded_bytes) != 25:
+        return False
     header, checksum = decoded_bytes[:-4], decoded_bytes[-4:]
     return checksum == sha256(sha256(header).digest()).digest()[:4]
 
