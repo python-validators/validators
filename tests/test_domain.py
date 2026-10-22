@@ -47,6 +47,8 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
         ("example_.com", True, False, True),
         ("somerandomexample.xn--fiqs8s", True, False, False),
         ("somerandomexample.onion", True, False, False),
+        # delegated 2026-07-23
+        ("somerandomexample.web", True, False, False),
     ],
 )
 def test_returns_true_on_valid_top_level_domain(
@@ -100,6 +102,8 @@ def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool,
         ("_example.#13", True, False, True),
         ("example_.fo-ul", True, False, True),
         ("somerandomexample.xn-n-fiqs8s", True, False, False),
+        # retired from the root zone
+        ("somerandomexample.goo", True, False, False),
     ],
 )
 def test_returns_failed_validation_invalid_top_level_domain(
