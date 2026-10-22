@@ -266,3 +266,10 @@ def test_url_accepts_percent_encoded_controls(encoded: str, template: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_url(value: str):
     """Test returns failed validation on url hosts that only IDNA 2003 mapping makes valid."""
     assert isinstance(url(value, simple_host=True), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["http://10.0.0.\u0661/", "https://192.168.1.\u0661:8080/"])
+@pytest.mark.parametrize("private", [None, False, True])
+def test_returns_failed_validation_on_ipv4_lookalike_url(value: str, private: Optional[bool]):
+    """Test returns failed validation on hosts that only look like an IPv4 address."""
+    assert isinstance(url(value, private=private), ValidationError)
