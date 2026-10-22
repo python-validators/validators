@@ -171,3 +171,29 @@ def test_returns_true_on_valid_top_level_domain_hostname(value: str):
 def test_returns_failed_validation_on_invalid_top_level_domain_hostname(value: str):
     """Test returns failed validation on hostname with a TLD not allowed by IANA."""
     assert isinstance(hostname(value, consider_tld=True), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        # ref: RFC 3986 (3.2.2), only an IPv6 address is enclosed in brackets
+        "[1.2.3.4]:80",
+        "[example.com]:80",
+        "[localhost]:80",
+        # exactly one pair of brackets
+        "[[::1]]:80",
+        "[[::1]:80",
+        "[::1]]:80",
+        "::1]:80",
+        "localhost]:80",
+        "[::1%]]:80",
+    ],
+)
+def test_returns_failed_validation_on_malformed_bracketed_host(value: str):
+    """Test returns failed validation on brackets that do not enclose one IPv6 address."""
+    assert isinstance(hostname(value), ValidationError)
+
+
+def test_returns_failed_validation_on_bracketed_ipv6_when_skipped():
+    """Test returns failed validation on a bracketed IPv6 address when IPv6 is skipped."""
+    assert isinstance(hostname("[::1]:80", skip_ipv6_addr=True), ValidationError)
