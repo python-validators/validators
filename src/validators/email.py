@@ -5,6 +5,7 @@ import re
 
 # local
 from .hostname import hostname
+from .ip_address import ipv6
 from .utils import validator
 
 
@@ -39,7 +40,8 @@ def email(
         value:
             eMail string to validate.
         ipv6_address:
-            When the domain part is an IPv6 address.
+            When the domain part is an IPv6 address, including an RFC 5321
+            address literal such as `[IPv6:2001:db8::1]`.
         ipv4_address:
             When the domain part is an IPv4 address.
         simple_host:
@@ -67,7 +69,12 @@ def email(
     if ipv6_address or ipv4_address:
         if domain_part.startswith("[") and domain_part.endswith("]"):
             # ref: RFC 5321
-            domain_part = domain_part.lstrip("[").rstrip("]")
+            if domain_part[1:6].lower() == "ipv6:":
+                domain_part = domain_part[6:-1]
+                if not ipv6_address or "%" in domain_part or not ipv6(domain_part, cidr=False):
+                    return False
+            else:
+                domain_part = domain_part.lstrip("[").rstrip("]")
         else:
             return False
 
