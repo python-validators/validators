@@ -14,6 +14,8 @@ from validators import ValidationError, btc_address
         "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
         # P2SH (Pay to script hash) type
         "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy",
+        # Testnet P2SH type (35 characters)
+        "2MzQwSSnBHWHqSAqtTVQ6v47XtaisrJa1Vc",
         # Bech32/segwit type
         "bc1qar0srrr7xfkvy5l643lydnw9re59gtzzwf5mdq",
         "bc1qc7slrfxkknqcq2jevvvkdgvrt8080852dfjewde450xdlk4ugp7szw5tk9",
@@ -36,6 +38,10 @@ def test_returns_true_on_valid_btc_address(value: str):
         "1BvBMsEYstWetqTFn5Au4m4GFg7xJaNVN2",
         # incorrect checksum
         "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLz",
+        # incorrect testnet P2SH checksum
+        "2MzQwSSnBHWHqSAqtTVQ6v47XtaisrJa1Vd",
+        # 35 characters that decode to more than 25 bytes
+        "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
     ],
 )
 def test_returns_failed_validation_on_invalid_btc_address(value: str):
