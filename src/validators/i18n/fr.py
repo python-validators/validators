@@ -20,7 +20,7 @@ def _ssn_pattern():
         r"\s(\d{2,3})"  # town of birth
         r"\s(\d{3})"  # registration number
         r"(?:\s(\d{2}))?$",  # control key (may or may not be provided)
-        re.VERBOSE,
+        re.VERBOSE | re.ASCII,
     )
 
 

@@ -102,3 +102,9 @@ def test_ssn_validates_birth_date_in_its_century(birth_date: str, century: str, 
     checksum = "0123456789ABCDEFHJKLMNPRSTUVWXY"[int(birth_date + serial) % 31]
     value = birth_date + century + serial + checksum
     assert bool(fi_ssn(value)) is valid
+
+
+@pytest.mark.parametrize("value", ["1\u06631052-308T", "1310\u06652-308T", "131052-3\u06608T"])
+def test_returns_failed_validation_on_non_ascii_digits_in_ssn(value: str):
+    """Test returns failed validation when a script other than ASCII supplies the digits."""
+    assert isinstance(fi_ssn(value), ValidationError)
