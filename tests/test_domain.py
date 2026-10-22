@@ -178,7 +178,7 @@ def test_returns_failed_validation_on_domain_beyond_rfc_limits(value: str):
         "example.\u217dom",  # small roman numeral one hundred
         "\u212aelvin.com",  # Kelvin sign
         "\u017fhop.com",  # long s
-        "example。com",  # ideographic full stop
+        "example\u3002com",  # ideographic full stop
         "example\uff0ecom",  # fullwidth full stop
         "example\uff61com",  # halfwidth ideographic full stop
         "exam\u00adple.com",  # soft hyphen
@@ -187,7 +187,7 @@ def test_returns_failed_validation_on_domain_beyond_rfc_limits(value: str):
         "exam\ufe0fple.com",  # variation selector
         "examp\u2060le.com",  # word joiner
         "\ufeffexample.com",  # zero width no-break space
-        "exämple.com".replace("ä", "ä"),  # not NFC
+        "exämple.com".replace("ä", "a\u0308"),  # not NFC
     ],
 )
 @pytest.mark.parametrize("consider_tld", [False, True])
