@@ -12,6 +12,10 @@ from validators import ValidationError, btc_address
     [
         # P2PKH (Pay-to-PubkeyHash) type
         "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
+        # P2PKH with zero bytes in the payload, encoded as leading ones
+        "1111111111111111111114oLvT2",
+        # Legacy testnet P2PKH
+        "mipcBbFg9gMiCh81Kj8tqqdgoZub1ZJRfn",
         # P2SH (Pay to script hash) type
         "3J98t1WpEZ73CNmQviecrnyiWrnqRhWNLy",
         # Bech32/segwit type
@@ -40,4 +44,19 @@ def test_returns_true_on_valid_btc_address(value: str):
 )
 def test_returns_failed_validation_on_invalid_btc_address(value: str):
     """Test returns failed validation on invalid btc address."""
+    assert isinstance(btc_address(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        # Removing the version byte's leading one must not be silently padded.
+        "BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
+        # Both remain within the existing character-count bounds.
+        "111111111111111111114oLvT2",
+        "11111111111111111111114oLvT2",
+    ],
+)
+def test_rejects_changed_leading_zero_bytes(value: str):
+    """Leading ones encode bytes and cannot be added or removed."""
     assert isinstance(btc_address(value), ValidationError)
