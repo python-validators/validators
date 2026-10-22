@@ -7,6 +7,30 @@ import pytest
 from validators import ValidationError, calling_code, country_code, currency
 
 
+@pytest.mark.parametrize(
+    ("alpha2", "alpha3", "numeric"),
+    [
+        ("AX", "ALA", "248"),
+        ("BQ", "BES", "535"),
+        ("BL", "BLM", "652"),
+        ("CI", "CIV", "384"),
+        ("CW", "CUW", "531"),
+        ("MF", "MAF", "663"),
+        ("SS", "SSD", "728"),
+        ("SX", "SXM", "534"),
+    ],
+)
+def test_missing_alpha_codes_match_existing_numeric_codes(alpha2: str, alpha3: str, numeric: str):
+    """Accept alphabetic codes for countries already supported in numeric form."""
+    assert country_code(numeric, iso_format="numeric") is True
+    for value, iso_format in ((alpha2, "alpha2"), (alpha3, "alpha3")):
+        assert country_code(value, iso_format=iso_format) is True
+        assert country_code(value) is True
+        assert country_code(value.lower(), iso_format=iso_format, ignore_case=True) is True
+        assert country_code(value.lower(), ignore_case=True) is True
+        assert isinstance(country_code(value.lower()), ValidationError)
+
+
 @pytest.mark.parametrize(("value"), ["+1", "+371"])
 def test_returns_true_on_valid_calling_code(value: str):
     """Test returns true on valid calling code."""
