@@ -46,7 +46,8 @@ def _relies_on_idna_mapping(value: str):
     (RFC 3491) drops invisible characters (RFC 3454, table B.1), folds
     compatibility characters such as fullwidth letters to ASCII, and treats
     U+3002 and similar dots as label separators. A value that needs any of
-    these only looks like the name it encodes to, e.g. "example.ｃｏｍ".
+    these only looks like the name it encodes to, e.g. "example.com" written
+    with fullwidth letters.
     """
     return not value.isascii() and (
         normalize("NFKC", value) != value
