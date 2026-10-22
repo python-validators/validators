@@ -101,6 +101,11 @@ def domain(
         if _relies_on_idna_mapping(value):
             return False
 
+        if value.rstrip(".").rsplit(".", 1)[-1].isdecimal():
+            # ref: RFC 1123 (2.1) and RFC 3696 (2), a TLD is not all-numeric. An
+            # all-digit IDN label like "\u0661" is, but encodes to a letter-final A-label.
+            return False
+
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
 

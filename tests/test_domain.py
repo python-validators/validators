@@ -203,3 +203,29 @@ def test_returns_failed_validation_on_idna_mapped_lookalike(value: str, consider
 def test_returns_true_on_idn_without_lookalike_mapping(value: str):
     """Test returns true on internationalized names that need no lossy mapping."""
     assert domain(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "10.0.0.\u0661",  # Arabic-Indic one; looks like 10.0.0.1
+        "example.\u0661\u0662\u0663",
+        "example.\u0968",  # Devanagari two
+        "123.5.77.\u06688",  # Arabic-Indic and ASCII digits
+    ],
+)
+@pytest.mark.parametrize("rfc_1034", [False, True])
+def test_returns_failed_validation_on_all_numeric_idn_tld(value: str, rfc_1034: bool):
+    """Test returns failed validation on a TLD made only of digits from any script."""
+    assert isinstance(domain(value, rfc_1034=rfc_1034), ValidationError)
+
+
+def test_returns_failed_validation_on_all_numeric_idn_tld_with_trailing_dot():
+    """Test returns failed validation on an all-numeric IDN TLD followed by a trailing dot."""
+    assert isinstance(domain("example.\u0661.", rfc_1034=True), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["\u0661\u0662.com", "example.\u0661a", "1.example.com"])
+def test_returns_true_on_digits_outside_or_mixed_in_tld(value: str):
+    """Test returns true when digits appear only in other labels or alongside letters."""
+    assert domain(value)

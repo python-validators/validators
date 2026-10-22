@@ -139,3 +139,9 @@ def test_returns_failed_validation_on_non_ascii_simple_hostname(value: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_hostname(value: str):
     """Test returns failed validation on hostnames that only IDNA 2003 mapping makes valid."""
     assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["10.0.0.\u0661", "123.5.77.\u06688:31000"])
+def test_returns_failed_validation_on_ipv4_lookalike_hostname(value: str):
+    """Test returns failed validation on dotted names whose last label is non-ASCII digits."""
+    assert isinstance(hostname(value), ValidationError)
