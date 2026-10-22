@@ -72,3 +72,29 @@ def test_rejects_newline_after_local_part(local_part: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
     assert isinstance(email(f"user@{domain_part}"), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "local_part",
+    [
+        "\u212aelvin",  # Kelvin sign, lowercase is k
+        "\u212belvin",  # Angstrom sign, lowercase is U+00E5
+        "\u1e9eelvin",  # capital sharp s, lowercase is U+00DF
+        "\u039celvin",  # Greek capital mu, re equates it with U+00B5
+        "\u2c65elvin",  # a with stroke, uppercase is U+023A
+    ],
+)
+@pytest.mark.parametrize("quoted", [False, True])
+def test_returns_failed_validation_on_case_folded_local_part(local_part: str, quoted: bool):
+    """Test returns failed validation on characters allowed only through Unicode case folding."""
+    if quoted:
+        local_part = f'"{local_part}"'
+    assert isinstance(email(f"{local_part}@example.com"), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "local_part", ["KELVIN", "Kelvin", "\u0141\u00d3KA\u015a\u0106", "\u00ff\u0178", '"Kelvin"']
+)
+def test_returns_true_on_mixed_case_local_part(local_part: str):
+    """Test returns true on upper and lower case letters inside the allowed ranges."""
+    assert email(f"{local_part}@example.com")

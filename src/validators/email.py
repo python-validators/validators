@@ -95,7 +95,9 @@ def email(
             + r"!#-\[\]-\177]|\\[\011.]"
             + r')*")$',
             username_part,
-            re.IGNORECASE,
+            # re.ASCII: Unicode case-insensitive matching would also admit characters
+            # outside these ranges, such as the Kelvin sign as a "k"
+            re.IGNORECASE | re.ASCII,
         )
         else False
     )
