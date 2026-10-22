@@ -16,9 +16,14 @@ def _decode_base58(addr: str):
 
 def _validate_old_btc_address(addr: str):
     """Validate P2PKH and P2SH type address."""
-    if len(addr) not in range(25, 35):
+    # Testnet P2SH addresses (version byte 0xc4) are 35 characters long.
+    if len(addr) not in range(25, 36):
         return False
-    decoded_bytes = _decode_base58(addr).to_bytes(25, "big")
+    decoded = _decode_base58(addr)
+    # Some 35-character strings decode to more than 25 bytes.
+    if decoded.bit_length() > 200:
+        return False
+    decoded_bytes = decoded.to_bytes(25, "big")
     header, checksum = decoded_bytes[:-4], decoded_bytes[-4:]
     return checksum == sha256(sha256(header).digest()).digest()[:4]
 
