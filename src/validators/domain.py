@@ -4,7 +4,9 @@
 from os import environ
 from pathlib import Path
 import re
+from stringprep import in_table_b1
 from typing import Optional, Set
+from unicodedata import normalize
 
 # local
 from .utils import validator
@@ -35,6 +37,21 @@ class _IanaTLD:
             else:
                 return tld in cls._retrieve()
         return tld in cls._full_cache
+
+
+def _relies_on_idna_mapping(value: str):
+    """Return whether `value` only becomes a valid name through IDNA 2003 mapping.
+
+    Python's `idna` codec implements IDNA 2003 (RFC 3490), whose nameprep step
+    (RFC 3491) drops invisible characters (RFC 3454, table B.1), folds
+    compatibility characters such as fullwidth letters to ASCII, and treats
+    U+3002 and similar dots as label separators. A value that needs any of
+    these only looks like the name it encodes to, e.g. "example.ｃｏｍ".
+    """
+    return not value.isascii() and (
+        normalize("NFKC", value) != value
+        or any(in_table_b1(char) or char in "\u3002\uff0e\uff61" for char in value)
+    )
 
 
 @validator
@@ -80,6 +97,9 @@ def domain(
         return False
 
     try:
+        if _relies_on_idna_mapping(value):
+            return False
+
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
 
