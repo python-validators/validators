@@ -1,5 +1,7 @@
 """Test i18n/es."""
 
+from typing import Callable
+
 # external
 import pytest
 
@@ -123,3 +125,31 @@ def test_returns_false_on_invalid_nif():
 def test_returns_true_on_valid_doi(value: str):
     """Test returns true on valid doi."""
     assert es_doi(value)
+
+
+@pytest.mark.parametrize(
+    "digits",
+    [
+        "\uff10\uff11\uff12\uff13\uff14\uff15\uff16\uff17\uff18\uff19",
+        "\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669",
+        "\u0966\u0967\u0968\u0969\u096a\u096b\u096c\u096d\u096e\u096f",
+    ],
+)
+@pytest.mark.parametrize(
+    "validate,value",
+    [
+        (es_nif, "26643189N"),
+        (es_nie, "X0095892M"),
+        (es_cif, "B25162520"),
+        (es_doi, "26643189N"),
+        (es_doi, "X0095892M"),
+        (es_doi, "B25162520"),
+    ],
+)
+def test_spanish_identifiers_reject_non_ascii_digits(
+    validate: Callable[[str], object], value: str, digits: str
+):
+    """Reject lookalike digit bodies even when their numeric checksums agree."""
+    translated = value[:-1].translate(str.maketrans("0123456789", digits)) + value[-1]
+    assert validate(value) is True
+    assert isinstance(validate(translated), ValidationError)

@@ -4,6 +4,7 @@
 # https://www.rfc-editor.org/rfc/rfc3986#section-3
 
 # standard
+import re
 from urllib.parse import urlsplit
 
 # local
@@ -88,7 +89,7 @@ def uri(value: str, /):
         (Literal[True]): If `value` is a valid URI.
         (ValidationError): If `value` is an invalid URI.
     """
-    if not value:
+    if not value or re.search(r"[\x00-\x20\x7f]", value):
         return False
 
     # TODO: work on various validations

@@ -4,7 +4,9 @@
 from os import environ
 from pathlib import Path
 import re
+from stringprep import in_table_b1
 from typing import Optional, Set
+from unicodedata import normalize
 
 # local
 from .utils import validator
@@ -35,6 +37,22 @@ class _IanaTLD:
             else:
                 return tld in cls._retrieve()
         return tld in cls._full_cache
+
+
+def _relies_on_idna_mapping(value: str):
+    """Return whether `value` only becomes a valid name through IDNA 2003 mapping.
+
+    Python's `idna` codec implements IDNA 2003 (RFC 3490), whose nameprep step
+    (RFC 3491) drops invisible characters (RFC 3454, table B.1), folds
+    compatibility characters such as fullwidth letters to ASCII, and treats
+    U+3002 and similar dots as label separators. A value that needs any of
+    these only looks like the name it encodes to, e.g. "example.com" written
+    with fullwidth letters.
+    """
+    return not value.isascii() and (
+        normalize("NFKC", value) != value
+        or any(in_table_b1(char) or char in "\u3002\uff0e\uff61" for char in value)
+    )
 
 
 @validator
@@ -76,16 +94,26 @@ def domain(
     if not value:
         return False
 
-    if consider_tld and not _IanaTLD.check(value.rstrip(".").rsplit(".", 1)[-1].upper()):
-        return False
-
     try:
+        if _relies_on_idna_mapping(value):
+            return False
+
+        if value.rstrip(".").rsplit(".", 1)[-1].isdecimal():
+            # ref: RFC 1123 (2.1) and RFC 3696 (2), a TLD is not all-numeric. An
+            # all-digit IDN label like "\u0661" is, but encodes to a letter-final A-label.
+            return False
+
         service_record = r"_" if rfc_2782 else ""
         trailing_dot = r"\.?$" if rfc_1034 else r"$"
 
         encoded = value.encode("idna").decode("utf-8")
         if len(encoded.rstrip(".")) > 253:
             # ref: RFC 1035, presentation form is limited to 253 characters
+            return False
+
+        # IANA lists IDN TLDs in their ASCII (punycode) form,
+        # so look up the encoded TLD, not the raw one.
+        if consider_tld and not _IanaTLD.check(encoded.rstrip(".").rsplit(".", 1)[-1].upper()):
             return False
 
         return not re.search(r"\s|__+", value) and re.match(

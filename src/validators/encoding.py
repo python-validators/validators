@@ -48,7 +48,15 @@ def base32(value: str, /):
         (Literal[True]): If `value` is a valid base32 encoding.
         (ValidationError): If `value` is an invalid base32 encoding.
     """
-    return re.fullmatch(r"^[A-Z2-7]+=*$", value) if value else False
+    return (
+        re.fullmatch(
+            r"(?:[A-Z2-7]{8})*(?:[A-Z2-7]{2}(?:={6})?|[A-Z2-7]{4}(?:={4})?|"
+            r"[A-Z2-7]{5}(?:={3})?|[A-Z2-7]{7}=?)?",
+            value,
+        )
+        if value
+        else False
+    )
 
 
 @validator

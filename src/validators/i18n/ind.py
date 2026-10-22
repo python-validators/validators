@@ -24,7 +24,7 @@ def ind_aadhar(value: str):
         (Literal[True]): If `value` is a valid aadhar card number.
         (ValidationError): If `value` is an invalid aadhar card number.
     """
-    return re.fullmatch(r"^[2-9]{1}\d{3}\s\d{4}\s\d{4}$", value)
+    return re.fullmatch(r"^[2-9]{1}\d{3}\s\d{4}\s\d{4}$", value, re.ASCII)
 
 
 @validator
@@ -44,4 +44,4 @@ def ind_pan(value: str):
         (Literal[True]): If `value` is a valid PAN card number.
         (ValidationError): If `value` is an invalid PAN card number.
     """
-    return re.fullmatch(r"[A-Z]{5}\d{4}[A-Z]{1}", value)
+    return re.fullmatch(r"[A-Z]{5}\d{4}[A-Z]{1}", value, re.ASCII)

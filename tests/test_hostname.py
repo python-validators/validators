@@ -109,3 +109,65 @@ def test_returns_true_on_hostname_within_rfc_length_limits(value: str):
 def test_returns_failed_validation_on_hostname_beyond_rfc_limits(value: str):
     """Test returns failed validation on hostname beyond RFC limits."""
     assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "ubuntu-pc\n",
+        "ubuntu-pc:443\n",
+        "example.com:443\n",
+        "127.0.0.1:22\n",
+        "[::1]:22\n",
+        "[dead:beef:0:0:0:0000:42:1]:5731\n",
+    ],
+)
+def test_rejects_trailing_newline_in_hostnames_and_ports(value: str):
+    """Test rejects trailing newline in hostnames and ports."""
+    assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value", ["\u017ferver", "\u212aelvin", "\u0131ntranet", "\u0130ntranet:8080"]
+)
+def test_returns_failed_validation_on_non_ascii_simple_hostname(value: str):
+    """Test returns failed validation on non-ASCII case equivalents in simple hostnames."""
+    assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["example.\uff43\uff4f\uff4d", "exam\u00adple.com:443"])
+def test_returns_failed_validation_on_idna_mapped_lookalike_hostname(value: str):
+    """Test returns failed validation on hostnames that only IDNA 2003 mapping makes valid."""
+    assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["10.0.0.\u0661", "123.5.77.\u06688:31000"])
+def test_returns_failed_validation_on_ipv4_lookalike_hostname(value: str):
+    """Test returns failed validation on dotted names whose last label is non-ASCII digits."""
+    assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "example.com:443",
+        "xn--e1afmkfd.xn--p1ai",
+        "пример.рф",
+        "пример.рф:8080",
+    ],
+)
+def test_returns_true_on_valid_top_level_domain_hostname(value: str):
+    """Test returns true on hostname with a TLD allowed by IANA."""
+    assert hostname(value, consider_tld=True)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "example.flat:443",
+        "пример.рфы",
+    ],
+)
+def test_returns_failed_validation_on_invalid_top_level_domain_hostname(value: str):
+    """Test returns failed validation on hostname with a TLD not allowed by IANA."""
+    assert isinstance(hostname(value, consider_tld=True), ValidationError)
