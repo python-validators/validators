@@ -68,7 +68,7 @@ def test_rejects_newline_after_local_part(local_part: str):
     assert isinstance(email(f"{local_part}\n@example.com"), ValidationError)
 
 
-@pytest.mark.parametrize("domain_part", ["example.ｃｏｍ", "exam­ple.com"])
+@pytest.mark.parametrize("domain_part", ["example.\uff43\uff4f\uff4d", "exam\u00adple.com"])
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
     assert isinstance(email(f"user@{domain_part}"), ValidationError)
