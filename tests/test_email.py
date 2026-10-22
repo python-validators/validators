@@ -72,3 +72,14 @@ def test_rejects_newline_after_local_part(local_part: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
     assert isinstance(email(f"user@{domain_part}"), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["user@[fe80::1%eth0]", "user@[fe80::1%1]"])
+def test_returns_failed_validation_on_address_literal_with_zone_id(value: str):
+    """Test returns failed validation on an IPv6 address literal with a zone ID."""
+    assert isinstance(email(value, ipv6_address=True), ValidationError)
+
+
+def test_returns_true_on_ipv6_address_literal_without_zone_id():
+    """Test returns true on an IPv6 address literal without a zone ID."""
+    assert email("user@[fe80::1]", ipv6_address=True)

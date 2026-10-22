@@ -60,6 +60,10 @@ def email(
 
     username_part, domain_part = value.rsplit("@", 1)
 
+    if "%" in domain_part:
+        # ref: RFC 5321 (4.1.3), an address literal has no zone ID
+        return False
+
     if len(username_part) > 64 or len(domain_part) > 253:
         # ref: RFC 1034 and 5231
         return False
