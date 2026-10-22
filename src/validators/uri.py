@@ -92,6 +92,10 @@ def uri(value: str, /):
     if not value or re.search(r"[\x00-\x20\x7f]", value):
         return False
 
+    # RFC 3986 section 3.1: schemes are case-insensitive; other components are not.
+    scheme, separator, rest = value.partition(":")
+    value = scheme.lower() + separator + rest
+
     # TODO: work on various validations
 
     # url

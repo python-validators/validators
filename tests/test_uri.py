@@ -10,6 +10,37 @@ from validators.uri import uri
 @pytest.mark.parametrize(
     "value",
     [
+        "http://example.com/CaseSensitive?key=Value",
+        "https://example.com",
+        "ftp://example.com/file.txt",
+        "mailto:User@example.com",
+        "file:///tmp/Readme.txt",
+        "ipfs://QmYwAPJzv5CZsnAzt8auVZRnGiUncKEy6PBDoDeZ7hA9Rx",
+        "magnet:?xt=urn:btih:0123456789012345678901234567890123456789",
+        "tel:+1234567890",
+        "data:text/plain;base64,SGVsbG8=",
+        "urn:isbn:9780140328721",
+        "urc:example",
+        "telnet://example.com:23/",
+    ],
+)
+@pytest.mark.parametrize("uppercase", [True, False])
+def test_accepts_case_insensitive_schemes(value: str, uppercase: bool):
+    """Accept uppercase and mixed-case spellings of supported URI schemes."""
+    scheme, separator, rest = value.partition(":")
+    scheme = scheme.upper() if uppercase else scheme.capitalize()
+    assert uri(scheme + separator + rest) is True
+
+
+@pytest.mark.parametrize("value", ["HTTP://", "FILE:path.txt", "TELNET://example.com/path"])
+def test_uppercase_schemes_still_validate_the_rest(value: str):
+    """Apply scheme-specific validation after normalizing the scheme."""
+    assert not uri(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
         "telnet://example.com",
         "telnet://example.com/",
         "telnet://example.com:23",
