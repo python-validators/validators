@@ -2,8 +2,7 @@
 
 # standard
 from functools import wraps
-from inspect import getfullargspec
-from itertools import chain
+from inspect import signature
 from os import environ
 from typing import Any, Callable, Dict
 
@@ -20,8 +19,9 @@ class ValidationError(Exception):
 
     def __repr__(self):
         """Repr Validation Failure."""
+        func_name = getattr(self.func, "__name__", type(self.func).__name__)
         return (
-            f"ValidationError(func={self.func.__name__}, "
+            f"ValidationError(func={func_name}, "
             + f"args={ ({k: v for (k, v) in self.__dict__.items() if k != 'func'}) })"
         )
 
@@ -36,10 +36,12 @@ class ValidationError(Exception):
 
 def _func_args_as_dict(func: Callable[..., Any], *args: Any, **kwargs: Any):
     """Return function's positional and key value arguments as an ordered dictionary."""
-    return dict(
-        list(zip(dict.fromkeys(chain(getfullargspec(func)[0], kwargs.keys())), args))
-        + list(kwargs.items())
-    )
+    try:
+        return dict(signature(func).bind_partial(*args, **kwargs).arguments)
+    except (TypeError, ValueError):
+        # Some builtins have no inspectable signature. Retain the raw call
+        # instead of letting error reporting raise another exception.
+        return {"positional_args": args, "keyword_args": kwargs}
 
 
 def validator(func: Callable[..., Any]):
