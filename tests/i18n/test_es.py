@@ -127,7 +127,14 @@ def test_returns_true_on_valid_doi(value: str):
     assert es_doi(value)
 
 
-@pytest.mark.parametrize("digits", ["０１２３４５６７８９", "٠١٢٣٤٥٦٧٨٩", "०१२३४५६७८९"])
+@pytest.mark.parametrize(
+    "digits",
+    [
+        "\uff10\uff11\uff12\uff13\uff14\uff15\uff16\uff17\uff18\uff19",
+        "\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669",
+        "\u0966\u0967\u0968\u0969\u096a\u096b\u096c\u096d\u096e\u096f",
+    ],
+)
 @pytest.mark.parametrize(
     "validate,value",
     [
