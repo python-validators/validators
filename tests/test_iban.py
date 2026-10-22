@@ -25,7 +25,9 @@ def test_returns_failed_validation_on_invalid_iban(value: str):
     assert isinstance(iban(value), ValidationError)
 
 
-@pytest.mark.parametrize("value", ["\u0131T60X0542811101000000123456", "GB82WE\u017fT12345698765432"])
+@pytest.mark.parametrize(
+    "value", ["\u0131T60X0542811101000000123456", "GB82WE\u017fT12345698765432"]
+)
 def test_rejects_non_ascii_case_equivalents(value: str):
     """Unicode case equivalents must not pass the ASCII IBAN format check."""
     assert isinstance(iban(value), ValidationError)
