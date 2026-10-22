@@ -37,7 +37,7 @@ def _port_validator(value: str):
         # with ipv6
         host_seg, port_seg = value.rsplit(":", 1)
         if _port_regex().fullmatch(f":{port_seg}"):
-            return host_seg.lstrip("[").rstrip("]")
+            return host_seg
 
     if value.count(":") == 1:
         # with ipv4 or simple hostname
@@ -125,6 +125,12 @@ def hostname(
         return _simple_hostname_regex().fullmatch(host)
 
     if may_have_port and (host_seg := _port_validator(value)):
+        if host_seg.startswith("[") and host_seg.endswith("]"):
+            # ref: RFC 3986 (3.2.2), one pair of brackets encloses an IPv6 address
+            host_seg = host_seg[1:-1]
+            if skip_ipv6_addr or "[" in host_seg or "]" in host_seg:
+                return False
+            return ipv6(host_seg, cidr=False)
         return (
             _matches_simple_hostname(host_seg)
             or domain(host_seg, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
