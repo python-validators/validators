@@ -66,3 +66,9 @@ def test_rejects_newline_after_local_part(local_part: str):
     # 2026-10-11: A newline before the at-sign is not part of a valid local part.
     assert email(f"{local_part}@example.com") is True
     assert isinstance(email(f"{local_part}\n@example.com"), ValidationError)
+
+
+@pytest.mark.parametrize("domain_part", ["example.ｃｏｍ", "exam­ple.com"])
+def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
+    """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
+    assert isinstance(email(f"user@{domain_part}"), ValidationError)

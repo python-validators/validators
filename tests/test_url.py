@@ -257,3 +257,12 @@ def test_url_rejects_raw_ascii_controls(control: str, template: str):
 def test_url_accepts_percent_encoded_controls(encoded: str, template: str):
     """Keep escaped data valid while rejecting literal control characters."""
     assert url(template.format(encoded=encoded)) is True
+
+
+@pytest.mark.parametrize(
+    "value",
+    ["https://example.ｃｏｍ/", "https://exam­ple.com/", "http://ſerver/"],
+)
+def test_returns_failed_validation_on_idna_mapped_lookalike_url(value: str):
+    """Test returns failed validation on url hosts that only IDNA 2003 mapping makes valid."""
+    assert isinstance(url(value, simple_host=True), ValidationError)

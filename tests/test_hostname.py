@@ -125,3 +125,15 @@ def test_returns_failed_validation_on_hostname_beyond_rfc_limits(value: str):
 def test_rejects_trailing_newline_in_hostnames_and_ports(value: str):
     """Test rejects trailing newline in hostnames and ports."""
     assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["ſerver", "Kelvin", "ıntranet", "İntranet:8080"])
+def test_returns_failed_validation_on_non_ascii_simple_hostname(value: str):
+    """Test returns failed validation on non-ASCII case equivalents in simple hostnames."""
+    assert isinstance(hostname(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["example.ｃｏｍ", "exam­ple.com:443"])
+def test_returns_failed_validation_on_idna_mapped_lookalike_hostname(value: str):
+    """Test returns failed validation on hostnames that only IDNA 2003 mapping makes valid."""
+    assert isinstance(hostname(value), ValidationError)

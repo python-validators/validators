@@ -167,3 +167,39 @@ def test_returns_true_on_domain_within_rfc_length_limits(value: str):
 def test_returns_failed_validation_on_domain_beyond_rfc_limits(value: str):
     """Test returns failed validation on domain beyond RFC limits."""
     assert isinstance(domain(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        # IDNA 2003 maps these to "example.com"; see `_relies_on_idna_mapping`
+        "example.ｃｏｍ",  # fullwidth letters
+        "ｅｘａｍｐｌｅ.com",
+        "example.ⅽom",  # small roman numeral one hundred
+        "Kelvin.com",  # Kelvin sign
+        "ſhop.com",  # long s
+        "example。com",  # ideographic full stop
+        "example．com",  # fullwidth full stop
+        "example｡com",  # halfwidth ideographic full stop
+        "exam­ple.com",  # soft hyphen
+        "example.co​m",  # zero width space
+        "exa‍mple.com",  # zero width joiner
+        "exam️ple.com",  # variation selector
+        "examp⁠le.com",  # word joiner
+        "﻿example.com",  # zero width no-break space
+        "exämple.com".replace("ä", "ä"),  # not NFC
+    ],
+)
+@pytest.mark.parametrize("consider_tld", [False, True])
+def test_returns_failed_validation_on_idna_mapped_lookalike(value: str, consider_tld: bool):
+    """Test returns failed validation on names that only IDNA 2003 mapping makes valid."""
+    assert isinstance(domain(value, consider_tld=consider_tld), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    ["пример.рф", "ПРИМЕР.РФ", "例子.中国", "kräuter.com", "straße.de", "ς.gr", "εχαμπλε.gr"],
+)
+def test_returns_true_on_idn_without_lookalike_mapping(value: str):
+    """Test returns true on internationalized names that need no lossy mapping."""
+    assert domain(value)
