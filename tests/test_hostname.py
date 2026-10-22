@@ -127,13 +127,15 @@ def test_rejects_trailing_newline_in_hostnames_and_ports(value: str):
     assert isinstance(hostname(value), ValidationError)
 
 
-@pytest.mark.parametrize("value", ["ſerver", "Kelvin", "ıntranet", "İntranet:8080"])
+@pytest.mark.parametrize(
+    "value", ["\u017ferver", "\u212aelvin", "\u0131ntranet", "\u0130ntranet:8080"]
+)
 def test_returns_failed_validation_on_non_ascii_simple_hostname(value: str):
     """Test returns failed validation on non-ASCII case equivalents in simple hostnames."""
     assert isinstance(hostname(value), ValidationError)
 
 
-@pytest.mark.parametrize("value", ["example.ｃｏｍ", "exam­ple.com:443"])
+@pytest.mark.parametrize("value", ["example.\uff43\uff4f\uff4d", "exam\u00adple.com:443"])
 def test_returns_failed_validation_on_idna_mapped_lookalike_hostname(value: str):
     """Test returns failed validation on hostnames that only IDNA 2003 mapping makes valid."""
     assert isinstance(hostname(value), ValidationError)

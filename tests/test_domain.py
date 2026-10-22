@@ -173,20 +173,20 @@ def test_returns_failed_validation_on_domain_beyond_rfc_limits(value: str):
     "value",
     [
         # IDNA 2003 maps these to "example.com"; see `_relies_on_idna_mapping`
-        "example.ｃｏｍ",  # fullwidth letters
-        "ｅｘａｍｐｌｅ.com",
-        "example.ⅽom",  # small roman numeral one hundred
-        "Kelvin.com",  # Kelvin sign
-        "ſhop.com",  # long s
+        "example.\uff43\uff4f\uff4d",  # fullwidth letters
+        "\uff45\uff58\uff41\uff4d\uff50\uff4c\uff45.com",
+        "example.\u217dom",  # small roman numeral one hundred
+        "\u212aelvin.com",  # Kelvin sign
+        "\u017fhop.com",  # long s
         "example。com",  # ideographic full stop
-        "example．com",  # fullwidth full stop
-        "example｡com",  # halfwidth ideographic full stop
-        "exam­ple.com",  # soft hyphen
-        "example.co​m",  # zero width space
-        "exa‍mple.com",  # zero width joiner
-        "exam️ple.com",  # variation selector
-        "examp⁠le.com",  # word joiner
-        "﻿example.com",  # zero width no-break space
+        "example\uff0ecom",  # fullwidth full stop
+        "example\uff61com",  # halfwidth ideographic full stop
+        "exam\u00adple.com",  # soft hyphen
+        "example.co\u200bm",  # zero width space
+        "exa\u200dmple.com",  # zero width joiner
+        "exam\ufe0fple.com",  # variation selector
+        "examp\u2060le.com",  # word joiner
+        "\ufeffexample.com",  # zero width no-break space
         "exämple.com".replace("ä", "ä"),  # not NFC
     ],
 )

@@ -261,7 +261,7 @@ def test_url_accepts_percent_encoded_controls(encoded: str, template: str):
 
 @pytest.mark.parametrize(
     "value",
-    ["https://example.ｃｏｍ/", "https://exam­ple.com/", "http://ſerver/"],
+    ["https://example.\uff43\uff4f\uff4d/", "https://exam\u00adple.com/", "http://\u017ferver/"],
 )
 def test_returns_failed_validation_on_idna_mapped_lookalike_url(value: str):
     """Test returns failed validation on url hosts that only IDNA 2003 mapping makes valid."""
