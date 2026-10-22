@@ -66,3 +66,39 @@ def test_rejects_newline_after_local_part(local_part: str):
     # 2026-10-11: A newline before the at-sign is not part of a valid local part.
     assert email(f"{local_part}@example.com") is True
     assert isinstance(email(f"{local_part}\n@example.com"), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "address",
+    ["2001:db8::1", "2001:db8:0:0:0:0:0:1", "::ffff:192.0.2.1"],
+)
+def test_accepts_tagged_ipv6_literal(address: str):
+    """Accept RFC 5321 address literals when IPv6 addresses are enabled."""
+    assert email(f"user@[IPv6:{address}]", ipv6_address=True) is True
+    assert email(f"user@[ipv6:{address}]", ipv6_address=True) is True
+    assert isinstance(email(f"user@[IPv6:{address}]"), ValidationError)
+    assert isinstance(email(f"user@[IPv6:{address}]", ipv4_address=True), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "address", ["", "example.com", "192.0.2.1", "2001:db8::xyz", "fe80::1%eth0"]
+)
+def test_rejects_invalid_tagged_ipv6_literal(address: str):
+    """An IPv6 tag must identify a valid IPv6 address, never a hostname or IPv4."""
+    assert isinstance(email(f"user@[IPv6:{address}]", ipv6_address=True), ValidationError)
+    assert isinstance(
+        email(f"user@[IPv6:{address}]", ipv6_address=True, ipv4_address=True), ValidationError
+    )
+
+
+def test_rejects_extra_brackets_around_tagged_ipv6_literal():
+    """Do not strip repeated brackets while interpreting an IPv6 tag."""
+    assert isinstance(email("user@[[IPv6:2001:db8::1]]", ipv6_address=True), ValidationError)
+
+
+def test_preserves_legacy_email_address_literals():
+    """Keep bare IPv6 and IPv4 literal support compatible."""
+    assert email("user@[2001:db8::1]", ipv6_address=True) is True
+    assert email("user@[192.0.2.1]", ipv4_address=True) is True
+    assert email("user@[IPv6:2001:db8::1]", ipv6_address=True, ipv4_address=True) is True
+    assert isinstance(email("invalid local@[IPv6:2001:db8::1]", ipv6_address=True), ValidationError)
