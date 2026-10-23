@@ -206,15 +206,15 @@ _currency_iso4217 = {
     "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG",
     "QAR",
     "RON", "RSD", "RUB", "RWF",
-    "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLL", "SOS",
+    "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLE", "SLL", "SOS",
     "SRD", "SSP", "STN", "SVC", "SYP", "SZL",
     "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS",
     "UAH", "UGX", "USD", "UYU", "UZS",
     "VED", "VES", "VND", "VUV",
     "WST",
-    "XAF", "XCD", "XDR", "XOF", "XPF",
+    "XAF", "XCD", "XCG", "XDR", "XOF", "XPF",
     "YER",
-    "ZAR", "ZMW", "ZWL"
+    "ZAR", "ZMW", "ZWG", "ZWL"
 }
 _currency_symbols = {
     # https://en.wikipedia.org/wiki/Currency_sign_(generic)
