@@ -65,3 +65,23 @@ def test_individual_inn_requires_both_check_digits(value: str):
 def test_individual_inn_check_digit_remainders(value: str):
     """Accept both ordinary remainders and remainder 10 mapped to zero."""
     assert ru_inn(value) is True
+
+
+@pytest.mark.parametrize("value", ["7830002293", "500100732259"])
+@pytest.mark.parametrize("zero", ["\u0660", "\uff10", "\u0966"])
+def test_rejects_non_ascii_inn_digits(value: str, zero: str):
+    """Reject digit lookalikes in company and individual INNs."""
+    translated = value.translate(
+        str.maketrans("0123456789", "".join(chr(ord(zero) + n) for n in range(10)))
+    )
+    assert isinstance(ru_inn(translated), ValidationError)
+    assert ru_inn(value) is True
+
+
+@pytest.mark.parametrize("value", ["7830002293", "500100732259"])
+@pytest.mark.parametrize("position", [0, -1])
+def test_rejects_mixed_ascii_and_non_ascii_inn_digits(value: str, position: int):
+    """A single non-ASCII digit must not be normalized by int()."""
+    digits = list(value)
+    digits[position] = chr(ord("\u0660") + int(digits[position]))
+    assert isinstance(ru_inn("".join(digits)), ValidationError)
