@@ -1,5 +1,9 @@
 """Russia."""
 
+# standard
+import re
+
+# local
 from validators.utils import validator
 
 
@@ -30,7 +34,7 @@ def ru_inn(value: str):
         - For 10-digit INN: checks 10th control digit
         - For 12-digit INN: checks both 11th and 12th control digits
     """
-    if not value:
+    if not value or not re.fullmatch(r"[0-9]+", value):
         return False
 
     try:
