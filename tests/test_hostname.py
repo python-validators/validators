@@ -171,3 +171,16 @@ def test_returns_true_on_valid_top_level_domain_hostname(value: str):
 def test_returns_failed_validation_on_invalid_top_level_domain_hostname(value: str):
     """Test returns failed validation on hostname with a TLD not allowed by IANA."""
     assert isinstance(hostname(value, consider_tld=True), ValidationError)
+
+
+@pytest.mark.parametrize("length", [1, 61, 62, 63, 64])
+@pytest.mark.parametrize("port", ["", ":8080"])
+@pytest.mark.parametrize("rfc_1034", [False, True])
+def test_simple_hostname_label_length(length: int, port: str, rfc_1034: bool):
+    """Allow single labels up to 63 characters, with optional dots and ports."""
+    value = "a" * length + ("." if rfc_1034 else "") + port
+    result = hostname(value, rfc_1034=rfc_1034)
+    if length <= 63:
+        assert result is True
+    else:
+        assert isinstance(result, ValidationError)

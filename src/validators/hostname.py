@@ -24,10 +24,10 @@ def _port_regex():
 @lru_cache
 def _simple_hostname_regex():
     """Simple hostname validation regex."""
-    # {0,59} because two characters are already matched at
-    # the beginning and at the end, making the range {1, 61}
+    # RFC 1035 limits each label to 63 octets. The first and last
+    # characters leave room for up to 61 characters in between.
     return re.compile(
-        r"^(?!-)[a-z0-9](?:[a-z0-9-]{0,59}[a-z0-9])?(?<!-)$", re.IGNORECASE | re.ASCII
+        r"^(?!-)[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?<!-)$", re.IGNORECASE | re.ASCII
     )
 
 
