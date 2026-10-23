@@ -217,3 +217,9 @@ def test_returns_true_on_valid_mir(value: str):
 def test_returns_failed_on_valid_mir(value: str):
     """Test returns failed on invalid Mir card (other payment systems)."""
     assert isinstance(mir(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["\u0664242424242424242", "424242424242424\u0662"])
+def test_card_number_rejects_non_ascii_digits(value: str):
+    """Test card_number does not accept digits of other scripts."""
+    assert isinstance(card_number(value), ValidationError)
