@@ -82,3 +82,23 @@ def test_returns_failed_validation_invalid_currency(
     assert isinstance(
         currency(value, skip_symbols=skip_symbols, ignore_case=ignore_case), ValidationError
     )
+
+
+@pytest.mark.parametrize("value", ["SLE", "XCG", "ZWG"])
+@pytest.mark.parametrize("skip_symbols", [True, False])
+def test_accepts_current_currency_codes(value: str, skip_symbols: bool):
+    """Accept the current Leone, Caribbean guilder and Zimbabwe Gold codes."""
+    assert currency(value, skip_symbols=skip_symbols) is True
+
+
+@pytest.mark.parametrize("value", ["sle", "xcg", "zwg"])
+def test_current_currency_codes_respect_ignore_case(value: str):
+    """Only accept lowercase currency codes when case-insensitive matching is enabled."""
+    assert isinstance(currency(value), ValidationError)
+    assert currency(value, ignore_case=True) is True
+
+
+@pytest.mark.parametrize("value", ["SLL", "ANG", "ZWL"])
+def test_preserves_legacy_currency_codes(value: str):
+    """Keep previously accepted codes when adding their current replacements."""
+    assert currency(value) is True
