@@ -35,7 +35,7 @@ def uuid(value: Union[str, UUID], /):
         return False
     if isinstance(value, UUID):
         return True
-    if isinstance(value, str) and not value.isascii():
+    if not value.isascii():
         # int(..., 16) inside UUID() also accepts digits of other scripts
         return False
     try:
