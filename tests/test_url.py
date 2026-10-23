@@ -299,3 +299,14 @@ def test_returns_true_on_valid_top_level_domain_url(value: str):
 def test_returns_failed_validation_on_invalid_top_level_domain_url(value: str):
     """Test returns failed validation on url with a TLD not allowed by IANA."""
     assert isinstance(url(value, consider_tld=True), ValidationError)
+
+
+@pytest.mark.parametrize("length", [61, 62, 63, 64])
+@pytest.mark.parametrize("port", ["", ":8080"])
+def test_url_simple_hostname_label_length(length: int, port: str):
+    """Apply the 63-character label limit to URLs allowing simple hosts."""
+    result = url("http://" + "a" * length + port + "/", simple_host=True)
+    if length <= 63:
+        assert result is True
+    else:
+        assert isinstance(result, ValidationError)
