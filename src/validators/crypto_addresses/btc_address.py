@@ -48,9 +48,10 @@ def btc_address(value: str, /):
     if not value:
         return False
 
-    return (
-        # segwit pattern
-        re.compile(r"^(bc|tb)[0-3][02-9ac-hj-np-z]{14,74}$").fullmatch(value)
-        if value[:2] in ("bc", "tb")
-        else _validate_old_btc_address(value)
-    )
+    if value[:2].lower() in ("bc", "tb"):
+        # BIP 173 allows uniform upper/lowercase, but never mixed case.
+        if not value.isascii() or not (value.islower() or value.isupper()):
+            return False
+        return re.fullmatch(r"(bc|tb)[0-3][02-9ac-hj-np-z]{14,74}", value.lower())
+
+    return _validate_old_btc_address(value)

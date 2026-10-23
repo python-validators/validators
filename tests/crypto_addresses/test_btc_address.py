@@ -41,3 +41,48 @@ def test_returns_true_on_valid_btc_address(value: str):
 def test_returns_failed_validation_on_invalid_btc_address(value: str):
     """Test returns failed validation on invalid btc address."""
     assert isinstance(btc_address(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4",
+        "tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx",
+        "bc1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3qccfmv3",
+        "tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sl5k7",
+    ],
+)
+def test_segwit_accepts_uniform_case(value: str):
+    """Accept lowercase and uppercase mainnet and testnet SegWit addresses."""
+    assert btc_address(value) is True
+    assert btc_address(value.upper()) is True
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "BC1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4",
+        "bc1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4",
+        "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4".replace("q", "Q", 1),
+        "TB1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx",
+        "tb1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KXPJZSX",
+        "tb1qrp33g0q5c5txsp9arysrx4k6zdkfs4nce4xj0gdcccefvpysxf3q0sL5k7",
+    ],
+)
+def test_segwit_rejects_mixed_case(value: str):
+    """Do not accept a case change confined to the prefix or data part."""
+    assert isinstance(btc_address(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4\n",
+        "BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4\n",
+        "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4".replace("k", "\u212a"),
+        "BC1QW508D6QEJXTDG4Y5R3ZARVARY0C5XW7KV8F3T4".replace("K", "\u212a"),
+    ],
+)
+def test_segwit_rejects_non_ascii_and_trailing_characters(value: str):
+    """Case normalization must not admit Unicode lookalikes or trailing text."""
+    assert isinstance(btc_address(value), ValidationError)
