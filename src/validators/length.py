@@ -33,9 +33,7 @@ def length(value: str, /, *, min_val: Union[int, None] = None, max_val: Union[in
     Returns:
         (Literal[True]): If `len(value)` is in between the given conditions.
         (ValidationError): If `len(value)` is not in between the given conditions.
-
-    Raises:
-        (ValueError): If either `min_val` or `max_val` is negative.
+        (ValidationError): If either `min_val` or `max_val` is negative.
     """
     if min_val is not None and min_val < 0:
         raise ValueError("Length cannot be negative. `min_val` is less than zero.")

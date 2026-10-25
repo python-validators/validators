@@ -87,9 +87,7 @@ def domain(
     Returns:
         (Literal[True]): If `value` is a valid domain name.
         (ValidationError): If `value` is an invalid domain name.
-
-    Raises:
-        (UnicodeError): If `value` cannot be encoded into `idna` or decoded into `utf-8`.
+        (ValidationError): If `value` cannot be encoded into `idna` or decoded into `utf-8`.
     """
     if not value:
         return False
