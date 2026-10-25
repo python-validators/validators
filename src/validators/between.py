@@ -53,10 +53,7 @@ def between(
     Returns:
         (Literal[True]): If `value` is in between the given conditions.
         (ValidationError): If `value` is not in between the given conditions.
-
-    Raises:
-        (ValueError): If `min_val` is greater than `max_val`.
-        (TypeError): If there's a type mismatch during comparison.
+        (ValidationError): If `min_val` is greater than `max_val` or the values cannot be compared.
 
     Note:
         - `PossibleValueTypes` = `TypeVar("PossibleValueTypes", int, float, str, datetime, None)`
