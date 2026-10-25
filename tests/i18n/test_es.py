@@ -63,6 +63,21 @@ def test_returns_true_on_valid_nie(value: str):
     assert es_nie(value)
 
 
+@pytest.mark.parametrize("validate", [es_nie, es_doi])
+@pytest.mark.parametrize("value", ["X0095892M", "Y2584969J", "Z2915723H"])
+def test_nie_accepts_lowercase_prefix(validate: Callable[[str], object], value: str):
+    """Accept lowercase NIE prefixes consistently with NIF and CIF letters."""
+    assert validate(value[0].lower() + value[1:]) is True
+    assert validate(value.lower()) is True
+
+
+@pytest.mark.parametrize("validate", [es_nie, es_doi])
+@pytest.mark.parametrize("value", ["x0095892x", "y2584969x", "z2915723x"])
+def test_lowercase_nie_still_checks_checksum(validate: Callable[[str], object], value: str):
+    """Do not accept an invalid checksum after normalizing the prefix."""
+    assert isinstance(validate(value), ValidationError)
+
+
 @pytest.mark.parametrize(
     ("value",),
     [
