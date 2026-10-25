@@ -11,6 +11,8 @@ from .utils import validator
 def base16(value: str, /):
     """Return whether or not given value is a valid base16 encoding.
 
+    Each encoded byte requires two hexadecimal characters.
+
     Examples:
         >>> base16('a3f4b2')
         True
@@ -25,7 +27,7 @@ def base16(value: str, /):
         (Literal[True]): If `value` is a valid base16 encoding.
         (ValidationError): If `value` is an invalid base16 encoding.
     """
-    return re.fullmatch(r"^[0-9A-Fa-f]+$", value) if value else False
+    return re.fullmatch(r"(?:[0-9A-Fa-f]{2})+", value) if value else False
 
 
 @validator
@@ -46,7 +48,15 @@ def base32(value: str, /):
         (Literal[True]): If `value` is a valid base32 encoding.
         (ValidationError): If `value` is an invalid base32 encoding.
     """
-    return re.fullmatch(r"^[A-Z2-7]+=*$", value) if value else False
+    return (
+        re.fullmatch(
+            r"(?:[A-Z2-7]{8})*(?:[A-Z2-7]{2}(?:={6})?|[A-Z2-7]{4}(?:={4})?|"
+            r"[A-Z2-7]{5}(?:={3})?|[A-Z2-7]{7}=?)?",
+            value,
+        )
+        if value
+        else False
+    )
 
 
 @validator

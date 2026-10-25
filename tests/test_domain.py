@@ -47,6 +47,11 @@ def test_returns_true_on_valid_domain(value: str, rfc_1034: bool, rfc_2782: bool
         ("example_.com", True, False, True),
         ("somerandomexample.xn--fiqs8s", True, False, False),
         ("somerandomexample.onion", True, False, False),
+        # delegated 2026-07-23
+        ("somerandomexample.web", True, False, False),
+        ("пример.рф", True, False, False),
+        ("пример.рф.", True, True, False),
+        ("例子.中国", True, False, False),
     ],
 )
 def test_returns_true_on_valid_top_level_domain(
@@ -100,6 +105,9 @@ def test_returns_failed_validation_on_invalid_domain(value: str, rfc_1034: bool,
         ("_example.#13", True, False, True),
         ("example_.fo-ul", True, False, True),
         ("somerandomexample.xn-n-fiqs8s", True, False, False),
+        # retired from the root zone
+        ("somerandomexample.goo", True, False, False),
+        ("пример.рфы", True, False, False),
     ],
 )
 def test_returns_failed_validation_invalid_top_level_domain(
@@ -167,3 +175,65 @@ def test_returns_true_on_domain_within_rfc_length_limits(value: str):
 def test_returns_failed_validation_on_domain_beyond_rfc_limits(value: str):
     """Test returns failed validation on domain beyond RFC limits."""
     assert isinstance(domain(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        # IDNA 2003 maps these to "example.com"; see `_relies_on_idna_mapping`
+        "example.\uff43\uff4f\uff4d",  # fullwidth letters
+        "\uff45\uff58\uff41\uff4d\uff50\uff4c\uff45.com",
+        "example.\u217dom",  # small roman numeral one hundred
+        "\u212aelvin.com",  # Kelvin sign
+        "\u017fhop.com",  # long s
+        "example\u3002com",  # ideographic full stop
+        "example\uff0ecom",  # fullwidth full stop
+        "example\uff61com",  # halfwidth ideographic full stop
+        "exam\u00adple.com",  # soft hyphen
+        "example.co\u200bm",  # zero width space
+        "exa\u200dmple.com",  # zero width joiner
+        "exam\ufe0fple.com",  # variation selector
+        "examp\u2060le.com",  # word joiner
+        "\ufeffexample.com",  # zero width no-break space
+        "exämple.com".replace("ä", "a\u0308"),  # not NFC
+    ],
+)
+@pytest.mark.parametrize("consider_tld", [False, True])
+def test_returns_failed_validation_on_idna_mapped_lookalike(value: str, consider_tld: bool):
+    """Test returns failed validation on names that only IDNA 2003 mapping makes valid."""
+    assert isinstance(domain(value, consider_tld=consider_tld), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    ["пример.рф", "ПРИМЕР.РФ", "例子.中国", "kräuter.com", "straße.de", "ς.gr", "εχαμπλε.gr"],
+)
+def test_returns_true_on_idn_without_lookalike_mapping(value: str):
+    """Test returns true on internationalized names that need no lossy mapping."""
+    assert domain(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "10.0.0.\u0661",  # Arabic-Indic one; looks like 10.0.0.1
+        "example.\u0661\u0662\u0663",
+        "example.\u0968",  # Devanagari two
+        "123.5.77.\u06688",  # Arabic-Indic and ASCII digits
+    ],
+)
+@pytest.mark.parametrize("rfc_1034", [False, True])
+def test_returns_failed_validation_on_all_numeric_idn_tld(value: str, rfc_1034: bool):
+    """Test returns failed validation on a TLD made only of digits from any script."""
+    assert isinstance(domain(value, rfc_1034=rfc_1034), ValidationError)
+
+
+def test_returns_failed_validation_on_all_numeric_idn_tld_with_trailing_dot():
+    """Test returns failed validation on an all-numeric IDN TLD followed by a trailing dot."""
+    assert isinstance(domain("example.\u0661.", rfc_1034=True), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["\u0661\u0662.com", "example.\u0661a", "1.example.com"])
+def test_returns_true_on_digits_outside_or_mixed_in_tld(value: str):
+    """Test returns true when digits appear only in other labels or alongside letters."""
+    assert domain(value)

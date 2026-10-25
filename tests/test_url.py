@@ -232,3 +232,70 @@ def test_returns_failed_validation_on_invalid_private_url(value: str, private: O
 def test_returns_string_for_valid_file_url(value: str):
     """Test returns true on valid file url. Ref: RFC 8089."""
     assert url(value)
+
+
+@pytest.mark.parametrize("control", [chr(code) for code in range(32)] + ["\x7f"])
+@pytest.mark.parametrize(
+    "template",
+    [
+        "{control}https://example.com/",
+        "https://user{control}@example.com/",
+        "https://example.com/a{control}b",
+        "https://example.com/?q=a{control}b",
+        "https://example.com/#a{control}b",
+    ],
+)
+def test_url_rejects_raw_ascii_controls(control: str, template: str):
+    """Reject raw control characters before URL parsing can discard them."""
+    assert isinstance(url(template.format(control=control)), ValidationError)
+
+
+@pytest.mark.parametrize("encoded", ["%00", "%09", "%0A", "%1F", "%7F"])
+@pytest.mark.parametrize(
+    "template", ["https://example.com/a{encoded}b", "https://example.com/?q=a{encoded}b"]
+)
+def test_url_accepts_percent_encoded_controls(encoded: str, template: str):
+    """Keep escaped data valid while rejecting literal control characters."""
+    assert url(template.format(encoded=encoded)) is True
+
+
+@pytest.mark.parametrize(
+    "value",
+    ["https://example.\uff43\uff4f\uff4d/", "https://exam\u00adple.com/", "http://\u017ferver/"],
+)
+def test_returns_failed_validation_on_idna_mapped_lookalike_url(value: str):
+    """Test returns failed validation on url hosts that only IDNA 2003 mapping makes valid."""
+    assert isinstance(url(value, simple_host=True), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["http://10.0.0.\u0661/", "https://192.168.1.\u0661:8080/"])
+@pytest.mark.parametrize("private", [None, False, True])
+def test_returns_failed_validation_on_ipv4_lookalike_url(value: str, private: Optional[bool]):
+    """Test returns failed validation on hosts that only look like an IPv4 address."""
+    assert isinstance(url(value, private=private), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "https://example.com/path",
+        "https://xn--e1afmkfd.xn--p1ai/",
+        "https://пример.рф/",
+        "http://例子.中国:8080/index.html",
+    ],
+)
+def test_returns_true_on_valid_top_level_domain_url(value: str):
+    """Test returns true on url with a TLD allowed by IANA."""
+    assert url(value, consider_tld=True)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "https://example.flat/",
+        "https://пример.рфы/",
+    ],
+)
+def test_returns_failed_validation_on_invalid_top_level_domain_url(value: str):
+    """Test returns failed validation on url with a TLD not allowed by IANA."""
+    assert isinstance(url(value, consider_tld=True), ValidationError)

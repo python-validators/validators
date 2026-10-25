@@ -85,3 +85,16 @@ def test_returns_true_on_valid_department(value: Union[str, int]):
 def test_returns_failed_validation_on_invalid_department(value: Union[str, int]):
     """Test returns failed validation on invalid department."""
     assert isinstance(fr_department(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "1 \u06684 12 76 451 089 46",  # Arabic-Indic digit
+        "1 84 12 76 451 089 \uff146",  # fullwidth digit
+        "1\u00a084 12 76 451 089 46",  # no-break space
+    ],
+)
+def test_returns_failed_validation_on_non_ascii_digits_or_spaces_in_ssn(value: str):
+    """Test returns failed validation on digits or spaces outside ASCII."""
+    assert isinstance(fr_ssn(value), ValidationError)

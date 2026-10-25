@@ -38,6 +38,12 @@ def test_returns_failed_validation_on_invalid_base16(value: str):
     assert isinstance(base16(value), ValidationError)
 
 
+@pytest.mark.parametrize("value", ["0", "a", "ABC", "012345678", "abcdef01234567890"])
+def test_base16_rejects_incomplete_bytes(value: str):
+    """Reject a dangling half-byte even when every character is hexadecimal."""
+    assert isinstance(base16(value), ValidationError)
+
+
 # ==> base32 <== #
 
 
@@ -130,3 +136,16 @@ def test_encoding_rejects_trailing_characters(
 ):
     """Reject characters outside the encoded value."""
     assert isinstance(validate(value + suffix), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["A", "AAA", "AAAAAA", "AB=", "AB===", "AB=======", "ABCDEFGH="])
+def test_base32_rejects_invalid_length_and_padding(value: str):
+    """Reject symbol counts and padding that cannot encode whole bytes."""
+    assert isinstance(base32(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["MY======", "MZXQ====", "MZXW6===", "MZXW6YQ=", "MZXW6YTB"])
+def test_base32_accepts_valid_final_quanta(value: str):
+    """Accept each legal final quantum with or without padding."""
+    assert base32(value) is True
+    assert base32(value.rstrip("=")) is True

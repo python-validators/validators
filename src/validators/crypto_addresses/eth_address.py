@@ -59,6 +59,6 @@ def eth_address(value: str, /):
     if not value:
         return False
 
-    return re.compile(r"^0x[0-9a-f]{40}$|^0x[0-9A-F]{40}$").match(
+    return re.compile(r"^0x[0-9a-f]{40}$|^0x[0-9A-F]{40}$").fullmatch(
         value
     ) or _validate_eth_checksum_address(value)
