@@ -135,7 +135,7 @@ def es_nie(value: str, /):
     """
     number_by_letter = {"X": "0", "Y": "1", "Z": "2"}
     # NIE must must start with X Y or Z
-    if value and value[0] in number_by_letter:
+    if value and value[0].upper() in number_by_letter:
         return _nif_nie_validation(value, number_by_letter)
     return False
 
