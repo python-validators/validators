@@ -21,6 +21,9 @@ from validators.i18n.fr import fr_department, fr_ssn
         ("2 99 05 2A 202 817 58",),
         ("2 99 05 2B 202 817 85",),
         ("2 99 05 971 12 817 70",),
+        ("2 99 05 971 12 817",),  # overseas department without control key
+        ("2 99 05 2A 202 817",),  # Corsica without control key
+        ("2 99 05 99 202 817",),  # foreign birthplace without control key
     ],
 )
 def test_returns_true_on_valid_ssn(value: str):
@@ -41,7 +44,10 @@ def test_returns_true_on_valid_ssn(value: str):
         ("1 84 12 00 451 089",),  # invalid department
         ("1 84 12 2C 451 089",),
         ("1 84 12 98 451 089",),  # invalid department
-        # ("1 84 12 971 451 089",), # ?
+        ("1 84 12 971 451 089",),  # three-digit department needs two-digit town
+        ("1 84 12 76 45 089",),  # two-digit department needs three-digit town
+        ("1 84 12 2A 45 089",),
+        ("1 84 12 99 45 089",),
     ],
 )
 def test_returns_failed_validation_on_invalid_ssn(value: str):

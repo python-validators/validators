@@ -102,14 +102,14 @@ def fr_ssn(value: str):
     if department != "99" and not fr_department(department):
         # 99 stands for foreign born people
         return False
-    if control_key is None:
-        # no control key provided, no additional check needed
-        return True
     if len(department) == len(groups[4]):
         # if the department number is 3 digits long (overseas departments),
         # the town number must be 2 digits long
         # and vice versa
         return False
+    if control_key is None:
+        # no control key provided, no additional check needed
+        return True
     if department in ("2A", "2B"):
         # Corsica's department numbers are not in the same range as the others
         # thus 2A and 2B are replaced by 19 and 18 respectively to compute the control key
