@@ -42,3 +42,8 @@ print(validators.email("someone@example.com"))
         raise ValidationError(func, _func_args_as_dict(func, *args, **kwargs))
     validators.utils.ValidationError: ValidationError(func=visa, args={'value': 'bad_visa_number'})
     ```
+
+The environment option raises at the outermost validation call. Nested validators
+return validation errors so a composite validator can try alternatives, such as
+checking an IP address after a domain check fails. Passing `r_ve=True` explicitly
+still raises even inside another validator.
