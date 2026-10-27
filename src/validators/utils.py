@@ -1,11 +1,43 @@
 """Utils."""
 
 # standard
+from contextvars import ContextVar
+from dataclasses import dataclass
 from functools import wraps
 from inspect import getfullargspec
 from itertools import chain
 from os import environ
+from sys import modules
+from threading import get_ident
 from typing import Any, Callable, Dict
+
+
+@dataclass
+class _ValidationScope:
+    """Track the lifetime, thread and task of an outermost validation call."""
+
+    thread_id: int
+    task_id: int | None
+    active: bool = True
+
+
+_validation_scope: ContextVar[_ValidationScope | None] = ContextVar(
+    "_validation_scope", default=None
+)
+
+
+def _current_task_id() -> int | None:
+    """Identify an active task without loading asyncio for synchronous callers."""
+    if "asyncio" not in modules:
+        return None
+
+    from asyncio import current_task
+
+    try:
+        task = current_task()
+    except RuntimeError:
+        return None
+    return id(task) if task is not None else None
 
 
 class ValidationError(Exception):
@@ -48,6 +80,9 @@ def validator(func: Callable[..., Any]):
     Whenever the given `func` returns `False` this
     decorator returns `ValidationError` object.
 
+    The environment option raises at the outermost validation call so nested
+    validators can try alternatives. An explicit `r_ve=True` always raises.
+
     Examples:
         >>> @validator
         ... def even(value):
@@ -73,8 +108,21 @@ def validator(func: Callable[..., Any]):
     @wraps(func)
     def wrapper(*args: Any, **kwargs: Any):
         raise_validation_error = bool(kwargs.pop("r_ve", False))
-        if environ.get("RAISE_VALIDATION_ERROR", "False") == "True":
-            raise_validation_error = True
+        scope = _validation_scope.get()
+        thread_id = get_ident()
+        task_id = _current_task_id()
+        if (
+            scope is None
+            or not scope.active
+            or scope.thread_id != thread_id
+            or scope.task_id != task_id
+        ):
+            if environ.get("RAISE_VALIDATION_ERROR", "False") == "True":
+                raise_validation_error = True
+            scope = _ValidationScope(thread_id, task_id)
+            token = _validation_scope.set(scope)
+        else:
+            token = None
 
         try:
             if raise_validation_error:
@@ -95,5 +143,9 @@ def validator(func: Callable[..., Any]):
                 ) from exp
             else:
                 return ValidationError(func, _func_args_as_dict(func, *args, **kwargs), str(exp))
+        finally:
+            if token is not None:
+                scope.active = False
+                _validation_scope.reset(token)
 
     return wrapper
