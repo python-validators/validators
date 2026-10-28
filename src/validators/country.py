@@ -299,7 +299,8 @@ def country_code(value: str, /, *, iso_format: str = "auto", ignore_case: bool =
     if not value:
         return False
 
-    if not (1 < len(value) < 4):
+    # str.upper() would map e.g. dotless i and long s onto ASCII letters
+    if not (1 < len(value) < 4) or not value.isascii():
         return False
 
     if iso_format == "auto" and (iso_format := _get_code_type(value)) == "invalid":
@@ -349,7 +350,8 @@ def currency(value: str, /, *, skip_symbols: bool = True, ignore_case: bool = Fa
     if not skip_symbols and value in _currency_symbols:
         return True
 
-    if len(value) != 3:
+    # str.upper() would map e.g. dotless i and long s onto ASCII letters
+    if len(value) != 3 or not value.isascii():
         return False
 
     return value.upper() in _currency_iso4217 if ignore_case else value in _currency_iso4217

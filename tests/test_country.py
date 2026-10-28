@@ -56,6 +56,22 @@ def test_returns_failed_validation_on_invalid_country_code(value: str, iso_forma
 
 
 @pytest.mark.parametrize(
+    ("value", "iso_format"),
+    [
+        ("\u0131t", "auto"),
+        ("\u017fe", "alpha2"),
+        ("\u0131ta", "auto"),
+        ("\ufb01N", "alpha3"),
+    ],
+)
+def test_returns_failed_validation_on_non_ascii_case_equivalent_country_code(
+    value: str, iso_format: str
+):
+    """Test returns failed validation when Unicode case mapping yields an ASCII code."""
+    assert isinstance(country_code(value, iso_format=iso_format, ignore_case=True), ValidationError)
+
+
+@pytest.mark.parametrize(
     ("value", "skip_symbols", "ignore_case"),
     [("$", False, False), ("⃀", False, False), ("৳", False, False), ("uSd", True, True)],
 )
@@ -73,6 +89,8 @@ def test_returns_true_on_valid_currency(value: str, skip_symbols: bool, ignore_c
         ("⃀৳", False, False),
         ("uSd", True, False),
         ("Bucks", True, True),
+        ("u\u017fd", True, True),
+        ("\u0131ls", True, True),
     ],
 )
 def test_returns_failed_validation_invalid_currency(
