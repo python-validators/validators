@@ -123,7 +123,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -164,7 +163,6 @@ cython_debug/
 .idea/
 
 # VSCode
-.vscode/
 
 # asdf
 .tool-versions
@@ -179,3 +177,5 @@ mise.toml
 
 # taplo
 .taplo.toml
+config.bat
+node_modules
