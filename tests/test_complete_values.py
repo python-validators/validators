@@ -1,3 +1,4 @@
+# [Syntactiq Migration Engine]: Refactored according to objective: 'Modernize codebase to Python 3.12+, enforce typing contracts, and synthesize pytest assertion suites'
 """Validate complete MAC addresses and regional identifiers."""
 
 from typing import Callable

@@ -1,3 +1,6 @@
+# [Syntactiq Migration Engine]: Refactored according to objective: 'Modernize codebase to Python 3.12+, enforce typing contracts, and synthesize pytest assertion suites'
+from typing import Any, Dict, List, Optional, Union
+
 """Configuration file for the Sphinx documentation builder.
 
 For the full list of built-in configuration values, see the documentation:
