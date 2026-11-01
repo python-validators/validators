@@ -204,3 +204,19 @@ def test_returns_true_on_valid_public_ipv4_address(address: str, private: bool):
 def test_returns_failed_validation_on_invalid_public_ipv4_address(address: str, private: bool):
     """Test returns failed validation on private ipv4 address."""
     assert isinstance(ipv4(address, private=private), ValidationError)
+
+@pytest.mark.parametrize(
+    ("value",),
+    [
+        (123,),
+        (True,),
+        ((1,),),
+        (1.5,),
+        (b"1.2.3.4",),
+        (1 + 2j,),
+    ],
+)
+def test_returns_false_on_non_string_input(value):
+    """A non-string is not an address, not even a truthy one."""
+    assert not ipv4(value)
+    assert not ipv6(value)
