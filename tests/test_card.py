@@ -17,7 +17,7 @@ from validators import (
     visa,
 )
 
-visa_cards = ["4242424242424242", "4000002760003184"]
+visa_cards = ["4242424242424242", "4000002760003184", "4000000000000000006"]
 mastercard_cards = ["5555555555554444", "2223003122003222"]
 amex_cards = ["378282246310005", "371449635398431"]
 unionpay_cards = ["6200000000000005"]
@@ -61,6 +61,22 @@ def test_returns_failed_on_valid_card_number(value: str):
 def test_returns_true_on_valid_visa(value: str):
     """Test returns true on valid visa."""
     assert visa(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    ["400000000000006", "40000000000000006", "400000000000000002", "40000000000000000002"],
+)
+def test_visa_rejects_unsupported_lengths(value: str):
+    """Reject unsupported lengths even when the checksum and prefix match."""
+    assert card_number(value) is True
+    assert isinstance(visa(value), ValidationError)
+
+
+@pytest.mark.parametrize("value", ["4000000000000000000", "4000000000000000007"])
+def test_visa_rejects_bad_checksum_at_nineteen_digits(value: str):
+    """A supported length must not bypass the Luhn check."""
+    assert isinstance(visa(value), ValidationError)
 
 
 @pytest.mark.parametrize(
