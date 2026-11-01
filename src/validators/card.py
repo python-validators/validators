@@ -42,7 +42,7 @@ def card_number(value: str, /):
 
 @validator
 def visa(value: str, /):
-    """Return whether or not given value is a valid Visa card number.
+    """Return whether or not given value is a valid 16- or 19-digit Visa card number.
 
     Examples:
         >>> visa('4242424242424242')
@@ -59,7 +59,7 @@ def visa(value: str, /):
         (ValidationError): If `value` is an invalid Visa card number.
     """
     pattern = re.compile(r"^4")
-    return card_number(value) and len(value) == 16 and pattern.match(value)
+    return card_number(value) and len(value) in (16, 19) and pattern.match(value)
 
 
 @validator
