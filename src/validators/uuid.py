@@ -35,9 +35,9 @@ def uuid(value: Union[str, UUID], /):
         return False
     if isinstance(value, UUID):
         return True
-    try:
-        return UUID(value) or re.match(
-            r"^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$", value
-        )
-    except ValueError:
-        return False
+    # Not UUID(value): it drops hyphens wherever they are and reads the rest with int(),
+    # which also takes "0x", signs, underscores, surrounding spaces and non-ASCII digits.
+    return re.fullmatch(
+        r"(?:urn:uuid:)?(\{)?[0-9a-fA-F]{8}(-?)(?:[0-9a-fA-F]{4}\2){3}[0-9a-fA-F]{12}(?(1)\})",
+        value,
+    )
