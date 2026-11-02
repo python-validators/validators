@@ -37,3 +37,16 @@ def test_returns_true_on_valid_uuid(value: Union[str, UUID]):
 def test_returns_failed_validation_on_invalid_uuid(value: Union[str, UUID]):
     """Test returns failed validation on invalid uuid."""
     assert isinstance(uuid(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("value",),
+    [
+        ("\u0662bc1c94f-0deb-43e9-92a1-4775189ec9f8",),
+        ("2bc1c94f-0deb-43e9-92a1-4775189ec9f\u0668",),
+        ("\u0662bc1c94f0deb43e992a14775189ec9f8",),
+    ],
+)
+def test_returns_failed_validation_on_non_ascii_digits_in_uuid(value: str):
+    """Test returns failed validation when a script other than ASCII supplies the digits."""
+    assert isinstance(uuid(value), ValidationError)

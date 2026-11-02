@@ -35,6 +35,9 @@ def uuid(value: Union[str, UUID], /):
         return False
     if isinstance(value, UUID):
         return True
+    if not value.isascii():
+        # int(..., 16) inside UUID() also accepts digits of other scripts
+        return False
     try:
         return UUID(value) or re.match(
             r"^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$", value
