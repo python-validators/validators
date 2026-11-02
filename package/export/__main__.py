@@ -1,7 +1,6 @@
 """Generate docs."""
 
 # standard
-import utils.session
 from ast import ImportFrom, parse
 from os.path import getsize
 from pathlib import Path
