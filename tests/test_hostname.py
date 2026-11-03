@@ -171,3 +171,8 @@ def test_returns_true_on_valid_top_level_domain_hostname(value: str):
 def test_returns_failed_validation_on_invalid_top_level_domain_hostname(value: str):
     """Test returns failed validation on hostname with a TLD not allowed by IANA."""
     assert isinstance(hostname(value, consider_tld=True), ValidationError)
+
+
+def test_returns_validation_error_for_non_string():
+    assert not hostname(12345)
+    assert not hostname(["a"])

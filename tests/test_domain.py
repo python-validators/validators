@@ -237,3 +237,8 @@ def test_returns_failed_validation_on_all_numeric_idn_tld_with_trailing_dot():
 def test_returns_true_on_digits_outside_or_mixed_in_tld(value: str):
     """Test returns true when digits appear only in other labels or alongside letters."""
     assert domain(value)
+
+
+def test_returns_validation_error_for_non_string():
+    assert not domain(12345)
+    assert not domain(["a"])
