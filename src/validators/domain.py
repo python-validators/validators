@@ -91,7 +91,7 @@ def domain(
     Raises:
         (UnicodeError): If `value` cannot be encoded into `idna` or decoded into `utf-8`.
     """
-    if not value:
+    if not isinstance(value, str) or not value:
         return False
 
     try:

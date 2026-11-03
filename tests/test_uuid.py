@@ -37,3 +37,8 @@ def test_returns_true_on_valid_uuid(value: Union[str, UUID]):
 def test_returns_failed_validation_on_invalid_uuid(value: Union[str, UUID]):
     """Test returns failed validation on invalid uuid."""
     assert isinstance(uuid(value), ValidationError)
+
+
+def test_returns_validation_error_for_non_string():
+    assert not uuid(12345)
+    assert not uuid(["a"])

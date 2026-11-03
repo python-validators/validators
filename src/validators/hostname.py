@@ -112,7 +112,7 @@ def hostname(
         (Literal[True]): If `value` is a valid hostname.
         (ValidationError): If `value` is an invalid hostname.
     """
-    if not value:
+    if not isinstance(value, str) or not value:
         return False
 
     def _matches_simple_hostname(host: str):
