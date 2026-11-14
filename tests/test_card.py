@@ -1,5 +1,8 @@
 """Test Card."""
 
+# standard
+from collections.abc import Callable
+
 # external
 import pytest
 
@@ -54,6 +57,34 @@ def test_returns_true_on_valid_card_number(value: str):
 )
 def test_returns_failed_on_valid_card_number(value: str):
     """Test returns failed on valid card number."""
+    assert isinstance(card_number(value), ValidationError)
+
+
+@pytest.mark.parametrize("zero", ["\u0660", "\uff10"])
+@pytest.mark.parametrize(
+    ("validate", "value"),
+    [
+        (card_number, "4242424242424242"),
+        (visa, visa_cards[0]),
+        (mastercard, mastercard_cards[0]),
+        (amex, amex_cards[0]),
+        (unionpay, unionpay_cards[0]),
+        (diners, diners_cards[0]),
+        (jcb, jcb_cards[0]),
+        (discover, discover_cards[0]),
+        (mir, mir_cards[0]),
+    ],
+)
+def test_rejects_non_ascii_card_digits(validate: Callable[[str], object], value: str, zero: str):
+    """Reject Unicode digits even when an ASCII issuer prefix is retained."""
+    non_ascii_digit = chr(ord(zero) + int(value[-1]))
+    assert isinstance(validate(value[:-1] + non_ascii_digit), ValidationError)
+
+
+@pytest.mark.parametrize("zero", ["\u0660", "\uff10"])
+def test_rejects_all_non_ascii_card_digits(zero: str):
+    """Reject a Luhn-valid card number made entirely of Unicode digits."""
+    value = "".join(chr(ord(zero) + int(digit)) for digit in visa_cards[0])
     assert isinstance(card_number(value), ValidationError)
 
 
