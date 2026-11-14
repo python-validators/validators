@@ -29,7 +29,7 @@ def card_number(value: str, /):
         (Literal[True]): If `value` is a valid generic card number.
         (ValidationError): If `value` is an invalid generic card number.
     """
-    if not value:
+    if not value or not value.isascii():
         return False
     try:
         digits = list(map(int, value))
