@@ -168,7 +168,7 @@ def jcb(value: str, /):
         (Literal[True]): If `value` is a valid JCB card number.
         (ValidationError): If `value` is an invalid JCB card number.
     """
-    pattern = re.compile(r"^35")
+    pattern = re.compile(r"^35(?:2[89]|[3-8][0-9])")
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
@@ -190,7 +190,9 @@ def discover(value: str, /):
         (Literal[True]): If `value` is a valid Discover card number.
         (ValidationError): If `value` is an invalid Discover card number.
     """
-    pattern = re.compile(r"^(60|64|65)")
+    pattern = re.compile(
+        r"^(6011|64[4-9]|65|622(?:12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[01][0-9]|92[0-5]))"
+    )
     return card_number(value) and len(value) == 16 and pattern.match(value)
 
 
