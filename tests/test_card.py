@@ -217,3 +217,68 @@ def test_returns_true_on_valid_mir(value: str):
 def test_returns_failed_on_valid_mir(value: str):
     """Test returns failed on invalid Mir card (other payment systems)."""
     assert isinstance(mir(value), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value, expected",
+    [
+        ("6010000000000005", False),
+        ("6011000000000004", True),
+        ("6012000000000003", False),
+        ("6020000000000003", False),
+        ("6040000000000009", False),
+        ("6400000000000003", False),
+        ("6430000000000007", False),
+        ("6440000000000005", True),
+        ("6490000000000004", True),
+        ("6500000000000002", True),
+        ("6600000000000001", False),
+        ("6221250000000001", False),
+        ("6221260000000000", True),
+        ("6229250000000003", True),
+        ("6229260000000002", False),
+    ],
+)
+def test_discover_issuer_boundaries(value: str, expected: bool):
+    """Check Discover IIN boundaries using synthetic, Luhn-valid numbers."""
+    assert card_number(value) is True
+    result = discover(value)
+    if expected:
+        assert result is True
+    else:
+        assert isinstance(result, ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value, expected",
+    [
+        ("3500000000000009", False),
+        ("3527000000000008", False),
+        ("3528000000000007", True),
+        ("3530000000000003", True),
+        ("3579000000000005", True),
+        ("3580000000000002", True),
+        ("3589000000000003", True),
+        ("3590000000000000", False),
+        ("3599000000000001", False),
+    ],
+)
+def test_jcb_issuer_boundaries(value: str, expected: bool):
+    """Check the inclusive 3528-3589 JCB range with valid checksums."""
+    assert card_number(value) is True
+    result = jcb(value)
+    if expected:
+        assert result is True
+    else:
+        assert isinstance(result, ValidationError)
+
+
+@pytest.mark.parametrize("value", ["6011000000000000", "6221260000000001"])
+def test_discover_rejects_invalid_checksums_in_valid_ranges(value: str):
+    """Keep checksum validation for accepted Discover prefixes."""
+    assert isinstance(discover(value), ValidationError)
+
+
+def test_jcb_rejects_invalid_checksum_in_valid_range():
+    """Keep checksum validation for accepted JCB prefixes."""
+    assert isinstance(jcb("3528000000000000"), ValidationError)
