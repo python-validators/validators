@@ -39,6 +39,11 @@ def test_returns_true_on_valid_eth_address(value: str):
         "validators.eth",
         # non-hex characters (the checksum path used to accept these)
         "0x" + "*" * 40,
+        # checksum addresses without the 0x prefix or with extra 0x markers
+        "5AEDA56215b167893e80B4fE645BA6d5Bab767DE",
+        "0x0x5AEDA56215b167893e80B4fE645BA6d5Bab767DE",
+        "0x5AEDA56215b1670x893e80B4fE645BA6d5Bab767DE",
+        "0x5AEDA56215b167893e80B4fE645BA6d5Bab767DE0x",
     ],
 )
 def test_returns_failed_validation_on_invalid_eth_address(value: str):
