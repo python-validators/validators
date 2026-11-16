@@ -5,6 +5,10 @@ from .utils import validator
 
 
 def _validate_cron_item(item: str, min_val: int, max_val: int):
+    # str.isdecimal() and int() also accept digits outside cron's ASCII syntax.
+    if not item.isascii():
+        return False
+
     # An item may carry a step, e.g. "*/5", "1-30/2" or "5/10".
     if "/" in item:
         base, _, step = item.partition("/")
@@ -46,7 +50,7 @@ def cron(value: str, /):
 
     Args:
         value:
-            Cron string to validate.
+            Cron string to validate. Numeric fields use ASCII digits.
 
     Returns:
         (Literal[True]): If `value` is a valid cron string.
