@@ -9,7 +9,7 @@ from validators.utils import validator
 
 def _nif_nie_validation(value: str, number_by_letter: Dict[str, str]):
     """Validate if the doi is a NIF or a NIE."""
-    if len(value) != 9:
+    if len(value) != 9 or not value.isascii():
         return False
     value = value.upper()
     table = "TRWAGMYFPDXBNJZSQVHLCKE"
@@ -17,7 +17,7 @@ def _nif_nie_validation(value: str, number_by_letter: Dict[str, str]):
     # letter to the corresponding digit
     numbers = number_by_letter.get(value[0], value[0]) + value[1:8]
     # doi[8] is control
-    return numbers.isascii() and numbers.isdigit() and value[8] == table[int(numbers) % 23]
+    return numbers.isdigit() and value[8] == table[int(numbers) % 23]
 
 
 @validator
@@ -51,14 +51,14 @@ def es_cif(value: str, /):
         (Literal[True]): If `value` is a valid DOI string.
         (ValidationError): If `value` is an invalid DOI string.
     """
-    if not value or len(value) != 9:
+    if not value or len(value) != 9 or not value.isascii():
         return False
     value = value.upper()
     table = "JABCDEFGHI"
     first_chr = value[0]
     doi_body = value[1:8]
     control = value[8]
-    if not doi_body.isascii() or not doi_body.isdigit():
+    if not doi_body.isdigit():
         return False
     res = (
         10
