@@ -72,3 +72,17 @@ def test_rejects_newline_after_local_part(local_part: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
     assert isinstance(email(f"user@{domain_part}"), ValidationError)
+
+
+@pytest.mark.parametrize("local_part", ["a" * 64, "\u00fc" * 32, "a" * 62 + "\u00fc"])
+def test_accepts_local_part_at_utf8_byte_limit(local_part: str):
+    """Test local parts at the 64-octet SMTP boundary."""
+    assert len(local_part.encode("utf-8")) == 64
+    assert email(f"{local_part}@example.com") is True
+
+
+@pytest.mark.parametrize("local_part", ["a" * 65, "\u00fc" * 33, "a" * 63 + "\u00fc"])
+def test_rejects_local_part_over_utf8_byte_limit(local_part: str):
+    """Test that Unicode characters cannot exceed the SMTP octet limit."""
+    assert len(local_part.encode("utf-8")) > 64
+    assert isinstance(email(f"{local_part}@example.com"), ValidationError)
