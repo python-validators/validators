@@ -60,8 +60,8 @@ def email(
 
     username_part, domain_part = value.rsplit("@", 1)
 
-    if len(username_part) > 64 or len(domain_part) > 253:
-        # ref: RFC 1034 and 5231
+    if len(username_part.encode("utf-8")) > 64 or len(domain_part) > 253:
+        # ref: RFC 5321 section 4.5.3.1.1 (octets) and RFC 1034
         return False
 
     if ipv6_address or ipv4_address:
