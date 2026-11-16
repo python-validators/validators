@@ -153,3 +153,25 @@ def test_spanish_identifiers_reject_non_ascii_digits(
     translated = value[:-1].translate(str.maketrans("0123456789", digits)) + value[-1]
     assert validate(value) is True
     assert isinstance(validate(translated), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "validate,value,malformed",
+    [
+        (es_nif, "00000038S", "00000038\u017f"),
+        (es_nif, "00000038S", "00000038\u00df"),
+        (es_nie, "X0000038S", "X0000038\u017f"),
+        (es_nie, "X0000038S", "X0000038\u00df"),
+        (es_cif, "S0000000J", "\u017f0000000J"),
+        (es_doi, "00000038S", "00000038\u017f"),
+        (es_doi, "X0000038S", "X0000038\u00df"),
+        (es_doi, "S0000000J", "\u017f0000000J"),
+    ],
+)
+def test_spanish_identifiers_reject_non_ascii_letters(
+    validate: Callable[[str], object], value: str, malformed: str
+):
+    """Case conversion must not turn non-ASCII letters into valid identifiers."""
+    assert validate(value) is True
+    assert validate(value[:-1] + value[-1].lower()) is True
+    assert isinstance(validate(malformed), ValidationError)
