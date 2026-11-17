@@ -80,6 +80,12 @@ def test_returns_true_on_valid_department(value: Union[str, int]):
         ("96",),
         ("20",),
         (20,),
+        (" 75",),
+        ("75\n",),
+        ("+75",),
+        ("7_5",),
+        ("７５",),  # fullwidth digits
+        ("٧٥",),  # Arabic-Indic digits
     ],
 )
 def test_returns_failed_validation_on_invalid_department(value: Union[str, int]):

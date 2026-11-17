@@ -57,10 +57,10 @@ def fr_department(value: typing.Union[str, int]):
     if isinstance(value, str):
         if value in ("2A", "2B"):  # Corsica
             return True
-        try:
-            value = int(value)
-        except ValueError:
+        # int() also takes signs, underscores, surrounding whitespace and non-ASCII digits
+        if not re.fullmatch(r"[0-9]+", value):
             return False
+        value = int(value)
     return 1 <= value <= 19 or 21 <= value <= 95 or 971 <= value <= 976  # Overseas departments
 
 
