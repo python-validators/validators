@@ -92,7 +92,10 @@ def email(
             # quoted-string
             + r'|^"('
             + r"[\u0100-\u017F\u0180-\u024F\u00A0-\u00FF\001-\010\013\014\016-\037"
-            + r"!#-\[\]-\177]|\\[\011.]"
+            # quoted-pair: a backslash followed by a tab or any printable ASCII
+            # character (RFC 5322 section 3.2.1); (?-i:...) keeps case-insensitive
+            # matching from also admitting non-ASCII characters such as the Kelvin sign
+            + r"!#-\[\]-\177]|\\(?-i:[\011\040-\176])"
             + r')*")$',
             username_part,
             re.IGNORECASE,
