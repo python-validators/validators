@@ -204,3 +204,19 @@ def test_returns_true_on_valid_public_ipv4_address(address: str, private: bool):
 def test_returns_failed_validation_on_invalid_public_ipv4_address(address: str, private: bool):
     """Test returns failed validation on private ipv4 address."""
     assert isinstance(ipv4(address, private=private), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("address", "is_private"),
+    [
+        ("172.15.255.255", False),
+        ("172.16.0.0", True),
+        ("172.31.255.255", True),
+        ("172.32.0.0", False),
+    ],
+)
+@pytest.mark.parametrize("cidr", [True, False])
+def test_ipv4_private_172_range_boundaries(address: str, is_private: bool, cidr: bool):
+    """Test both private filters at the boundaries of 172.16.0.0/12."""
+    assert ipv4(address, cidr=cidr, private=is_private) is True
+    assert isinstance(ipv4(address, cidr=cidr, private=not is_private), ValidationError)
