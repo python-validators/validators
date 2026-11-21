@@ -73,3 +73,19 @@ def test_rejects_raw_ascii_controls_and_spaces_in_uri(value: str, invalid_char: 
 def test_accepts_percent_encoded_characters_in_uri(value: str):
     """Test accepts percent encoded characters in URI."""
     assert uri(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "HTTP://EXAMPLE.COM",
+        "Https://example.com/path",
+        "MAILTO:user@example.com",
+        "FILE:///tmp/readme.txt",
+        "Telnet://example.com:23",
+        "URN:isbn:9780140328721",
+    ],
+)
+def test_accepts_scheme_in_any_case(value: str):
+    """Test schemes are case-insensitive (RFC 3986 3.1)."""
+    assert uri(value)
