@@ -16,10 +16,20 @@ def _decode_base58(addr: str):
 
 def _validate_old_btc_address(addr: str):
     """Validate P2PKH and P2SH type address."""
-    if len(addr) not in range(25, 35):
+    if not re.fullmatch(
+        r"1[1-9A-HJ-NP-Za-km-z]{24,33}"
+        r"|[3mn][1-9A-HJ-NP-Za-km-z]{33}"
+        r"|2[1-9A-HJ-NP-Za-km-z]{34}",
+        addr,
+    ):
         return False
-    decoded_bytes = _decode_base58(addr).to_bytes(25, "big")
+    try:
+        decoded_bytes = _decode_base58(addr).to_bytes(25, "big")
+    except OverflowError:
+        return False
     header, checksum = decoded_bytes[:-4], decoded_bytes[-4:]
+    if header[0] not in {0x00, 0x05, 0x6F, 0xC4}:
+        return False
     return checksum == sha256(sha256(header).digest()).digest()[:4]
 
 
@@ -49,8 +59,12 @@ def btc_address(value: str, /):
         return False
 
     return (
-        # segwit pattern
-        re.compile(r"^(bc|tb)[0-3][02-9ac-hj-np-z]{14,74}$").fullmatch(value)
+        # segwit pattern (BIP-173 / BIP-350)
+        re.fullmatch(
+            r"(bc|tb)1(?:q(?:[02-9ac-hj-np-z]{38}|[02-9ac-hj-np-z]{58})"
+            r"|[pzry9x8gf2tvdw0s][02-9ac-hj-np-z]{10,70})",
+            value,
+        )
         if value[:2] in ("bc", "tb")
         else _validate_old_btc_address(value)
     )
