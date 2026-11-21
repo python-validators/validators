@@ -1,10 +1,35 @@
 """Test IP Address."""
 
+# standard
+from typing import Any, Optional
+
 # external
 import pytest
 
 # local
 from validators import ValidationError, ipv4, ipv6
+
+
+@pytest.mark.parametrize("address", [True, 3232235777, b"\x7f\x00\x00\x01", ("10.0.0.0", 8)])
+@pytest.mark.parametrize("cidr", [True, False])
+@pytest.mark.parametrize("private", [None, True, False])
+def test_rejects_non_string_ipv4_address(address: Any, cidr: bool, private: Optional[bool]):
+    """Reject non-string inputs even when ipaddress accepts their representation."""
+    assert isinstance(ipv4(address, cidr=cidr, private=private), ValidationError)
+
+
+@pytest.mark.parametrize("address", [True, 1, bytes(16), ("::", 0)])
+@pytest.mark.parametrize("cidr", [True, False])
+@pytest.mark.parametrize("strict", [True, False])
+def test_rejects_non_string_ipv6_address(address: Any, cidr: bool, strict: bool):
+    """Reject non-string addresses and avoid errors from CIDR string operations."""
+    assert isinstance(ipv6(address, cidr=cidr, strict=strict), ValidationError)
+
+
+@pytest.mark.parametrize("address", [True, 3232235777, b"\x7f\x00\x00\x01", ("10.0.0.0", 8)])
+def test_rejects_non_string_strict_ipv4_address(address: Any):
+    """Strict CIDR validation must reject non-string input without an AttributeError."""
+    assert isinstance(ipv4(address, strict=True), ValidationError)
 
 
 @pytest.mark.parametrize(

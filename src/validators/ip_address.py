@@ -82,7 +82,8 @@ def ipv4(
         (Literal[True]): If `value` is a valid IPv4 address.
         (ValidationError): If `value` is an invalid IPv4 address.
     """
-    if not value:
+    # Validate untyped callers too, even though the public annotation is str.
+    if not isinstance(value, str) or not value:  # pyright: ignore[reportUnnecessaryIsInstance]
         return False
     try:
         if cidr:
@@ -127,7 +128,8 @@ def ipv6(value: str, /, *, cidr: bool = True, strict: bool = False, host_bit: bo
         (Literal[True]): If `value` is a valid IPv6 address.
         (ValidationError): If `value` is an invalid IPv6 address.
     """
-    if not value:
+    # Validate untyped callers too, even though the public annotation is str.
+    if not isinstance(value, str) or not value:  # pyright: ignore[reportUnnecessaryIsInstance]
         return False
     try:
         if cidr:
