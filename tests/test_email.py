@@ -72,3 +72,9 @@ def test_rejects_newline_after_local_part(local_part: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
     assert isinstance(email(f"user@{domain_part}"), ValidationError)
+
+
+@pytest.mark.parametrize("local_part", [r'"a\"b"', r'"a\\b"', r'"\a"', r'"a\ b"'])
+def test_accepts_quoted_pair_with_any_visible_character(local_part: str):
+    """Test a backslash may escape any visible character or space (RFC 5322 3.2.1)."""
+    assert email(f"{local_part}@example.com")
