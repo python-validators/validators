@@ -68,6 +68,19 @@ def test_rejects_newline_after_local_part(local_part: str):
     assert isinstance(email(f"{local_part}\n@example.com"), ValidationError)
 
 
+@pytest.mark.parametrize("local_part", ['"a\\"b"', '"a\\\\b"', '"a\\.b"', '"a\\ b"', '"\\z"'])
+def test_returns_true_on_quoted_pair_in_quoted_local_part(local_part: str):
+    """Test returns true when a quoted local part escapes a printable character."""
+    # RFC 5322 section 3.2.1: a quoted-pair is a backslash followed by VCHAR or WSP.
+    assert email(f"{local_part}@example.com") is True
+
+
+@pytest.mark.parametrize("local_part", ['"\\\000"', '"\\\177"', '"\\\u212a"'])
+def test_returns_failed_validation_on_invalid_quoted_pair(local_part: str):
+    """Test returns failed validation when a quoted-pair escapes a control or non-ASCII char."""
+    assert isinstance(email(f"{local_part}@example.com"), ValidationError)
+
+
 @pytest.mark.parametrize("domain_part", ["example.\uff43\uff4f\uff4d", "exam\u00adple.com"])
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
