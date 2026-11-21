@@ -72,3 +72,20 @@ def test_rejects_newline_after_local_part(local_part: str):
 def test_returns_failed_validation_on_idna_mapped_lookalike_domain(domain_part: str):
     """Test returns failed validation on email domains that only IDNA 2003 mapping makes valid."""
     assert isinstance(email(f"user@{domain_part}"), ValidationError)
+
+
+@pytest.mark.parametrize(
+    ("value", "flag"),
+    [
+        ("user@[[192.168.0.1]]", "ipv4_address"),
+        ("user@[[192.168.0.1]", "ipv4_address"),
+        ("user@[192.168.0.1]]", "ipv4_address"),
+        ("user@[[[2001:db8::1]]]", "ipv6_address"),
+    ],
+)
+def test_rejects_extra_brackets_around_address_literal(value: str, flag: str):
+    """Test an address literal has exactly one pair of brackets (RFC 5321 4.1.3)."""
+    assert isinstance(email(value, **{flag: True}), ValidationError)
+    assert email(
+        f"user@[{'192.168.0.1' if flag == 'ipv4_address' else '2001:db8::1'}]", **{flag: True}
+    )
