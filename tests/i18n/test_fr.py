@@ -41,6 +41,8 @@ def test_returns_true_on_valid_ssn(value: str):
         ("1 84 12 00 451 089",),  # invalid department
         ("1 84 12 2C 451 089",),
         ("1 84 12 98 451 089",),  # invalid department
+        ("1 84 12 075 76 481 95",),  # zero-padded department
+        ("1 84 12 001 23 481",),
         # ("1 84 12 971 451 089",), # ?
     ],
 )
