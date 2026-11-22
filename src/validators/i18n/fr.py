@@ -16,7 +16,7 @@ def _ssn_pattern():
         r"^([12])"  # gender (1=M, 2=F)
         r"\s(\d{2})"  # year of birth
         r"\s(0[1-9]|1[0-2])"  # month of birth
-        r"\s(\d{2,3}|2[AB])"  # department of birth
+        r"\s(\d{2}|97\d|2[AB])"  # department of birth (only overseas ones have 3 digits)
         r"\s(\d{2,3})"  # town of birth
         r"\s(\d{3})"  # registration number
         r"(?:\s(\d{2}))?$",  # control key (may or may not be provided)
