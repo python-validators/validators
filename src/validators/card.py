@@ -11,7 +11,8 @@ from .utils import validator
 def card_number(value: str, /):
     """Return whether or not given value is a valid generic card number.
 
-    This validator is based on [Luhn's algorithm][1].
+    This validator is based on [Luhn's algorithm][1]. Numbers of fewer than 8
+    or more than 19 digits are rejected, since no card number has such a length.
 
     [1]: https://github.com/mmcloughlin/luhn
 
@@ -20,6 +21,8 @@ def card_number(value: str, /):
         True
         >>> card_number('4242424242424241')
         ValidationError(func=card_number, args={'value': '4242424242424241'})
+        >>> card_number('18')
+        ValidationError(func=card_number, args={'value': '18'})
 
     Args:
         value:
@@ -30,6 +33,10 @@ def card_number(value: str, /):
         (ValidationError): If `value` is an invalid generic card number.
     """
     if not value:
+        return False
+    if not 8 <= len(value) <= 19:
+        # an issuer identification number, an account number and a check digit
+        # take at least 8 digits; the longest card number has 19
         return False
     try:
         digits = list(map(int, value))

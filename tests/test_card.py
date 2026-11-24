@@ -43,6 +43,30 @@ def test_returns_true_on_valid_card_number(value: str):
     assert card_number(value)
 
 
+# every value below passes the Luhn check, so only its length decides
+@pytest.mark.parametrize("value", ["40128886", "6212345678901234569"])
+def test_returns_true_on_card_number_of_shortest_and_longest_length(value: str):
+    """Test returns true on card numbers of 8 and of 19 digits."""
+    assert card_number(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "0",
+        "00",
+        "18",
+        "0000000",
+        "4012886",
+        "62123456789012345676",
+        "00000000000000000000000000000000",
+    ],
+)
+def test_returns_failed_validation_on_card_number_of_impossible_length(value: str):
+    """Test returns failed validation on card numbers of fewer than 8 or more than 19 digits."""
+    assert isinstance(card_number(value), ValidationError)
+
+
 @pytest.mark.parametrize(
     "value",
     [
