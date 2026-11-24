@@ -151,6 +151,63 @@ def test_returns_failed_validation_on_invalid_ipv6_cidr_address(
 
 
 @pytest.mark.parametrize(
+    "address",
+    [
+        "::",  # unspecified
+        "::1",  # loopback
+        "fc00::1",  # unique local
+        "fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "fe80::1",  # link-local
+        "fe80::1%eth0",
+        "febf:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "fec0::1",  # site-local
+        "ff02::1",  # multicast
+        "fd00::/8",
+        # IPv4-mapped addresses follow the IPv4 address they embed
+        "::ffff:127.0.0.1",
+        "::ffff:10.1.1.1",
+        "::ffff:169.254.169.254",
+        "::ffff:7f00:1",
+    ],
+)
+def test_returns_true_on_valid_private_ipv6_address(address: str):
+    """Test returns true on private ipv6 address."""
+    assert ipv6(address, private=True)
+    assert isinstance(ipv6(address, private=False), ValidationError)
+
+
+@pytest.mark.parametrize(
+    "address",
+    [
+        "2001:4860:4860::8888",
+        "2606:4700:4700::1111",
+        "2001:4860:4860::8888%eth0",
+        "2600::/12",
+        # just outside the unique local and link-local ranges
+        "fbff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "fe00::1",
+        "fe7f:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "::2",
+        # IPv4-mapped addresses follow the IPv4 address they embed
+        "::ffff:1.1.1.1",
+        "::ffff:192.169.1.1",
+    ],
+)
+def test_returns_true_on_valid_public_ipv6_address(address: str):
+    """Test returns true on public ipv6 address."""
+    assert ipv6(address, private=False)
+    assert isinstance(ipv6(address, private=True), ValidationError)
+
+
+@pytest.mark.parametrize("address", ["::g", "12345::", "::1/129"])
+def test_returns_failed_validation_on_invalid_ipv6_address_with_private_flag(address: str):
+    """Test the private flag never turns an invalid ipv6 address into a valid one."""
+    assert isinstance(ipv6(address), ValidationError)
+    assert isinstance(ipv6(address, private=True), ValidationError)
+    assert isinstance(ipv6(address, private=False), ValidationError)
+
+
+@pytest.mark.parametrize(
     ("address", "private"),
     [
         ("10.1.1.1", True),

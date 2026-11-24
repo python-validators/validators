@@ -73,6 +73,26 @@ def test_returns_failed_validation_on_invalid_hostname(value: str, rfc_1034: boo
 
 
 @pytest.mark.parametrize(
+    ("value", "private"),
+    [
+        ("::1", True),
+        ("[::1]:22", True),
+        ("[fd00::1]:8080", True),
+        ("[fe80::1]:22", True),
+        ("[::ffff:127.0.0.1]:80", True),
+        ("2606:4700:4700::1111", False),
+        ("[2001:4860:4860::8888]:53", False),
+        ("[::ffff:1.1.1.1]:53", False),
+    ],
+)
+def test_returns_true_on_ipv6_host_that_matches_the_private_flag(value: str, private: bool):
+    """Test the private flag applies to IPv6 hosts as it does to IPv4 hosts."""
+    assert hostname(value, private=private)
+    assert isinstance(hostname(value, private=not private), ValidationError)
+    assert hostname(value)
+
+
+@pytest.mark.parametrize(
     "value",
     [
         # total length: at most 253 characters (RFC 1035)
