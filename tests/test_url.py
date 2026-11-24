@@ -126,6 +126,40 @@ def test_returns_true_on_valid_private_url(value: str, private: Optional[bool]):
 @pytest.mark.parametrize(
     "value",
     [
+        "http://[::1]/",
+        "http://[::1]:8080/admin",
+        "http://[::ffff:127.0.0.1]/",
+        "http://[::ffff:169.254.169.254]/latest/meta-data/",
+        "http://[fd00::1]/",
+        "http://[fe80::1]/",
+        "http://username:password@[fc00::10]:4010/",
+    ],
+)
+def test_private_flag_applies_to_private_ipv6_hosts(value: str):
+    """Test a private IPv6 host is private, like its IPv4 counterpart."""
+    assert url(value, private=True)
+    assert isinstance(url(value, private=False), ValidationError)
+    assert url(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "http://[2001:4860:4860::8888]/",
+        "http://[2606:4700:4700::1111]:443/dns-query",
+        "http://[::ffff:1.1.1.1]/",
+    ],
+)
+def test_private_flag_applies_to_public_ipv6_hosts(value: str):
+    """Test a public IPv6 host is public, like its IPv4 counterpart."""
+    assert url(value, private=False)
+    assert isinstance(url(value, private=True), ValidationError)
+    assert url(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
         "foobar.dk",
         "http://127.0.0/asdf",
         "http://foobar.d",

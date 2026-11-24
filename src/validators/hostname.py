@@ -129,12 +129,12 @@ def hostname(
             _matches_simple_hostname(host_seg)
             or domain(host_seg, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
             or (False if skip_ipv4_addr else ipv4(host_seg, cidr=False, private=private))
-            or (False if skip_ipv6_addr else ipv6(host_seg, cidr=False))
+            or (False if skip_ipv6_addr else ipv6(host_seg, cidr=False, private=private))
         )
 
     return (
         _matches_simple_hostname(value)
         or domain(value, consider_tld=consider_tld, rfc_1034=rfc_1034, rfc_2782=rfc_2782)
         or (False if skip_ipv4_addr else ipv4(value, cidr=False, private=private))
-        or (False if skip_ipv6_addr else ipv6(value, cidr=False))
+        or (False if skip_ipv6_addr else ipv6(value, cidr=False, private=private))
     )
