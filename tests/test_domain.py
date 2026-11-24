@@ -237,3 +237,32 @@ def test_returns_failed_validation_on_all_numeric_idn_tld_with_trailing_dot():
 def test_returns_true_on_digits_outside_or_mixed_in_tld(value: str):
     """Test returns true when digits appear only in other labels or alongside letters."""
     assert domain(value)
+
+
+@pytest.mark.parametrize(
+    "value",
+    [
+        "-bücher.de",
+        "bücher-.de",
+        "www.-bücher.de",
+        "www.bücher-.de",
+        "-пример.рф",
+        "example.рф-",
+        "-例子.中国",
+    ],
+)
+@pytest.mark.parametrize("consider_tld", [False, True])
+def test_returns_failed_validation_on_idn_label_with_edge_hyphen(value: str, consider_tld: bool):
+    """Test returns failed validation on an IDN label that starts or ends with a hyphen."""
+    assert isinstance(domain(value, consider_tld=consider_tld), ValidationError)
+    dotted = domain(value + ".", consider_tld=consider_tld, rfc_1034=True)
+    assert isinstance(dotted, ValidationError)
+
+
+@pytest.mark.parametrize(
+    "value",
+    ["bü-cher.de", "b-ü-cher.de", "xn--bcher-kva.de", "a-b.bücher.de", "при-мер.рф"],
+)
+def test_returns_true_on_idn_label_with_inner_hyphen(value: str):
+    """Test returns true on an IDN label with a hyphen that is not at either end."""
+    assert domain(value)

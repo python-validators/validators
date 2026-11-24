@@ -98,6 +98,11 @@ def domain(
         if _relies_on_idna_mapping(value):
             return False
 
+        if any(label.startswith("-") or label.endswith("-") for label in value.split(".")):
+            # ref: RFC 5891 (4.2.3.1), a label does not start or end with a hyphen. Once
+            # encoded, such an IDN label hides its hyphen behind the "xn--" prefix.
+            return False
+
         if value.rstrip(".").rsplit(".", 1)[-1].isdecimal():
             # ref: RFC 1123 (2.1) and RFC 3696 (2), a TLD is not all-numeric. An
             # all-digit IDN label like "\u0661" is, but encodes to a letter-final A-label.
